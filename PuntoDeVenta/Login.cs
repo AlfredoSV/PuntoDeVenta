@@ -21,5 +21,31 @@ namespace PuntoDeVenta
         {
 
         }
+
+        private void btnIngresar_Click(object sender, EventArgs e)
+        {
+
+            var usuario = txtUsuario.Text.Trim();
+            var contrasenia = txtContrasenia.Text.Trim();
+            var inicioForm = new Inicio();
+            var validacion = true;
+
+            if (!usuario.Equals("") && !contrasenia.Equals(""))
+            {
+                if (validacion)
+                {
+                    this.Hide();
+                    inicioForm.Show();
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Favor de ingresar usuario y/o contraseña");
+            }
+
+
+
+        }
     }
 }
