@@ -22,16 +22,19 @@ namespace PuntoDeVenta
 
         private void cerrarSesionToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            this.Close();
-            _login.CerrarSesion();
+
 
         }
 
-        private void altaToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
         {
-            var altaProducto = new AltaProducto();
-            altaProducto.MdiParent = this;
-            altaProducto.Show();
+            this.Close();
+            _login.CerrarSesion();
+            //var altaProducto = new AltaProducto();
+            //altaProducto.MdiParent = this;
+            //altaProducto.Show();
         }
     }
 }
