@@ -12,9 +12,18 @@ namespace PuntoDeVenta
 {
     public partial class Inicio : Form
     {
-        public Inicio()
+        private readonly Login _login;
+        public Inicio(Login login)
         {
+            _login = login;
             InitializeComponent();
+        }
+
+
+        private void cerrarSesionToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            _login.CerrarSesion();
+            this.Close();
         }
     }
 }

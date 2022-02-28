@@ -27,7 +27,7 @@ namespace PuntoDeVenta
 
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
-            var inicioForm = new Inicio();
+            var inicioForm = new Inicio(this);
             var validacion = true;
 
             if (!usuario.Equals("") && !contrasenia.Equals(""))
@@ -41,11 +41,19 @@ namespace PuntoDeVenta
             }
             else
             {
-                MessageBox.Show("Favor de ingresar usuario y/o contraseña");
+                MessageBox.Show("Favor de ingresar usuario y/o contraseña", "Error");
             }
 
 
 
+        }
+
+
+        public void CerrarSesion()
+        {
+            this.Show();
+            txtContrasenia.Text = "";
+            txtUsuario.Text = "";
         }
     }
 }
