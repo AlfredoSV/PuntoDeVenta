@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PuntoDeVenta.ProductosForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace PuntoDeVenta
 {
@@ -32,9 +34,15 @@ namespace PuntoDeVenta
         {
             this.Close();
             _login.CerrarSesion();
-            //var altaProducto = new AltaProducto();
-            //altaProducto.MdiParent = this;
-            //altaProducto.Show();
+
+        }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            var ventas = new Productos();
+            ventas.Show();
+            this.Close();
+
         }
     }
 }

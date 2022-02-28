@@ -48,6 +48,7 @@ namespace PuntoDeVenta
             this.btnProductos.TabIndex = 0;
             this.btnProductos.Text = "Productos";
             this.btnProductos.UseVisualStyleBackColor = false;
+            this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
             // btnProveedores
             // 
@@ -114,7 +115,7 @@ namespace PuntoDeVenta
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 384);
+            this.ClientSize = new System.Drawing.Size(500, 384);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnMiInformacion);
             this.Controls.Add(this.btnUsuario);
