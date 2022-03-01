@@ -1,8 +1,12 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Extensions.DependencyInjection;
+using Negocio.IServicios;
+using Negocio.Servicios;
 
 namespace PuntoDeVenta
 {
@@ -16,7 +20,23 @@ namespace PuntoDeVenta
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+
+            var services = new ServiceCollection();
+            ConfigureServices(services);
+
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                var login = serviceProvider.GetRequiredService<Login>();
+
+                Application.Run(login);
+            }
+
+
+        }
+
+        public static void ConfigureServices(ServiceCollection services)
+        {
+            services.AddTransient<IServicioProductos, ServicioProductos>().AddScoped<Login>();
         }
     }
 }
