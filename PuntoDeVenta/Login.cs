@@ -27,7 +27,7 @@ namespace PuntoDeVenta
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-
+            _servicioAutenticacion.ValidarUsuario();
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
             var inicioForm = new Inicio(this);

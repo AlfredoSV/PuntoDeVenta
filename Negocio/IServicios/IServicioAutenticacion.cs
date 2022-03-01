@@ -6,5 +6,6 @@ namespace Negocio.IServicios
 {
     public interface IServicioAutenticacion
     {
+        void ValidarUsuario();
     }
 }

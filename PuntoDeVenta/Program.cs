@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AccesoDatos.Repositorios;
 using Microsoft.Extensions.DependencyInjection;
+using Negocio.IRepositorios;
 using Negocio.IServicios;
 using Negocio.Servicios;
 
@@ -36,7 +38,7 @@ namespace PuntoDeVenta
 
         public static void ConfigureServices(ServiceCollection services)
         {
-            //services.AddTransient<IServicioProductos, ServicioProductos>().AddTransient<Login>();
+            services.AddTransient<IRepositorioUsuario, RepositorioUsuario>().AddTransient<ServicioAutenticacion>();
             services.AddTransient<IServicioAutenticacion, ServicioAutenticacion>().AddTransient<Login>();
         }
     }
