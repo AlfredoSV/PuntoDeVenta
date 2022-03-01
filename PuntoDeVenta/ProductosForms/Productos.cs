@@ -24,7 +24,16 @@ namespace PuntoDeVenta.ProductosForms
             dt.Columns.Add("Nombre", typeof(string));
 
             dt.Rows.Add(new string[] { "Alfredo" });
+            dt.Rows.Add(new string[] { "Alfredo2" });
+            /*DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+            checkColumn.Name = "X";
+            checkColumn.HeaderText = "X";
+            checkColumn.Width = 50;
+            checkColumn.ReadOnly = true;
+            checkColumn.FillWeight = 10;
 
+            dataGridViewProductos.Columns.Add(checkColumn);
+            */
             dataGridViewProductos.DataSource = dt;
 
 
