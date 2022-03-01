@@ -36,7 +36,8 @@ namespace PuntoDeVenta
 
         public static void ConfigureServices(ServiceCollection services)
         {
-            services.AddTransient<IServicioProductos, ServicioProductos>().AddScoped<Login>();
+            //services.AddTransient<IServicioProductos, ServicioProductos>().AddTransient<Login>();
+            services.AddTransient<IServicioAutenticacion, ServicioAutenticacion>().AddTransient<Login>();
         }
     }
 }
