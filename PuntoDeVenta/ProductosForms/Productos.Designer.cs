@@ -36,7 +36,6 @@ namespace PuntoDeVenta.ProductosForms
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.Elimar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Alta = new System.Windows.Forms.TabPage();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
@@ -67,13 +66,12 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos.AllowUserToOrderColumns = true;
             this.dataGridViewProductos.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProductos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Elimar});
             this.dataGridViewProductos.Location = new System.Drawing.Point(405, 50);
             this.dataGridViewProductos.Name = "dataGridViewProductos";
             this.dataGridViewProductos.ReadOnly = true;
             this.dataGridViewProductos.Size = new System.Drawing.Size(383, 330);
             this.dataGridViewProductos.TabIndex = 1;
+            this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
             // 
             // btnSalirVentas
             // 
@@ -129,15 +127,6 @@ namespace PuntoDeVenta.ProductosForms
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(71, 20);
             this.textBox3.TabIndex = 20;
-            // 
-            // Elimar
-            // 
-            this.Elimar.Frozen = true;
-            this.Elimar.HeaderText = "Eliminar";
-            this.Elimar.Name = "Elimar";
-            this.Elimar.ReadOnly = true;
-            this.Elimar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Elimar.Text = "Eliminar";
             // 
             // Alta
             // 
@@ -341,7 +330,6 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.DataGridViewButtonColumn Elimar;
         private System.Windows.Forms.TabPage Alta;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.MaskedTextBox maskedTextBox1;
