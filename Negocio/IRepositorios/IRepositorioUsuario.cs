@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Negocio.Entidades;
 
 namespace Negocio.IRepositorios
 {
     public interface IRepositorioUsuario
     {
-        void ConsultarUsuario();
+        IEnumerable<Producto> ConsultarProductos();
     }
 }

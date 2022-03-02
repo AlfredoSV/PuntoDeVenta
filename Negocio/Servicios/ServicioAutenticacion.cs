@@ -15,7 +15,7 @@ namespace Negocio.Servicios
         }
         public void ValidarUsuario()
         {
-            _repositorioUsuario.ConsultarUsuario();
+            //_repositorioUsuario.ConsultarUsuario();
         }
     }
 }
