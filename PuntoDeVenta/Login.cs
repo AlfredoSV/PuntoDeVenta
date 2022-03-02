@@ -1,4 +1,4 @@
-﻿using Negocio.IServicios;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,17 +13,17 @@ namespace PuntoDeVenta
 {
     public partial class Login : Form
     {
-        public readonly IServicioAutenticacion _servicioAutenticacion;
-        public Login(IServicioAutenticacion servicioAutenticacion)
+
+        public Login()
         {
-            _servicioAutenticacion = servicioAutenticacion;
+
             InitializeComponent();
         }
 
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            _servicioAutenticacion.ValidarUsuario();
+
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
             var inicioForm = new Inicio();

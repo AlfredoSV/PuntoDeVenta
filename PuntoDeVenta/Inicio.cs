@@ -15,6 +15,7 @@ namespace PuntoDeVenta
     public partial class Inicio : Form
     {
         private readonly Login _login;
+
         public Inicio()
         {
 

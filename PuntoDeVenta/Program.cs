@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AccesoDatos.Repositorios;
 using Microsoft.Extensions.DependencyInjection;
-using Negocio.IRepositorios;
-using Negocio.IServicios;
+
 using Negocio.Servicios;
 
 namespace PuntoDeVenta
@@ -23,24 +22,14 @@ namespace PuntoDeVenta
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var services = new ServiceCollection();
-            ConfigureServices(services);
 
-            using (var serviceProvider = services.BuildServiceProvider())
-            {
-                var login = serviceProvider.GetRequiredService<Login>();
 
-                Application.Run(login);
-            }
+            Application.Run(new Login());
+
 
 
         }
 
-        public static void ConfigureServices(ServiceCollection services)
-        {
-            services.AddScoped(cadCon => "");
-            services.AddTransient<IRepositorioUsuario, RepositorioUsuario>().AddTransient<ServicioAutenticacion>();
-            services.AddTransient<IServicioAutenticacion, ServicioAutenticacion>().AddTransient<Login>();
-        }
+
     }
 }

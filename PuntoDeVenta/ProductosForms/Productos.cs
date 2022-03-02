@@ -7,43 +7,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Negocio.Servicios;
 
 namespace PuntoDeVenta.ProductosForms
 {
     public partial class Productos : Form
     {
+        private readonly ServicioProductos _servicioProductos;
         public Productos()
         {
+            _servicioProductos = ServicioProductos.Instacia;
             InitializeComponent();
         }
 
+
         private void Productos_Load(object sender, EventArgs e)
         {
-            var dt = new DataTable();
 
-            dt.Columns.Add("Nombre", typeof(string));
-            dt.Columns.Add("Id", typeof(Guid));
 
-            dt.Rows.Add(new string[] { "Alfredo", Guid.NewGuid().ToString() });
-            dt.Rows.Add(new string[] { "Alfredo2", Guid.NewGuid().ToString() });
-            DataGridViewButtonColumn buttons = new DataGridViewButtonColumn();
-            //checkColumn.Name = "X";
-            //checkColumn.HeaderText = "Eli";
-
-            buttons.Text = "Sales";
-
-            buttons.UseColumnTextForButtonValue = true;
-            buttons.AutoSizeMode =
-                DataGridViewAutoSizeColumnMode.AllCells;
-            // buttons.FlatStyle = FlatStyle.Standard;
-            buttons.CellTemplate.Style.BackColor = Color.Red;
-            buttons.DisplayIndex = 0;
-            buttons.DataPropertyName = Guid.NewGuid().ToString();
-
-            dataGridViewProductos.Columns.Add(buttons);
-
-            dataGridViewProductos.DataSource = dt;
-
+            var productos = _servicioProductos.ConsultarProductosBD();
+            dataGridViewProductos.DataSource = productos;
 
 
         }

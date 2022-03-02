@@ -42,7 +42,7 @@ namespace PuntoDeVenta
             // btnProductos
             // 
             this.btnProductos.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnProductos.Location = new System.Drawing.Point(72, 51);
+            this.btnProductos.Location = new System.Drawing.Point(106, 168);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(110, 82);
             this.btnProductos.TabIndex = 0;
@@ -53,7 +53,7 @@ namespace PuntoDeVenta
             // btnProveedores
             // 
             this.btnProveedores.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnProveedores.Location = new System.Drawing.Point(289, 51);
+            this.btnProveedores.Location = new System.Drawing.Point(348, 168);
             this.btnProveedores.Name = "btnProveedores";
             this.btnProveedores.Size = new System.Drawing.Size(110, 82);
             this.btnProveedores.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace PuntoDeVenta
             // btnVenta
             // 
             this.btnVenta.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnVenta.Location = new System.Drawing.Point(72, 158);
+            this.btnVenta.Location = new System.Drawing.Point(106, 47);
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(110, 82);
             this.btnVenta.TabIndex = 2;
@@ -73,7 +73,7 @@ namespace PuntoDeVenta
             // btnUsuario
             // 
             this.btnUsuario.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnUsuario.Location = new System.Drawing.Point(289, 158);
+            this.btnUsuario.Location = new System.Drawing.Point(348, 47);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(110, 82);
             this.btnUsuario.TabIndex = 3;
@@ -83,7 +83,7 @@ namespace PuntoDeVenta
             // btnMiInformacion
             // 
             this.btnMiInformacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnMiInformacion.Location = new System.Drawing.Point(72, 268);
+            this.btnMiInformacion.Location = new System.Drawing.Point(106, 280);
             this.btnMiInformacion.Name = "btnMiInformacion";
             this.btnMiInformacion.Size = new System.Drawing.Size(110, 82);
             this.btnMiInformacion.TabIndex = 5;
@@ -93,7 +93,7 @@ namespace PuntoDeVenta
             // btnCerrarSesion
             // 
             this.btnCerrarSesion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(289, 268);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(348, 280);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(110, 82);
             this.btnCerrarSesion.TabIndex = 6;
@@ -108,7 +108,7 @@ namespace PuntoDeVenta
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSalir.Location = new System.Drawing.Point(380, 3);
+            this.btnSalir.Location = new System.Drawing.Point(468, 12);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(106, 29);
             this.btnSalir.TabIndex = 7;
@@ -122,7 +122,7 @@ namespace PuntoDeVenta
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(489, 384);
+            this.ClientSize = new System.Drawing.Size(586, 384);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnMiInformacion);
