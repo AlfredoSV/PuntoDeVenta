@@ -20,17 +20,13 @@ namespace PuntoDeVenta
             InitializeComponent();
         }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
             _servicioAutenticacion.ValidarUsuario();
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
-            var inicioForm = new Inicio(this);
+            var inicioForm = new Inicio();
             var validacion = true;
 
             if (!usuario.Equals("") && !contrasenia.Equals(""))
@@ -57,6 +53,11 @@ namespace PuntoDeVenta
             this.Show();
             txtContrasenia.Text = "";
             txtUsuario.Text = "";
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();
         }
     }
 }

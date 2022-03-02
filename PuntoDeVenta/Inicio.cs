@@ -15,9 +15,9 @@ namespace PuntoDeVenta
     public partial class Inicio : Form
     {
         private readonly Login _login;
-        public Inicio(Login login)
+        public Inicio()
         {
-            _login = login;
+
             InitializeComponent();
         }
 
@@ -43,6 +43,11 @@ namespace PuntoDeVenta
             ventas.Show();
             this.Close();
 
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();
         }
     }
 }

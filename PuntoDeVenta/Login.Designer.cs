@@ -36,24 +36,25 @@ namespace PuntoDeVenta
             this.lblUsuario = new System.Windows.Forms.Label();
             this.lblcontraseña = new System.Windows.Forms.Label();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsuario
             // 
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUsuario.Location = new System.Drawing.Point(376, 62);
+            this.txtUsuario.Location = new System.Drawing.Point(365, 49);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(135, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(164, 20);
             this.txtUsuario.TabIndex = 0;
             // 
             // txtContrasenia
             // 
             this.txtContrasenia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContrasenia.Location = new System.Drawing.Point(376, 114);
+            this.txtContrasenia.Location = new System.Drawing.Point(365, 101);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.PasswordChar = '*';
-            this.txtContrasenia.Size = new System.Drawing.Size(135, 20);
+            this.txtContrasenia.Size = new System.Drawing.Size(164, 20);
             this.txtContrasenia.TabIndex = 1;
             // 
             // btnIngresar
@@ -63,7 +64,7 @@ namespace PuntoDeVenta
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnIngresar.Location = new System.Drawing.Point(389, 153);
+            this.btnIngresar.Location = new System.Drawing.Point(393, 138);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(106, 29);
             this.btnIngresar.TabIndex = 2;
@@ -75,7 +76,7 @@ namespace PuntoDeVenta
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(416, 42);
+            this.lblUsuario.Location = new System.Drawing.Point(419, 29);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(57, 17);
             this.lblUsuario.TabIndex = 3;
@@ -85,7 +86,7 @@ namespace PuntoDeVenta
             // 
             this.lblcontraseña.AutoSize = true;
             this.lblcontraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcontraseña.Location = new System.Drawing.Point(401, 94);
+            this.lblcontraseña.Location = new System.Drawing.Point(404, 81);
             this.lblcontraseña.Name = "lblcontraseña";
             this.lblcontraseña.Size = new System.Drawing.Size(81, 17);
             this.lblcontraseña.TabIndex = 4;
@@ -101,25 +102,40 @@ namespace PuntoDeVenta
             this.picBoxLogo.TabIndex = 5;
             this.picBoxLogo.TabStop = false;
             // 
+            // btnSalir
+            // 
+            this.btnSalir.BackColor = System.Drawing.Color.RosyBrown;
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSalir.Location = new System.Drawing.Point(393, 178);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(106, 29);
+            this.btnSalir.TabIndex = 6;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(541, 219);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.picBoxLogo);
             this.Controls.Add(this.lblcontraseña);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.txtContrasenia);
             this.Controls.Add(this.txtUsuario);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ingresar - Punto de venta";
-            this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -134,6 +150,7 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Label lblcontraseña;
         private System.Windows.Forms.PictureBox picBoxLogo;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
 

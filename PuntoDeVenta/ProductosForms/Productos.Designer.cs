@@ -30,28 +30,28 @@ namespace PuntoDeVenta.ProductosForms
         private void InitializeComponent()
         {
             this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
-            this.btnSalirVentas = new System.Windows.Forms.Button();
+            this.btnSalirProductos = new System.Windows.Forms.Button();
             this.btnRecargar = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.Alta = new System.Windows.Forms.TabPage();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
@@ -73,16 +73,17 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos.TabIndex = 1;
             this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
             // 
-            // btnSalirVentas
+            // btnSalirProductos
             // 
-            this.btnSalirVentas.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSalirVentas.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirVentas.Location = new System.Drawing.Point(702, 16);
-            this.btnSalirVentas.Name = "btnSalirVentas";
-            this.btnSalirVentas.Size = new System.Drawing.Size(86, 25);
-            this.btnSalirVentas.TabIndex = 0;
-            this.btnSalirVentas.Text = "Salir";
-            this.btnSalirVentas.UseVisualStyleBackColor = false;
+            this.btnSalirProductos.BackColor = System.Drawing.Color.IndianRed;
+            this.btnSalirProductos.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSalirProductos.Location = new System.Drawing.Point(702, 16);
+            this.btnSalirProductos.Name = "btnSalirProductos";
+            this.btnSalirProductos.Size = new System.Drawing.Size(86, 25);
+            this.btnSalirProductos.TabIndex = 0;
+            this.btnSalirProductos.Text = "Salir";
+            this.btnSalirProductos.UseVisualStyleBackColor = false;
+            this.btnSalirProductos.Click += new System.EventHandler(this.btnSalirProductos_Click);
             // 
             // btnRecargar
             // 
@@ -125,6 +126,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.textBox3.Location = new System.Drawing.Point(518, 20);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(71, 20);
             this.textBox3.TabIndex = 20;
             // 
@@ -154,99 +156,29 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
-            // textBox1
+            // numericUpDown1
             // 
-            this.textBox1.Location = new System.Drawing.Point(19, 51);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.numericUpDown1.Location = new System.Drawing.Point(231, 51);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(100, 20);
+            this.numericUpDown1.TabIndex = 17;
             // 
-            // textBox2
+            // maskedTextBox1
             // 
-            this.textBox2.Location = new System.Drawing.Point(19, 108);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(312, 60);
-            this.textBox2.TabIndex = 1;
+            this.maskedTextBox1.Location = new System.Drawing.Point(125, 51);
+            this.maskedTextBox1.Mask = "0000,000.00";
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox1.TabIndex = 16;
             // 
-            // comboBox2
+            // button3
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(198, 212);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(133, 21);
-            this.comboBox2.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Nombre:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(125, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Precio:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(228, 35);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "Stock:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(16, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(66, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Descripción:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 196);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(57, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Inventario:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(195, 196);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Proveedor:";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(19, 212);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(133, 20);
-            this.textBox5.TabIndex = 12;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(19, 277);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Guardar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button3.Location = new System.Drawing.Point(256, 277);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 15;
+            this.button3.Text = "Limpiar";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -258,29 +190,99 @@ namespace PuntoDeVenta.ProductosForms
             this.button2.Text = "Realizar carga másiva";
             this.button2.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // button1
             // 
-            this.button3.Location = new System.Drawing.Point(256, 277);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 15;
-            this.button3.Text = "Limpiar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(19, 277);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Guardar";
+            this.button1.UseVisualStyleBackColor = true;
             // 
-            // maskedTextBox1
+            // textBox5
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(125, 51);
-            this.maskedTextBox1.Mask = "0000,000.00";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 16;
+            this.textBox5.Location = new System.Drawing.Point(19, 212);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(133, 20);
+            this.textBox5.TabIndex = 12;
             // 
-            // numericUpDown1
+            // textBox2
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(231, 51);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(100, 20);
-            this.numericUpDown1.TabIndex = 17;
+            this.textBox2.Location = new System.Drawing.Point(19, 108);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(312, 60);
+            this.textBox2.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(19, 51);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(195, 196);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Proveedor:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(16, 196);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(57, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Inventario:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(16, 92);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(66, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Descripción:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(228, 35);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(38, 13);
+            this.label3.TabIndex = 8;
+            this.label3.Text = "Stock:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(125, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Precio:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Nombre:";
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(198, 212);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(133, 21);
+            this.comboBox2.TabIndex = 4;
             // 
             // tabControlProductos
             // 
@@ -302,10 +304,10 @@ namespace PuntoDeVenta.ProductosForms
             this.Controls.Add(this.label7);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.btnRecargar);
-            this.Controls.Add(this.btnSalirVentas);
+            this.Controls.Add(this.btnSalirProductos);
             this.Controls.Add(this.dataGridViewProductos);
             this.Controls.Add(this.tabControlProductos);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Productos";
@@ -324,7 +326,7 @@ namespace PuntoDeVenta.ProductosForms
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridViewProductos;
-        private System.Windows.Forms.Button btnSalirVentas;
+        private System.Windows.Forms.Button btnSalirProductos;
         private System.Windows.Forms.Button btnRecargar;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label7;

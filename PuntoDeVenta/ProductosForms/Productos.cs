@@ -55,5 +55,12 @@ namespace PuntoDeVenta.ProductosForms
             MessageBox.Show(dataGridViewProductos.Rows[e.RowIndex].Cells[2].Value.ToString());
 
         }
+
+        private void btnSalirProductos_Click(object sender, EventArgs e)
+        {
+            var inicioForm = new Inicio();
+            inicioForm.Show();
+            this.Close();
+        }
     }
 }

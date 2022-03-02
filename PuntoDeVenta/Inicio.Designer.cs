@@ -29,20 +29,20 @@ namespace PuntoDeVenta
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnProveedores = new System.Windows.Forms.Button();
             this.btnVenta = new System.Windows.Forms.Button();
             this.btnUsuario = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnMiInformacion = new System.Windows.Forms.Button();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
             // 
             this.btnProductos.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnProductos.Location = new System.Drawing.Point(78, 54);
+            this.btnProductos.Location = new System.Drawing.Point(72, 51);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(110, 82);
             this.btnProductos.TabIndex = 0;
@@ -53,7 +53,7 @@ namespace PuntoDeVenta
             // btnProveedores
             // 
             this.btnProveedores.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnProveedores.Location = new System.Drawing.Point(302, 54);
+            this.btnProveedores.Location = new System.Drawing.Point(289, 51);
             this.btnProveedores.Name = "btnProveedores";
             this.btnProveedores.Size = new System.Drawing.Size(110, 82);
             this.btnProveedores.TabIndex = 1;
@@ -63,7 +63,7 @@ namespace PuntoDeVenta
             // btnVenta
             // 
             this.btnVenta.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnVenta.Location = new System.Drawing.Point(78, 161);
+            this.btnVenta.Location = new System.Drawing.Point(72, 158);
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(110, 82);
             this.btnVenta.TabIndex = 2;
@@ -73,27 +73,17 @@ namespace PuntoDeVenta
             // btnUsuario
             // 
             this.btnUsuario.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnUsuario.Location = new System.Drawing.Point(302, 161);
+            this.btnUsuario.Location = new System.Drawing.Point(289, 158);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(110, 82);
             this.btnUsuario.TabIndex = 3;
             this.btnUsuario.Text = "Usuarios";
             this.btnUsuario.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::PuntoDeVenta.Properties.Resources.logo;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(516, 385);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnMiInformacion
             // 
             this.btnMiInformacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnMiInformacion.Location = new System.Drawing.Point(78, 271);
+            this.btnMiInformacion.Location = new System.Drawing.Point(72, 268);
             this.btnMiInformacion.Name = "btnMiInformacion";
             this.btnMiInformacion.Size = new System.Drawing.Size(110, 82);
             this.btnMiInformacion.TabIndex = 5;
@@ -103,7 +93,7 @@ namespace PuntoDeVenta
             // btnCerrarSesion
             // 
             this.btnCerrarSesion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(302, 271);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(289, 268);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(110, 82);
             this.btnCerrarSesion.TabIndex = 6;
@@ -111,25 +101,41 @@ namespace PuntoDeVenta
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
             this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.BackColor = System.Drawing.Color.RosyBrown;
+            this.btnSalir.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSalir.Location = new System.Drawing.Point(380, 3);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(106, 29);
+            this.btnSalir.TabIndex = 7;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = false;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 384);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(489, 384);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnMiInformacion);
             this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnVenta);
             this.Controls.Add(this.btnProveedores);
             this.Controls.Add(this.btnProductos);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -140,8 +146,8 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Button btnProveedores;
         private System.Windows.Forms.Button btnVenta;
         private System.Windows.Forms.Button btnUsuario;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnMiInformacion;
         private System.Windows.Forms.Button btnCerrarSesion;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

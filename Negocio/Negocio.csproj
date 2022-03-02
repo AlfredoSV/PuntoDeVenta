@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Entidades\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
 
 </Project>
