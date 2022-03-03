@@ -1,4 +1,6 @@
-﻿using PuntoDeVenta.ProductosForms;
+﻿using Aplicacion.Servicios;
+using Dominio.Entidades;
+using PuntoDeVenta.ProductosForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,39 +16,25 @@ namespace PuntoDeVenta
 {
     public partial class Inicio : Form
     {
-        private readonly Login _login;
-
+        private ServicioAutenticacion _servicioAutenticacion;
+        private Usuario _usuarioLogueado;
+        private PermisosModulo _permisoModulo;
         public Inicio()
         {
-
+            _servicioAutenticacion = ServicioAutenticacion.Instacia;
             InitializeComponent();
-
-            lblFechaHoy.Text = DateTime.Now.ToString();
-            lblSaludo.Text = "Bienvenido, Alfredo";
         }
 
-
-        private void cerrarSesionToolStripMenuItem_Click_1(object sender, EventArgs e)
+        private void Inicio_Load(object sender, EventArgs e)
         {
-
-
+            _permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
         }
-
-
-
-        private void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            _login.CerrarSesion();
-
-        }
-
         private void btnProductos_Click(object sender, EventArgs e)
         {
             try
             {
-                var ventas = new Productos();
-                ventas.Show();
+                var productos = new Productos();
+                productos.Show(_usuarioLogueado);
                 this.Close();
             }
             catch (Exception exception)
@@ -62,5 +50,16 @@ namespace PuntoDeVenta
         {
             Application.ExitThread();
         }
+
+        public void Show(Usuario usuario)
+        {
+            _usuarioLogueado = usuario;
+
+            lblFechaHoy.Text = DateTime.Now.ToString();
+            lblSaludo.Text = $"Bienvenido, {usuario.NombreUsuario}";
+            base.Show();
+        }
+
+
     }
 }

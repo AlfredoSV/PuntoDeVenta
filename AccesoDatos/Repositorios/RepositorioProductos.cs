@@ -32,6 +32,7 @@ namespace Dominio.Repositorios
         {
             _cadCon = cadCon;
         }
+
         public IEnumerable<Producto> ConsultarProductos()
         {
             var productos = new List<Producto>();

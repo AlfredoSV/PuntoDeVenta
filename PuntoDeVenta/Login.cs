@@ -38,7 +38,11 @@ namespace PuntoDeVenta
                 if (_servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
                 {
                     this.Hide();
-                    inicioForm.Show();
+                    inicioForm.Show(_servicioAutenticacion.ConsultarUsuario(usuario, contrasenia));
+                }
+                else
+                {
+                    MessageBox.Show("El usuario y/o contraseña son incorrectos", "Error");
                 }
 
             }

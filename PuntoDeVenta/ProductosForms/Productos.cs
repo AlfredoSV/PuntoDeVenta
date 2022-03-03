@@ -8,20 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Aplicacion.Servicios;
+using Dominio.Entidades;
 
 namespace PuntoDeVenta.ProductosForms
 {
     public partial class Productos : Form
     {
         private readonly ServicioProductos _servicioProductos;
+        private Usuario _usuarioLogueado;
+
         public Productos()
         {
             try
             {
+
                 _servicioProductos = ServicioProductos.Instacia;
                 InitializeComponent();
                 var productos = _servicioProductos.ConsultarProductosBD();
                 dataGridViewProductos.DataSource = productos;
+
 
             }
             catch (Exception exception)
@@ -50,7 +55,7 @@ namespace PuntoDeVenta.ProductosForms
         private void btnSalirProductos_Click(object sender, EventArgs e)
         {
             var inicioForm = new Inicio();
-            inicioForm.Show();
+            inicioForm.Show(_usuarioLogueado);
             this.Close();
         }
 
@@ -74,6 +79,13 @@ namespace PuntoDeVenta.ProductosForms
 
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }*/
+        }
+
+        public void Show(Usuario usuario)
+        {
+
+            _usuarioLogueado = usuario;
+            base.Show();
         }
     }
 }

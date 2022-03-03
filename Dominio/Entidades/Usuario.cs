@@ -31,6 +31,10 @@ namespace Dominio.Entidades
         }
 
 
+        public static Usuario CrearUsuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, Sucursal sucursal, Rol rol)
+        {
+            return new Usuario(idUsuario, nombreUsuario, contrsenia, fechayHoraAlta, sucursal, rol);
+        }
 
     }
 }

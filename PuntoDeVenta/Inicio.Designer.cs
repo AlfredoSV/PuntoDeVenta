@@ -101,7 +101,6 @@ namespace PuntoDeVenta
             this.btnCerrarSesion.TabIndex = 6;
             this.btnCerrarSesion.Text = "Cerrar sesión";
             this.btnCerrarSesion.UseVisualStyleBackColor = false;
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // btnSalir
             // 
@@ -123,9 +122,8 @@ namespace PuntoDeVenta
             this.lblSaludo.AutoSize = true;
             this.lblSaludo.Location = new System.Drawing.Point(310, 12);
             this.lblSaludo.Name = "lblSaludo";
-            this.lblSaludo.Size = new System.Drawing.Size(99, 13);
+            this.lblSaludo.Size = new System.Drawing.Size(0, 13);
             this.lblSaludo.TabIndex = 8;
-            this.lblSaludo.Text = "Bienvenido, Alfredo";
             // 
             // lblFechaHoy
             // 
@@ -157,6 +155,7 @@ namespace PuntoDeVenta
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

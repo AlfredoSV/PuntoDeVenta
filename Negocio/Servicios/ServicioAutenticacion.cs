@@ -1,5 +1,5 @@
 ﻿
-
+using AccesoDatos.Repositorios;
 using Dominio.Repositorios;
 using Dominio.Entidades;
 using System;
@@ -11,6 +11,7 @@ namespace Aplicacion.Servicios
     public class ServicioAutenticacion
     {
         private static ServicioAutenticacion _instacia;
+        private RepositorioUsuarios _repositorioUsuarios;
 
         public static ServicioAutenticacion Instacia
         {
@@ -28,17 +29,25 @@ namespace Aplicacion.Servicios
 
         private ServicioAutenticacion()
         {
-
+            _repositorioUsuarios = RepositorioUsuarios.Instacia;
+            _repositorioUsuarios.AgregarConexionBD(ConexionString.StrConexionBdSql.DefaultConexionSqlServer);
         }
-        public bool ValidarUsuario(string usuario, string contrasenia)
+        public bool ValidarUsuario(string nombreUsuario, string contrasenia)
+        {
+            var usuario = _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
+            return usuario != null;
+        }
+
+        public Usuario ConsultarUsuario(string nombreUsuario, string contrasenia)
+        {
+            var usuario = _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
+            return usuario;
+        }
+
+        public PermisosModulo ConsultarPermisosPorIdUsuario(Guid idUsuario)
         {
 
-            return true;
-        }
-
-        public bool ConsultarUsuario(Producto dtoUsuario)
-        {
-            return true;
+            return null;
         }
     }
 }
