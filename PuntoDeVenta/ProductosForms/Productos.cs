@@ -16,17 +16,25 @@ namespace PuntoDeVenta.ProductosForms
         private readonly ServicioProductos _servicioProductos;
         public Productos()
         {
-            _servicioProductos = ServicioProductos.Instacia;
-            InitializeComponent();
+            try
+            {
+                _servicioProductos = ServicioProductos.Instacia;
+                InitializeComponent();
+                var productos = _servicioProductos.ConsultarProductosBD();
+                dataGridViewProductos.DataSource = productos;
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+            }
+
         }
 
 
         private void Productos_Load(object sender, EventArgs e)
         {
-
-
-            var productos = _servicioProductos.ConsultarProductosBD();
-            dataGridViewProductos.DataSource = productos;
 
 
         }

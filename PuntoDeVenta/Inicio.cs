@@ -40,9 +40,18 @@ namespace PuntoDeVenta
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            var ventas = new Productos();
-            ventas.Show();
-            this.Close();
+            try
+            {
+                var ventas = new Productos();
+                ventas.Show();
+                this.Close();
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
 
         }
 
