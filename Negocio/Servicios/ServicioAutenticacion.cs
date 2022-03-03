@@ -1,24 +1,38 @@
 ﻿
-using Negocio.Entidades;
+using Dominio.Dtos;
+using Dominio.Repositorios;
+using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Negocio.Servicios
+namespace Aplicacion.Servicios
 {
     public class ServicioAutenticacion
     {
-        private readonly ConexionString _conDefault;
-        public ServicioAutenticacion()
+        private static ServicioAutenticacion _instacia;
+
+        public static ServicioAutenticacion Instacia
         {
-            _conDefault = new ConexionString();
+            get
+            {
+                if (_instacia == null)
+                    _instacia = new ServicioAutenticacion();
+
+                return _instacia;
+
+            }
+            set => _instacia = value;
         }
 
-        public ConexionString ConDefault => _conDefault;
 
-        public void ValidarUsuario()
+        private ServicioAutenticacion()
         {
-            //_repositorioUsuario.ConsultarUsuario();
+
+        }
+        public bool ValidarUsuario(DtoUsuario dtoUsuario)
+        {
+            return true;
         }
     }
 }

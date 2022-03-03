@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Negocio.Entidades
+namespace Dominio.Entidades
 {
     public class Producto
     {

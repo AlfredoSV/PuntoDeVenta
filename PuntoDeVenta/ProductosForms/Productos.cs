@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Negocio.Servicios;
+using Aplicacion.Servicios;
 
 namespace PuntoDeVenta.ProductosForms
 {

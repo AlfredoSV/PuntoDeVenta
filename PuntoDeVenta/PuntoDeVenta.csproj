@@ -128,9 +128,13 @@
       <Project>{19111254-37d6-48d7-ae08-6fd99f953a41}</Project>
       <Name>AccesoDatos</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Negocio\Negocio.csproj">
+    <ProjectReference Include="..\Dominio\Dominio.csproj">
+      <Project>{14a5fa15-0759-4090-ac6c-65801bf58e13}</Project>
+      <Name>Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Aplicacion.csproj">
       <Project>{12fa365b-ee9f-44f2-a4f4-11d1e46ce30e}</Project>
-      <Name>Negocio</Name>
+      <Name>Aplicacion</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

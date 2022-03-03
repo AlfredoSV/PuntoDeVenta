@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Negocio.Entidades;
-using AccesoDatos.Repositorios;
+using Dominio.Entidades;
+using Dominio.Repositorios;
 using System.Data.SqlClient;
 using System.Linq;
+using Dominio.Dtos;
 
-
-namespace Negocio.Servicios
+namespace Aplicacion.Servicios
 {
     public class ServicioProductos
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Negocio.Entidades
+namespace Dominio.Dtos
 {
     public class DtoProducto
     {

@@ -1,4 +1,6 @@
 ﻿
+using Dominio.Dtos;
+using Aplicacion.Servicios;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,10 +15,10 @@ namespace PuntoDeVenta
 {
     public partial class Login : Form
     {
-
+        private readonly ServicioAutenticacion _servicioAutenticacion;
         public Login()
         {
-
+            _servicioAutenticacion = ServicioAutenticacion.Instacia;
             InitializeComponent();
         }
 
@@ -27,11 +29,14 @@ namespace PuntoDeVenta
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
             var inicioForm = new Inicio();
-            var validacion = true;
+            var dtoUsuario = new DtoUsuario();
 
             if (!usuario.Equals("") && !contrasenia.Equals(""))
             {
-                if (validacion)
+                dtoUsuario.Contrasenia = contrasenia;
+                dtoUsuario.Usuario = usuario;
+
+                if (_servicioAutenticacion.ValidarUsuario(dtoUsuario))
                 {
                     this.Hide();
                     inicioForm.Show();

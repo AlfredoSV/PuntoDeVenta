@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AccesoDatos.Repositorios;
+using Dominio.Repositorios;
 using Microsoft.Extensions.DependencyInjection;
 
-using Negocio.Servicios;
+using Aplicacion.Servicios;
 
 namespace PuntoDeVenta
 {

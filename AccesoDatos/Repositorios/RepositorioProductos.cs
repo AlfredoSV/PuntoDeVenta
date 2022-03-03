@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Negocio.Entidades;
+using Dominio.Entidades;
 
 using System.Data.SqlClient;
+using Dominio.Dtos;
 
-namespace AccesoDatos.Repositorios
+namespace Dominio.Repositorios
 {
     public class RepositorioProductos
     {
