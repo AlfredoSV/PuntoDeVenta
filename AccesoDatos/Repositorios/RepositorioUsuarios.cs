@@ -83,6 +83,50 @@ namespace AccesoDatos.Repositorios
             return usuario;
         }
 
+        public PermisosModulo ConsultarPermisosPorIdUsuario(Guid idUsuario)
+        {
 
+            var sql = @"SELECT accm.*,ro.*,modu.* FROM Modulos modu inner join AccionesModulos accm on modu.idModulo = accm.idModulo inner join
+                Roles ro on ro.idRol = accm.idRol inner join Usuarios usu on usu.idRol = ro.idRol
+                where idUsuario = @idUsuario";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+            PermisosModulo permisosModulo = null;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlCommand.Parameters.AddWithValue("idUsuario", idUsuario);
+
+                    sqlDataReader = sqlCommand.ExecuteReader();
+
+                    if (sqlDataReader.HasRows)
+                    {
+
+                        while (sqlDataReader.Read())
+                        {
+
+                        }
+
+                    }
+
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return permisosModulo;
+
+        }
     }
 }

@@ -46,8 +46,7 @@ namespace Aplicacion.Servicios
 
         public PermisosModulo ConsultarPermisosPorIdUsuario(Guid idUsuario)
         {
-
-            return null;
+            return _repositorioUsuarios.ConsultarPermisosPorIdUsuario(idUsuario);
         }
     }
 }
