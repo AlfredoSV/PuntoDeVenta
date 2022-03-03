@@ -13,6 +13,7 @@ namespace Negocio.Servicios
     {
         private static ServicioProductos _instacia;
         private static RepositorioProductos _repositorioProductos;
+
         public static ServicioProductos Instacia
         {
             get
@@ -27,14 +28,16 @@ namespace Negocio.Servicios
         }
 
 
-        private ServicioProductos() { }
+        private ServicioProductos()
+        {
+            _repositorioProductos = RepositorioProductos.Instacia;
+            _repositorioProductos.AgregarConexionBD(ConexionString.StrConexionBdSql.DefaultConexionSqlServer);
+
+        }
 
 
         public IEnumerable<Producto> ConsultarProductosBD()
         {
-            _repositorioProductos = RepositorioProductos.Instacia;
-            _repositorioProductos.AgregarConexionBD("Server=DESKTOP-GUSKUDA;Database=PuntoVenta;Trusted_Connection=True;");
-
             var productos = new List<Producto>();
 
             _repositorioProductos.ConsultarProductos().ToList().

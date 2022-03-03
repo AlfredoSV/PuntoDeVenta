@@ -27,10 +27,7 @@ namespace AccesoDatos.Repositorios
             set => _instacia = value;
         }
 
-        private RepositorioProductos()
-        {
-
-        }
+        private RepositorioProductos() { }
 
         public void AgregarConexionBD(string cadCon)
         {
