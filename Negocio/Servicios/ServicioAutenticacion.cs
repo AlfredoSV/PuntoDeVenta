@@ -32,6 +32,12 @@ namespace Aplicacion.Servicios
         }
         public bool ValidarUsuario(DtoUsuario dtoUsuario)
         {
+
+            return true;
+        }
+
+        public bool ConsultarUsuario(DtoUsuario dtoUsuario)
+        {
             return true;
         }
     }
