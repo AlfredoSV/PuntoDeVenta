@@ -1,5 +1,5 @@
 ﻿
-using Dominio.Dtos;
+
 using Aplicacion.Servicios;
 using System;
 using System.Collections.Generic;
@@ -29,14 +29,13 @@ namespace PuntoDeVenta
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
             var inicioForm = new Inicio();
-            var dtoUsuario = new DtoUsuario();
+
 
             if (!usuario.Equals("") && !contrasenia.Equals(""))
             {
-                dtoUsuario.Contrasenia = contrasenia;
-                dtoUsuario.Usuario = usuario;
 
-                if (_servicioAutenticacion.ValidarUsuario(dtoUsuario))
+
+                if (_servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
                 {
                     this.Hide();
                     inicioForm.Show();

@@ -5,7 +5,7 @@ using Dominio.Entidades;
 using Dominio.Repositorios;
 using System.Data.SqlClient;
 using System.Linq;
-using Dominio.Dtos;
+
 
 namespace Aplicacion.Servicios
 {
@@ -62,9 +62,8 @@ namespace Aplicacion.Servicios
             try
             {
                 var nuevoProducto = Producto.CrearNuevoProducto(stock, nombre, descripcion, precio, idInventario, idProveedor);
-                var dtoProducto = new DtoProducto(nuevoProducto.IdProducto, nuevoProducto.Stock, nuevoProducto.Nombre,
-                    nuevoProducto.Descripcion, nuevoProducto.Precio, nuevoProducto.IdInventario, nuevoProducto.IdProveedor);
-                return _repositorioProductos.GuardarProducto(dtoProducto);
+
+                return _repositorioProductos.GuardarProducto(nuevoProducto);
             }
             catch (Exception exception)
             {

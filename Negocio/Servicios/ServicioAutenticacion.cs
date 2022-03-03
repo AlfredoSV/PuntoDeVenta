@@ -1,5 +1,5 @@
 ﻿
-using Dominio.Dtos;
+
 using Dominio.Repositorios;
 using Dominio.Entidades;
 using System;
@@ -30,13 +30,13 @@ namespace Aplicacion.Servicios
         {
 
         }
-        public bool ValidarUsuario(DtoUsuario dtoUsuario)
+        public bool ValidarUsuario(string usuario, string contrasenia)
         {
 
             return true;
         }
 
-        public bool ConsultarUsuario(DtoUsuario dtoUsuario)
+        public bool ConsultarUsuario(Producto dtoUsuario)
         {
             return true;
         }

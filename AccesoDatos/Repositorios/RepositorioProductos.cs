@@ -4,7 +4,6 @@ using System.Text;
 using Dominio.Entidades;
 
 using System.Data.SqlClient;
-using Dominio.Dtos;
 
 namespace Dominio.Repositorios
 {
@@ -33,9 +32,9 @@ namespace Dominio.Repositorios
         {
             _cadCon = cadCon;
         }
-        public IEnumerable<DtoProducto> ConsultarProductos()
+        public IEnumerable<Producto> ConsultarProductos()
         {
-            var productos = new List<DtoProducto>();
+            var productos = new List<Producto>();
             var sql = "Select * from productos";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
@@ -53,7 +52,7 @@ namespace Dominio.Repositorios
                     {
                         while (sqlDataReader.Read())
                         {
-                            productos.Add(new DtoProducto(sqlDataReader.GetGuid(0), sqlDataReader.GetInt32(1),
+                            productos.Add(Producto.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetInt32(1),
                                 sqlDataReader.GetString(2), sqlDataReader.GetString(3),
                                 sqlDataReader.GetDecimal(4), sqlDataReader.GetGuid(5), sqlDataReader.GetGuid(6)));
                         }
@@ -70,7 +69,7 @@ namespace Dominio.Repositorios
             }
         }
 
-        public bool GuardarProducto(DtoProducto dtoProducto)
+        public bool GuardarProducto(Producto dtoProducto)
         {
 
             var sql = "Insert into productos values(@idProducto,@stock,@nombre,@descripcion,@precio,@idInventario,@idProveedor)";
