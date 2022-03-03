@@ -56,5 +56,24 @@ namespace Negocio.Servicios
 
             return productos;
         }
+
+        public bool GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
+        {
+            try
+            {
+                var nuevoProducto = Producto.CrearNuevoProducto(stock, nombre, descripcion, precio, idInventario, idProveedor);
+                var dtoProducto = new DtoProducto(nuevoProducto.IdProducto, nuevoProducto.Stock, nuevoProducto.Nombre,
+                    nuevoProducto.Descripcion, nuevoProducto.Precio, nuevoProducto.IdInventario, nuevoProducto.IdProveedor);
+                return _repositorioProductos.GuardarProducto(dtoProducto);
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+            }
+
+
+        }
+
     }
 }

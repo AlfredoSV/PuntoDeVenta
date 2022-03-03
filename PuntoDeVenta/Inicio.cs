@@ -20,6 +20,9 @@ namespace PuntoDeVenta
         {
 
             InitializeComponent();
+
+            lblFechaHoy.Text = DateTime.Now.ToString();
+            lblSaludo.Text = "Bienvenido, Alfredo";
         }
 
 

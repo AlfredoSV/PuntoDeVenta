@@ -37,16 +37,14 @@ namespace PuntoDeVenta.ProductosForms
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
             this.txtPaginasTotalesProductos = new System.Windows.Forms.TextBox();
             this.Alta = new System.Windows.Forms.TabPage();
-            this.numtxtStockProducto = new System.Windows.Forms.NumericUpDown();
-            this.mtxtPrecioProducto = new System.Windows.Forms.MaskedTextBox();
+            this.txtStockProducto = new System.Windows.Forms.NumericUpDown();
+            this.txtPrecioProducto = new System.Windows.Forms.MaskedTextBox();
             this.btnLimpiarFormProducto = new System.Windows.Forms.Button();
             this.btnCargarMasivaProducto = new System.Windows.Forms.Button();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
-            this.txtInventarioProducto = new System.Windows.Forms.TextBox();
             this.txtDescripcionProducto = new System.Windows.Forms.TextBox();
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.lblProveedorProducto = new System.Windows.Forms.Label();
-            this.lblInventarioProducto = new System.Windows.Forms.Label();
             this.lblDescripProducto = new System.Windows.Forms.Label();
             this.lblStockProducto = new System.Windows.Forms.Label();
             this.lblPrecioProducto = new System.Windows.Forms.Label();
@@ -55,7 +53,7 @@ namespace PuntoDeVenta.ProductosForms
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numtxtStockProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
             this.tabControlProductos.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -133,16 +131,14 @@ namespace PuntoDeVenta.ProductosForms
             // Alta
             // 
             this.Alta.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.Alta.Controls.Add(this.numtxtStockProducto);
-            this.Alta.Controls.Add(this.mtxtPrecioProducto);
+            this.Alta.Controls.Add(this.txtStockProducto);
+            this.Alta.Controls.Add(this.txtPrecioProducto);
             this.Alta.Controls.Add(this.btnLimpiarFormProducto);
             this.Alta.Controls.Add(this.btnCargarMasivaProducto);
             this.Alta.Controls.Add(this.btnGuardarProducto);
-            this.Alta.Controls.Add(this.txtInventarioProducto);
             this.Alta.Controls.Add(this.txtDescripcionProducto);
             this.Alta.Controls.Add(this.txtNombreProducto);
             this.Alta.Controls.Add(this.lblProveedorProducto);
-            this.Alta.Controls.Add(this.lblInventarioProducto);
             this.Alta.Controls.Add(this.lblDescripProducto);
             this.Alta.Controls.Add(this.lblStockProducto);
             this.Alta.Controls.Add(this.lblPrecioProducto);
@@ -156,20 +152,20 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
-            // numtxtStockProducto
+            // txtStockProducto
             // 
-            this.numtxtStockProducto.Location = new System.Drawing.Point(231, 51);
-            this.numtxtStockProducto.Name = "numtxtStockProducto";
-            this.numtxtStockProducto.Size = new System.Drawing.Size(100, 20);
-            this.numtxtStockProducto.TabIndex = 17;
+            this.txtStockProducto.Location = new System.Drawing.Point(231, 51);
+            this.txtStockProducto.Name = "txtStockProducto";
+            this.txtStockProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtStockProducto.TabIndex = 17;
             // 
-            // mtxtPrecioProducto
+            // txtPrecioProducto
             // 
-            this.mtxtPrecioProducto.Location = new System.Drawing.Point(125, 51);
-            this.mtxtPrecioProducto.Mask = "0000,000.00";
-            this.mtxtPrecioProducto.Name = "mtxtPrecioProducto";
-            this.mtxtPrecioProducto.Size = new System.Drawing.Size(100, 20);
-            this.mtxtPrecioProducto.TabIndex = 16;
+            this.txtPrecioProducto.Location = new System.Drawing.Point(125, 51);
+            this.txtPrecioProducto.Mask = "0000,000.00";
+            this.txtPrecioProducto.Name = "txtPrecioProducto";
+            this.txtPrecioProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecioProducto.TabIndex = 16;
             // 
             // btnLimpiarFormProducto
             // 
@@ -198,14 +194,7 @@ namespace PuntoDeVenta.ProductosForms
             this.btnGuardarProducto.TabIndex = 13;
             this.btnGuardarProducto.Text = "Guardar";
             this.btnGuardarProducto.UseVisualStyleBackColor = true;
-            // 
-            // txtInventarioProducto
-            // 
-            this.txtInventarioProducto.Location = new System.Drawing.Point(19, 212);
-            this.txtInventarioProducto.Name = "txtInventarioProducto";
-            this.txtInventarioProducto.ReadOnly = true;
-            this.txtInventarioProducto.Size = new System.Drawing.Size(133, 20);
-            this.txtInventarioProducto.TabIndex = 12;
+            this.btnGuardarProducto.Click += new System.EventHandler(this.btnGuardarProducto_Click);
             // 
             // txtDescripcionProducto
             // 
@@ -225,20 +214,11 @@ namespace PuntoDeVenta.ProductosForms
             // lblProveedorProducto
             // 
             this.lblProveedorProducto.AutoSize = true;
-            this.lblProveedorProducto.Location = new System.Drawing.Point(195, 196);
+            this.lblProveedorProducto.Location = new System.Drawing.Point(23, 196);
             this.lblProveedorProducto.Name = "lblProveedorProducto";
             this.lblProveedorProducto.Size = new System.Drawing.Size(59, 13);
             this.lblProveedorProducto.TabIndex = 11;
             this.lblProveedorProducto.Text = "Proveedor:";
-            // 
-            // lblInventarioProducto
-            // 
-            this.lblInventarioProducto.AutoSize = true;
-            this.lblInventarioProducto.Location = new System.Drawing.Point(16, 196);
-            this.lblInventarioProducto.Name = "lblInventarioProducto";
-            this.lblInventarioProducto.Size = new System.Drawing.Size(57, 13);
-            this.lblInventarioProducto.TabIndex = 10;
-            this.lblInventarioProducto.Text = "Inventario:";
             // 
             // lblDescripProducto
             // 
@@ -279,9 +259,9 @@ namespace PuntoDeVenta.ProductosForms
             // comboProveedorProducto
             // 
             this.comboProveedorProducto.FormattingEnabled = true;
-            this.comboProveedorProducto.Location = new System.Drawing.Point(198, 212);
+            this.comboProveedorProducto.Location = new System.Drawing.Point(19, 212);
             this.comboProveedorProducto.Name = "comboProveedorProducto";
-            this.comboProveedorProducto.Size = new System.Drawing.Size(133, 21);
+            this.comboProveedorProducto.Size = new System.Drawing.Size(312, 21);
             this.comboProveedorProducto.TabIndex = 4;
             // 
             // tabControlProductos
@@ -317,7 +297,7 @@ namespace PuntoDeVenta.ProductosForms
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.Alta.ResumeLayout(false);
             this.Alta.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numtxtStockProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).EndInit();
             this.tabControlProductos.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -333,16 +313,14 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.Label lblAuxFormProductos;
         private System.Windows.Forms.TextBox txtPaginasTotalesProductos;
         private System.Windows.Forms.TabPage Alta;
-        private System.Windows.Forms.NumericUpDown numtxtStockProducto;
-        private System.Windows.Forms.MaskedTextBox mtxtPrecioProducto;
+        private System.Windows.Forms.NumericUpDown txtStockProducto;
+        private System.Windows.Forms.MaskedTextBox txtPrecioProducto;
         private System.Windows.Forms.Button btnLimpiarFormProducto;
         private System.Windows.Forms.Button btnCargarMasivaProducto;
         private System.Windows.Forms.Button btnGuardarProducto;
-        private System.Windows.Forms.TextBox txtInventarioProducto;
         private System.Windows.Forms.TextBox txtDescripcionProducto;
         private System.Windows.Forms.TextBox txtNombreProducto;
         private System.Windows.Forms.Label lblProveedorProducto;
-        private System.Windows.Forms.Label lblInventarioProducto;
         private System.Windows.Forms.Label lblDescripProducto;
         private System.Windows.Forms.Label lblStockProducto;
         private System.Windows.Forms.Label lblPrecioProducto;

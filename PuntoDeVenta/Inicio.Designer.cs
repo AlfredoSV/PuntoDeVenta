@@ -37,12 +37,14 @@ namespace PuntoDeVenta
             this.btnMiInformacion = new System.Windows.Forms.Button();
             this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.lblSaludo = new System.Windows.Forms.Label();
+            this.lblFechaHoy = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnProductos
             // 
             this.btnProductos.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnProductos.Location = new System.Drawing.Point(106, 168);
+            this.btnProductos.Location = new System.Drawing.Point(106, 186);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(110, 82);
             this.btnProductos.TabIndex = 0;
@@ -53,7 +55,7 @@ namespace PuntoDeVenta
             // btnProveedores
             // 
             this.btnProveedores.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnProveedores.Location = new System.Drawing.Point(348, 168);
+            this.btnProveedores.Location = new System.Drawing.Point(348, 186);
             this.btnProveedores.Name = "btnProveedores";
             this.btnProveedores.Size = new System.Drawing.Size(110, 82);
             this.btnProveedores.TabIndex = 1;
@@ -63,7 +65,7 @@ namespace PuntoDeVenta
             // btnVenta
             // 
             this.btnVenta.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnVenta.Location = new System.Drawing.Point(106, 47);
+            this.btnVenta.Location = new System.Drawing.Point(106, 65);
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(110, 82);
             this.btnVenta.TabIndex = 2;
@@ -73,7 +75,7 @@ namespace PuntoDeVenta
             // btnUsuario
             // 
             this.btnUsuario.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnUsuario.Location = new System.Drawing.Point(348, 47);
+            this.btnUsuario.Location = new System.Drawing.Point(348, 65);
             this.btnUsuario.Name = "btnUsuario";
             this.btnUsuario.Size = new System.Drawing.Size(110, 82);
             this.btnUsuario.TabIndex = 3;
@@ -83,7 +85,7 @@ namespace PuntoDeVenta
             // btnMiInformacion
             // 
             this.btnMiInformacion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnMiInformacion.Location = new System.Drawing.Point(106, 280);
+            this.btnMiInformacion.Location = new System.Drawing.Point(106, 298);
             this.btnMiInformacion.Name = "btnMiInformacion";
             this.btnMiInformacion.Size = new System.Drawing.Size(110, 82);
             this.btnMiInformacion.TabIndex = 5;
@@ -93,7 +95,7 @@ namespace PuntoDeVenta
             // btnCerrarSesion
             // 
             this.btnCerrarSesion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(348, 280);
+            this.btnCerrarSesion.Location = new System.Drawing.Point(348, 298);
             this.btnCerrarSesion.Name = "btnCerrarSesion";
             this.btnCerrarSesion.Size = new System.Drawing.Size(110, 82);
             this.btnCerrarSesion.TabIndex = 6;
@@ -116,13 +118,32 @@ namespace PuntoDeVenta
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // lblSaludo
+            // 
+            this.lblSaludo.AutoSize = true;
+            this.lblSaludo.Location = new System.Drawing.Point(310, 12);
+            this.lblSaludo.Name = "lblSaludo";
+            this.lblSaludo.Size = new System.Drawing.Size(99, 13);
+            this.lblSaludo.TabIndex = 8;
+            this.lblSaludo.Text = "Bienvenido, Alfredo";
+            // 
+            // lblFechaHoy
+            // 
+            this.lblFechaHoy.AutoSize = true;
+            this.lblFechaHoy.Location = new System.Drawing.Point(310, 28);
+            this.lblFechaHoy.Name = "lblFechaHoy";
+            this.lblFechaHoy.Size = new System.Drawing.Size(0, 13);
+            this.lblFechaHoy.TabIndex = 9;
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(586, 384);
+            this.ClientSize = new System.Drawing.Size(586, 403);
+            this.Controls.Add(this.lblFechaHoy);
+            this.Controls.Add(this.lblSaludo);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnMiInformacion);
@@ -137,6 +158,7 @@ namespace PuntoDeVenta
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inicio";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -149,5 +171,7 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Button btnMiInformacion;
         private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label lblSaludo;
+        private System.Windows.Forms.Label lblFechaHoy;
     }
 }

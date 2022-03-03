@@ -37,5 +37,9 @@ namespace Negocio.Entidades
         {
             return new Producto(idProducto, stock, nombre, descripcion, precio, idInventario, idProveedor);
         }
+        public static Producto CrearNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
+        {
+            return new Producto(Guid.NewGuid(), stock, nombre, descripcion, precio, idInventario, idProveedor);
+        }
     }
 }

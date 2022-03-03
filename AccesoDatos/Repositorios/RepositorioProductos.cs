@@ -13,7 +13,6 @@ namespace AccesoDatos.Repositorios
         private static RepositorioProductos _instacia;
         private static string _cadCon;
 
-
         public static RepositorioProductos Instacia
         {
             get
@@ -61,6 +60,37 @@ namespace AccesoDatos.Repositorios
 
 
                     return productos;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public bool GuardarProducto(DtoProducto dtoProducto)
+        {
+
+            var sql = "Insert into productos values(@idProducto,@stock,@nombre,@descripcion,@precio,@idInventario,@idProveedor)";
+
+            SqlCommand sqlCommand;
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+                    sqlCommand.Parameters.AddWithValue("idProducto", dtoProducto.IdProducto);
+                    sqlCommand.Parameters.AddWithValue("stock", dtoProducto.Stock);
+                    sqlCommand.Parameters.AddWithValue("nombre", dtoProducto.Nombre);
+                    sqlCommand.Parameters.AddWithValue("descripcion", dtoProducto.Descripcion);
+                    sqlCommand.Parameters.AddWithValue("precio", dtoProducto.Precio);
+                    sqlCommand.Parameters.AddWithValue("idInventario", dtoProducto.IdInventario);
+                    sqlCommand.Parameters.AddWithValue("idProveedor", dtoProducto.IdProveedor);
+
+                    return sqlCommand.ExecuteNonQuery() >= 1;
                 }
             }
             catch (Exception e)

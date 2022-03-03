@@ -53,5 +53,27 @@ namespace PuntoDeVenta.ProductosForms
             inicioForm.Show();
             this.Close();
         }
+
+        private void btnGuardarProducto_Click(object sender, EventArgs e)
+        {
+            //Validación
+
+            /*var stock = (int)(txtStockProducto.Value);
+            var nombre = txtNombreProducto.Text.Trim();
+            var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim());
+            var descripcion = txtDescripcionProducto.Text.Trim();
+            var proveedor = comboProveedorProducto.SelectedItem;
+
+
+            try
+            {
+                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor,);
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }*/
+        }
     }
 }
