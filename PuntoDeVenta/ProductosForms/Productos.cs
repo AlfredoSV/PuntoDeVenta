@@ -19,28 +19,11 @@ namespace PuntoDeVenta.ProductosForms
 
         public Productos()
         {
-            try
-            {
+            _servicioProductos = ServicioProductos.Instacia;
 
-                _servicioProductos = ServicioProductos.Instacia;
-                InitializeComponent();
-                var productos = _servicioProductos.ConsultarProductosBD();
-                dataGridViewProductos.DataSource = productos;
+            InitializeComponent();
 
-
-            }
-            catch (Exception exception)
-            {
-
-                throw exception;
-            }
-
-        }
-
-
-        private void Productos_Load(object sender, EventArgs e)
-        {
-
+            VolcarGridViewProductos();
 
         }
 
@@ -83,7 +66,6 @@ namespace PuntoDeVenta.ProductosForms
 
         public void Show(Usuario usuario)
         {
-
             _usuarioLogueado = usuario;
             base.Show();
         }
@@ -95,5 +77,40 @@ namespace PuntoDeVenta.ProductosForms
             txtDescripcionProducto.Text = "";
             txtStockProducto.Value = 0;
         }
+
+        private void btnRecargarProductos_Click(object sender, EventArgs e)
+        {
+            VolcarGridViewProductos();
+        }
+
+        private void VolcarGridViewProductos()
+        {
+            try
+            {
+
+                dataGridViewProductos.DataSource = null;
+                dataGridViewProductos.Columns.Clear();
+                DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
+                dataGridViewProductos.Columns.Add(btnBorrar);
+                btnBorrar.Text = "Borrar";
+                btnBorrar.UseColumnTextForButtonValue = true;
+
+                DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
+                dataGridViewProductos.Columns.Add(btnEditar);
+                btnEditar.Text = "Editar";
+                btnEditar.UseColumnTextForButtonValue = true;
+
+                var productos = _servicioProductos.ConsultarProductosBD();
+                dataGridViewProductos.DataSource = productos;
+
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+            }
+        }
+
     }
 }

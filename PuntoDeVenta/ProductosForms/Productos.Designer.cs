@@ -93,6 +93,7 @@ namespace PuntoDeVenta.ProductosForms
             this.btnRecargarProductos.TabIndex = 2;
             this.btnRecargarProductos.Text = "Recargar";
             this.btnRecargarProductos.UseVisualStyleBackColor = false;
+            this.btnRecargarProductos.Click += new System.EventHandler(this.btnRecargarProductos_Click);
             // 
             // comBoxPaginasProductos
             // 
@@ -294,7 +295,6 @@ namespace PuntoDeVenta.ProductosForms
             this.Name = "Productos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
-            this.Load += new System.EventHandler(this.Productos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.Alta.ResumeLayout(false);
             this.Alta.PerformLayout();
