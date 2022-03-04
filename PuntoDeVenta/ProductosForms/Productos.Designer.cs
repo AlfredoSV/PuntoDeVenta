@@ -67,7 +67,7 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos.Location = new System.Drawing.Point(405, 50);
             this.dataGridViewProductos.Name = "dataGridViewProductos";
             this.dataGridViewProductos.ReadOnly = true;
-            this.dataGridViewProductos.Size = new System.Drawing.Size(383, 330);
+            this.dataGridViewProductos.Size = new System.Drawing.Size(561, 330);
             this.dataGridViewProductos.TabIndex = 1;
             this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
             // 
@@ -75,7 +75,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnSalirProductos.BackColor = System.Drawing.Color.IndianRed;
             this.btnSalirProductos.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirProductos.Location = new System.Drawing.Point(702, 16);
+            this.btnSalirProductos.Location = new System.Drawing.Point(880, 12);
             this.btnSalirProductos.Name = "btnSalirProductos";
             this.btnSalirProductos.Size = new System.Drawing.Size(86, 25);
             this.btnSalirProductos.TabIndex = 0;
@@ -87,7 +87,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnRecargarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRecargarProductos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarProductos.Location = new System.Drawing.Point(610, 18);
+            this.btnRecargarProductos.Location = new System.Drawing.Point(788, 14);
             this.btnRecargarProductos.Name = "btnRecargarProductos";
             this.btnRecargarProductos.Size = new System.Drawing.Size(86, 23);
             this.btnRecargarProductos.TabIndex = 2;
@@ -175,6 +175,7 @@ namespace PuntoDeVenta.ProductosForms
             this.btnLimpiarFormProducto.TabIndex = 15;
             this.btnLimpiarFormProducto.Text = "Limpiar";
             this.btnLimpiarFormProducto.UseVisualStyleBackColor = true;
+            this.btnLimpiarFormProducto.Click += new System.EventHandler(this.btnLimpiarFormProducto_Click);
             // 
             // btnCargarMasivaProducto
             // 
@@ -278,7 +279,7 @@ namespace PuntoDeVenta.ProductosForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ClientSize = new System.Drawing.Size(800, 392);
+            this.ClientSize = new System.Drawing.Size(978, 392);
             this.Controls.Add(this.txtPaginasTotalesProductos);
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);

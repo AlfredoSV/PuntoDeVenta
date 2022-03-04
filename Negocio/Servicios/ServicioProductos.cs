@@ -5,7 +5,7 @@ using Dominio.Entidades;
 using Dominio.Repositorios;
 using System.Data.SqlClient;
 using System.Linq;
-
+using Aplicacion.Dtos;
 
 namespace Aplicacion.Servicios
 {
@@ -36,16 +36,14 @@ namespace Aplicacion.Servicios
         }
 
 
-        public IEnumerable<Producto> ConsultarProductosBD()
+        public IEnumerable<DtoProducto> ConsultarProductosBD()
         {
 
-            var productos = new List<Producto>();
+            var productos = new List<DtoProducto>();
             try
             {
                 _repositorioProductos.ConsultarProductos().ToList().
-                ForEach(pro => productos.Add(Producto.Crear
-                (pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio,
-                pro.IdInventario, pro.IdProveedor)));
+                ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
             }
             catch (Exception exception)
             {

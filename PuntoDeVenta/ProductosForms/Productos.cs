@@ -87,5 +87,13 @@ namespace PuntoDeVenta.ProductosForms
             _usuarioLogueado = usuario;
             base.Show();
         }
+
+        private void btnLimpiarFormProducto_Click(object sender, EventArgs e)
+        {
+            txtNombreProducto.Text = "";
+            txtPrecioProducto.Text = "";
+            txtDescripcionProducto.Text = "";
+            txtStockProducto.Value = 0;
+        }
     }
 }
