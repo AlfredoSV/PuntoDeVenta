@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aplicacion.Dtos
 {
-    public class DtoConsultarProductosPaginados
+    public class DtoBuscarProductosPaginados
     {
 
         private int _pagina;
@@ -15,11 +15,17 @@ namespace Aplicacion.Dtos
         public int TamanioPagina { get => _tamanioPagina; set => _tamanioPagina = value; }
         public string BuscarFiltro { get => _buscarFiltro; set => _buscarFiltro = value; }
 
-        public DtoConsultarProductosPaginados(int pagina, int tamanioPagina, string buscarFiltro)
+        public DtoBuscarProductosPaginados(int pagina, int tamanioPagina, string buscarFiltro)
         {
             Pagina = pagina;
             TamanioPagina = tamanioPagina;
             BuscarFiltro = buscarFiltro;
+        }
+
+        public DtoBuscarProductosPaginados(int pagina, int tamanioPagina)
+        {
+            Pagina = pagina;
+            TamanioPagina = tamanioPagina;
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Aplicacion.Dtos;
 using Aplicacion.Servicios;
 using Dominio.Entidades;
 
@@ -87,7 +88,7 @@ namespace PuntoDeVenta.ProductosForms
         {
             try
             {
-
+                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(0, 7);
                 dataGridViewProductos.DataSource = null;
                 dataGridViewProductos.Columns.Clear();
                 DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
@@ -100,8 +101,8 @@ namespace PuntoDeVenta.ProductosForms
                 btnEditar.Text = "Editar";
                 btnEditar.UseColumnTextForButtonValue = true;
 
-                var productos = _servicioProductos.ConsultarProductosPaginadosBD();
-                dataGridViewProductos.DataSource = productos;
+                var productos = _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                dataGridViewProductos.DataSource = productos.Productos;
 
 
             }
@@ -112,5 +113,15 @@ namespace PuntoDeVenta.ProductosForms
             }
         }
 
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var pagina = Int32.Parse(comBoxPaginasProductos.Text);
+            var tamanioPagina = 7;
+            var txtFiltro = txtBuscar.Text.Trim();
+
+            var dtoBucarProductos = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
+
+
+        }
     }
 }

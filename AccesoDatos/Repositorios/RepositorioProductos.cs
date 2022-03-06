@@ -70,6 +70,35 @@ namespace Dominio.Repositorios
             }
         }
 
+        public int ConsultarProductosTotal()
+        {
+            var productos = new List<Producto>();
+            var sql = "Select count(*) from productos";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlDataReader = sqlCommand.ExecuteReader();
+
+                    sqlDataReader.Read();
+
+                    return sqlDataReader.GetInt32(0);
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+
         public bool GuardarProducto(Producto dtoProducto)
         {
 

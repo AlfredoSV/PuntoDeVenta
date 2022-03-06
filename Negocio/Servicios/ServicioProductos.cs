@@ -36,14 +36,19 @@ namespace Aplicacion.Servicios
         }
 
 
-        public IEnumerable<DtoProducto> ConsultarProductosPaginadosBD()
+        public DtoProductosPaginados ConsultarProductosPaginadosBD(DtoBuscarProductosPaginados dtoBuscarProductos)
         {
 
             var productos = new List<DtoProducto>();
+            DtoProductosPaginados dtoProductosPaginados;
+            var totalProductos = 0;
+
             try
             {
                 _repositorioProductos.ConsultarProductos().ToList().
                 ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
+                totalProductos = _repositorioProductos.ConsultarProductosTotal();
+                productos = productos.Skip<DtoProducto>(dtoBuscarProductos.Pagina * dtoBuscarProductos.TamanioPagina).Take<DtoProducto>(dtoBuscarProductos.TamanioPagina).ToList();
             }
             catch (Exception exception)
             {
@@ -51,8 +56,9 @@ namespace Aplicacion.Servicios
                 throw exception;
             }
 
+            dtoProductosPaginados = new DtoProductosPaginados(productos, dtoBuscarProductos.Pagina, dtoBuscarProductos.TamanioPagina, totalProductos);
 
-            return productos;
+            return dtoProductosPaginados;
         }
 
         public bool GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
