@@ -103,12 +103,12 @@ namespace PuntoDeVenta.ProductosForms
 
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
                 dataGridViewProductos.DataSource = productos.Productos;
-                var total = (int)Math.Ceiling((decimal)((decimal)productos.TotalProductos / (decimal)productos.TamanioPagina));
-                numericPaginas.Maximum = total;
+
+                numericPaginas.Maximum = productos.TotalPaginas;
                 numericPaginas.Minimum = 0;
-                if (total > 0)
+                if (productos.TotalPaginas > 0)
                     numericPaginas.Minimum = 1;
-                txtPaginasTotalesProductos.Text = total.ToString();
+                txtPaginasTotalesProductos.Text = productos.TotalPaginas.ToString();
 
             }
             catch (Exception exception)
@@ -120,7 +120,7 @@ namespace PuntoDeVenta.ProductosForms
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            var pagina = (int)(numericPaginas.Value) - 1;
+            var pagina = 0;
             var tamanioPagina = 7;
             var txtFiltro = txtBuscar.Text.Trim();
 

@@ -10,6 +10,7 @@ namespace Aplicacion.Dtos
         private int _pagina;
         private int _tamanioPagina;
         private string _buscarFiltro;
+        
 
         public int Pagina { get => _pagina; set => _pagina = value; }
         public int TamanioPagina { get => _tamanioPagina; set => _tamanioPagina = value; }

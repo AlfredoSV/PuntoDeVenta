@@ -43,6 +43,7 @@ namespace Aplicacion.Servicios
             var productos = new List<DtoProducto>();
             DtoProductosPaginados dtoProductosPaginados;
             var totalProductos = 0;
+            var totalPaginas = 0;
 
             try
             {
@@ -50,6 +51,7 @@ namespace Aplicacion.Servicios
                 prodNoPag.ToList().ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
                 totalProductos = _repositorioProductos.ConsultarProductosTotal(dtoBuscarProductos.BuscarFiltro);
                 productos = productos.Skip<DtoProducto>(dtoBuscarProductos.Pagina * dtoBuscarProductos.TamanioPagina).Take<DtoProducto>(dtoBuscarProductos.TamanioPagina).ToList();
+                totalPaginas = (int)Math.Ceiling((decimal)((decimal)totalProductos / (decimal)dtoBuscarProductos.TamanioPagina));
             }
             catch (Exception exception)
             {
@@ -57,7 +59,7 @@ namespace Aplicacion.Servicios
                 throw exception;
             }
 
-            dtoProductosPaginados = new DtoProductosPaginados(productos, dtoBuscarProductos.Pagina, dtoBuscarProductos.TamanioPagina, totalProductos);
+            dtoProductosPaginados = new DtoProductosPaginados(productos, dtoBuscarProductos.Pagina, dtoBuscarProductos.TamanioPagina, totalProductos,totalPaginas);
 
             return dtoProductosPaginados;
         }
