@@ -103,6 +103,8 @@ namespace PuntoDeVenta.ProductosForms
 
                 var productos = _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
                 dataGridViewProductos.DataSource = productos.Productos;
+                var total = (int)Math.Ceiling((decimal)((decimal)productos.TotalProductos / (decimal)productos.TamanioPagina));
+                comBoxPaginasProductos.Items.AddRange(Enumerable.Range(1, total).Cast<object>().ToArray());
 
 
             }
