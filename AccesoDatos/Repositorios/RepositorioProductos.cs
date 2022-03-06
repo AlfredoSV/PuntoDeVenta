@@ -5,6 +5,7 @@ using Dominio.Entidades;
 
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace Dominio.Repositorios
 {
@@ -73,12 +74,13 @@ namespace Dominio.Repositorios
             }
         }
 
-        public int ConsultarProductosTotal()
+        public int ConsultarProductosTotal(string buscar)
         {
             var productos = new List<Producto>();
-            var sql = "Select count(*) from productos";
-            SqlDataReader sqlDataReader;
+            var sql = "ConsultarProductosTotal";
+            
             SqlCommand sqlCommand;
+            var total = 0;
             try
             {
                 using (var conexion = new SqlConnection(_cadCon))
@@ -86,12 +88,16 @@ namespace Dominio.Repositorios
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlCommand.Parameters.AddWithValue("buscar", buscar);
+                    sqlCommand.Parameters.AddWithValue("total", total);
+                    sqlCommand.Parameters["total"].Direction = ParameterDirection.Output;
+                    sqlCommand.ExecuteNonQuery();
 
-                    sqlDataReader.Read();
+                    total = Convert.ToInt32(sqlCommand.Parameters["total"].Value);
 
-                    return sqlDataReader.GetInt32(0);
+                    return total;
                 }
             }
             catch (Exception e)

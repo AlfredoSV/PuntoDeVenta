@@ -132,3 +132,20 @@ end
 
 
 EXECUTE ConsultarProductos 'Ca'
+
+
+CREATE OR ALTER PROCEDURE ConsultarProductosTotal(@buscar varchar(60))
+as
+
+begin
+
+If @buscar = ''
+	select * from Productos;
+else
+	select * from Productos where nombre like '%'+@buscar+'%'; 
+
+
+end
+
+
+EXECUTE ConsultarProductos 'Ca'

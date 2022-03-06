@@ -48,7 +48,7 @@ namespace Aplicacion.Servicios
             {
                 var prodNoPag = await _repositorioProductos.ConsultarProductos(dtoBuscarProductos.BuscarFiltro);
                 prodNoPag.ToList().ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
-                totalProductos = _repositorioProductos.ConsultarProductosTotal();
+                totalProductos = _repositorioProductos.ConsultarProductosTotal(dtoBuscarProductos.BuscarFiltro);
                 productos = productos.Skip<DtoProducto>(dtoBuscarProductos.Pagina * dtoBuscarProductos.TamanioPagina).Take<DtoProducto>(dtoBuscarProductos.TamanioPagina).ToList();
             }
             catch (Exception exception)
