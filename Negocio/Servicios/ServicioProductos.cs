@@ -6,6 +6,7 @@ using Dominio.Repositorios;
 using System.Data.SqlClient;
 using System.Linq;
 using Aplicacion.Dtos;
+using System.Threading.Tasks;
 
 namespace Aplicacion.Servicios
 {
@@ -36,7 +37,7 @@ namespace Aplicacion.Servicios
         }
 
 
-        public DtoProductosPaginados ConsultarProductosPaginadosBD(DtoBuscarProductosPaginados dtoBuscarProductos)
+        public async Task<DtoProductosPaginados> ConsultarProductosPaginadosBD(DtoBuscarProductosPaginados dtoBuscarProductos)
         {
 
             var productos = new List<DtoProducto>();
@@ -45,8 +46,8 @@ namespace Aplicacion.Servicios
 
             try
             {
-                _repositorioProductos.ConsultarProductos(dtoBuscarProductos.BuscarFiltro).ToList().
-                ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
+                var prodNoPag = await _repositorioProductos.ConsultarProductos(dtoBuscarProductos.BuscarFiltro);
+                prodNoPag.ToList().ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
                 totalProductos = _repositorioProductos.ConsultarProductosTotal();
                 productos = productos.Skip<DtoProducto>(dtoBuscarProductos.Pagina * dtoBuscarProductos.TamanioPagina).Take<DtoProducto>(dtoBuscarProductos.TamanioPagina).ToList();
             }

@@ -79,12 +79,12 @@ namespace PuntoDeVenta.ProductosForms
             txtStockProducto.Value = 0;
         }
 
-        private void btnRecargarProductos_Click(object sender, EventArgs e)
+        private async void btnRecargarProductos_Click(object sender, EventArgs e)
         {
-            VolcarGridViewProductos(new DtoBuscarProductosPaginados(0, 7, ""));
+            await VolcarGridViewProductos(new DtoBuscarProductosPaginados(0, 7, ""));
         }
 
-        private void VolcarGridViewProductos(DtoBuscarProductosPaginados dtoBuscarProductosPaginados)
+        private async Task VolcarGridViewProductos(DtoBuscarProductosPaginados dtoBuscarProductosPaginados)
         {
             try
             {
@@ -101,7 +101,7 @@ namespace PuntoDeVenta.ProductosForms
                 btnEditar.Text = "Editar";
                 btnEditar.UseColumnTextForButtonValue = true;
 
-                var productos = _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
                 dataGridViewProductos.DataSource = productos.Productos;
                 var total = (int)Math.Ceiling((decimal)((decimal)productos.TotalProductos / (decimal)productos.TamanioPagina));
                 numericPaginas.Maximum = total;
@@ -118,7 +118,7 @@ namespace PuntoDeVenta.ProductosForms
             }
         }
 
-        private void btnBuscar_Click(object sender, EventArgs e)
+        private async void btnBuscar_Click(object sender, EventArgs e)
         {
             var pagina = (int)(numericPaginas.Value) - 1;
             var tamanioPagina = 7;
@@ -126,7 +126,7 @@ namespace PuntoDeVenta.ProductosForms
 
             var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
 
-            VolcarGridViewProductos(dtoBuscarProductosPaginados);
+            await VolcarGridViewProductos(dtoBuscarProductosPaginados);
 
         }
 

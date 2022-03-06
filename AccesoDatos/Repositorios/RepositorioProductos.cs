@@ -4,6 +4,7 @@ using System.Text;
 using Dominio.Entidades;
 
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Dominio.Repositorios
 {
@@ -33,12 +34,13 @@ namespace Dominio.Repositorios
             _cadCon = cadCon;
         }
 
-        public IEnumerable<Producto> ConsultarProductos(string buscar)
+        public async  Task<IEnumerable<Producto>> ConsultarProductos(string buscar)
         {
             var productos = new List<Producto>();
             var sql = "ConsultarProductos";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
+
             try
             {
                 using (var conexion = new SqlConnection(_cadCon))
@@ -48,7 +50,7 @@ namespace Dominio.Repositorios
                     sqlCommand = new SqlCommand(sql, conexion);
                     sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("buscar", buscar);
-                    sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
                     if (sqlDataReader.HasRows)
                     {
