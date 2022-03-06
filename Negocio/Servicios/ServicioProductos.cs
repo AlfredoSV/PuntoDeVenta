@@ -45,7 +45,7 @@ namespace Aplicacion.Servicios
 
             try
             {
-                _repositorioProductos.ConsultarProductos().ToList().
+                _repositorioProductos.ConsultarProductos(dtoBuscarProductos.BuscarFiltro).ToList().
                 ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
                 totalProductos = _repositorioProductos.ConsultarProductosTotal();
                 productos = productos.Skip<DtoProducto>(dtoBuscarProductos.Pagina * dtoBuscarProductos.TamanioPagina).Take<DtoProducto>(dtoBuscarProductos.TamanioPagina).ToList();

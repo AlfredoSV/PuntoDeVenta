@@ -33,10 +33,10 @@ namespace Dominio.Repositorios
             _cadCon = cadCon;
         }
 
-        public IEnumerable<Producto> ConsultarProductos()
+        public IEnumerable<Producto> ConsultarProductos(string buscar)
         {
             var productos = new List<Producto>();
-            var sql = "Select * from productos";
+            var sql = "ConsultarProductos";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             try
@@ -46,7 +46,8 @@ namespace Dominio.Repositorios
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
-
+                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlCommand.Parameters.AddWithValue("buscar", buscar);
                     sqlDataReader = sqlCommand.ExecuteReader();
 
                     if (sqlDataReader.HasRows)

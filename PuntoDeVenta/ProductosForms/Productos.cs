@@ -24,7 +24,7 @@ namespace PuntoDeVenta.ProductosForms
 
             InitializeComponent();
 
-            VolcarGridViewProductos();
+            VolcarGridViewProductos(new DtoBuscarProductosPaginados(0, 7, ""));
 
         }
 
@@ -81,14 +81,14 @@ namespace PuntoDeVenta.ProductosForms
 
         private void btnRecargarProductos_Click(object sender, EventArgs e)
         {
-            VolcarGridViewProductos();
+            VolcarGridViewProductos(new DtoBuscarProductosPaginados(0, 7, ""));
         }
 
-        private void VolcarGridViewProductos()
+        private void VolcarGridViewProductos(DtoBuscarProductosPaginados dtoBuscarProductosPaginados)
         {
             try
             {
-                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(0, 7);
+
                 dataGridViewProductos.DataSource = null;
                 dataGridViewProductos.Columns.Clear();
                 DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
@@ -124,8 +124,9 @@ namespace PuntoDeVenta.ProductosForms
             var tamanioPagina = 7;
             var txtFiltro = txtBuscar.Text.Trim();
 
-            var dtoBucarProductos = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
+            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
 
+            VolcarGridViewProductos(dtoBuscarProductosPaginados);
 
         }
 

@@ -22,10 +22,6 @@ namespace Aplicacion.Dtos
             BuscarFiltro = buscarFiltro;
         }
 
-        public DtoBuscarProductosPaginados(int pagina, int tamanioPagina)
-        {
-            Pagina = pagina;
-            TamanioPagina = tamanioPagina;
-        }
+
     }
 }

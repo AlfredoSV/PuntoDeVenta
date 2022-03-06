@@ -117,3 +117,18 @@ ALTER TABLE Productos
 ADD FOREIGN KEY (idProveedor) REFERENCES Proveedores(idProveedor);
 
 
+CREATE OR ALTER PROCEDURE ConsultarProductos(@buscar varchar(60))
+as
+
+begin
+
+If @buscar = ''
+	select * from Productos;
+else
+	select * from Productos where nombre like '%'+@buscar+'%'; 
+
+
+end
+
+
+EXECUTE ConsultarProductos 'Ca'
