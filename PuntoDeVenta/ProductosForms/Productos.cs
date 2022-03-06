@@ -104,8 +104,11 @@ namespace PuntoDeVenta.ProductosForms
                 var productos = _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
                 dataGridViewProductos.DataSource = productos.Productos;
                 var total = (int)Math.Ceiling((decimal)((decimal)productos.TotalProductos / (decimal)productos.TamanioPagina));
-                comBoxPaginasProductos.Items.AddRange(Enumerable.Range(1, total).Cast<object>().ToArray());
-
+                numericPaginas.Maximum = total;
+                numericPaginas.Minimum = 0;
+                if (total > 0)
+                    numericPaginas.Minimum = 1;
+                txtPaginasTotalesProductos.Text = total.ToString();
 
             }
             catch (Exception exception)
@@ -117,7 +120,7 @@ namespace PuntoDeVenta.ProductosForms
 
         private void btnBuscar_Click(object sender, EventArgs e)
         {
-            var pagina = Int32.Parse(comBoxPaginasProductos.Text);
+            var pagina = (int)(numericPaginas.Value) - 1;
             var tamanioPagina = 7;
             var txtFiltro = txtBuscar.Text.Trim();
 
@@ -125,5 +128,7 @@ namespace PuntoDeVenta.ProductosForms
 
 
         }
+
+
     }
 }

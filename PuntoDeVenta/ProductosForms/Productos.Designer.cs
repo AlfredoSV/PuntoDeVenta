@@ -32,7 +32,6 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
             this.btnSalirProductos = new System.Windows.Forms.Button();
             this.btnRecargarProductos = new System.Windows.Forms.Button();
-            this.comBoxPaginasProductos = new System.Windows.Forms.ComboBox();
             this.lblPginacionProductos = new System.Windows.Forms.Label();
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
             this.txtPaginasTotalesProductos = new System.Windows.Forms.TextBox();
@@ -53,10 +52,12 @@ namespace PuntoDeVenta.ProductosForms
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.numericPaginas = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
             this.tabControlProductos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericPaginas)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewProductos
@@ -96,14 +97,6 @@ namespace PuntoDeVenta.ProductosForms
             this.btnRecargarProductos.Text = "Recargar";
             this.btnRecargarProductos.UseVisualStyleBackColor = false;
             this.btnRecargarProductos.Click += new System.EventHandler(this.btnRecargarProductos_Click);
-            // 
-            // comBoxPaginasProductos
-            // 
-            this.comBoxPaginasProductos.FormattingEnabled = true;
-            this.comBoxPaginasProductos.Location = new System.Drawing.Point(405, 20);
-            this.comBoxPaginasProductos.Name = "comBoxPaginasProductos";
-            this.comBoxPaginasProductos.Size = new System.Drawing.Size(82, 21);
-            this.comBoxPaginasProductos.TabIndex = 18;
             // 
             // lblPginacionProductos
             // 
@@ -294,18 +287,25 @@ namespace PuntoDeVenta.ProductosForms
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
+            // numericPaginas
+            // 
+            this.numericPaginas.Location = new System.Drawing.Point(405, 21);
+            this.numericPaginas.Name = "numericPaginas";
+            this.numericPaginas.Size = new System.Drawing.Size(82, 20);
+            this.numericPaginas.TabIndex = 23;
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(978, 392);
+            this.Controls.Add(this.numericPaginas);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.txtPaginasTotalesProductos);
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);
-            this.Controls.Add(this.comBoxPaginasProductos);
             this.Controls.Add(this.btnRecargarProductos);
             this.Controls.Add(this.btnSalirProductos);
             this.Controls.Add(this.dataGridViewProductos);
@@ -321,6 +321,7 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).EndInit();
             this.tabControlProductos.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericPaginas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -330,7 +331,6 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.DataGridView dataGridViewProductos;
         private System.Windows.Forms.Button btnSalirProductos;
         private System.Windows.Forms.Button btnRecargarProductos;
-        private System.Windows.Forms.ComboBox comBoxPaginasProductos;
         private System.Windows.Forms.Label lblPginacionProductos;
         private System.Windows.Forms.Label lblAuxFormProductos;
         private System.Windows.Forms.TextBox txtPaginasTotalesProductos;
@@ -351,5 +351,6 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.TabControl tabControlProductos;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.NumericUpDown numericPaginas;
     }
 }
