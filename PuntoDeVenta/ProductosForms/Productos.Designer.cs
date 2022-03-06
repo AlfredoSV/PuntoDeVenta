@@ -51,6 +51,8 @@ namespace PuntoDeVenta.ProductosForms
             this.lblNombreProducto = new System.Windows.Forms.Label();
             this.comboProveedorProducto = new System.Windows.Forms.ComboBox();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.btnBuscar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
@@ -75,7 +77,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnSalirProductos.BackColor = System.Drawing.Color.IndianRed;
             this.btnSalirProductos.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirProductos.Location = new System.Drawing.Point(880, 12);
+            this.btnSalirProductos.Location = new System.Drawing.Point(884, 19);
             this.btnSalirProductos.Name = "btnSalirProductos";
             this.btnSalirProductos.Size = new System.Drawing.Size(86, 25);
             this.btnSalirProductos.TabIndex = 0;
@@ -87,7 +89,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnRecargarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRecargarProductos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarProductos.Location = new System.Drawing.Point(788, 14);
+            this.btnRecargarProductos.Location = new System.Drawing.Point(792, 20);
             this.btnRecargarProductos.Name = "btnRecargarProductos";
             this.btnRecargarProductos.Size = new System.Drawing.Size(86, 23);
             this.btnRecargarProductos.TabIndex = 2;
@@ -106,7 +108,7 @@ namespace PuntoDeVenta.ProductosForms
             // lblPginacionProductos
             // 
             this.lblPginacionProductos.AutoSize = true;
-            this.lblPginacionProductos.Location = new System.Drawing.Point(418, 4);
+            this.lblPginacionProductos.Location = new System.Drawing.Point(402, 4);
             this.lblPginacionProductos.Name = "lblPginacionProductos";
             this.lblPginacionProductos.Size = new System.Drawing.Size(60, 13);
             this.lblPginacionProductos.TabIndex = 18;
@@ -275,12 +277,30 @@ namespace PuntoDeVenta.ProductosForms
             this.tabControlProductos.Size = new System.Drawing.Size(359, 363);
             this.tabControlProductos.TabIndex = 0;
             // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(605, 21);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(100, 20);
+            this.txtBuscar.TabIndex = 21;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.Location = new System.Drawing.Point(711, 20);
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.TabIndex = 22;
+            this.btnBuscar.Text = "Buscar";
+            this.btnBuscar.UseVisualStyleBackColor = true;
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(978, 392);
+            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.txtPaginasTotalesProductos);
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);
@@ -328,5 +348,7 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.Label lblNombreProducto;
         private System.Windows.Forms.ComboBox comboProveedorProducto;
         private System.Windows.Forms.TabControl tabControlProductos;
+        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.Button btnBuscar;
     }
 }
