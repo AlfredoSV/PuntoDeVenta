@@ -36,7 +36,7 @@ namespace Aplicacion.Servicios
         }
 
 
-        public IEnumerable<DtoProducto> ConsultarProductosBD()
+        public IEnumerable<DtoProducto> ConsultarProductosPaginadosBD()
         {
 
             var productos = new List<DtoProducto>();

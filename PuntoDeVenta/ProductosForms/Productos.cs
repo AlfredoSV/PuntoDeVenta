@@ -100,7 +100,7 @@ namespace PuntoDeVenta.ProductosForms
                 btnEditar.Text = "Editar";
                 btnEditar.UseColumnTextForButtonValue = true;
 
-                var productos = _servicioProductos.ConsultarProductosBD();
+                var productos = _servicioProductos.ConsultarProductosPaginadosBD();
                 dataGridViewProductos.DataSource = productos;
 
 
