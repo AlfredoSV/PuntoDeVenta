@@ -134,18 +134,21 @@ end
 EXECUTE ConsultarProductos 'Ca'
 
 
-CREATE OR ALTER PROCEDURE ConsultarProductosTotal(@buscar varchar(60))
+CREATE OR ALTER PROCEDURE ConsultarProductosTotal(@buscar varchar(60),@total int output)
 as
 
 begin
 
 If @buscar = ''
-	select * from Productos;
+	select @total = count(*) from Productos;
 else
-	select * from Productos where nombre like '%'+@buscar+'%'; 
+	select @total = count(*) from Productos where nombre like '%'+@buscar+'%'; 
 
 
 end
 
+DECLARE @totalRg int
 
-EXECUTE ConsultarProductos 'Ca'
+EXECUTE ConsultarProductosTotal 'Ca',@total = @totalRg out
+
+PRINT @totalRg
