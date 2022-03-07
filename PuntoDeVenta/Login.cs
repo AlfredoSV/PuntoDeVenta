@@ -25,31 +25,41 @@ namespace PuntoDeVenta
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-
-            var usuario = txtUsuario.Text.Trim();
-            var contrasenia = txtContrasenia.Text.Trim();
-            var inicioForm = new Inicio();
-
-
-            if (!usuario.Equals("") && !contrasenia.Equals(""))
+            try
             {
+                var usuario = txtUsuario.Text.Trim();
+                var contrasenia = txtContrasenia.Text.Trim();
+                var inicioForm = new Inicio();
 
 
-                if (_servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
+                if (!usuario.Equals("") && !contrasenia.Equals(""))
                 {
-                    this.Hide();
-                    inicioForm.Show(_servicioAutenticacion.ConsultarUsuario(usuario, contrasenia));
+
+
+                    if (_servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
+                    {
+                        this.Hide();
+                        inicioForm.Show(_servicioAutenticacion.ConsultarUsuario(usuario, contrasenia));
+                    }
+                    else
+                    {
+                        MessageBox.Show("El usuario y/o contraseña son incorrectos", "Error");
+                    }
+
                 }
                 else
                 {
-                    MessageBox.Show("El usuario y/o contraseña son incorrectos", "Error");
+                    MessageBox.Show("Favor de ingresar usuario y/o contraseña", "Alterta");
                 }
 
             }
-            else
+            catch (Exception exception)
             {
-                MessageBox.Show("Favor de ingresar usuario y/o contraseña", "Error");
+
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+
 
 
 

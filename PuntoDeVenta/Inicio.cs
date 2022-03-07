@@ -28,22 +28,23 @@ namespace PuntoDeVenta
 
         private void Inicio_Load(object sender, EventArgs e)
         {
-            _permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
-        }
-        private void btnProductos_Click(object sender, EventArgs e)
-        {
             try
             {
-                var productos = new Productos();
-                productos.Show(_usuarioLogueado);
-                this.Close();
+                _permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
+
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
 
+            }
+        }
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+
+            var productos = new Productos();
+            productos.Show(_usuarioLogueado);
+            this.Close();
 
         }
 

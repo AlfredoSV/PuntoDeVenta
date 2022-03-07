@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -24,10 +25,30 @@ namespace PuntoDeVenta.ProductosForms
 
             InitializeComponent();
 
-            VolcarGridViewProductos(new DtoBuscarProductosPaginados(0, 7, ""));
+           
 
         }
+        private async void Productos_Load(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                LimpiarGrid();
+                AgregarBotonesGrid();
+               
+                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
 
+                ListarProductosGrid(productos);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               
+                SalirDeFormulario();
+                
+            }
+
+        }
         private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             MessageBox.Show("Columna:" + e.ColumnIndex.ToString());
@@ -38,9 +59,7 @@ namespace PuntoDeVenta.ProductosForms
 
         private void btnSalirProductos_Click(object sender, EventArgs e)
         {
-            var inicioForm = new Inicio();
-            inicioForm.Show(_usuarioLogueado);
-            this.Close();
+            SalirDeFormulario();
         }
 
         private void btnGuardarProducto_Click(object sender, EventArgs e)
@@ -81,34 +100,71 @@ namespace PuntoDeVenta.ProductosForms
 
         private async void btnRecargarProductos_Click(object sender, EventArgs e)
         {
-            await VolcarGridViewProductos(new DtoBuscarProductosPaginados(0, 7, ""));
+            LimpiarGrid();
+            AgregarBotonesGrid();
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
+            ListarProductosGrid(productos);
         }
 
-        private async Task VolcarGridViewProductos(DtoBuscarProductosPaginados dtoBuscarProductosPaginados)
+
+       
+        private async void btnBuscar_Click(object sender, EventArgs e)
+        {
+            var pagina = 0;
+            var tamanioPagina = 7;
+            var txtFiltro = txtBuscar.Text.Trim();
+
+            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
+
+            LimpiarGrid();
+            AgregarBotonesGrid();
+
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+
+            ListarProductosGrid(productos);
+
+        }
+
+        #region Lógica presentación
+
+        private void SalirDeFormulario()
+        {
+            var inicioForm = new Inicio();
+            inicioForm.Show(_usuarioLogueado);
+            this.Close();
+        }
+        private void AgregarBotonesGrid()
+        {
+            DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
+            dataGridViewProductos.Columns.Add(btnBorrar);
+            btnBorrar.Text = "Borrar";
+            btnBorrar.UseColumnTextForButtonValue = true;
+
+            DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
+            dataGridViewProductos.Columns.Add(btnEditar);
+            btnEditar.Text = "Editar";
+            btnEditar.UseColumnTextForButtonValue = true;
+
+        }
+
+        private void LimpiarGrid()
+        {
+            dataGridViewProductos.DataSource = null;
+            dataGridViewProductos.Columns.Clear();
+        }
+
+        private void ListarProductosGrid(DtoProductosPaginados dtoProductosPaginados)
         {
             try
             {
 
-                dataGridViewProductos.DataSource = null;
-                dataGridViewProductos.Columns.Clear();
-                DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
-                dataGridViewProductos.Columns.Add(btnBorrar);
-                btnBorrar.Text = "Borrar";
-                btnBorrar.UseColumnTextForButtonValue = true;
+                dataGridViewProductos.DataSource = dtoProductosPaginados.Productos;
 
-                DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-                dataGridViewProductos.Columns.Add(btnEditar);
-                btnEditar.Text = "Editar";
-                btnEditar.UseColumnTextForButtonValue = true;
-
-                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
-                dataGridViewProductos.DataSource = productos.Productos;
-
-                numericPaginas.Maximum = productos.TotalPaginas;
+                numericPaginas.Maximum = dtoProductosPaginados.TotalPaginas;
                 numericPaginas.Minimum = 0;
-                if (productos.TotalPaginas > 0)
+                if (dtoProductosPaginados.TotalPaginas > 0)
                     numericPaginas.Minimum = 1;
-                txtPaginasTotalesProductos.Text = productos.TotalPaginas.ToString();
+                txtPaginasTotalesProductos.Text = dtoProductosPaginados.TotalPaginas.ToString();
 
             }
             catch (Exception exception)
@@ -118,18 +174,8 @@ namespace PuntoDeVenta.ProductosForms
             }
         }
 
-        private async void btnBuscar_Click(object sender, EventArgs e)
-        {
-            var pagina = 0;
-            var tamanioPagina = 7;
-            var txtFiltro = txtBuscar.Text.Trim();
+        #endregion
 
-            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
-
-            await VolcarGridViewProductos(dtoBuscarProductosPaginados);
-
-        }
-
-
+       
     }
 }

@@ -316,6 +316,7 @@ namespace PuntoDeVenta.ProductosForms
             this.Name = "Productos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Productos";
+            this.Load += new System.EventHandler(this.Productos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.Alta.ResumeLayout(false);
             this.Alta.PerformLayout();
