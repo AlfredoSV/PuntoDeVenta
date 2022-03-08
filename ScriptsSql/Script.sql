@@ -1,3 +1,4 @@
+
 CREATE DATABASE PuntoVenta;
 GO
 
@@ -10,23 +11,32 @@ CREATE TABLE Modulos(idModulo UNIQUEIDENTIFIER PRIMARY KEY,nombre varchar(40),
 descripcion varchar(80), fechayHoraAlta DATETIME);
 
 
---Acciones Modulos
+--Operaciones Modulos
 
-CREATE TABLE AccionesModulos(idAccionMod UNIQUEIDENTIFIER PRIMARY KEY, nombre varchar(40),
-descripcion varchar(80), idModulo UNIQUEIDENTIFIER not null, idRol UNIQUEIDENTIFIER not null,
+CREATE TABLE OperacionesModulos(idOperaMod UNIQUEIDENTIFIER PRIMARY KEY, nombre varchar(40),
+descripcion varchar(80), idModulo UNIQUEIDENTIFIER not null,
 fechayHoraAlta DATETIME);
 
-ALTER TABLE AccionesModulos
+ALTER TABLE OperacionesModulos
 ADD FOREIGN KEY (idModulo) REFERENCES Modulos(idModulo);
 
+--Operaciones Rol
+
+CREATE TABLE RolOperacion(idRolOperacion UNIQUEIDENTIFIER
+PRIMARY KEY, idRol UNIQUEIDENTIFIER,
+idOperaMod UNIQUEIDENTIFIER);
+
+ALTER TABLE RolOperacion
+ADD FOREIGN KEY (idOperaMod) REFERENCES OperacionesModulos(idOperaMod);
 
 --Roles
 
 CREATE TABLE Roles(idRol UNIQUEIDENTIFIER PRIMARY KEY, nombre varchar(40), descripcion varchar(80),
 fechayHoraAlta DATETIME);
 
-ALTER TABLE AccionesModulos
+ALTER TABLE RolOperacion
 ADD FOREIGN KEY (idRol) REFERENCES Roles(idRol);
+
 
 --Usuarios
 

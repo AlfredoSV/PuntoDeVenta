@@ -25,17 +25,15 @@ namespace PuntoDeVenta.ProductosForms
 
             InitializeComponent();
 
-           
-
         }
         private async void Productos_Load(object sender, EventArgs e)
         {
-            
+
             try
             {
                 LimpiarGrid();
                 AgregarBotonesGrid();
-               
+
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
 
                 ListarProductosGrid(productos);
@@ -43,9 +41,9 @@ namespace PuntoDeVenta.ProductosForms
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               
+
                 SalirDeFormulario();
-                
+
             }
 
         }
@@ -107,7 +105,7 @@ namespace PuntoDeVenta.ProductosForms
         }
 
 
-       
+
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
             var pagina = 0;
@@ -176,6 +174,6 @@ namespace PuntoDeVenta.ProductosForms
 
         #endregion
 
-       
+
     }
 }
