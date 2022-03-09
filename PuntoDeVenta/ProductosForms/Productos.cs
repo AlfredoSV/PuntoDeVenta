@@ -21,6 +21,10 @@ namespace PuntoDeVenta.ProductosForms
         private readonly ServicioCatalogos _servicioCatalogos;
         private Usuario _usuarioLogueado;
 
+        private const int PAGINA_POR_DEFECTO = 0;
+        private const int TAMANIO_PAGINA_POR_DEFECTO = 7;
+        private const string BUSCAR_FILTRO_POR_DEFECTO = "";
+
         public Productos()
         {
             _servicioProductos = ServicioProductos.Instacia;
@@ -33,13 +37,16 @@ namespace PuntoDeVenta.ProductosForms
 
             try
             {
+                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO,TAMANIO_PAGINA_POR_DEFECTO,BUSCAR_FILTRO_POR_DEFECTO);
+                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+
                 LimpiarGrid();
 
                 AgregarBotonesGrid();
 
                 CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
 
-                ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados()));
+                ListarProductosGrid(productos);
             
             }
             catch (Exception exception)
@@ -80,11 +87,14 @@ namespace PuntoDeVenta.ProductosForms
 
             try
             {
+                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+
                 _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
 
                 LimpiarGrid();
 
-                ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados()));
+                ListarProductosGrid(productos);
             }
             catch (Exception exception)
             {
@@ -110,9 +120,12 @@ namespace PuntoDeVenta.ProductosForms
 
         private async void btnRecargarProductos_Click(object sender, EventArgs e)
         {
+            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+
             LimpiarGrid();
             AgregarBotonesGrid();
-            ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados()));
+            ListarProductosGrid(productos);
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
