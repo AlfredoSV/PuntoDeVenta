@@ -37,13 +37,10 @@ namespace PuntoDeVenta.ProductosForms
 
                 AgregarBotonesGrid();
 
-                var provedores = await _servicioCatalogos.ConsultarProveedoresBD();
+                CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
 
-                CargarProveedores(provedores);
-
-                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
-
-                ListarProductosGrid(productos);
+                ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados()));
+            
             }
             catch (Exception exception)
             {
@@ -55,7 +52,7 @@ namespace PuntoDeVenta.ProductosForms
 
         }
 
-     
+
 
         private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -70,22 +67,24 @@ namespace PuntoDeVenta.ProductosForms
             SalirDeFormulario();
         }
 
-        private void btnGuardarProducto_Click(object sender, EventArgs e)
+        private async void btnGuardarProducto_Click(object sender, EventArgs e)
         {
-            
+
 
             var stock = (int)(txtStockProducto.Value);
             var nombre = txtNombreProducto.Text.Trim();
             var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim());
             var descripcion = txtDescripcionProducto.Text.Trim();
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
-            
-            
 
 
             try
             {
-                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio ,proveedor);
+                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
+
+                LimpiarGrid();
+
+                ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados()));
             }
             catch (Exception exception)
             {
@@ -106,17 +105,15 @@ namespace PuntoDeVenta.ProductosForms
             txtPrecioProducto.Text = "";
             txtDescripcionProducto.Text = "";
             txtStockProducto.Value = 0;
+
         }
 
         private async void btnRecargarProductos_Click(object sender, EventArgs e)
         {
             LimpiarGrid();
             AgregarBotonesGrid();
-            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
-            ListarProductosGrid(productos);
+            ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados()));
         }
-
-
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
@@ -127,16 +124,14 @@ namespace PuntoDeVenta.ProductosForms
             var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
 
             LimpiarGrid();
+
             AgregarBotonesGrid();
 
-            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
-
-            ListarProductosGrid(productos);
+            ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados));
 
         }
 
         #region Lógica presentación
-
         private void SalirDeFormulario()
         {
             var inicioForm = new Inicio();
@@ -156,13 +151,11 @@ namespace PuntoDeVenta.ProductosForms
             btnEditar.UseColumnTextForButtonValue = true;
 
         }
-
         private void LimpiarGrid()
         {
             dataGridViewProductos.DataSource = null;
             dataGridViewProductos.Columns.Clear();
         }
-
         private void CargarProveedores(IEnumerable<CatProveedores> provedores)
         {
             var items = new List<Item>();
@@ -203,7 +196,7 @@ namespace PuntoDeVenta.ProductosForms
 
     }
 
-    public  class Item
+    public class Item
     {
         public string Name { get; private set; }
         public Guid Value { get; private set; }

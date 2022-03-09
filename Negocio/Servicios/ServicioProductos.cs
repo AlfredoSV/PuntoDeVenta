@@ -13,7 +13,7 @@ namespace Aplicacion.Servicios
     public class ServicioProductos
     {
         private static ServicioProductos _instacia;
-        private static RepositorioProductos _repositorioProductos;
+        private readonly  RepositorioProductos _repositorioProductos;
 
         public static ServicioProductos Instacia
         {
@@ -30,7 +30,7 @@ namespace Aplicacion.Servicios
 
 
         private ServicioProductos()
-        {
+        { 
             _repositorioProductos = RepositorioProductos.Instacia;
             _repositorioProductos.AgregarConexionBD(ConexionString.StrConexionBdSql.DefaultConexionSqlServer);
 

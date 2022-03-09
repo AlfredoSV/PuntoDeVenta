@@ -16,7 +16,7 @@ namespace Aplicacion.Dtos
         public int TamanioPagina { get => _tamanioPagina; set => _tamanioPagina = value; }
         public string BuscarFiltro { get => _buscarFiltro; set => _buscarFiltro = value; }
 
-        public DtoBuscarProductosPaginados(int pagina, int tamanioPagina, string buscarFiltro)
+        public DtoBuscarProductosPaginados(int pagina=0, int tamanioPagina=7, string buscarFiltro="")
         {
             Pagina = pagina;
             TamanioPagina = tamanioPagina;
