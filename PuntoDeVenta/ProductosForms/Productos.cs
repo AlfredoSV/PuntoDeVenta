@@ -62,24 +62,24 @@ namespace PuntoDeVenta.ProductosForms
 
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
-            //Validación
+            
 
-            /*var stock = (int)(txtStockProducto.Value);
+            var stock = (int)(txtStockProducto.Value);
             var nombre = txtNombreProducto.Text.Trim();
             var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim());
             var descripcion = txtDescripcionProducto.Text.Trim();
-            var proveedor = comboProveedorProducto.SelectedItem;
+            var proveedor = Guid.Parse(comboProveedorProducto.Text);
 
 
             try
             {
-                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor,);
+                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, Guid.Empty ,proveedor);
             }
             catch (Exception exception)
             {
 
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }*/
+            }
         }
 
         public void Show(Usuario usuario)

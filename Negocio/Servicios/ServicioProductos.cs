@@ -64,13 +64,13 @@ namespace Aplicacion.Servicios
             return dtoProductosPaginados;
         }
 
-        public bool GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
+        public void GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
         {
             try
             {
                 var nuevoProducto = Producto.CrearNuevoProducto(stock, nombre, descripcion, precio, idInventario, idProveedor);
 
-                return _repositorioProductos.GuardarProducto(nuevoProducto);
+                _repositorioProductos.GuardarProducto(nuevoProducto);
             }
             catch (Exception exception)
             {
