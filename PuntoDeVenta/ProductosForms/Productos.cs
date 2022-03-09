@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using Aplicacion.Dtos;
 using Aplicacion.Servicios;
 using Dominio.Entidades;
+using PuntoDeVenta.ClasesAuxiliares;
 
 namespace PuntoDeVenta.ProductosForms
 {
@@ -204,18 +205,9 @@ namespace PuntoDeVenta.ProductosForms
             }
         }
 
-        #endregion
+        #endregion Lógica presentación
 
 
     }
 
-    public class Item
-    {
-        public string Name { get; private set; }
-        public Guid Value { get; private set; }
-        public Item(string _name, Guid _value)
-        {
-            Name = _name; Value = _value;
-        }
-    }
 }
