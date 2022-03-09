@@ -17,12 +17,13 @@ namespace PuntoDeVenta.ProductosForms
     public partial class Productos : Form
     {
         private readonly ServicioProductos _servicioProductos;
+        private readonly ServicioCatalogos _servicioCatalogos;
         private Usuario _usuarioLogueado;
 
         public Productos()
         {
             _servicioProductos = ServicioProductos.Instacia;
-
+            _servicioCatalogos = ServicioCatalogos.Instacia;
             InitializeComponent();
 
         }
@@ -32,7 +33,10 @@ namespace PuntoDeVenta.ProductosForms
             try
             {
                 LimpiarGrid();
+
                 AgregarBotonesGrid();
+
+                var provedores = _servicioCatalogos.ConsultarProveedoresBD();
 
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
 

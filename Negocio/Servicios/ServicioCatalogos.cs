@@ -1,4 +1,5 @@
-﻿using Dominio.Entidades;
+﻿using AccesoDatos.Repositorios;
+using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,8 @@ namespace Aplicacion.Servicios
     public  class ServicioCatalogos
     {
         private static ServicioCatalogos _instacia;
-     
+        private static RepositorioCatalogos _repositorioCatalogos;
+
 
         public static ServicioCatalogos Instacia
         {
@@ -25,14 +27,15 @@ namespace Aplicacion.Servicios
         }
 
 
-        public ServicioCatalogos() { }
+        public ServicioCatalogos() {
+            _repositorioCatalogos = RepositorioCatalogos.Instacia;
+            _repositorioCatalogos.AgregarConexionBD(ConexionString.StrConexionBdSql.DefaultConexionSqlServer);
+        }
 
 
-        public async Task<CatProveedores> ConsultarProveedoresBD()
+        public async Task<IEnumerable<CatProveedores>> ConsultarProveedoresBD()
         {
-
-
-            return null;
+            return await _repositorioCatalogos.ConsultarCatalogos();
         }
     }
 }

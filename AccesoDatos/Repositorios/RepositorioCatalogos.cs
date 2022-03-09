@@ -27,8 +27,12 @@ namespace AccesoDatos.Repositorios
 
         private RepositorioCatalogos() { }
 
+        public void AgregarConexionBD(string cadCon)
+        {
+            _cadCon = cadCon;
+        }
 
-        public async Task<IEnumerable<CatProveedores>> ConsultarProductos(string buscar)
+        public async Task<IEnumerable<CatProveedores>> ConsultarCatalogos()
         {
             var provedores = new List<CatProveedores>();
             var sql = "select * from Proveedores;";
