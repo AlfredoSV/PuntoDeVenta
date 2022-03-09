@@ -64,11 +64,11 @@ namespace Aplicacion.Servicios
             return dtoProductosPaginados;
         }
 
-        public void GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
+        public void GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio ,Guid idProveedor)
         {
             try
             {
-                var nuevoProducto = Producto.CrearNuevoProducto(stock, nombre, descripcion, precio, idInventario, idProveedor);
+                var nuevoProducto = Producto.CrearNuevoProducto(stock, nombre, descripcion, precio, idProveedor);
 
                 _repositorioProductos.GuardarProducto(nuevoProducto);
             }

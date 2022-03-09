@@ -111,7 +111,7 @@ namespace Dominio.Repositorios
         public bool GuardarProducto(Producto dtoProducto)
         {
 
-            var sql = "Insert into productos values(@idProducto,@stock,@nombre,@descripcion,@precio,@idInventario,@idProveedor)";
+            var sql = "Insert into productos values(@idProducto,@stock,@nombre,@descripcion,@precio,'1FDD9D61-DFA7-4520-A01A-54370F8A5CBE',@idProveedor)";
 
             SqlCommand sqlCommand;
             try
@@ -126,7 +126,6 @@ namespace Dominio.Repositorios
                     sqlCommand.Parameters.AddWithValue("nombre", dtoProducto.Nombre);
                     sqlCommand.Parameters.AddWithValue("descripcion", dtoProducto.Descripcion);
                     sqlCommand.Parameters.AddWithValue("precio", dtoProducto.Precio);
-                    sqlCommand.Parameters.AddWithValue("idInventario", dtoProducto.IdInventario);
                     sqlCommand.Parameters.AddWithValue("idProveedor", dtoProducto.IdProveedor);
 
                     return sqlCommand.ExecuteNonQuery() >= 1;

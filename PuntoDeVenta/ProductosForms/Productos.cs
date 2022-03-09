@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Windows.Forms;
 using Aplicacion.Dtos;
 using Aplicacion.Servicios;
@@ -38,15 +39,7 @@ namespace PuntoDeVenta.ProductosForms
 
                 var provedores = await _servicioCatalogos.ConsultarProveedoresBD();
 
-                comboProveedorProducto.DisplayMember = "Text";
-                comboProveedorProducto.ValueMember = "Value";
-
-                provedores.ToList().ForEach(prov => {
-                    var proveedorPiv = new {Text = prov.Nombre , Value = prov.IdProveedor.ToString()};
-                    comboProveedorProducto.Items.Add(proveedorPiv);
-                });
-
-                
+                CargarProveedores(provedores);
 
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
 
@@ -61,6 +54,9 @@ namespace PuntoDeVenta.ProductosForms
             }
 
         }
+
+     
+
         private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             MessageBox.Show("Columna:" + e.ColumnIndex.ToString());
@@ -82,12 +78,14 @@ namespace PuntoDeVenta.ProductosForms
             var nombre = txtNombreProducto.Text.Trim();
             var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim());
             var descripcion = txtDescripcionProducto.Text.Trim();
-            var proveedor = Guid.Parse(comboProveedorProducto.SelectedValue.ToString());
+            var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
+            
+            
 
 
             try
             {
-                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, Guid.Empty ,proveedor);
+                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio ,proveedor);
             }
             catch (Exception exception)
             {
@@ -165,6 +163,20 @@ namespace PuntoDeVenta.ProductosForms
             dataGridViewProductos.Columns.Clear();
         }
 
+        private void CargarProveedores(IEnumerable<CatProveedores> provedores)
+        {
+            var items = new List<Item>();
+
+
+            items.Add(new Item("--- Seleciona un proveedor. ---", Guid.Empty));
+            foreach (var get in provedores)
+            {
+                items.Add(new Item(get.Nombre, get.IdProveedor));
+            }
+            comboProveedorProducto.DisplayMember = "Name";
+            comboProveedorProducto.ValueMember = "Value";
+            comboProveedorProducto.DataSource = items;
+        }
         private void ListarProductosGrid(DtoProductosPaginados dtoProductosPaginados)
         {
             try
@@ -189,5 +201,15 @@ namespace PuntoDeVenta.ProductosForms
         #endregion
 
 
+    }
+
+    public  class Item
+    {
+        public string Name { get; private set; }
+        public Guid Value { get; private set; }
+        public Item(string _name, Guid _value)
+        {
+            Name = _name; Value = _value;
+        }
     }
 }

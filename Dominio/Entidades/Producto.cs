@@ -22,7 +22,18 @@ namespace Dominio.Entidades
         public Guid IdInventario { get => _idInventario; set => _idInventario = value; }
         public Guid IdProveedor { get => _idProveedor; set => _idProveedor = value; }
 
-        public Producto(Guid idProducto, int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
+        public Producto(Guid idProducto, int stock, string nombre, string descripcion, decimal precio, Guid idProveedor)
+        {
+            IdProducto = idProducto;
+            Stock = stock;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            Precio = precio;
+            
+            IdProveedor = idProveedor;
+        }
+
+        public Producto(Guid idProducto, int stock, string nombre, string descripcion, decimal precio, Guid idInventario,Guid idProveedor)
         {
             IdProducto = idProducto;
             Stock = stock;
@@ -33,13 +44,14 @@ namespace Dominio.Entidades
             IdProveedor = idProveedor;
         }
 
+
         public static Producto Crear(Guid idProducto, int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
         {
             return new Producto(idProducto, stock, nombre, descripcion, precio, idInventario, idProveedor);
         }
-        public static Producto CrearNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idInventario, Guid idProveedor)
+        public static Producto CrearNuevoProducto(int stock, string nombre, string descripcion, decimal precio, Guid idProveedor)
         {
-            return new Producto(Guid.NewGuid(), stock, nombre, descripcion, precio, idInventario, idProveedor);
+            return new Producto(Guid.NewGuid(), stock, nombre, descripcion, precio, idProveedor);
         }
     }
 }
