@@ -293,6 +293,7 @@ namespace PuntoDeVenta.ProductosForms
             this.numericPaginas.Name = "numericPaginas";
             this.numericPaginas.Size = new System.Drawing.Size(82, 20);
             this.numericPaginas.TabIndex = 23;
+            this.numericPaginas.ValueChanged += new System.EventHandler(this.numericPaginas_ValueChanged);
             // 
             // Productos
             // 

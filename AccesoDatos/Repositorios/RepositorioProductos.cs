@@ -49,7 +49,7 @@ namespace Dominio.Repositorios
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
-                    sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
+                    sqlCommand.CommandType = CommandType.StoredProcedure;
                     sqlCommand.Parameters.AddWithValue("buscar", buscar);
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 

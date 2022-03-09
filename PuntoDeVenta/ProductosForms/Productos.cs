@@ -38,7 +38,7 @@ namespace PuntoDeVenta.ProductosForms
 
             try
             {
-                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO,TAMANIO_PAGINA_POR_DEFECTO,BUSCAR_FILTRO_POR_DEFECTO);
+                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
 
                 LimpiarGrid();
@@ -48,7 +48,7 @@ namespace PuntoDeVenta.ProductosForms
                 CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
 
                 ListarProductosGrid(productos);
-            
+
             }
             catch (Exception exception)
             {
@@ -93,7 +93,7 @@ namespace PuntoDeVenta.ProductosForms
                 var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
 
-                
+
                 LimpiarGrid();
 
                 ListarProductosGrid(productos);
@@ -146,6 +146,25 @@ namespace PuntoDeVenta.ProductosForms
 
         }
 
+
+        private async void numericPaginas_ValueChanged(object sender, EventArgs e)
+        {
+
+        
+            var pagina = (int)numericPaginas.Value - 1;
+            var buscarFiltro = txtBuscar.Text.Trim();
+            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+
+            LimpiarGrid();
+
+            AgregarBotonesGrid();
+
+            ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados));
+
+        }
+
+
+
         #region Lógica presentación
         private void SalirDeFormulario()
         {
@@ -193,6 +212,7 @@ namespace PuntoDeVenta.ProductosForms
                 dataGridViewProductos.DataSource = dtoProductosPaginados.Productos;
 
                 numericPaginas.Maximum = dtoProductosPaginados.TotalPaginas;
+                numericPaginas.Value = dtoProductosPaginados.Pagina+1;
                 numericPaginas.Minimum = 0;
                 if (dtoProductosPaginados.TotalPaginas > 0)
                     numericPaginas.Minimum = 1;
@@ -206,9 +226,14 @@ namespace PuntoDeVenta.ProductosForms
             }
         }
 
+
+
+
+
+
         #endregion Lógica presentación
 
-
+   
     }
 
 }
