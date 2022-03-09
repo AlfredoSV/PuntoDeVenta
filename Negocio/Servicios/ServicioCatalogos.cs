@@ -1,4 +1,4 @@
-﻿using Aplicacion.Entidades;
+﻿using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,6 +30,8 @@ namespace Aplicacion.Servicios
 
         public async Task<CatProveedores> ConsultarProveedoresBD()
         {
+
+
             return null;
         }
     }
