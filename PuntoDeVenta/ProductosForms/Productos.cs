@@ -23,7 +23,7 @@ namespace PuntoDeVenta.ProductosForms
         private Usuario _usuarioLogueado;
 
         private const int PAGINA_POR_DEFECTO = 0;
-        private const int TAMANIO_PAGINA_POR_DEFECTO = 7;
+        private const int TAMANIO_PAGINA_POR_DEFECTO = 10;
         private const string BUSCAR_FILTRO_POR_DEFECTO = "";
 
         public Productos()
@@ -81,18 +81,19 @@ namespace PuntoDeVenta.ProductosForms
 
             var stock = (int)(txtStockProducto.Value);
             var nombre = txtNombreProducto.Text.Trim();
-            var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim());
+            var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim().Trim('.').Trim(','));
             var descripcion = txtDescripcionProducto.Text.Trim();
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
 
 
             try
             {
+                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
+
                 var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
 
-                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
-
+                
                 LimpiarGrid();
 
                 ListarProductosGrid(productos);

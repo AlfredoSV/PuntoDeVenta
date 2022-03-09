@@ -30,7 +30,7 @@ namespace PuntoDeVenta
         {
             try
             {
-                _permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
+                //_permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
 
             }
             catch (Exception exception)
