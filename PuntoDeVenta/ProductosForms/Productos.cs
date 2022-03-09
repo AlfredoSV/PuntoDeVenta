@@ -36,7 +36,17 @@ namespace PuntoDeVenta.ProductosForms
 
                 AgregarBotonesGrid();
 
-                var provedores = _servicioCatalogos.ConsultarProveedoresBD();
+                var provedores = await _servicioCatalogos.ConsultarProveedoresBD();
+
+                comboProveedorProducto.DisplayMember = "Text";
+                comboProveedorProducto.ValueMember = "Value";
+
+                provedores.ToList().ForEach(prov => {
+                    var proveedorPiv = new {Text = prov.Nombre , Value = prov.IdProveedor.ToString()};
+                    comboProveedorProducto.Items.Add(proveedorPiv);
+                });
+
+                
 
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(new DtoBuscarProductosPaginados(0, 7, ""));
 
@@ -72,7 +82,7 @@ namespace PuntoDeVenta.ProductosForms
             var nombre = txtNombreProducto.Text.Trim();
             var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim());
             var descripcion = txtDescripcionProducto.Text.Trim();
-            var proveedor = Guid.Parse(comboProveedorProducto.Text);
+            var proveedor = Guid.Parse(comboProveedorProducto.SelectedValue.ToString());
 
 
             try

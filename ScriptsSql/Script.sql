@@ -162,3 +162,53 @@ DECLARE @totalRg int
 EXECUTE ConsultarProductosTotal 'Ca',@total = @totalRg out
 
 PRINT @totalRg
+
+
+--Usuario y rol por defecto
+
+INSERT INTO [dbo].[Roles]
+           ([idRol]
+           ,[nombre]
+           ,[descripcion]
+           ,[fechayHoraAlta])
+     VALUES
+           ('0E127AD1-EF10-4A4D-97B3-E452F4EA5397'
+           ,'Admin'
+           ,'n/a'
+           ,GETDATE())
+
+INSERT INTO [dbo].[Sucursales]
+           ([idSucursal]
+           ,[nombre]
+           ,[fechayHoraAlta])
+     VALUES
+           ('48586AE5-ACD0-4ABF-A383-B98E305C11A7'
+           ,'Sucursal11'
+           ,GETDATE())
+
+INSERT INTO [dbo].[Usuarios]
+           ([idUsuario]
+           ,[usuario]
+           ,[contrasenia]
+           ,[fechayHoraAlta]
+           ,[idSucursal]
+           ,[idRol])
+     VALUES
+           ('AB211B43-F5F1-42A0-B507-268879B8F266'
+           ,'AdminPrin'
+           ,'p'
+           ,getdate()
+           ,'48586AE5-ACD0-4ABF-A383-B98E305C11A7'
+           ,'0E127AD1-EF10-4A4D-97B3-E452F4EA5397')
+
+
+INSERT INTO [dbo].[Proveedores]
+           ([idProveedor]
+           ,[nombre]
+           ,[descripcion]
+           ,[fechayHoraAlta])
+     VALUES
+           ('00EE0050-3A09-4E5F-9410-E66BE11310A4'
+           ,'Néscafe'
+           ,''
+           ,GETDATE())
