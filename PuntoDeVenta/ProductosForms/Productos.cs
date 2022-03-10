@@ -1,13 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using System.Windows.Forms;
 using Aplicacion.Dtos;
 using Aplicacion.Servicios;
@@ -77,23 +69,52 @@ namespace PuntoDeVenta.ProductosForms
 
             var stock = (int)(txtStockProducto.Value);
             var nombre = txtNombreProducto.Text.Trim();
-            var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim().Trim('.').Trim(','));
+            var preciotxt = txtPrecioProducto.Text.Trim().Trim('.').Trim(',').Trim() == "" ? "0.00" : txtPrecioProducto.Text.Trim().Trim('.').Trim(',').Trim();
+            var precio = Convert.ToDecimal(preciotxt.Replace(" ", ""));
             var descripcion = txtDescripcionProducto.Text.Trim();
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
+            var validacion = true;
 
-            try
+            if (stock <= 0)
             {
-                _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
-                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
-                LimpiarGrid();
-                productos.Pagina += 1;
-                ListarProductosGrid(productos);
+                MessageBox.Show("Debe agregar por lo menos un producto al stock", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                validacion = false;
             }
-            catch (Exception exception)
+            if (nombre.Equals(""))
             {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("El productos debe terner un nombre", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                validacion = false;
             }
+            if (precio <= 0.00m)
+            {
+                MessageBox.Show("El precio debe ser mayor a 0", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                validacion = false;
+            }
+
+            if (proveedor == Guid.Empty)
+            {
+                MessageBox.Show("Debe seleccionar un proveedor", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                validacion = false;
+            }
+
+            if (validacion)
+            {
+                try
+                {
+                    _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
+                    var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                    var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                    LimpiarGrid();
+                    productos.Pagina += 1;
+                    ListarProductosGrid(productos);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+
         }
 
         public void Show(Usuario usuario)
@@ -113,6 +134,7 @@ namespace PuntoDeVenta.ProductosForms
 
         private async void btnRecargarProductos_Click(object sender, EventArgs e)
         {
+            txtBuscar.Text = "";
             var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
             var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
             LimpiarGrid();
@@ -220,17 +242,21 @@ namespace PuntoDeVenta.ProductosForms
                 btnAvanzarPag.Enabled = true;
                 btnRegresarPag.Enabled = true;
 
-                if (txtPagActual.Text.Equals(txtPaginasTotalesProductos.Text))
+                if (txtPagActual.Text.Equals(dtoProductosPaginados.TotalPaginas.ToString()) && !txtPagActual.Text.Equals("1"))
                 {
                     btnAvanzarPag.Enabled = false;
-                    btnRegresarPag.Enabled = true;
-                }     
-                else if (txtPagActual.Text.Equals("1"))
+                }
+                if (txtPagActual.Text.Equals("1") && dtoProductosPaginados.TotalPaginas == 1)
+                {
+
+                    btnAvanzarPag.Enabled = false;
+
+                }
+                if (txtPagActual.Text.Equals("1"))
                 {
                     btnRegresarPag.Enabled = false;
-                    btnAvanzarPag.Enabled = true;
                 }
-                  
+
             }
             catch (Exception exception)
             {
