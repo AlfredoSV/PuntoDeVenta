@@ -52,12 +52,13 @@ namespace PuntoDeVenta.ProductosForms
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
-            this.numericPaginas = new System.Windows.Forms.NumericUpDown();
+            this.txtPagActual = new System.Windows.Forms.TextBox();
+            this.btnRegresarPag = new System.Windows.Forms.Button();
+            this.btnAvanzarPag = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
             this.tabControlProductos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericPaginas)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridViewProductos
@@ -67,10 +68,10 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos.AllowUserToOrderColumns = true;
             this.dataGridViewProductos.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProductos.Location = new System.Drawing.Point(405, 50);
+            this.dataGridViewProductos.Location = new System.Drawing.Point(405, 75);
             this.dataGridViewProductos.Name = "dataGridViewProductos";
             this.dataGridViewProductos.ReadOnly = true;
-            this.dataGridViewProductos.Size = new System.Drawing.Size(561, 330);
+            this.dataGridViewProductos.Size = new System.Drawing.Size(561, 305);
             this.dataGridViewProductos.TabIndex = 1;
             this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
             // 
@@ -90,9 +91,9 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnRecargarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRecargarProductos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarProductos.Location = new System.Drawing.Point(792, 20);
+            this.btnRecargarProductos.Location = new System.Drawing.Point(805, 20);
             this.btnRecargarProductos.Name = "btnRecargarProductos";
-            this.btnRecargarProductos.Size = new System.Drawing.Size(86, 23);
+            this.btnRecargarProductos.Size = new System.Drawing.Size(73, 23);
             this.btnRecargarProductos.TabIndex = 2;
             this.btnRecargarProductos.Text = "Recargar";
             this.btnRecargarProductos.UseVisualStyleBackColor = false;
@@ -110,7 +111,7 @@ namespace PuntoDeVenta.ProductosForms
             // lblAuxFormProductos
             // 
             this.lblAuxFormProductos.AutoSize = true;
-            this.lblAuxFormProductos.Location = new System.Drawing.Point(493, 23);
+            this.lblAuxFormProductos.Location = new System.Drawing.Point(511, 26);
             this.lblAuxFormProductos.Name = "lblAuxFormProductos";
             this.lblAuxFormProductos.Size = new System.Drawing.Size(19, 13);
             this.lblAuxFormProductos.TabIndex = 19;
@@ -118,7 +119,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // txtPaginasTotalesProductos
             // 
-            this.txtPaginasTotalesProductos.Location = new System.Drawing.Point(518, 20);
+            this.txtPaginasTotalesProductos.Location = new System.Drawing.Point(536, 22);
             this.txtPaginasTotalesProductos.Name = "txtPaginasTotalesProductos";
             this.txtPaginasTotalesProductos.ReadOnly = true;
             this.txtPaginasTotalesProductos.Size = new System.Drawing.Size(71, 20);
@@ -272,14 +273,14 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(605, 21);
+            this.txtBuscar.Location = new System.Drawing.Point(627, 23);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(100, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(91, 20);
             this.txtBuscar.TabIndex = 21;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(711, 20);
+            this.btnBuscar.Location = new System.Drawing.Point(724, 20);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 22;
@@ -287,13 +288,33 @@ namespace PuntoDeVenta.ProductosForms
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
-            // numericPaginas
+            // txtPagActual
             // 
-            this.numericPaginas.Location = new System.Drawing.Point(405, 21);
-            this.numericPaginas.Name = "numericPaginas";
-            this.numericPaginas.Size = new System.Drawing.Size(82, 20);
-            this.numericPaginas.TabIndex = 23;
-            this.numericPaginas.ValueChanged += new System.EventHandler(this.numericPaginas_ValueChanged);
+            this.txtPagActual.Location = new System.Drawing.Point(405, 20);
+            this.txtPagActual.Name = "txtPagActual";
+            this.txtPagActual.ReadOnly = true;
+            this.txtPagActual.Size = new System.Drawing.Size(98, 20);
+            this.txtPagActual.TabIndex = 23;
+            // 
+            // btnRegresarPag
+            // 
+            this.btnRegresarPag.Location = new System.Drawing.Point(405, 46);
+            this.btnRegresarPag.Name = "btnRegresarPag";
+            this.btnRegresarPag.Size = new System.Drawing.Size(46, 23);
+            this.btnRegresarPag.TabIndex = 24;
+            this.btnRegresarPag.Text = "<<";
+            this.btnRegresarPag.UseVisualStyleBackColor = true;
+            this.btnRegresarPag.Click += new System.EventHandler(this.btnRegresarPag_Click);
+            // 
+            // btnAvanzarPag
+            // 
+            this.btnAvanzarPag.Location = new System.Drawing.Point(457, 46);
+            this.btnAvanzarPag.Name = "btnAvanzarPag";
+            this.btnAvanzarPag.Size = new System.Drawing.Size(46, 23);
+            this.btnAvanzarPag.TabIndex = 25;
+            this.btnAvanzarPag.Text = ">>";
+            this.btnAvanzarPag.UseVisualStyleBackColor = true;
+            this.btnAvanzarPag.Click += new System.EventHandler(this.btnAvanzarPag_Click);
             // 
             // Productos
             // 
@@ -301,7 +322,9 @@ namespace PuntoDeVenta.ProductosForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(978, 392);
-            this.Controls.Add(this.numericPaginas);
+            this.Controls.Add(this.btnAvanzarPag);
+            this.Controls.Add(this.btnRegresarPag);
+            this.Controls.Add(this.txtPagActual);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.txtPaginasTotalesProductos);
@@ -323,7 +346,6 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).EndInit();
             this.tabControlProductos.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericPaginas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -353,6 +375,8 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.TabControl tabControlProductos;
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.NumericUpDown numericPaginas;
+        private System.Windows.Forms.TextBox txtPagActual;
+        private System.Windows.Forms.Button btnRegresarPag;
+        private System.Windows.Forms.Button btnAvanzarPag;
     }
 }

@@ -40,13 +40,10 @@ namespace PuntoDeVenta.ProductosForms
             {
                 var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
-
                 LimpiarGrid();
-
                 AgregarBotonesGrid();
-
                 CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
-
+                productos.Pagina += 1;
                 ListarProductosGrid(productos);
 
             }
@@ -78,29 +75,23 @@ namespace PuntoDeVenta.ProductosForms
         private async void btnGuardarProducto_Click(object sender, EventArgs e)
         {
 
-
             var stock = (int)(txtStockProducto.Value);
             var nombre = txtNombreProducto.Text.Trim();
             var precio = Convert.ToDecimal(txtPrecioProducto.Text.Trim().Trim('.').Trim(','));
             var descripcion = txtDescripcionProducto.Text.Trim();
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
 
-
             try
             {
                 _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
-
                 var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                 var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
-
-
                 LimpiarGrid();
-
+                productos.Pagina += 1;
                 ListarProductosGrid(productos);
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -124,48 +115,61 @@ namespace PuntoDeVenta.ProductosForms
         {
             var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
             var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
-
             LimpiarGrid();
             AgregarBotonesGrid();
+            productos.Pagina += 1;
             ListarProductosGrid(productos);
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            var pagina = 0;
-            var tamanioPagina = 7;
+
             var txtFiltro = txtBuscar.Text.Trim();
-
-            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, tamanioPagina, txtFiltro);
-
+            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, txtFiltro);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
             LimpiarGrid();
-
             AgregarBotonesGrid();
-
-            ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados));
+            productos.Pagina += 1;
+            ListarProductosGrid(productos);
 
         }
 
-
-        private async void numericPaginas_ValueChanged(object sender, EventArgs e)
+        private async void btnRegresarPag_Click(object sender, EventArgs e)
         {
 
-        
-            var pagina = (int)numericPaginas.Value - 1;
+            var pagina = Int32.Parse(txtPagActual.Text);
+            var buscarFiltro = txtBuscar.Text.Trim();
+            if (txtPagActual.Text == txtPaginasTotalesProductos.Text)
+                pagina -= 2;
+            else
+                pagina -= 1;
+            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+            LimpiarGrid();
+            AgregarBotonesGrid();
+            productos.Pagina = Int32.Parse(txtPagActual.Text) - 1;
+            ListarProductosGrid(productos);
+
+        }
+
+        private async void btnAvanzarPag_Click(object sender, EventArgs e)
+        {
+            var pagina = Int32.Parse(txtPagActual.Text);
             var buscarFiltro = txtBuscar.Text.Trim();
             var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
-
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
             LimpiarGrid();
-
             AgregarBotonesGrid();
-
-            ListarProductosGrid(await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados));
+            productos.Pagina += 1;
+            ListarProductosGrid(productos);
 
         }
 
 
 
-        #region Lógica presentación
+
+
+        #region Lógica presentación reútilizable
         private void SalirDeFormulario()
         {
             var inicioForm = new Inicio();
@@ -194,12 +198,12 @@ namespace PuntoDeVenta.ProductosForms
         {
             var items = new List<Item>();
 
-
             items.Add(new Item("--- Seleciona un proveedor. ---", Guid.Empty));
             foreach (var get in provedores)
             {
                 items.Add(new Item(get.Nombre, get.IdProveedor));
             }
+
             comboProveedorProducto.DisplayMember = "Name";
             comboProveedorProducto.ValueMember = "Value";
             comboProveedorProducto.DataSource = items;
@@ -210,14 +214,23 @@ namespace PuntoDeVenta.ProductosForms
             {
 
                 dataGridViewProductos.DataSource = dtoProductosPaginados.Productos;
-
-                numericPaginas.Maximum = dtoProductosPaginados.TotalPaginas;
-                numericPaginas.Value = dtoProductosPaginados.Pagina+1;
-                numericPaginas.Minimum = 0;
-                if (dtoProductosPaginados.TotalPaginas > 0)
-                    numericPaginas.Minimum = 1;
+                txtPagActual.Text = dtoProductosPaginados.Pagina.ToString();
                 txtPaginasTotalesProductos.Text = dtoProductosPaginados.TotalPaginas.ToString();
 
+                btnAvanzarPag.Enabled = true;
+                btnRegresarPag.Enabled = true;
+
+                if (txtPagActual.Text.Equals(txtPaginasTotalesProductos.Text))
+                {
+                    btnAvanzarPag.Enabled = false;
+                    btnRegresarPag.Enabled = true;
+                }     
+                else if (txtPagActual.Text.Equals("1"))
+                {
+                    btnRegresarPag.Enabled = false;
+                    btnAvanzarPag.Enabled = true;
+                }
+                  
             }
             catch (Exception exception)
             {
@@ -226,14 +239,9 @@ namespace PuntoDeVenta.ProductosForms
             }
         }
 
+        #endregion Lógica presentación reútilizable
 
 
-
-
-
-        #endregion Lógica presentación
-
-   
     }
 
 }
