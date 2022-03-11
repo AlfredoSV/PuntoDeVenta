@@ -60,7 +60,8 @@ namespace PuntoDeVenta
         private void btnMiInformacion_Click(object sender, EventArgs e)
         {
             var miInformacion = new MiInfomacion();
-            miInformacion.Show();
+            miInformacion.Show(_usuarioLogueado);
+            this.Close();
         }
     }
 }
