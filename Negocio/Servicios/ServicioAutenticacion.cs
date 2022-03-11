@@ -44,7 +44,7 @@ namespace Aplicacion.Servicios
             return usuario;
         }
 
-        public PermisosModulo ConsultarPermisosPorIdUsuario(Guid idUsuario)
+        public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
         {
             return _repositorioUsuarios.ConsultarPermisosPorIdUsuario(idUsuario);
         }

@@ -4,12 +4,6 @@ using Dominio.Entidades;
 using PuntoDeVenta.ProductosForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -19,7 +13,7 @@ namespace PuntoDeVenta
     {
         private ServicioAutenticacion _servicioAutenticacion;
         private Usuario _usuarioLogueado;
-        private PermisosModulo _permisoModulo;
+        private  IEnumerable<PermisosModulo> _permisoModulo;
         public Inicio()
         {
             _servicioAutenticacion = ServicioAutenticacion.Instacia;
@@ -30,7 +24,7 @@ namespace PuntoDeVenta
         {
             try
             {
-                //_permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
+                _permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
 
             }
             catch (Exception exception)

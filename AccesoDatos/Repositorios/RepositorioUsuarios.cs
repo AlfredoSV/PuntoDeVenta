@@ -83,15 +83,16 @@ namespace AccesoDatos.Repositorios
             return usuario;
         }
 
-        public PermisosModulo ConsultarPermisosPorIdUsuario(Guid idUsuario)
+        public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
         {
 
-            var sql = @"SELECT accm.*,ro.*,modu.* FROM Modulos modu inner join AccionesModulos accm on modu.idModulo = accm.idModulo inner join
-                Roles ro on ro.idRol = accm.idRol inner join Usuarios usu on usu.idRol = ro.idRol
-                where idUsuario = @idUsuario";
+            var sql = @"SELECT usu.idUsuario,usu.usuario,rol.nombre,
+            opmod.nombre,modl.nombre FROM Usuarios usu inner join Roles rol on usu.idRol = rol.idRol
+            inner join RolOperacion rolop on rol.idRol = rolop.idRol inner join OperacionesModulos opmod
+            on rolop.idOperaMod = opmod.idOperaMod inner join Modulos modl on opmod.idModulo = opmod.idModulo where usu.idUsuario = @idUsuario ;";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
-            PermisosModulo permisosModulo = null;
+            var permisosModulo = new List<PermisosModulo>();
 
             try
             {
@@ -110,7 +111,7 @@ namespace AccesoDatos.Repositorios
 
                         while (sqlDataReader.Read())
                         {
-
+                            permisosModulo.Add(PermisosModulo.Crear(sqlDataReader.GetGuid(0),sqlDataReader.GetString(1),sqlDataReader.GetString(2),sqlDataReader.GetString(3),sqlDataReader.GetString(4)));
                         }
 
                     }

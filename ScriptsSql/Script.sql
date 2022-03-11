@@ -212,3 +212,46 @@ INSERT INTO [dbo].[Proveedores]
            ,'Néscafe'
            ,''
            ,GETDATE())
+
+
+
+
+INSERT INTO Modulos VALUES('24358C47-46FD-448E-80C3-001AF78EA9F5','Productos',
+'Administración a productos',GETDATE());
+
+INSERT INTO OperacionesModulos VALUES('BE51E6A8-ABBF-40CB-A460-846A0A0B538A',
+'Alta','Realizar alta de un nuevo producto','24358C47-46FD-448E-80C3-001AF78EA9F5',
+GETDATE());
+INSERT INTO OperacionesModulos VALUES('6D33945C-04B8-44B7-B254-D13728B48AFF',
+'Eliminar','Eliminar un producto','24358C47-46FD-448E-80C3-001AF78EA9F5',
+GETDATE());
+
+INSERT INTO OperacionesModulos VALUES('07DFBBC3-20CA-46DE-BA05-6DE9E0475D19',
+'Editar','Editar un producto','24358C47-46FD-448E-80C3-001AF78EA9F5',
+GETDATE());
+
+INSERT INTO OperacionesModulos VALUES('13421A44-E539-4E76-8DA8-BC3563DAFB33',
+'Visualizar y Buscar','Visualizar y buscar un producto','24358C47-46FD-448E-80C3-001AF78EA9F5',
+GETDATE());
+
+INSERT INTO RolOperacion values('502A8E22-CC66-49AE-84FA-E032DAE9928A','0E127AD1-EF10-4A4D-97B3-E452F4EA5397',
+'BE51E6A8-ABBF-40CB-A460-846A0A0B538A');
+
+INSERT INTO RolOperacion values('E728F7DA-D99F-45C2-B710-E5AD09B1DC28','0E127AD1-EF10-4A4D-97B3-E452F4EA5397',
+'6D33945C-04B8-44B7-B254-D13728B48AFF');
+
+INSERT INTO RolOperacion values('58312C15-A6AD-4A83-BA0D-CE694324128F','0E127AD1-EF10-4A4D-97B3-E452F4EA5397',
+'07DFBBC3-20CA-46DE-BA05-6DE9E0475D19');
+
+INSERT INTO RolOperacion values('4F4C5A14-3271-468B-B947-E4F74458E475','0E127AD1-EF10-4A4D-97B3-E452F4EA5397',
+'13421A44-E539-4E76-8DA8-BC3563DAFB33');
+
+select * from RolOperacion
+select * from Roles
+select * from OperacionesModulos
+select * from Modulos
+
+SELECT usu.idUsuario,usu.usuario,rol.nombre,
+opmod.nombre,modl.nombre FROM Usuarios usu inner join Roles rol on usu.idRol = rol.idRol
+inner join RolOperacion rolop on rol.idRol = rolop.idRol inner join OperacionesModulos opmod
+on rolop.idOperaMod = opmod.idOperaMod inner join Modulos modl on opmod.idModulo = opmod.idModulo;
