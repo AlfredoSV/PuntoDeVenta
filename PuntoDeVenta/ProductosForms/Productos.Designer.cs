@@ -55,6 +55,7 @@ namespace PuntoDeVenta.ProductosForms
             this.txtPagActual = new System.Windows.Forms.TextBox();
             this.btnRegresarPag = new System.Windows.Forms.Button();
             this.btnAvanzarPag = new System.Windows.Forms.Button();
+            this.lblAviso = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
@@ -128,6 +129,7 @@ namespace PuntoDeVenta.ProductosForms
             // Alta
             // 
             this.Alta.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.Alta.Controls.Add(this.lblAviso);
             this.Alta.Controls.Add(this.txtStockProducto);
             this.Alta.Controls.Add(this.txtPrecioProducto);
             this.Alta.Controls.Add(this.btnLimpiarFormProducto);
@@ -316,6 +318,16 @@ namespace PuntoDeVenta.ProductosForms
             this.btnAvanzarPag.UseVisualStyleBackColor = true;
             this.btnAvanzarPag.Click += new System.EventHandler(this.btnAvanzarPag_Click);
             // 
+            // lblAviso
+            // 
+            this.lblAviso.AutoSize = true;
+            this.lblAviso.ForeColor = System.Drawing.Color.Red;
+            this.lblAviso.Location = new System.Drawing.Point(23, 312);
+            this.lblAviso.Name = "lblAviso";
+            this.lblAviso.Size = new System.Drawing.Size(298, 13);
+            this.lblAviso.TabIndex = 18;
+            this.lblAviso.Text = "Actualmente no tiene el permiso para acceder a esta sección.";
+            // 
             // Productos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,5 +390,6 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.TextBox txtPagActual;
         private System.Windows.Forms.Button btnRegresarPag;
         private System.Windows.Forms.Button btnAvanzarPag;
+        private System.Windows.Forms.Label lblAviso;
     }
 }

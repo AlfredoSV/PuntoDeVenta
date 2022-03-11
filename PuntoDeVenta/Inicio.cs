@@ -13,7 +13,7 @@ namespace PuntoDeVenta
     {
         private ServicioAutenticacion _servicioAutenticacion;
         private Usuario _usuarioLogueado;
-        private  IEnumerable<PermisosModulo> _permisoModulo;
+        
         public Inicio()
         {
             _servicioAutenticacion = ServicioAutenticacion.Instacia;
@@ -24,7 +24,7 @@ namespace PuntoDeVenta
         {
             try
             {
-                _permisoModulo = _servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario);
+                _usuarioLogueado.AsignarPermisos(_servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario));
 
             }
             catch (Exception exception)

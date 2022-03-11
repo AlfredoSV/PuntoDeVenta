@@ -12,6 +12,7 @@ namespace Dominio.Entidades
         private DateTime _fechayHoraAlta;
         private Sucursal _sucursal;
         private Rol _rol;
+        private IEnumerable<PermisosModulo> _permisos;
 
         public Guid IdUsuario { get => _idUsuario; set => _idUsuario = value; }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
@@ -19,6 +20,7 @@ namespace Dominio.Entidades
         public DateTime FechayHoraAlta { get => _fechayHoraAlta; set => _fechayHoraAlta = value; }
         internal Sucursal Sucursal { get => _sucursal; set => _sucursal = value; }
         internal Rol Rol { get => _rol; set => _rol = value; }
+        public IEnumerable<PermisosModulo> Permisos { get => _permisos; set => _permisos = value; }
 
         public Usuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, Sucursal sucursal, Rol rol)
         {
@@ -30,6 +32,10 @@ namespace Dominio.Entidades
             Rol = rol;
         }
 
+        public void AsignarPermisos(IEnumerable<PermisosModulo> permisos)
+        {
+            Permisos = permisos;
+        }
 
         public static Usuario CrearUsuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, Sucursal sucursal, Rol rol)
         {

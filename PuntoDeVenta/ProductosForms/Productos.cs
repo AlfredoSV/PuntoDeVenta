@@ -5,6 +5,7 @@ using Aplicacion.Dtos;
 using Aplicacion.Servicios;
 using Dominio.Entidades;
 using PuntoDeVenta.ClasesAuxiliares;
+using System.Linq;
 
 namespace PuntoDeVenta.ProductosForms
 {
@@ -115,11 +116,15 @@ namespace PuntoDeVenta.ProductosForms
             }
 
 
+
+
+
         }
 
         public void Show(Usuario usuario)
         {
             _usuarioLogueado = usuario;
+            ActivarODesactivarFormularioAltaProdcuto(_usuarioLogueado.Permisos.Any(x => x.PermisoModulo == "Alta" && x.Modulo == "Productos"));
             base.Show();
         }
 
@@ -145,7 +150,6 @@ namespace PuntoDeVenta.ProductosForms
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-
             var txtFiltro = txtBuscar.Text.Trim();
             var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, txtFiltro);
             var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
@@ -153,6 +157,8 @@ namespace PuntoDeVenta.ProductosForms
             AgregarBotonesGrid();
             productos.Pagina += 1;
             ListarProductosGrid(productos);
+
+
 
         }
 
@@ -263,6 +269,19 @@ namespace PuntoDeVenta.ProductosForms
 
                 throw exception;
             }
+        }
+
+        private void ActivarODesactivarFormularioAltaProdcuto(bool activo)
+        {
+            btnGuardarProducto.Enabled = activo;
+            btnCargarMasivaProducto.Enabled = activo;
+            btnLimpiarFormProducto.Enabled = activo;
+            txtDescripcionProducto.Enabled = activo;
+            comboProveedorProducto.Enabled = activo;
+            txtNombreProducto.Enabled = activo;
+            txtPrecioProducto.Enabled = activo;
+            txtStockProducto.Enabled = activo;
+            lblAviso.Visible = !activo;
         }
 
         #endregion Lógica presentación reútilizable
