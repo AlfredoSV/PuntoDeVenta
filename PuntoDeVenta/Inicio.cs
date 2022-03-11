@@ -1,6 +1,7 @@
 ﻿
 using Aplicacion.Servicios;
 using Dominio.Entidades;
+using PuntoDeVenta.MiInformacionForms;
 using PuntoDeVenta.ProductosForms;
 using System;
 using System.Collections.Generic;
@@ -56,6 +57,10 @@ namespace PuntoDeVenta
             base.Show();
         }
 
-
+        private void btnMiInformacion_Click(object sender, EventArgs e)
+        {
+            var miInformacion = new MiInfomacion();
+            miInformacion.Show();
+        }
     }
 }

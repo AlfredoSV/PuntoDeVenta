@@ -35,7 +35,6 @@ namespace PuntoDeVenta
             this.btnVenta = new System.Windows.Forms.Button();
             this.btnUsuario = new System.Windows.Forms.Button();
             this.btnMiInformacion = new System.Windows.Forms.Button();
-            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.lblSaludo = new System.Windows.Forms.Label();
             this.lblFechaHoy = new System.Windows.Forms.Label();
@@ -69,7 +68,7 @@ namespace PuntoDeVenta
             this.btnVenta.Name = "btnVenta";
             this.btnVenta.Size = new System.Drawing.Size(110, 82);
             this.btnVenta.TabIndex = 2;
-            this.btnVenta.Text = "Venta";
+            this.btnVenta.Text = "Realizar venta";
             this.btnVenta.UseVisualStyleBackColor = false;
             // 
             // btnUsuario
@@ -91,16 +90,7 @@ namespace PuntoDeVenta
             this.btnMiInformacion.TabIndex = 5;
             this.btnMiInformacion.Text = "Mi información";
             this.btnMiInformacion.UseVisualStyleBackColor = false;
-            // 
-            // btnCerrarSesion
-            // 
-            this.btnCerrarSesion.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(348, 298);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(110, 82);
-            this.btnCerrarSesion.TabIndex = 6;
-            this.btnCerrarSesion.Text = "Cerrar sesión";
-            this.btnCerrarSesion.UseVisualStyleBackColor = false;
+            this.btnMiInformacion.Click += new System.EventHandler(this.btnMiInformacion_Click);
             // 
             // btnSalir
             // 
@@ -143,7 +133,6 @@ namespace PuntoDeVenta
             this.Controls.Add(this.lblFechaHoy);
             this.Controls.Add(this.lblSaludo);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnMiInformacion);
             this.Controls.Add(this.btnUsuario);
             this.Controls.Add(this.btnVenta);
@@ -168,7 +157,6 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Button btnVenta;
         private System.Windows.Forms.Button btnUsuario;
         private System.Windows.Forms.Button btnMiInformacion;
-        private System.Windows.Forms.Button btnCerrarSesion;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblSaludo;
         private System.Windows.Forms.Label lblFechaHoy;
