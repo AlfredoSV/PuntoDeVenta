@@ -76,25 +76,27 @@ namespace PuntoDeVenta.ProductosForms
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
             var validacion = true;
 
+            var mensajeValidacion = string.Empty;
+
             if (stock <= 0)
             {
-                MessageBox.Show("Debe agregar por lo menos un producto al stock", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mensajeValidacion+= "* Debe agregar por lo menos un producto al stock \n";
                 validacion = false;
             }
             if (nombre.Equals(""))
             {
-                MessageBox.Show("El productos debe terner un nombre", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mensajeValidacion += "* El productos debe terner un nombre \n";
                 validacion = false;
             }
             if (precio <= 0.00m)
             {
-                MessageBox.Show("El precio debe ser mayor a 0", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mensajeValidacion += "* El precio debe ser mayor a 0 \n";
                 validacion = false;
             }
 
             if (proveedor == Guid.Empty)
             {
-                MessageBox.Show("Debe seleccionar un proveedor", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                mensajeValidacion += "* Debe seleccionar un proveedor \n";
                 validacion = false;
             }
 
@@ -106,6 +108,7 @@ namespace PuntoDeVenta.ProductosForms
                     var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                     var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
                     LimpiarGrid();
+                    AgregarBotonesGrid();
                     productos.Pagina += 1;
                     ListarProductosGrid(productos);
                 }
@@ -113,6 +116,11 @@ namespace PuntoDeVenta.ProductosForms
                 {
                     MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+            else
+            {
+                MessageBox.Show(mensajeValidacion, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
             }
 
 
