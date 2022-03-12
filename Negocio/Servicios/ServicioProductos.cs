@@ -81,5 +81,19 @@ namespace Aplicacion.Servicios
 
         }
 
+        public async void EliminarProductoPorId(Guid id)
+        {
+            try
+            {
+              
+                await _repositorioProductos.EliminarProductoPorId(id);
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+            }
+        }
+
     }
 }

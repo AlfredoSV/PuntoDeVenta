@@ -107,7 +107,6 @@ namespace Dominio.Repositorios
             }
         }
 
-
         public bool GuardarProducto(Producto dtoProducto)
         {
 
@@ -129,6 +128,29 @@ namespace Dominio.Repositorios
                     sqlCommand.Parameters.AddWithValue("idProveedor", dtoProducto.IdProveedor);
 
                     return sqlCommand.ExecuteNonQuery() >= 1;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public async Task EliminarProductoPorId(Guid idProducto)
+        {
+            var sql = "delete from productos where idProducto = @idProducto";
+
+            SqlCommand sqlCommand;
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+                    sqlCommand.Parameters.AddWithValue("@idProducto",idProducto);
+                    await sqlCommand.ExecuteNonQueryAsync();
                 }
             }
             catch (Exception e)

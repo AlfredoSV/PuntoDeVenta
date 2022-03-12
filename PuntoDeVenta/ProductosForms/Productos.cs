@@ -52,12 +52,44 @@ namespace PuntoDeVenta.ProductosForms
 
 
 
-        private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show("Columna:" + e.ColumnIndex.ToString());
+            var columna = e.ColumnIndex.ToString();
 
-            MessageBox.Show(dataGridViewProductos.Rows[e.RowIndex].Cells[2].Value.ToString());
+           
+            try
+            {
+                if (columna.Equals("0") || columna.Equals("1"))
+                {
+                    var idProducto = Guid.Parse(dataGridViewProductos.Rows[e.RowIndex].Cells[2].Value.ToString());
 
+                    switch (columna)
+                    {
+                        case "0":
+                            _servicioProductos.EliminarProductoPorId(idProducto);
+                            break;
+                        case "1":
+                            break;
+
+                    }
+
+                    var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                    var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                    LimpiarGrid();
+                    AgregarBotonesGrid();
+                    CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
+                    productos.Pagina += 1;
+                    ListarProductosGrid(productos);
+
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void btnSalirProductos_Click(object sender, EventArgs e)
@@ -74,8 +106,8 @@ namespace PuntoDeVenta.ProductosForms
             var precio = Convert.ToDecimal(preciotxt.Replace(" ", ""));
             var descripcion = txtDescripcionProducto.Text.Trim();
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
-            var validacion = true;
 
+            var validacion = true;
             var mensajeValidacion = string.Empty;
 
             if (stock <= 0)
@@ -227,8 +259,9 @@ namespace PuntoDeVenta.ProductosForms
         }
         private void LimpiarGrid()
         {
-            dataGridViewProductos.DataSource = null;
             dataGridViewProductos.Columns.Clear();
+            dataGridViewProductos.DataSource = null;
+            
         }
         private void CargarProveedores(IEnumerable<CatProveedores> provedores)
         {
@@ -268,6 +301,12 @@ namespace PuntoDeVenta.ProductosForms
                 }
                 if (txtPagActual.Text.Equals("1"))
                 {
+                    btnRegresarPag.Enabled = false;
+                }
+                if (dtoProductosPaginados.TotalPaginas.ToString().Equals("0"))
+                {
+
+                    btnAvanzarPag.Enabled = false;
                     btnRegresarPag.Enabled = false;
                 }
 
