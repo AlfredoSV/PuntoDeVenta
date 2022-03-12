@@ -246,10 +246,11 @@ INSERT INTO RolOperacion values('58312C15-A6AD-4A83-BA0D-CE694324128F','0E127AD1
 INSERT INTO RolOperacion values('4F4C5A14-3271-468B-B947-E4F74458E475','0E127AD1-EF10-4A4D-97B3-E452F4EA5397',
 '13421A44-E539-4E76-8DA8-BC3563DAFB33');
 
-select * from RolOperacion
+select * from RolOperacion where idOperaMod = 'BE51E6A8-ABBF-40CB-A460-846A0A0B538A'
 select * from Roles
 select * from OperacionesModulos
 select * from Modulos
+delete from RolOperacion where idOperaMod = 'BE51E6A8-ABBF-40CB-A460-846A0A0B538A'
 
 SELECT usu.idUsuario,usu.usuario,rol.nombre,
 opmod.nombre,modl.nombre FROM Usuarios usu inner join Roles rol on usu.idRol = rol.idRol

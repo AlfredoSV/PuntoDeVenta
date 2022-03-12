@@ -24,6 +24,36 @@ namespace PuntoDeVenta
 
 
         private void btnIngresar_Click(object sender, EventArgs e)
+        {            Ingresar();        }
+
+
+        public void CerrarSesion()
+        {
+            this.Show();
+            txtContrasenia.Text = "";
+            txtUsuario.Text = "";
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.ExitThread();
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+                Ingresar();
+
+        }
+
+        private void txtContrasenia_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode.Equals(Keys.Enter))
+                Ingresar();
+        }
+
+
+        private void Ingresar()
         {
             try
             {
@@ -61,21 +91,8 @@ namespace PuntoDeVenta
             }
 
 
-
-
         }
 
-
-        public void CerrarSesion()
-        {
-            this.Show();
-            txtContrasenia.Text = "";
-            txtUsuario.Text = "";
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            Application.ExitThread();
-        }
+      
     }
 }

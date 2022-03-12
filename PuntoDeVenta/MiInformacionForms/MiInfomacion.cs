@@ -29,7 +29,16 @@ namespace PuntoDeVenta.MiInformacionForms
         public void Show(Usuario usuarioLog)
         {
             _usuarioLogueado = usuarioLog;
+            lblUsuario.Text = _usuarioLogueado.NombreUsuario;
+            lblRol.Text = _usuarioLogueado.Permisos.First().NombreRol;
+            lblSucursal.Text = "Suc";
+            lblFechaAlta.Text = _usuarioLogueado.FechayHoraAlta.ToString();
             base.Show();
+        }
+
+        private void MiInfomacion_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
