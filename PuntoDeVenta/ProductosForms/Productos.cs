@@ -70,7 +70,7 @@ namespace PuntoDeVenta.ProductosForms
                             _servicioProductos.EliminarProductoPorId(idProducto);
                             break;
                         case "1":
-                            var editarProductoForm = new EditarProducto();
+                            var editarProductoForm = EditarProducto.Instancia;
                             editarProductoForm.ShowDialog();
                             break;
 
@@ -236,6 +236,11 @@ namespace PuntoDeVenta.ProductosForms
 
         }
 
+        private void btnCargarMasivaProducto_Click(object sender, EventArgs e)
+        {
+            var cargaMasicaForm = CargaMasiva.Instancia;
+            cargaMasicaForm.ShowDialog();
+        }
 
 
 
@@ -334,9 +339,10 @@ namespace PuntoDeVenta.ProductosForms
             lblAviso.Visible = !activo;
         }
 
+
         #endregion Lógica presentación reútilizable
 
-
+       
     }
 
 }

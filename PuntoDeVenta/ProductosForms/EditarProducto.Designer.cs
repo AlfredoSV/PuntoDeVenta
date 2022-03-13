@@ -41,12 +41,13 @@ namespace PuntoDeVenta.ProductosForms
             this.lblStockProducto = new System.Windows.Forms.Label();
             this.lblPrecioProducto = new System.Windows.Forms.Label();
             this.lblNombreProducto = new System.Windows.Forms.Label();
+            this.btnSalirEditarProductos = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardarProducto
             // 
-            this.btnGuardarProducto.Location = new System.Drawing.Point(93, 283);
+            this.btnGuardarProducto.Location = new System.Drawing.Point(66, 282);
             this.btnGuardarProducto.Name = "btnGuardarProducto";
             this.btnGuardarProducto.Size = new System.Drawing.Size(149, 23);
             this.btnGuardarProducto.TabIndex = 19;
@@ -146,11 +147,24 @@ namespace PuntoDeVenta.ProductosForms
             this.lblNombreProducto.TabIndex = 23;
             this.lblNombreProducto.Text = "Nombre:";
             // 
+            // btnSalirEditarProductos
+            // 
+            this.btnSalirEditarProductos.BackColor = System.Drawing.Color.IndianRed;
+            this.btnSalirEditarProductos.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSalirEditarProductos.Location = new System.Drawing.Point(235, 281);
+            this.btnSalirEditarProductos.Name = "btnSalirEditarProductos";
+            this.btnSalirEditarProductos.Size = new System.Drawing.Size(86, 25);
+            this.btnSalirEditarProductos.TabIndex = 26;
+            this.btnSalirEditarProductos.Text = "Salir";
+            this.btnSalirEditarProductos.UseVisualStyleBackColor = false;
+            this.btnSalirEditarProductos.Click += new System.EventHandler(this.btnSalirEditarProductos_Click);
+            // 
             // EditarProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(334, 318);
+            this.Controls.Add(this.btnSalirEditarProductos);
             this.Controls.Add(this.lblStockProducto);
             this.Controls.Add(this.lblPrecioProducto);
             this.Controls.Add(this.lblNombreProducto);
@@ -190,5 +204,6 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.Label lblStockProducto;
         private System.Windows.Forms.Label lblPrecioProducto;
         private System.Windows.Forms.Label lblNombreProducto;
+        private System.Windows.Forms.Button btnSalirEditarProductos;
     }
 }

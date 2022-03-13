@@ -36,6 +36,7 @@ namespace PuntoDeVenta.ProductosForms
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
             this.txtPaginasTotalesProductos = new System.Windows.Forms.TextBox();
             this.Alta = new System.Windows.Forms.TabPage();
+            this.lblAviso = new System.Windows.Forms.Label();
             this.txtStockProducto = new System.Windows.Forms.NumericUpDown();
             this.txtPrecioProducto = new System.Windows.Forms.MaskedTextBox();
             this.btnLimpiarFormProducto = new System.Windows.Forms.Button();
@@ -55,7 +56,6 @@ namespace PuntoDeVenta.ProductosForms
             this.txtPagActual = new System.Windows.Forms.TextBox();
             this.btnRegresarPag = new System.Windows.Forms.Button();
             this.btnAvanzarPag = new System.Windows.Forms.Button();
-            this.lblAviso = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.Alta.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
@@ -151,6 +151,16 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
+            // lblAviso
+            // 
+            this.lblAviso.AutoSize = true;
+            this.lblAviso.ForeColor = System.Drawing.Color.Red;
+            this.lblAviso.Location = new System.Drawing.Point(23, 312);
+            this.lblAviso.Name = "lblAviso";
+            this.lblAviso.Size = new System.Drawing.Size(298, 13);
+            this.lblAviso.TabIndex = 18;
+            this.lblAviso.Text = "Actualmente no tiene el permiso para acceder a esta sección.";
+            // 
             // txtStockProducto
             // 
             this.txtStockProducto.Location = new System.Drawing.Point(231, 51);
@@ -185,6 +195,7 @@ namespace PuntoDeVenta.ProductosForms
             this.btnCargarMasivaProducto.TabIndex = 14;
             this.btnCargarMasivaProducto.Text = "Realizar carga másiva";
             this.btnCargarMasivaProducto.UseVisualStyleBackColor = true;
+            this.btnCargarMasivaProducto.Click += new System.EventHandler(this.btnCargarMasivaProducto_Click);
             // 
             // btnGuardarProducto
             // 
@@ -317,16 +328,6 @@ namespace PuntoDeVenta.ProductosForms
             this.btnAvanzarPag.Text = ">>";
             this.btnAvanzarPag.UseVisualStyleBackColor = true;
             this.btnAvanzarPag.Click += new System.EventHandler(this.btnAvanzarPag_Click);
-            // 
-            // lblAviso
-            // 
-            this.lblAviso.AutoSize = true;
-            this.lblAviso.ForeColor = System.Drawing.Color.Red;
-            this.lblAviso.Location = new System.Drawing.Point(23, 312);
-            this.lblAviso.Name = "lblAviso";
-            this.lblAviso.Size = new System.Drawing.Size(298, 13);
-            this.lblAviso.TabIndex = 18;
-            this.lblAviso.Text = "Actualmente no tiene el permiso para acceder a esta sección.";
             // 
             // Productos
             // 

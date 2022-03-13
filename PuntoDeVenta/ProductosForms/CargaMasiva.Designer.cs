@@ -33,6 +33,7 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.btnSalirCargaMasiva = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,17 +78,31 @@ namespace PuntoDeVenta.ProductosForms
             this.button2.Text = "Confirmar carga";
             this.button2.UseVisualStyleBackColor = false;
             // 
+            // btnSalirCargaMasiva
+            // 
+            this.btnSalirCargaMasiva.BackColor = System.Drawing.Color.IndianRed;
+            this.btnSalirCargaMasiva.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSalirCargaMasiva.Location = new System.Drawing.Point(641, 42);
+            this.btnSalirCargaMasiva.Name = "btnSalirCargaMasiva";
+            this.btnSalirCargaMasiva.Size = new System.Drawing.Size(86, 25);
+            this.btnSalirCargaMasiva.TabIndex = 27;
+            this.btnSalirCargaMasiva.Text = "Salir";
+            this.btnSalirCargaMasiva.UseVisualStyleBackColor = false;
+            this.btnSalirCargaMasiva.Click += new System.EventHandler(this.btnSalirCargaMasiva_Click);
+            // 
             // CargaMasiva
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 377);
+            this.Controls.Add(this.btnSalirCargaMasiva);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CargaMasiva";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CargaMasiva";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -101,5 +116,6 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnSalirCargaMasiva;
     }
 }

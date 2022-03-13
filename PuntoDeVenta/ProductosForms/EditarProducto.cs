@@ -12,7 +12,19 @@ namespace PuntoDeVenta.ProductosForms
 {
     public partial class EditarProducto : Form
     {
-        public EditarProducto()
+        private static EditarProducto _instancia;
+
+        public static EditarProducto Instancia { get
+            {
+
+                if (_instancia == null)
+                    _instancia = new EditarProducto();
+                return _instancia;
+
+            } private set { } }
+
+
+        private  EditarProducto()
         {
             InitializeComponent();
         }
@@ -20,6 +32,11 @@ namespace PuntoDeVenta.ProductosForms
         private void EditarProducto_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSalirEditarProductos_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
