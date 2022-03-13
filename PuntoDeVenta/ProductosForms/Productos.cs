@@ -26,6 +26,7 @@ namespace PuntoDeVenta.ProductosForms
             InitializeComponent();
 
         }
+
         private async void Productos_Load(object sender, EventArgs e)
         {
 
@@ -69,6 +70,8 @@ namespace PuntoDeVenta.ProductosForms
                             _servicioProductos.EliminarProductoPorId(idProducto);
                             break;
                         case "1":
+                            var editarProductoForm = new EditarProducto();
+                            editarProductoForm.ShowDialog();
                             break;
 
                     }
