@@ -84,6 +84,12 @@
     <Compile Include="MiInformacionForms\MiInfomacion.Designer.cs">
       <DependentUpon>MiInfomacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="ProductosForms\CargaMasiva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProductosForms\CargaMasiva.Designer.cs">
+      <DependentUpon>CargaMasiva.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProductosForms\EditarProducto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MiInformacionForms\MiInfomacion.resx">
       <DependentUpon>MiInfomacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProductosForms\CargaMasiva.resx">
+      <DependentUpon>CargaMasiva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProductosForms\EditarProducto.resx">
       <DependentUpon>EditarProducto.cs</DependentUpon>
