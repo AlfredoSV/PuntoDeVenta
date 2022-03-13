@@ -16,5 +16,10 @@ namespace PuntoDeVenta.ProductosForms
         {
             InitializeComponent();
         }
+
+        private void EditarProducto_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
