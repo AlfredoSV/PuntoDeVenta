@@ -30,11 +30,11 @@ namespace PuntoDeVenta.ProductosForms
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.dataGridViewProductosCargados = new System.Windows.Forms.DataGridView();
+            this.btnSeleccionarArchivo = new System.Windows.Forms.Button();
+            this.btnConfirmarCarga = new System.Windows.Forms.Button();
             this.btnSalirCargaMasiva = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductosCargados)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -47,36 +47,37 @@ namespace PuntoDeVenta.ProductosForms
             this.label1.TabIndex = 23;
             this.label1.Text = "Carga másiva de productos";
             // 
-            // dataGridView1
+            // dataGridViewProductosCargados
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 73);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(715, 292);
-            this.dataGridView1.TabIndex = 24;
+            this.dataGridViewProductosCargados.AllowUserToAddRows = false;
+            this.dataGridViewProductosCargados.AllowUserToDeleteRows = false;
+            this.dataGridViewProductosCargados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProductosCargados.Location = new System.Drawing.Point(12, 73);
+            this.dataGridViewProductosCargados.Name = "dataGridViewProductosCargados";
+            this.dataGridViewProductosCargados.ReadOnly = true;
+            this.dataGridViewProductosCargados.Size = new System.Drawing.Size(715, 292);
+            this.dataGridViewProductosCargados.TabIndex = 24;
             // 
-            // button1
+            // btnSeleccionarArchivo
             // 
-            this.button1.BackColor = System.Drawing.Color.PapayaWhip;
-            this.button1.Location = new System.Drawing.Point(12, 44);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(121, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Seleccionar archivo";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSeleccionarArchivo.BackColor = System.Drawing.Color.PapayaWhip;
+            this.btnSeleccionarArchivo.Location = new System.Drawing.Point(12, 44);
+            this.btnSeleccionarArchivo.Name = "btnSeleccionarArchivo";
+            this.btnSeleccionarArchivo.Size = new System.Drawing.Size(121, 23);
+            this.btnSeleccionarArchivo.TabIndex = 25;
+            this.btnSeleccionarArchivo.Text = "Seleccionar archivo";
+            this.btnSeleccionarArchivo.UseVisualStyleBackColor = false;
+            this.btnSeleccionarArchivo.Click += new System.EventHandler(this.btnSeleccionarArchivo_Click);
             // 
-            // button2
+            // btnConfirmarCarga
             // 
-            this.button2.BackColor = System.Drawing.Color.Lime;
-            this.button2.Location = new System.Drawing.Point(155, 44);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(121, 23);
-            this.button2.TabIndex = 26;
-            this.button2.Text = "Confirmar carga";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnConfirmarCarga.BackColor = System.Drawing.Color.Lime;
+            this.btnConfirmarCarga.Location = new System.Drawing.Point(155, 44);
+            this.btnConfirmarCarga.Name = "btnConfirmarCarga";
+            this.btnConfirmarCarga.Size = new System.Drawing.Size(121, 23);
+            this.btnConfirmarCarga.TabIndex = 26;
+            this.btnConfirmarCarga.Text = "Confirmar carga";
+            this.btnConfirmarCarga.UseVisualStyleBackColor = false;
             // 
             // btnSalirCargaMasiva
             // 
@@ -96,15 +97,15 @@ namespace PuntoDeVenta.ProductosForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(739, 377);
             this.Controls.Add(this.btnSalirCargaMasiva);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.btnConfirmarCarga);
+            this.Controls.Add(this.btnSeleccionarArchivo);
+            this.Controls.Add(this.dataGridViewProductosCargados);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CargaMasiva";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CargaMasiva";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductosCargados)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -113,9 +114,9 @@ namespace PuntoDeVenta.ProductosForms
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dataGridViewProductosCargados;
+        private System.Windows.Forms.Button btnSeleccionarArchivo;
+        private System.Windows.Forms.Button btnConfirmarCarga;
         private System.Windows.Forms.Button btnSalirCargaMasiva;
     }
 }
