@@ -59,12 +59,23 @@ namespace PuntoDeVenta.ProductosForms
                             }
                         }
 
+                       
                     }
                 }
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnConfirmarCarga_Click(object sender, EventArgs e)
+        {
+            var resultado = MessageBox.Show("¿Esta seguro de cargar los siguientes productos?", "Alterta", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+            if(DialogResult.OK == resultado)
+            {
+
             }
         }
     }

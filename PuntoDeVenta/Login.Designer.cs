@@ -37,6 +37,7 @@ namespace PuntoDeVenta
             this.lblcontraseña = new System.Windows.Forms.Label();
             this.picBoxLogo = new System.Windows.Forms.PictureBox();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnRegistrarme = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,9 +98,9 @@ namespace PuntoDeVenta
             // picBoxLogo
             // 
             this.picBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLogo.Image")));
-            this.picBoxLogo.Location = new System.Drawing.Point(0, 0);
+            this.picBoxLogo.Location = new System.Drawing.Point(12, 29);
             this.picBoxLogo.Name = "picBoxLogo";
-            this.picBoxLogo.Size = new System.Drawing.Size(345, 231);
+            this.picBoxLogo.Size = new System.Drawing.Size(345, 198);
             this.picBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxLogo.TabIndex = 5;
             this.picBoxLogo.TabStop = false;
@@ -111,7 +112,7 @@ namespace PuntoDeVenta
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSalir.Location = new System.Drawing.Point(393, 178);
+            this.btnSalir.Location = new System.Drawing.Point(393, 188);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(106, 29);
             this.btnSalir.TabIndex = 6;
@@ -119,12 +120,27 @@ namespace PuntoDeVenta
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnRegistrarme
+            // 
+            this.btnRegistrarme.BackColor = System.Drawing.Color.Lime;
+            this.btnRegistrarme.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRegistrarme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegistrarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistrarme.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnRegistrarme.Location = new System.Drawing.Point(393, 232);
+            this.btnRegistrarme.Name = "btnRegistrarme";
+            this.btnRegistrarme.Size = new System.Drawing.Size(106, 29);
+            this.btnRegistrarme.TabIndex = 7;
+            this.btnRegistrarme.Text = "Registrarme";
+            this.btnRegistrarme.UseVisualStyleBackColor = false;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(541, 219);
+            this.ClientSize = new System.Drawing.Size(541, 273);
+            this.Controls.Add(this.btnRegistrarme);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.picBoxLogo);
             this.Controls.Add(this.lblcontraseña);
@@ -153,6 +169,7 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Label lblcontraseña;
         private System.Windows.Forms.PictureBox picBoxLogo;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnRegistrarme;
     }
 }
 

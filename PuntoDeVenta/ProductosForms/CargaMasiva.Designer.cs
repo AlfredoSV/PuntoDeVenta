@@ -32,8 +32,8 @@ namespace PuntoDeVenta.ProductosForms
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewProductosCargados = new System.Windows.Forms.DataGridView();
             this.btnSeleccionarArchivo = new System.Windows.Forms.Button();
-            this.btnConfirmarCarga = new System.Windows.Forms.Button();
             this.btnSalirCargaMasiva = new System.Windows.Forms.Button();
+            this.btnConfirmarCarga = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductosCargados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,16 +69,6 @@ namespace PuntoDeVenta.ProductosForms
             this.btnSeleccionarArchivo.UseVisualStyleBackColor = false;
             this.btnSeleccionarArchivo.Click += new System.EventHandler(this.btnSeleccionarArchivo_Click);
             // 
-            // btnConfirmarCarga
-            // 
-            this.btnConfirmarCarga.BackColor = System.Drawing.Color.Lime;
-            this.btnConfirmarCarga.Location = new System.Drawing.Point(155, 44);
-            this.btnConfirmarCarga.Name = "btnConfirmarCarga";
-            this.btnConfirmarCarga.Size = new System.Drawing.Size(121, 23);
-            this.btnConfirmarCarga.TabIndex = 26;
-            this.btnConfirmarCarga.Text = "Confirmar carga";
-            this.btnConfirmarCarga.UseVisualStyleBackColor = false;
-            // 
             // btnSalirCargaMasiva
             // 
             this.btnSalirCargaMasiva.BackColor = System.Drawing.Color.IndianRed;
@@ -90,6 +80,17 @@ namespace PuntoDeVenta.ProductosForms
             this.btnSalirCargaMasiva.Text = "Salir";
             this.btnSalirCargaMasiva.UseVisualStyleBackColor = false;
             this.btnSalirCargaMasiva.Click += new System.EventHandler(this.btnSalirCargaMasiva_Click);
+            // 
+            // btnConfirmarCarga
+            // 
+            this.btnConfirmarCarga.BackColor = System.Drawing.Color.Lime;
+            this.btnConfirmarCarga.Location = new System.Drawing.Point(155, 44);
+            this.btnConfirmarCarga.Name = "btnConfirmarCarga";
+            this.btnConfirmarCarga.Size = new System.Drawing.Size(121, 23);
+            this.btnConfirmarCarga.TabIndex = 26;
+            this.btnConfirmarCarga.Text = "Confirmar carga";
+            this.btnConfirmarCarga.UseVisualStyleBackColor = false;
+            this.btnConfirmarCarga.Click += new System.EventHandler(this.btnConfirmarCarga_Click);
             // 
             // CargaMasiva
             // 
@@ -116,7 +117,7 @@ namespace PuntoDeVenta.ProductosForms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridViewProductosCargados;
         private System.Windows.Forms.Button btnSeleccionarArchivo;
-        private System.Windows.Forms.Button btnConfirmarCarga;
         private System.Windows.Forms.Button btnSalirCargaMasiva;
+        private System.Windows.Forms.Button btnConfirmarCarga;
     }
 }
