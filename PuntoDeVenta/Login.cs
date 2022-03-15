@@ -24,7 +24,9 @@ namespace PuntoDeVenta
 
 
         private void btnIngresar_Click(object sender, EventArgs e)
-        {            Ingresar();        }
+        {
+            Ingresar();
+        }
 
 
         public void CerrarSesion()
@@ -93,6 +95,10 @@ namespace PuntoDeVenta
 
         }
 
-      
+        private void btnRegistrarme_Click(object sender, EventArgs e)
+        {
+            var registroUsuario = new RegistroUsuario();
+            registroUsuario.ShowDialog();
+        }
     }
 }

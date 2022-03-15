@@ -133,6 +133,7 @@ namespace PuntoDeVenta
             this.btnRegistrarme.TabIndex = 7;
             this.btnRegistrarme.Text = "Registrarme";
             this.btnRegistrarme.UseVisualStyleBackColor = false;
+            this.btnRegistrarme.Click += new System.EventHandler(this.btnRegistrarme_Click);
             // 
             // Login
             // 
