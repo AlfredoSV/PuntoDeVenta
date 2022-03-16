@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Aplicacion.Servicios;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -56,6 +57,9 @@ namespace PuntoDeVenta.ProductosForms
                             using (var fileStream = new FileStream(openFile.FileName, FileMode.Open, FileAccess.Read))
                             {
                                 fileStream.CopyTo(memory);
+                                var carga = new ServicioExcelProductos();
+                                var res = carga.LeerExcel(memory);
+                                dataGridViewProductosCargados.DataSource = res;
                             }
                         }
 

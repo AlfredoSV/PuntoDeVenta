@@ -17,9 +17,21 @@ namespace Aplicacion.Servicios
             {
                 var wsn = sp.GetWorksheetStatistics();
 
-                for (int i = 1; i <= wsn.EndRowIndex; i++)
+                if ((wsn.EndColumnIndex > 4))
                 {
+                    for (int i = 2; i < 3; i++)
+                    {
+
+                        var producto = Producto.CrearNuevoProducto(Int32.Parse(sp.GetCellValueAsString(i, 1)),
+                            sp.GetCellValueAsString(i, 2), sp.GetCellValueAsString(i, 3),decimal.Parse(sp.GetCellValueAsString(i, 4)),
+                            Guid.Parse(sp.GetCellValueAsString(i, 5)));
+                        listaElmen.Add(producto);
+                    }
+
                 }
+                
+
+
 
             }
 
