@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PuntoDeVenta.ProveedoresForms
 {
-    public partial class Proveedores : Form
+    public partial class ProveedoresFrm : Form
     {
-        public Proveedores()
+        public ProveedoresFrm()
         {
             InitializeComponent();
         }

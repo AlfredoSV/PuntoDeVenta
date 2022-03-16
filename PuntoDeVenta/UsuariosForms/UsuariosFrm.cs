@@ -23,6 +23,7 @@ namespace PuntoDeVenta.UsuariosForms
         public void Show(Usuario usuario)
         {
             _usuarioLogueado = usuario;
+            base.Show();
         }
 
         private void btnSalirUsuario_Click(object sender, EventArgs e)
