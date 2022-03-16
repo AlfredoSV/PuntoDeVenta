@@ -43,7 +43,7 @@ ADD FOREIGN KEY (idRol) REFERENCES Roles(idRol);
 CREATE TABLE Usuarios(idUsuario UNIQUEIDENTIFIER PRIMARY KEY,
 usuario varchar(40) not null, contrasenia varchar(40),
 fechayHoraAlta DATETIME not null, idSucursal UNIQUEIDENTIFIER not null,
-idRol UNIQUEIDENTIFIER not null);
+idRol UNIQUEIDENTIFIER not NULL,activo bit);
 
 ALTER TABLE Usuarios
 ADD FOREIGN KEY (idRol) REFERENCES Roles(idRol);
@@ -127,7 +127,7 @@ ALTER TABLE Productos
 ADD FOREIGN KEY (idProveedor) REFERENCES Proveedores(idProveedor);
 
 
-CREATE OR ALTER PROCEDURE ConsultarProductos(@buscar varchar(60))
+CREATE PROCEDURE ConsultarProductos(@buscar varchar(60))
 as
 
 begin
@@ -144,7 +144,7 @@ end
 EXECUTE ConsultarProductos 'Ca'
 
 
-CREATE OR ALTER PROCEDURE ConsultarProductosTotal(@buscar varchar(60),@total int output)
+CREATE PROCEDURE ConsultarProductosTotal(@buscar varchar(60),@total int output)
 as
 
 begin
@@ -192,14 +192,14 @@ INSERT INTO [dbo].[Usuarios]
            ,[contrasenia]
            ,[fechayHoraAlta]
            ,[idSucursal]
-           ,[idRol])
+           ,[idRol],[activo])
      VALUES
            ('AB211B43-F5F1-42A0-B507-268879B8F266'
            ,'AdminPrin'
            ,'p'
            ,getdate()
            ,'48586AE5-ACD0-4ABF-A383-B98E305C11A7'
-           ,'0E127AD1-EF10-4A4D-97B3-E452F4EA5397')
+           ,'0E127AD1-EF10-4A4D-97B3-E452F4EA5397',1)
 
 
 INSERT INTO [dbo].[Proveedores]

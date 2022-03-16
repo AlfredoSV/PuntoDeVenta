@@ -35,7 +35,7 @@ namespace AccesoDatos.Repositorios
         {
 
             var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
-                        Sucursales suc on suc.idSucursal = usu.idSucursal where  usu.usuario = @nombreUsuario and usu.contrasenia = @contrasenia";
+                        Sucursales suc on suc.idSucursal = usu.idSucursal where  usu.usuario = @nombreUsuario and usu.contrasenia = @contrasenia and activo = 1";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             Usuario usuario = null;
@@ -61,12 +61,12 @@ namespace AccesoDatos.Repositorios
                         sqlDataReader.Read();
 
 
-                        rol = Rol.CrearRol(sqlDataReader.GetGuid(6), sqlDataReader.GetString(7), sqlDataReader.GetString(8), sqlDataReader.GetDateTime(9));
+                        rol = Rol.CrearRol(sqlDataReader.GetGuid(4), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
 
-                        sucursal = Sucursal.Create(sqlDataReader.GetGuid(10), sqlDataReader.GetString(11), sqlDataReader.GetDateTime(12));
+                        sucursal = Sucursal.Create(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
 
                         usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
-                            sqlDataReader.GetDateTime(3), sucursal, rol);
+                            sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
 
                     }
 

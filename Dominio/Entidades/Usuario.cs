@@ -12,6 +12,7 @@ namespace Dominio.Entidades
         private DateTime _fechayHoraAlta;
         private Sucursal _sucursal;
         private Rol _rol;
+        private bool _activo;
         private IEnumerable<PermisosModulo> _permisos;
 
         public Guid IdUsuario { get => _idUsuario; set => _idUsuario = value; }
@@ -21,8 +22,9 @@ namespace Dominio.Entidades
         internal Sucursal Sucursal { get => _sucursal; set => _sucursal = value; }
         internal Rol Rol { get => _rol; set => _rol = value; }
         public IEnumerable<PermisosModulo> Permisos { get => _permisos; set => _permisos = value; }
+        public bool Activo { get => _activo; set => _activo = value; }
 
-        public Usuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, Sucursal sucursal, Rol rol)
+        public Usuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, Sucursal sucursal, Rol rol, bool activo)
         {
             IdUsuario = idUsuario;
             NombreUsuario = nombreUsuario;
@@ -30,6 +32,7 @@ namespace Dominio.Entidades
             FechayHoraAlta = fechayHoraAlta;
             Sucursal = sucursal;
             Rol = rol;
+            Activo = activo;
         }
 
         public void AsignarPermisos(IEnumerable<PermisosModulo> permisos)
@@ -37,9 +40,9 @@ namespace Dominio.Entidades
             Permisos = permisos;
         }
 
-        public static Usuario CrearUsuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, Sucursal sucursal, Rol rol)
+        public static Usuario CrearUsuario(Guid idUsuario, string nombreUsuario, string contrsenia, DateTime fechayHoraAlta, bool activo, Sucursal sucursal, Rol rol)
         {
-            return new Usuario(idUsuario, nombreUsuario, contrsenia, fechayHoraAlta, sucursal, rol);
+            return new Usuario(idUsuario, nombreUsuario, contrsenia, fechayHoraAlta, sucursal, rol,activo);
         }
 
     }

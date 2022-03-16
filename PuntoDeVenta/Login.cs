@@ -75,7 +75,7 @@ namespace PuntoDeVenta
                     }
                     else
                     {
-                        MessageBox.Show("El usuario y/o contraseña son incorrectos", "Error");
+                        MessageBox.Show("El usuario y/o contraseña son incorrectos o el usuario no se ecuentra activo", "Error");
                     }
 
                 }
