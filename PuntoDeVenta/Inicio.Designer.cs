@@ -80,6 +80,7 @@ namespace PuntoDeVenta
             this.btnUsuario.TabIndex = 3;
             this.btnUsuario.Text = "Usuarios";
             this.btnUsuario.UseVisualStyleBackColor = false;
+            this.btnUsuario.Click += new System.EventHandler(this.btnUsuario_Click);
             // 
             // btnMiInformacion
             // 

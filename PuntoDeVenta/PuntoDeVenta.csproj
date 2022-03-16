@@ -135,11 +135,11 @@
     <Compile Include="RegistroUsuario.Designer.cs">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </Compile>
-    <Compile Include="UsuariosForms\Usuarios.cs">
+    <Compile Include="UsuariosForms\UsuariosFrm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UsuariosForms\Usuarios.Designer.cs">
-      <DependentUpon>Usuarios.cs</DependentUpon>
+    <Compile Include="UsuariosForms\UsuariosFrm.Designer.cs">
+      <DependentUpon>UsuariosFrm.cs</DependentUpon>
     </Compile>
     <Compile Include="VentaForms\RealizarVenta.cs">
       <SubType>Form</SubType>
@@ -176,8 +176,8 @@
     <EmbeddedResource Include="RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UsuariosForms\Usuarios.resx">
-      <DependentUpon>Usuarios.cs</DependentUpon>
+    <EmbeddedResource Include="UsuariosForms\UsuariosFrm.resx">
+      <DependentUpon>UsuariosFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VentaForms\RealizarVenta.resx">
       <DependentUpon>RealizarVenta.cs</DependentUpon>

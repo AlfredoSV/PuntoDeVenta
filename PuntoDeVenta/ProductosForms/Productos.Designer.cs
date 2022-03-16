@@ -147,7 +147,7 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.Location = new System.Drawing.Point(4, 22);
             this.Alta.Name = "Alta";
             this.Alta.Padding = new System.Windows.Forms.Padding(3);
-            this.Alta.Size = new System.Drawing.Size(351, 337);
+            this.Alta.Size = new System.Drawing.Size(351, 342);
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
@@ -281,7 +281,7 @@ namespace PuntoDeVenta.ProductosForms
             this.tabControlProductos.Location = new System.Drawing.Point(12, 12);
             this.tabControlProductos.Name = "tabControlProductos";
             this.tabControlProductos.SelectedIndex = 0;
-            this.tabControlProductos.Size = new System.Drawing.Size(359, 363);
+            this.tabControlProductos.Size = new System.Drawing.Size(359, 368);
             this.tabControlProductos.TabIndex = 0;
             // 
             // txtBuscar

@@ -3,6 +3,7 @@ using Aplicacion.Servicios;
 using Dominio.Entidades;
 using PuntoDeVenta.MiInformacionForms;
 using PuntoDeVenta.ProductosForms;
+using PuntoDeVenta.UsuariosForms;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -61,6 +62,13 @@ namespace PuntoDeVenta
         {
             var miInformacion = new MiInfomacion();
             miInformacion.Show(_usuarioLogueado);
+            this.Close();
+        }
+
+        private void btnUsuario_Click(object sender, EventArgs e)
+        {
+            var usuarios = new UsuariosFrm();
+            usuarios.Show(_usuarioLogueado);
             this.Close();
         }
     }
