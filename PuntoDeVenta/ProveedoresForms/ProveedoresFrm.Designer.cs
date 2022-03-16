@@ -38,7 +38,7 @@ namespace PuntoDeVenta.ProveedoresForms
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
             this.lblPginacionProductos = new System.Windows.Forms.Label();
             this.btnRecargarProductos = new System.Windows.Forms.Button();
-            this.btnSalirProductos = new System.Windows.Forms.Button();
+            this.btnSalirProveedores = new System.Windows.Forms.Button();
             this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             this.Alta = new System.Windows.Forms.TabPage();
@@ -136,16 +136,17 @@ namespace PuntoDeVenta.ProveedoresForms
             this.btnRecargarProductos.Text = "Recargar";
             this.btnRecargarProductos.UseVisualStyleBackColor = false;
             // 
-            // btnSalirProductos
+            // btnSalirProveedores
             // 
-            this.btnSalirProductos.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSalirProductos.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirProductos.Location = new System.Drawing.Point(875, 24);
-            this.btnSalirProductos.Name = "btnSalirProductos";
-            this.btnSalirProductos.Size = new System.Drawing.Size(86, 25);
-            this.btnSalirProductos.TabIndex = 26;
-            this.btnSalirProductos.Text = "Salir";
-            this.btnSalirProductos.UseVisualStyleBackColor = false;
+            this.btnSalirProveedores.BackColor = System.Drawing.Color.IndianRed;
+            this.btnSalirProveedores.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnSalirProveedores.Location = new System.Drawing.Point(875, 24);
+            this.btnSalirProveedores.Name = "btnSalirProveedores";
+            this.btnSalirProveedores.Size = new System.Drawing.Size(86, 25);
+            this.btnSalirProveedores.TabIndex = 26;
+            this.btnSalirProveedores.Text = "Salir";
+            this.btnSalirProveedores.UseVisualStyleBackColor = false;
+            this.btnSalirProveedores.Click += new System.EventHandler(this.btnSalirProveedores_Click);
             // 
             // dataGridViewProductos
             // 
@@ -291,7 +292,7 @@ namespace PuntoDeVenta.ProveedoresForms
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);
             this.Controls.Add(this.btnRecargarProductos);
-            this.Controls.Add(this.btnSalirProductos);
+            this.Controls.Add(this.btnSalirProveedores);
             this.Controls.Add(this.dataGridViewProductos);
             this.Controls.Add(this.tabControlProductos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -319,7 +320,7 @@ namespace PuntoDeVenta.ProveedoresForms
         private System.Windows.Forms.Label lblAuxFormProductos;
         private System.Windows.Forms.Label lblPginacionProductos;
         private System.Windows.Forms.Button btnRecargarProductos;
-        private System.Windows.Forms.Button btnSalirProductos;
+        private System.Windows.Forms.Button btnSalirProveedores;
         private System.Windows.Forms.DataGridView dataGridViewProductos;
         private System.Windows.Forms.TabControl tabControlProductos;
         private System.Windows.Forms.TabPage Alta;

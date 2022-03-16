@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,26 @@ namespace PuntoDeVenta.ProveedoresForms
 {
     public partial class ProveedoresFrm : Form
     {
+        private Usuario _usuarioLogueado;
+
         public ProveedoresFrm()
         {
             InitializeComponent();
+        }
+
+        private void btnSalirProveedores_Click(object sender, EventArgs e)
+        {
+            var inicioFrm = new Inicio();
+            inicioFrm.Show(_usuarioLogueado);
+            this.Dispose();
+            this.Close();
+        }
+
+        public void Show(Usuario usuario)
+        {
+            _usuarioLogueado = usuario;
+
+            
         }
     }
 }

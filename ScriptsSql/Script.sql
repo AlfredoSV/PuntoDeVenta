@@ -213,7 +213,7 @@ INSERT INTO [dbo].[Proveedores]
            ,''
            ,GETDATE())
 
-
+insert into Inventarios values('1FDD9D61-DFA7-4520-A01A-54370F8A5CBE','Inventario 1','48586AE5-ACD0-4ABF-A383-B98E305C11A7');
 
 
 INSERT INTO Modulos VALUES('24358C47-46FD-448E-80C3-001AF78EA9F5','Productos',
