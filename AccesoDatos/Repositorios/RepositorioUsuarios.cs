@@ -129,5 +129,32 @@ namespace AccesoDatos.Repositorios
             return permisosModulo;
 
         }
+    
+        public void GuardarUsuario(Usuario usuario)
+        {
+            var sql = @"";
+            SqlCommand sqlCommand;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlCommand.Parameters.AddWithValue("idUsuario", usuario.IdUsuario);
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+        }
+    
     }
 }
