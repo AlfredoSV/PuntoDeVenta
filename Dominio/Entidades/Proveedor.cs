@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Dominio.Entidades
 {
-    public  class CatProveedores
+    public  class Proveedor
     {
         Guid _idProveedor;
         string _nombre;
@@ -16,7 +16,7 @@ namespace Dominio.Entidades
         public string Descripcion { get => _descripcion; set => _descripcion = value; }
         public DateTime FechayHoraAlta { get => _fechayHoraAlta; set => _fechayHoraAlta = value; }
 
-        public CatProveedores(Guid idProveedor, string nombre, string descripcion, DateTime fechayHoraAlta)
+        public Proveedor(Guid idProveedor, string nombre, string descripcion, DateTime fechayHoraAlta)
         {
             IdProveedor = idProveedor;
             Nombre = nombre;
@@ -24,10 +24,10 @@ namespace Dominio.Entidades
             FechayHoraAlta = fechayHoraAlta;
         }
 
-        public static CatProveedores Crear(Guid idProveedor, string nombre, string descripcion, DateTime fechayHoraAlt)
+        public static Proveedor Crear(Guid idProveedor, string nombre, string descripcion, DateTime fechayHoraAlt)
         {
 
-            return new CatProveedores(idProveedor, nombre, descripcion, fechayHoraAlt);
+            return new Proveedor(idProveedor, nombre, descripcion, fechayHoraAlt);
 
         }
     }

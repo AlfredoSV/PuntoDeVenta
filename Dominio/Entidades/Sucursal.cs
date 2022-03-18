@@ -19,7 +19,7 @@ namespace Dominio.Entidades
             FechayHoraAlta = fechayHoraAlta;
         }
 
-        public static Sucursal Create(Guid idSucursal, string nombre, DateTime fechayHoraAlta)
+        public static Sucursal Crear(Guid idSucursal, string nombre, DateTime fechayHoraAlta)
         {
             return new Sucursal(idSucursal, nombre, fechayHoraAlta);
         }

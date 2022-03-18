@@ -33,9 +33,9 @@ namespace Aplicacion.Servicios
         }
 
 
-        public async Task<IEnumerable<CatProveedores>> ConsultarProveedoresBD()
+        public async Task<IEnumerable<Proveedor>> ConsultarProveedoresBD()
         {
-            return await _repositorioCatalogos.ConsultarCatalogos();
+            return await _repositorioCatalogos.ConsultarProveedores();
         }
     }
 }

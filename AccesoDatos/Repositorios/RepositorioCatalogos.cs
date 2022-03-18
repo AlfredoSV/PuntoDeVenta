@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
-    public  class RepositorioCatalogos
+    public class RepositorioCatalogos
     {
         private static RepositorioCatalogos _instacia;
         private static string _cadCon;
@@ -32,9 +32,9 @@ namespace AccesoDatos.Repositorios
             _cadCon = cadCon;
         }
 
-        public async Task<IEnumerable<CatProveedores>> ConsultarCatalogos()
+        public async Task<IEnumerable<Proveedor>> ConsultarProveedores()
         {
-            var provedores = new List<CatProveedores>();
+            var provedores = new List<Proveedor>();
             var sql = "select * from Proveedores;";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
@@ -46,20 +46,92 @@ namespace AccesoDatos.Repositorios
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
-        
+
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
                     if (sqlDataReader.HasRows)
                     {
                         while (sqlDataReader.Read())
                         {
-                            provedores.Add(CatProveedores.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1),
+                            provedores.Add(Proveedor.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1),
                                 sqlDataReader.GetString(2), sqlDataReader.GetDateTime(3)));
                         }
                     }
 
 
                     return provedores;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public async Task<IEnumerable<Sucursal>> ConsultarSucursales()
+        {
+            var sucursales = new List<Sucursal>();
+            var sql = "select * from Sucursales;";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            sucursales.Add(Sucursal.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1),sqlDataReader.GetDateTime(2)));
+                        }
+                    }
+
+
+                    return sucursales;
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
+        public async Task<IEnumerable<Rol>> ConsultarRoles()
+        {
+            var roles = new List<Rol>();
+            var sql = "select * from Roles;";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            roles.Add(Rol.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetDateTime(3)));
+                        }
+                    }
+
+
+                    return roles;
                 }
             }
             catch (Exception e)

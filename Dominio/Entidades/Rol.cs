@@ -22,7 +22,7 @@ namespace Dominio.Entidades
             FechayHoraAlta = fechayHoraAlta;
         }
 
-        public static Rol CrearRol(Guid idRol, string nombre, string descripcion, DateTime fechayHoraAlta)
+        public static Rol Crear(Guid idRol, string nombre, string descripcion, DateTime fechayHoraAlta)
         {
             return new Rol(idRol, nombre, descripcion, fechayHoraAlta);
         }

@@ -271,7 +271,7 @@ namespace PuntoDeVenta.ProductosForms
             dataGridViewProductos.DataSource = null;
             
         }
-        private void CargarProveedores(IEnumerable<CatProveedores> provedores)
+        private void CargarProveedores(IEnumerable<Proveedor> provedores)
         {
             var items = new List<Item>();
 
