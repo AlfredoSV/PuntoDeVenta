@@ -33,9 +33,11 @@ namespace Aplicacion.Servicios
         }
 
 
-        public async Task<IEnumerable<Proveedor>> ConsultarProveedoresBD()
-        {
-            return await _repositorioCatalogos.ConsultarProveedores();
-        }
+        public async Task<IEnumerable<Proveedor>> ConsultarProveedoresBD() => await _repositorioCatalogos.ConsultarProveedores();      
+
+        public async Task<IEnumerable<Sucursal>> ConsultarSucursalesBD() => await _repositorioCatalogos.ConsultarSucursales();
+
+        public async Task<IEnumerable<Rol>> ConsultarRolesBD() => await _repositorioCatalogos.ConsultarRoles();
+
     }
 }

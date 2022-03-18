@@ -58,22 +58,22 @@ namespace PuntoDeVenta
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(129, 43);
+            this.txtUsuario.Location = new System.Drawing.Point(103, 53);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(120, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(173, 20);
             this.txtUsuario.TabIndex = 9;
             // 
             // txtContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(129, 89);
+            this.txtContrasenia.Location = new System.Drawing.Point(104, 95);
             this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(120, 20);
+            this.txtContrasenia.Size = new System.Drawing.Size(172, 20);
             this.txtContrasenia.TabIndex = 10;
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(59, 50);
+            this.lblUsuario.Location = new System.Drawing.Point(34, 56);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(46, 13);
             this.lblUsuario.TabIndex = 12;
@@ -82,7 +82,7 @@ namespace PuntoDeVenta
             // lblContrasenia
             // 
             this.lblContrasenia.AutoSize = true;
-            this.lblContrasenia.Location = new System.Drawing.Point(59, 96);
+            this.lblContrasenia.Location = new System.Drawing.Point(34, 102);
             this.lblContrasenia.Name = "lblContrasenia";
             this.lblContrasenia.Size = new System.Drawing.Size(64, 13);
             this.lblContrasenia.TabIndex = 13;
@@ -91,7 +91,7 @@ namespace PuntoDeVenta
             // lblSucursal
             // 
             this.lblSucursal.AutoSize = true;
-            this.lblSucursal.Location = new System.Drawing.Point(59, 146);
+            this.lblSucursal.Location = new System.Drawing.Point(34, 152);
             this.lblSucursal.Name = "lblSucursal";
             this.lblSucursal.Size = new System.Drawing.Size(51, 13);
             this.lblSucursal.TabIndex = 14;
@@ -100,7 +100,7 @@ namespace PuntoDeVenta
             // lblRol
             // 
             this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(59, 187);
+            this.lblRol.Location = new System.Drawing.Point(34, 193);
             this.lblRol.Name = "lblRol";
             this.lblRol.Size = new System.Drawing.Size(26, 13);
             this.lblRol.TabIndex = 16;
@@ -109,17 +109,17 @@ namespace PuntoDeVenta
             // comBRol
             // 
             this.comBRol.FormattingEnabled = true;
-            this.comBRol.Location = new System.Drawing.Point(128, 187);
+            this.comBRol.Location = new System.Drawing.Point(103, 193);
             this.comBRol.Name = "comBRol";
-            this.comBRol.Size = new System.Drawing.Size(121, 21);
+            this.comBRol.Size = new System.Drawing.Size(173, 21);
             this.comBRol.TabIndex = 17;
             // 
             // comBSucursal
             // 
             this.comBSucursal.FormattingEnabled = true;
-            this.comBSucursal.Location = new System.Drawing.Point(128, 138);
+            this.comBSucursal.Location = new System.Drawing.Point(103, 144);
             this.comBSucursal.Name = "comBSucursal";
-            this.comBSucursal.Size = new System.Drawing.Size(121, 21);
+            this.comBSucursal.Size = new System.Drawing.Size(173, 21);
             this.comBSucursal.TabIndex = 18;
             // 
             // btnRealizarSol
@@ -154,6 +154,7 @@ namespace PuntoDeVenta
             this.Name = "RegistroUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegistroUsuario";
+            this.Load += new System.EventHandler(this.RegistroUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
