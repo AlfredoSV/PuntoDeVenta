@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using PuntoDeVenta.ClasesAuxiliares;
 using System.Windows.Forms;
 using Aplicacion;
+using Dominio;
 
 namespace PuntoDeVenta
 {
@@ -37,8 +38,9 @@ namespace PuntoDeVenta
             this.Close();
         }
 
-        private void btnRealizarSol_Click(object sender, EventArgs e)
+        private async void btnRealizarSol_Click(object sender, EventArgs e)
         {
+            //select convert(bit,isnull((SELECT top 1 1 FROM USUARIOS WHERE usuario = 'A'),0) )
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
             var idRol = ((Item)(comBRol.SelectedItem)).Value;
@@ -74,8 +76,13 @@ namespace PuntoDeVenta
                 try
                 {
                     dtoUsuario = new DtoUsuario(usuario, contrasenia, idSucursal, idRol);
-                    _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
+                    await _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
                     this.Close();
+
+                }
+                catch (ExcepcionComun exception)
+                {
+                    MessageBox.Show(exception.Detalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
                 catch (Exception exception)

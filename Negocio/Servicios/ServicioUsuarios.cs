@@ -1,9 +1,11 @@
 ﻿using AccesoDatos.Repositorios;
+using Dominio;
 using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Aplicacion.Servicios
 {
@@ -30,20 +32,16 @@ namespace Aplicacion.Servicios
             _repositorioCatalogos = RepositorioCatalogos.Instacia;
         }
 
-        public async void GuardarNuevoUsuario(DtoUsuario dtoUsuario)
+        public async Task GuardarNuevoUsuario(DtoUsuario dtoUsuario)
         {
-            try
-            {
-                var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
-                var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
-                var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrsenia, DateTime.Now, false,sucursal, rol);
-                _repositorioUsuarios.GuardarUsuario(usuario);
-            }
-            catch (Exception e)
-            {
 
-                throw e;
-            }
+            throw new ExcepcionComun("Aplicacion", "Prueba", "GuardarNuevoUsuario");
+
+            var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
+            var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
+            var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrsenia, DateTime.Now, false, sucursal, rol);
+            _repositorioUsuarios.GuardarUsuario(usuario);
+
         }
     }
 }
