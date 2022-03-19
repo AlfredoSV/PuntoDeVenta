@@ -23,7 +23,7 @@ namespace PuntoDeVenta.ClasesAuxiliares
 
     public class CargarCombo
     {
-        private void CargarComboItems(IEnumerable<object> datos, string mensajeDefault, ComboBox comboOb,string campoNombre, string campoId)
+        private static void CargarComboItems(IEnumerable<object> datos, string mensajeDefault, ComboBox comboOb,string campoNombre, string campoId)
         {
             var items = new List<Item>();
 

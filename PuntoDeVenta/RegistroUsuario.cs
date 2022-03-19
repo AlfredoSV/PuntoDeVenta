@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using PuntoDeVenta.ClasesAuxiliares;
 using System.Windows.Forms;
+using Aplicacion;
 
 namespace PuntoDeVenta
 {
@@ -38,7 +39,12 @@ namespace PuntoDeVenta
 
         private void btnRealizarSol_Click(object sender, EventArgs e)
         {
-            _servicioUsuarios.GuardarNuevoUsuario();
+            var usuario = txtUsuario.Text;
+            var contrasenia = txtContrasenia.Text;
+            var idRol = ((Item)(comBRol.SelectedItem)).Value;
+            var idSucursal = ((Item)(comBSucursal.SelectedItem)).Value;
+            var dtoUsuario = new DtoUsuario(usuario,contrasenia,idSucursal,idRol);
+            _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
 
         }
 

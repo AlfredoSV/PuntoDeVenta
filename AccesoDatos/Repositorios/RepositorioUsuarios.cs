@@ -132,7 +132,22 @@ namespace AccesoDatos.Repositorios
     
         public void GuardarUsuario(Usuario usuario)
         {
-            var sql = @"";
+            var sql = @"INSERT INTO [dbo].[Usuarios]
+           ([idUsuario]
+           ,[usuario]
+           ,[contrasenia]
+           ,[fechayHoraAlta]
+           ,[idSucursal]
+           ,[idRol]
+           ,[activo])
+     VALUES
+           (@idUsuario
+           ,@usuario
+           ,@contrasenia
+           ,@fechayHoraAlta
+           ,@idSucursal
+           ,@idRol
+           ,@activo)";
             SqlCommand sqlCommand;
 
             try
