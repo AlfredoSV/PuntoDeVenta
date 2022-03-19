@@ -39,13 +39,59 @@ namespace PuntoDeVenta
 
         private void btnRealizarSol_Click(object sender, EventArgs e)
         {
-            var usuario = txtUsuario.Text;
-            var contrasenia = txtContrasenia.Text;
+            var usuario = txtUsuario.Text.Trim();
+            var contrasenia = txtContrasenia.Text.Trim();
             var idRol = ((Item)(comBRol.SelectedItem)).Value;
             var idSucursal = ((Item)(comBSucursal.SelectedItem)).Value;
-            var dtoUsuario = new DtoUsuario(usuario,contrasenia,idSucursal,idRol);
-            _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
-            this.Close();
+            DtoUsuario dtoUsuario;
+
+            var validacion = true;
+            var mensajeValidacion = string.Empty;
+
+            if (usuario.Equals(""))
+            {              
+                mensajeValidacion += "* Favor de ingresar un usuario \n";
+                validacion = false;
+            }
+            if (contrasenia.Equals(""))
+            {
+                mensajeValidacion += "* Favor de ingresar una contrasenia \n";
+                validacion = false;
+            }
+            if (idRol == Guid.Empty)
+            {
+                mensajeValidacion += "* Favor de seleccionar un Rol \n";
+                validacion = false;
+            }
+            if (idSucursal == Guid.Empty)
+            {
+                mensajeValidacion += "* Favor de seleccionar una sucursal \n";
+                validacion = false;
+            }
+
+            if (validacion)
+            {
+                try
+                {
+                    dtoUsuario = new DtoUsuario(usuario, contrasenia, idSucursal, idRol);
+                    _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
+                    this.Close();
+
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(mensajeValidacion, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
+
 
         }
 
