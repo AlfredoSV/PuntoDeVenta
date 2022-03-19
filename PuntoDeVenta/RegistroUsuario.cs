@@ -45,6 +45,7 @@ namespace PuntoDeVenta
             var idSucursal = ((Item)(comBSucursal.SelectedItem)).Value;
             var dtoUsuario = new DtoUsuario(usuario,contrasenia,idSucursal,idRol);
             _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
+            this.Close();
 
         }
 

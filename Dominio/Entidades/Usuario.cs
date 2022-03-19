@@ -19,8 +19,8 @@ namespace Dominio.Entidades
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
         public string Contrsenia { get => _contrsenia; set => _contrsenia = value; }
         public DateTime FechayHoraAlta { get => _fechayHoraAlta; set => _fechayHoraAlta = value; }
-        internal Sucursal Sucursal { get => _sucursal; set => _sucursal = value; }
-        internal Rol Rol { get => _rol; set => _rol = value; }
+        public Sucursal Sucursal { get => _sucursal; set => _sucursal = value; }
+        public Rol Rol { get => _rol; set => _rol = value; }
         public IEnumerable<PermisosModulo> Permisos { get => _permisos; set => _permisos = value; }
         public bool Activo { get => _activo; set => _activo = value; }
 

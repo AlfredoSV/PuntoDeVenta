@@ -158,7 +158,15 @@ namespace AccesoDatos.Repositorios
 
                     sqlCommand = new SqlCommand(sql, conexion);
 
-                    sqlCommand.Parameters.AddWithValue("idUsuario", usuario.IdUsuario);
+                    sqlCommand.Parameters.AddWithValue("@idUsuario", usuario.IdUsuario);
+                    sqlCommand.Parameters.AddWithValue("@usuario", usuario.NombreUsuario);
+                    sqlCommand.Parameters.AddWithValue("@contrasenia", usuario.Contrsenia);
+                    sqlCommand.Parameters.AddWithValue("@fechayHoraAlta", usuario.FechayHoraAlta);
+                    sqlCommand.Parameters.AddWithValue("@idSucursal", usuario.Sucursal.IdSucursal);
+                    sqlCommand.Parameters.AddWithValue("@idRol", usuario.Rol.IdRol);
+                    sqlCommand.Parameters.AddWithValue("@activo", usuario.Activo);
+
+                    sqlCommand.ExecuteNonQuery();
 
 
                 }
