@@ -15,7 +15,22 @@ namespace PuntoDeVenta
 {
     public partial class Login : Form
     {
+        private static Login _instancia;
         private readonly ServicioAutenticacion _servicioAutenticacion;
+
+        public static Login Instancia
+        {
+            get
+            {
+
+                if (_instancia == null)
+                    _instancia = new Login();
+
+                return _instancia;
+
+            }
+        }
+
         public Login()
         {
             _servicioAutenticacion = ServicioAutenticacion.Instacia;
@@ -54,6 +69,12 @@ namespace PuntoDeVenta
                 Ingresar();
         }
 
+        public new void Show()
+        {
+            txtContrasenia.Text = "";
+            txtUsuario.Text = "";
+            base.Show();
+        }
 
         private void Ingresar()
         {

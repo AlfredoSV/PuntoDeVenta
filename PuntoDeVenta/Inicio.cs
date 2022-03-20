@@ -17,6 +17,7 @@ namespace PuntoDeVenta
         private ServicioAutenticacion _servicioAutenticacion;
         private Usuario _usuarioLogueado;
         
+        
         public Inicio()
         {
             _servicioAutenticacion = ServicioAutenticacion.Instacia;
@@ -47,13 +48,15 @@ namespace PuntoDeVenta
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.ExitThread();
+
+            Login.Instancia.Show();            
+            this.Close();
+            this.Dispose();
         }
 
         public void Show(Usuario usuario)
         {
             _usuarioLogueado = usuario;
-
             lblFechaHoy.Text = DateTime.Now.ToString();
             lblSaludo.Text = $"Bienvenido, {usuario.NombreUsuario}";
             base.Show();

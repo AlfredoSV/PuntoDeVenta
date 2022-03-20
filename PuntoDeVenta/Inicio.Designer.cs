@@ -105,7 +105,7 @@ namespace PuntoDeVenta
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(106, 29);
             this.btnSalir.TabIndex = 7;
-            this.btnSalir.Text = "Salir";
+            this.btnSalir.Text = "Cerrar sesión";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 

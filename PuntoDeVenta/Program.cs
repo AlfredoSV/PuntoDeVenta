@@ -23,7 +23,7 @@ namespace PuntoDeVenta
 
 
 
-            Application.Run(new Login());
+            Application.Run(Login.Instancia);
 
 
 
