@@ -43,5 +43,14 @@ namespace Aplicacion.Servicios
             _repositorioUsuarios.GuardarUsuario(usuario);
 
         }
+
+        public async Task<IEnumerable<Usuario>> ConsultarUsuarios(bool activo)
+        {
+            return (await _repositorioUsuarios.ConsultarUsuarios(activo));
+
+        }
+
+
+
     }
 }

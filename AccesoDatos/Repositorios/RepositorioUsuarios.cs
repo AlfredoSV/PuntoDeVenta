@@ -84,6 +84,58 @@ namespace AccesoDatos.Repositorios
             return usuario;
         }
 
+        public async Task<IEnumerable<Usuario>> ConsultarUsuarios(bool activo)
+        {
+
+            var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
+                        Sucursales suc on suc.idSucursal = usu.idSucursal where usu.activo = @activo";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+            Usuario usuario = null;
+            var usuarios = new List<Usuario>();
+            Rol rol = null;
+            Sucursal sucursal = null;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlCommand.Parameters.AddWithValue("@activo", activo);
+
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+                    
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            rol = Rol.Crear(sqlDataReader.GetGuid(4), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
+
+                            sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
+
+                            usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
+                                sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
+
+                            usuarios.
+                                Add(usuario);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return usuarios;
+        }
+
         public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
         {
 
