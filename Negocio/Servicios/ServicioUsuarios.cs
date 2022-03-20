@@ -34,8 +34,8 @@ namespace Aplicacion.Servicios
 
         public async Task GuardarNuevoUsuario(DtoUsuario dtoUsuario)
         {
-
-            throw new ExcepcionComun("Aplicacion", "Prueba", "GuardarNuevoUsuario");
+            if (await _repositorioUsuarios.ConsultarSiExisteUsuario(dtoUsuario.NombreUsuario)) 
+                throw new ExcepcionComun("Aplicacion", $"Este nombre de usuario {dtoUsuario.NombreUsuario} no está disponible", "GuardarNuevoUsuario");
 
             var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
             var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();

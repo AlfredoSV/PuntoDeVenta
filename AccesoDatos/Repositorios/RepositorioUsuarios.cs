@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
 {
@@ -177,6 +178,47 @@ namespace AccesoDatos.Repositorios
                 throw e;
             }
 
+        }
+
+        public async Task<bool> ConsultarSiExisteUsuario(string nombreUsuario)
+        {
+            var sql = @"select convert(bit,isnull((SELECT top 1 1 FROM USUARIOS WHERE usuario = @nombreUsuario),0) )";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+            var res = false;
+      
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlCommand.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
+                  
+
+                    sqlDataReader = sqlCommand.ExecuteReader();
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        await sqlDataReader.ReadAsync();
+
+                        res= sqlDataReader.GetBoolean(0);
+                        
+                    }
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return res;
         }
     
     }

@@ -40,7 +40,7 @@ namespace PuntoDeVenta
 
         private async void btnRealizarSol_Click(object sender, EventArgs e)
         {
-            //select convert(bit,isnull((SELECT top 1 1 FROM USUARIOS WHERE usuario = 'A'),0) )
+            
             var usuario = txtUsuario.Text.Trim();
             var contrasenia = txtContrasenia.Text.Trim();
             var idRol = ((Item)(comBRol.SelectedItem)).Value;
@@ -82,7 +82,7 @@ namespace PuntoDeVenta
                 }
                 catch (ExcepcionComun exception)
                 {
-                    MessageBox.Show(exception.Detalle, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 catch (Exception exception)
