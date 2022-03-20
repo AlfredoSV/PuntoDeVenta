@@ -35,7 +35,7 @@ namespace Dominio.Repositorios
             _cadCon = cadCon;
         }
 
-        public async  Task<IEnumerable<Producto>> ConsultarProductos(string buscar)
+        public async Task<IEnumerable<Producto>> ConsultarProductos(string buscar)
         {
             var productos = new List<Producto>();
             var sql = "ConsultarProductos";

@@ -272,6 +272,42 @@ namespace AccesoDatos.Repositorios
 
             return res;
         }
+
+        public async Task<bool> ActualizarDatosUsuarioUsuario(Usuario usuario)
+        {
+            var sql = @"";
+            SqlCommand sqlCommand;
+            var res = false;
+
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    using (var tran = conexion.BeginTransaction("ActualizarUsuario"))
+                    {
+                        conexion.Open();
+
+                        sqlCommand = new SqlCommand(sql, conexion);
+
+                        sqlCommand.Parameters.AddWithValue("nombreUsuario", usuario.NombreUsuario);
+
+                        await sqlCommand.ExecuteNonQueryAsync();
+
+                        tran.Commit();
+
+                    }
+                     
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return res;
+        }
     
     }
 }

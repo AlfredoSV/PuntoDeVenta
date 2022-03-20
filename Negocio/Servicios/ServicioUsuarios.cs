@@ -44,7 +44,7 @@ namespace Aplicacion.Servicios
 
         }
 
-        public async Task<IEnumerable<Usuario>> ConsultarUsuarios(bool activo)
+        public async Task<IEnumerable<Usuario>> ConsultarUsuariosPaginados(bool activo)
         {
             return (await _repositorioUsuarios.ConsultarUsuarios(activo));
 
