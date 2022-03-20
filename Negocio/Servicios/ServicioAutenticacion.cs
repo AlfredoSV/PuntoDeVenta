@@ -5,6 +5,7 @@ using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Aplicacion.Servicios
 {
@@ -32,15 +33,15 @@ namespace Aplicacion.Servicios
             _repositorioUsuarios = RepositorioUsuarios.Instacia;
             _repositorioUsuarios.AgregarConexionBD(ConexionString.StrConexionBdSql.DefaultConexionSqlServer);
         }
-        public bool ValidarUsuario(string nombreUsuario, string contrasenia)
+        public async Task<bool> ValidarUsuario(string nombreUsuario, string contrasenia)
         {
-            var usuario = _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
+            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
             return usuario != null;
         }
 
-        public Usuario ConsultarUsuario(string nombreUsuario, string contrasenia)
+        public async Task<Usuario>  ConsultarUsuario(string nombreUsuario, string contrasenia)
         {
-            var usuario = _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
+            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
             return usuario;
         }
 

@@ -32,7 +32,7 @@ namespace AccesoDatos.Repositorios
         }
         private RepositorioUsuarios() { }
 
-        public Usuario ConsultarUsuarioPorCredenciales(string nombreUsuario, string contrasenia)
+        public async Task<Usuario> ConsultarUsuarioPorCredenciales(string nombreUsuario, string contrasenia)
         {
 
             var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
@@ -55,7 +55,7 @@ namespace AccesoDatos.Repositorios
                     sqlCommand.Parameters.AddWithValue("contrasenia", contrasenia);
 
 
-                    sqlDataReader = sqlCommand.ExecuteReader();
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
                     if (sqlDataReader.HasRows)
                     {

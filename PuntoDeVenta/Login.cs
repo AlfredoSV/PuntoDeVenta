@@ -38,9 +38,9 @@ namespace PuntoDeVenta
         }
 
 
-        private void btnIngresar_Click(object sender, EventArgs e)
+        private async void btnIngresar_Click(object sender, EventArgs e)
         {
-            Ingresar();
+            await Ingresar();
         }
 
 
@@ -56,17 +56,17 @@ namespace PuntoDeVenta
             Application.ExitThread();
         }
 
-        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        private async void txtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
-                Ingresar();
+                await Ingresar();
 
         }
 
-        private void txtContrasenia_KeyDown(object sender, KeyEventArgs e)
+        private async void txtContrasenia_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
-                Ingresar();
+                await Ingresar();
         }
 
         public new void Show()
@@ -76,7 +76,7 @@ namespace PuntoDeVenta
             base.Show();
         }
 
-        private void Ingresar()
+        private async Task Ingresar()
         {
             try
             {
@@ -89,10 +89,10 @@ namespace PuntoDeVenta
                 {
 
 
-                    if (_servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
+                    if (await _servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
                     {
                         this.Hide();
-                        inicioForm.Show(_servicioAutenticacion.ConsultarUsuario(usuario, contrasenia));
+                        inicioForm.Show(await _servicioAutenticacion.ConsultarUsuario(usuario, contrasenia));
                     }
                     else
                     {
