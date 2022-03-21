@@ -37,7 +37,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.txtPaginasTotalesProductos = new System.Windows.Forms.TextBox();
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
             this.lblPginacionProductos = new System.Windows.Forms.Label();
-            this.btnRecargarProductos = new System.Windows.Forms.Button();
+            this.btnRecargarUsuarios = new System.Windows.Forms.Button();
             this.btnSalirUsuario = new System.Windows.Forms.Button();
             this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
@@ -52,7 +52,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnLimpiarFormProducto = new System.Windows.Forms.Button();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.comboEstatusBusqueda = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
             this.tabControlProductos.SuspendLayout();
             this.Alta.SuspendLayout();
@@ -92,6 +92,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnBuscar.TabIndex = 34;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // txtBuscar
             // 
@@ -126,16 +127,17 @@ namespace PuntoDeVenta.UsuariosForms
             this.lblPginacionProductos.TabIndex = 30;
             this.lblPginacionProductos.Text = "Paginación";
             // 
-            // btnRecargarProductos
+            // btnRecargarUsuarios
             // 
-            this.btnRecargarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.btnRecargarProductos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarProductos.Location = new System.Drawing.Point(733, 24);
-            this.btnRecargarProductos.Name = "btnRecargarProductos";
-            this.btnRecargarProductos.Size = new System.Drawing.Size(73, 26);
-            this.btnRecargarProductos.TabIndex = 29;
-            this.btnRecargarProductos.Text = "Recargar";
-            this.btnRecargarProductos.UseVisualStyleBackColor = false;
+            this.btnRecargarUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnRecargarUsuarios.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnRecargarUsuarios.Location = new System.Drawing.Point(733, 24);
+            this.btnRecargarUsuarios.Name = "btnRecargarUsuarios";
+            this.btnRecargarUsuarios.Size = new System.Drawing.Size(73, 26);
+            this.btnRecargarUsuarios.TabIndex = 29;
+            this.btnRecargarUsuarios.Text = "Recargar";
+            this.btnRecargarUsuarios.UseVisualStyleBackColor = false;
+            this.btnRecargarUsuarios.Click += new System.EventHandler(this.btnRecargarUsuarios_Click);
             // 
             // btnSalirUsuario
             // 
@@ -276,13 +278,14 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnGuardarProducto.Text = "Guardar";
             this.btnGuardarProducto.UseVisualStyleBackColor = true;
             // 
-            // comboBox3
+            // comboEstatusBusqueda
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(632, 26);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(89, 21);
-            this.comboBox3.TabIndex = 27;
+            this.comboEstatusBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboEstatusBusqueda.FormattingEnabled = true;
+            this.comboEstatusBusqueda.Location = new System.Drawing.Point(632, 26);
+            this.comboEstatusBusqueda.Name = "comboEstatusBusqueda";
+            this.comboEstatusBusqueda.Size = new System.Drawing.Size(89, 21);
+            this.comboEstatusBusqueda.TabIndex = 27;
             // 
             // UsuariosFrm
             // 
@@ -290,7 +293,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(897, 335);
-            this.Controls.Add(this.comboBox3);
+            this.Controls.Add(this.comboEstatusBusqueda);
             this.Controls.Add(this.btnAvanzarPag);
             this.Controls.Add(this.btnRegresarPag);
             this.Controls.Add(this.txtPagActual);
@@ -299,7 +302,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.Controls.Add(this.txtPaginasTotalesProductos);
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);
-            this.Controls.Add(this.btnRecargarProductos);
+            this.Controls.Add(this.btnRecargarUsuarios);
             this.Controls.Add(this.btnSalirUsuario);
             this.Controls.Add(this.dataGridViewUsuarios);
             this.Controls.Add(this.tabControlProductos);
@@ -329,7 +332,7 @@ namespace PuntoDeVenta.UsuariosForms
         private System.Windows.Forms.TextBox txtPaginasTotalesProductos;
         private System.Windows.Forms.Label lblAuxFormProductos;
         private System.Windows.Forms.Label lblPginacionProductos;
-        private System.Windows.Forms.Button btnRecargarProductos;
+        private System.Windows.Forms.Button btnRecargarUsuarios;
         private System.Windows.Forms.Button btnSalirUsuario;
         private System.Windows.Forms.DataGridView dataGridViewUsuarios;
         private System.Windows.Forms.TabControl tabControlProductos;
@@ -344,6 +347,6 @@ namespace PuntoDeVenta.UsuariosForms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox comboEstatusBusqueda;
     }
 }

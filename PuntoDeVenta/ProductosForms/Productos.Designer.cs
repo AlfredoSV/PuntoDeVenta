@@ -269,6 +269,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // comboProveedorProducto
             // 
+            this.comboProveedorProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboProveedorProducto.FormattingEnabled = true;
             this.comboProveedorProducto.Location = new System.Drawing.Point(19, 212);
             this.comboProveedorProducto.Name = "comboProveedorProducto";

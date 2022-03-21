@@ -13,12 +13,17 @@ namespace PuntoDeVenta.ClasesAuxiliares
     {
         public string Name { get; private set; }
         public Guid Value { get; private set; }
+        public int ValueInt { get; set; }
         public Item(string _name, Guid _value)
         {
             Name = _name; Value = _value;
         }
+        public Item(string _name, int _value)
+        {
+            Name = _name; ValueInt = _value;
+        }
 
-       
+
     }
 
     public class CargarCombo
