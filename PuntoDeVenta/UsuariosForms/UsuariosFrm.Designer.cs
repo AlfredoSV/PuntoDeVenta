@@ -39,7 +39,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.lblPginacionProductos = new System.Windows.Forms.Label();
             this.btnRecargarProductos = new System.Windows.Forms.Button();
             this.btnSalirUsuario = new System.Windows.Forms.Button();
-            this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
+            this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             this.Alta = new System.Windows.Forms.TabPage();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -53,7 +53,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnLimpiarFormProducto = new System.Windows.Forms.Button();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).BeginInit();
             this.tabControlProductos.SuspendLayout();
             this.Alta.SuspendLayout();
             this.SuspendLayout();
@@ -149,18 +149,18 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnSalirUsuario.UseVisualStyleBackColor = false;
             this.btnSalirUsuario.Click += new System.EventHandler(this.btnSalirUsuario_Click);
             // 
-            // dataGridViewProductos
+            // dataGridViewUsuarios
             // 
-            this.dataGridViewProductos.AllowUserToAddRows = false;
-            this.dataGridViewProductos.AllowUserToDeleteRows = false;
-            this.dataGridViewProductos.AllowUserToOrderColumns = true;
-            this.dataGridViewProductos.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
-            this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProductos.Location = new System.Drawing.Point(313, 83);
-            this.dataGridViewProductos.Name = "dataGridViewProductos";
-            this.dataGridViewProductos.ReadOnly = true;
-            this.dataGridViewProductos.Size = new System.Drawing.Size(572, 239);
-            this.dataGridViewProductos.TabIndex = 28;
+            this.dataGridViewUsuarios.AllowUserToAddRows = false;
+            this.dataGridViewUsuarios.AllowUserToDeleteRows = false;
+            this.dataGridViewUsuarios.AllowUserToOrderColumns = true;
+            this.dataGridViewUsuarios.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
+            this.dataGridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUsuarios.Location = new System.Drawing.Point(313, 83);
+            this.dataGridViewUsuarios.Name = "dataGridViewUsuarios";
+            this.dataGridViewUsuarios.ReadOnly = true;
+            this.dataGridViewUsuarios.Size = new System.Drawing.Size(572, 239);
+            this.dataGridViewUsuarios.TabIndex = 28;
             // 
             // tabControlProductos
             // 
@@ -301,7 +301,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.Controls.Add(this.lblPginacionProductos);
             this.Controls.Add(this.btnRecargarProductos);
             this.Controls.Add(this.btnSalirUsuario);
-            this.Controls.Add(this.dataGridViewProductos);
+            this.Controls.Add(this.dataGridViewUsuarios);
             this.Controls.Add(this.tabControlProductos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
@@ -309,7 +309,8 @@ namespace PuntoDeVenta.UsuariosForms
             this.Name = "UsuariosFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Usuarios";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
+            this.Load += new System.EventHandler(this.UsuariosFrm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUsuarios)).EndInit();
             this.tabControlProductos.ResumeLayout(false);
             this.Alta.ResumeLayout(false);
             this.Alta.PerformLayout();
@@ -330,7 +331,7 @@ namespace PuntoDeVenta.UsuariosForms
         private System.Windows.Forms.Label lblPginacionProductos;
         private System.Windows.Forms.Button btnRecargarProductos;
         private System.Windows.Forms.Button btnSalirUsuario;
-        private System.Windows.Forms.DataGridView dataGridViewProductos;
+        private System.Windows.Forms.DataGridView dataGridViewUsuarios;
         private System.Windows.Forms.TabControl tabControlProductos;
         private System.Windows.Forms.TabPage Alta;
         private System.Windows.Forms.Button btnLimpiarFormProducto;

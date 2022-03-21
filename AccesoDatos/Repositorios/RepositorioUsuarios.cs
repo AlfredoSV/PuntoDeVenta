@@ -84,11 +84,11 @@ namespace AccesoDatos.Repositorios
             return usuario;
         }
 
-        public async Task<IEnumerable<Usuario>> ConsultarUsuarios(bool activo)
+        public async Task<IEnumerable<Usuario>> ConsultarUsuarios()
         {
 
             var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
-                        Sucursales suc on suc.idSucursal = usu.idSucursal where usu.activo = @activo";
+                        Sucursales suc on suc.idSucursal = usu.idSucursal";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             Usuario usuario = null;
@@ -103,9 +103,6 @@ namespace AccesoDatos.Repositorios
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
-
-                    sqlCommand.Parameters.AddWithValue("@activo", activo);
-
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
                     
 

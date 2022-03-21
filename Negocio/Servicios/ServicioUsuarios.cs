@@ -1,4 +1,5 @@
 ﻿using AccesoDatos.Repositorios;
+using Aplicacion.Enums;
 using Dominio;
 using Dominio.Entidades;
 using System;
@@ -34,7 +35,7 @@ namespace Aplicacion.Servicios
 
         public async Task GuardarNuevoUsuario(DtoUsuario dtoUsuario)
         {
-            if (await _repositorioUsuarios.ConsultarSiExisteUsuario(dtoUsuario.NombreUsuario)) 
+            if (await _repositorioUsuarios.ConsultarSiExisteUsuario(dtoUsuario.NombreUsuario))
                 throw new ExcepcionComun("Aplicacion", $"Este nombre de usuario {dtoUsuario.NombreUsuario} no está disponible", "GuardarNuevoUsuario");
 
             var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
@@ -44,9 +45,17 @@ namespace Aplicacion.Servicios
 
         }
 
-        public async Task<IEnumerable<Usuario>> ConsultarUsuariosPaginados(bool activo)
+        public async Task<IEnumerable<Usuario>> ConsultarUsuariosPaginados(int estatus)
         {
-            return (await _repositorioUsuarios.ConsultarUsuarios(activo));
+
+            IEnumerable<Usuario> usuarios = (await _repositorioUsuarios.ConsultarUsuarios());
+          
+
+            if (estatus != (int)EstatusUsuarioBusqueda.Todos)
+                usuarios = usuarios.Where(u => (u.Activo == (estatus == (int)EstatusUsuarioBusqueda.Activos)));
+
+
+            return (usuarios);
 
         }
 
