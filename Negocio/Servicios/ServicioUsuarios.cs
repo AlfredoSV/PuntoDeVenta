@@ -45,17 +45,18 @@ namespace Aplicacion.Servicios
 
         }
 
-        public async Task<IEnumerable<Usuario>> ConsultarUsuariosPaginados(int estatus)
+        public async Task<IEnumerable<DtoUsuario>> ConsultarUsuariosPaginados(int estatus)
         {
-
-            IEnumerable<Usuario> usuarios = (await _repositorioUsuarios.ConsultarUsuarios());
-          
+         
+            List<Usuario> usuarios = (await _repositorioUsuarios.ConsultarUsuarios()).ToList();
+            List<DtoUsuario> dtoUsuarios = new List<DtoUsuario>();
 
             if (estatus != (int)EstatusUsuarioBusqueda.Todos)
-                usuarios = usuarios.Where(u => (u.Activo == (estatus == (int)EstatusUsuarioBusqueda.Activos)));
+                usuarios = (usuarios).Where(u => (u.Activo == (estatus == (int)EstatusUsuarioBusqueda.Activos))).ToList();
 
+            usuarios.ForEach(u => dtoUsuarios.Add(new DtoUsuario(u.IdUsuario, u.NombreUsuario ,u.FechayHoraAlta, u.Sucursal.IdSucursal, u.Rol.IdRol, u.Sucursal.Nombre, u.Rol.Nombre, u.Activo)));
 
-            return (usuarios);
+            return dtoUsuarios;
 
         }
 

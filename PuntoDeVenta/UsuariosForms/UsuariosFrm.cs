@@ -11,7 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PuntoDeVenta.ClasesAuxiliares;
-
+using Aplicacion;
+using Dominio;
 
 namespace PuntoDeVenta.UsuariosForms
 {
@@ -42,9 +43,32 @@ namespace PuntoDeVenta.UsuariosForms
 
         private async void UsuariosFrm_Load(object sender, EventArgs e)
         {
-            AgregarBotonesGrid();
-            CargarEstatus();
-            dataGridViewUsuarios.DataSource = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)EstatusUsuarioBusqueda.Todos)).ToList();
+            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            List<DtoUsuario> usuarios;
+
+            try
+            {
+
+                LimpiarGrid();
+                AgregarBotonesGrid();
+                CargarEstatus();
+                
+                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+
+                dataGridViewUsuarios.DataSource = usuarios;
+
+            }
+            catch (ExcepcionComun exception)
+            {
+                MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
 
         private void AgregarBotonesGrid()
@@ -78,7 +102,7 @@ namespace PuntoDeVenta.UsuariosForms
         {
             var items = new List<Item>();
 
-            
+
             items.Add(new Item("Todos", -1));
             items.Add(new Item("Inactivos", 0));
             items.Add(new Item("Activos", 1));
@@ -90,9 +114,33 @@ namespace PuntoDeVenta.UsuariosForms
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            var comEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+            
+            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            List<DtoUsuario> usuarios;
 
-            dataGridViewUsuarios.DataSource = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comEstatus)).ToList();
+            try
+            {
+                LimpiarGrid();
+                AgregarBotonesGrid();
+
+                comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+
+                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+           
+                dataGridViewUsuarios.DataSource = usuarios;
+
+            }
+            catch (ExcepcionComun exception)
+            {
+                MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
 
 
         }
