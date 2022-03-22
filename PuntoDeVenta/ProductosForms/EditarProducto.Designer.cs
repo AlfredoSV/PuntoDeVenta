@@ -29,45 +29,45 @@ namespace PuntoDeVenta.ProductosForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnGuardarProducto = new System.Windows.Forms.Button();
-            this.txtDescripcionProducto = new System.Windows.Forms.TextBox();
-            this.txtNombreProducto = new System.Windows.Forms.TextBox();
+            this.btnGuardarProductoEditado = new System.Windows.Forms.Button();
+            this.txtDescripcionProductoEdi = new System.Windows.Forms.TextBox();
+            this.txtNombreProductoEdi = new System.Windows.Forms.TextBox();
             this.lblProveedorProducto = new System.Windows.Forms.Label();
             this.lblDescripProducto = new System.Windows.Forms.Label();
-            this.comboProveedorProducto = new System.Windows.Forms.ComboBox();
-            this.txtStockProducto = new System.Windows.Forms.NumericUpDown();
-            this.txtPrecioProducto = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.comboProveedorProductoEdi = new System.Windows.Forms.ComboBox();
+            this.txtStockProductoEdi = new System.Windows.Forms.NumericUpDown();
+            this.txtPrecioProductoEdi = new System.Windows.Forms.MaskedTextBox();
+            this.lbltIEditarProducto = new System.Windows.Forms.Label();
             this.lblStockProducto = new System.Windows.Forms.Label();
             this.lblPrecioProducto = new System.Windows.Forms.Label();
             this.lblNombreProducto = new System.Windows.Forms.Label();
             this.btnSalirEditarProductos = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockProductoEdi)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnGuardarProducto
+            // btnGuardarProductoEditado
             // 
-            this.btnGuardarProducto.Location = new System.Drawing.Point(66, 282);
-            this.btnGuardarProducto.Name = "btnGuardarProducto";
-            this.btnGuardarProducto.Size = new System.Drawing.Size(149, 23);
-            this.btnGuardarProducto.TabIndex = 19;
-            this.btnGuardarProducto.Text = "Guardar edición";
-            this.btnGuardarProducto.UseVisualStyleBackColor = true;
+            this.btnGuardarProductoEditado.Location = new System.Drawing.Point(66, 282);
+            this.btnGuardarProductoEditado.Name = "btnGuardarProductoEditado";
+            this.btnGuardarProductoEditado.Size = new System.Drawing.Size(149, 23);
+            this.btnGuardarProductoEditado.TabIndex = 19;
+            this.btnGuardarProductoEditado.Text = "Guardar edición";
+            this.btnGuardarProductoEditado.UseVisualStyleBackColor = true;
             // 
-            // txtDescripcionProducto
+            // txtDescripcionProductoEdi
             // 
-            this.txtDescripcionProducto.Location = new System.Drawing.Point(12, 127);
-            this.txtDescripcionProducto.Multiline = true;
-            this.txtDescripcionProducto.Name = "txtDescripcionProducto";
-            this.txtDescripcionProducto.Size = new System.Drawing.Size(312, 60);
-            this.txtDescripcionProducto.TabIndex = 15;
+            this.txtDescripcionProductoEdi.Location = new System.Drawing.Point(12, 127);
+            this.txtDescripcionProductoEdi.Multiline = true;
+            this.txtDescripcionProductoEdi.Name = "txtDescripcionProductoEdi";
+            this.txtDescripcionProductoEdi.Size = new System.Drawing.Size(312, 60);
+            this.txtDescripcionProductoEdi.TabIndex = 15;
             // 
-            // txtNombreProducto
+            // txtNombreProductoEdi
             // 
-            this.txtNombreProducto.Location = new System.Drawing.Point(12, 70);
-            this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(100, 20);
-            this.txtNombreProducto.TabIndex = 14;
+            this.txtNombreProductoEdi.Location = new System.Drawing.Point(12, 70);
+            this.txtNombreProductoEdi.Name = "txtNombreProductoEdi";
+            this.txtNombreProductoEdi.Size = new System.Drawing.Size(100, 20);
+            this.txtNombreProductoEdi.TabIndex = 14;
             // 
             // lblProveedorProducto
             // 
@@ -87,38 +87,39 @@ namespace PuntoDeVenta.ProductosForms
             this.lblDescripProducto.TabIndex = 17;
             this.lblDescripProducto.Text = "Descripción:";
             // 
-            // comboProveedorProducto
+            // comboProveedorProductoEdi
             // 
-            this.comboProveedorProducto.FormattingEnabled = true;
-            this.comboProveedorProducto.Location = new System.Drawing.Point(12, 231);
-            this.comboProveedorProducto.Name = "comboProveedorProducto";
-            this.comboProveedorProducto.Size = new System.Drawing.Size(312, 21);
-            this.comboProveedorProducto.TabIndex = 16;
+            this.comboProveedorProductoEdi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboProveedorProductoEdi.FormattingEnabled = true;
+            this.comboProveedorProductoEdi.Location = new System.Drawing.Point(12, 231);
+            this.comboProveedorProductoEdi.Name = "comboProveedorProductoEdi";
+            this.comboProveedorProductoEdi.Size = new System.Drawing.Size(312, 21);
+            this.comboProveedorProductoEdi.TabIndex = 16;
             // 
-            // txtStockProducto
+            // txtStockProductoEdi
             // 
-            this.txtStockProducto.Location = new System.Drawing.Point(221, 70);
-            this.txtStockProducto.Name = "txtStockProducto";
-            this.txtStockProducto.Size = new System.Drawing.Size(100, 20);
-            this.txtStockProducto.TabIndex = 20;
+            this.txtStockProductoEdi.Location = new System.Drawing.Point(221, 70);
+            this.txtStockProductoEdi.Name = "txtStockProductoEdi";
+            this.txtStockProductoEdi.Size = new System.Drawing.Size(100, 20);
+            this.txtStockProductoEdi.TabIndex = 20;
             // 
-            // txtPrecioProducto
+            // txtPrecioProductoEdi
             // 
-            this.txtPrecioProducto.Location = new System.Drawing.Point(115, 70);
-            this.txtPrecioProducto.Mask = "0000,000.00";
-            this.txtPrecioProducto.Name = "txtPrecioProducto";
-            this.txtPrecioProducto.Size = new System.Drawing.Size(100, 20);
-            this.txtPrecioProducto.TabIndex = 21;
+            this.txtPrecioProductoEdi.Location = new System.Drawing.Point(115, 70);
+            this.txtPrecioProductoEdi.Mask = "0000,000.00";
+            this.txtPrecioProductoEdi.Name = "txtPrecioProductoEdi";
+            this.txtPrecioProductoEdi.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecioProductoEdi.TabIndex = 21;
             // 
-            // label1
+            // lbltIEditarProducto
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(97, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 20);
-            this.label1.TabIndex = 22;
-            this.label1.Text = "Editar producto";
+            this.lbltIEditarProducto.AutoSize = true;
+            this.lbltIEditarProducto.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbltIEditarProducto.Location = new System.Drawing.Point(97, 9);
+            this.lbltIEditarProducto.Name = "lbltIEditarProducto";
+            this.lbltIEditarProducto.Size = new System.Drawing.Size(118, 20);
+            this.lbltIEditarProducto.TabIndex = 22;
+            this.lbltIEditarProducto.Text = "Editar producto";
             // 
             // lblStockProducto
             // 
@@ -168,15 +169,15 @@ namespace PuntoDeVenta.ProductosForms
             this.Controls.Add(this.lblStockProducto);
             this.Controls.Add(this.lblPrecioProducto);
             this.Controls.Add(this.lblNombreProducto);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtPrecioProducto);
-            this.Controls.Add(this.txtStockProducto);
-            this.Controls.Add(this.btnGuardarProducto);
-            this.Controls.Add(this.txtDescripcionProducto);
-            this.Controls.Add(this.txtNombreProducto);
+            this.Controls.Add(this.lbltIEditarProducto);
+            this.Controls.Add(this.txtPrecioProductoEdi);
+            this.Controls.Add(this.txtStockProductoEdi);
+            this.Controls.Add(this.btnGuardarProductoEditado);
+            this.Controls.Add(this.txtDescripcionProductoEdi);
+            this.Controls.Add(this.txtNombreProductoEdi);
             this.Controls.Add(this.lblProveedorProducto);
             this.Controls.Add(this.lblDescripProducto);
-            this.Controls.Add(this.comboProveedorProducto);
+            this.Controls.Add(this.comboProveedorProductoEdi);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -184,7 +185,7 @@ namespace PuntoDeVenta.ProductosForms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditarProducto";
             this.Load += new System.EventHandler(this.EditarProducto_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtStockProducto)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtStockProductoEdi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -192,15 +193,15 @@ namespace PuntoDeVenta.ProductosForms
 
         #endregion
 
-        private System.Windows.Forms.Button btnGuardarProducto;
-        private System.Windows.Forms.TextBox txtDescripcionProducto;
-        private System.Windows.Forms.TextBox txtNombreProducto;
+        private System.Windows.Forms.Button btnGuardarProductoEditado;
+        private System.Windows.Forms.TextBox txtDescripcionProductoEdi;
+        private System.Windows.Forms.TextBox txtNombreProductoEdi;
         private System.Windows.Forms.Label lblProveedorProducto;
         private System.Windows.Forms.Label lblDescripProducto;
-        private System.Windows.Forms.ComboBox comboProveedorProducto;
-        private System.Windows.Forms.NumericUpDown txtStockProducto;
-        private System.Windows.Forms.MaskedTextBox txtPrecioProducto;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox comboProveedorProductoEdi;
+        private System.Windows.Forms.NumericUpDown txtStockProductoEdi;
+        private System.Windows.Forms.MaskedTextBox txtPrecioProductoEdi;
+        private System.Windows.Forms.Label lbltIEditarProducto;
         private System.Windows.Forms.Label lblStockProducto;
         private System.Windows.Forms.Label lblPrecioProducto;
         private System.Windows.Forms.Label lblNombreProducto;

@@ -71,7 +71,7 @@ namespace PuntoDeVenta.ProductosForms
                             break;
                         case "1":
                             var editarProductoForm = EditarProducto.Instancia;
-                            editarProductoForm.ShowDialog();
+                            editarProductoForm.ShowDialog(idProducto);
                             break;
 
                     }

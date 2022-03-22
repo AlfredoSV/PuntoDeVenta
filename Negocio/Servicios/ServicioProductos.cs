@@ -95,5 +95,12 @@ namespace Aplicacion.Servicios
             }
         }
 
+        public async Task<DtoProducto> ConsultarProductoPorId(Guid idProducto)
+        {
+            var producto = (await _repositorioProductos.ConsultarProductos(string.Empty)).Where(p=> p.IdProducto == idProducto).FirstOrDefault();
+
+            return (new DtoProducto(producto.IdProducto,producto.Stock,producto.Nombre,producto.Descripcion,producto.Precio,producto.IdProveedor));
+        }
+
     }
 }
