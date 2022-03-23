@@ -53,6 +53,7 @@ namespace PuntoDeVenta.ProductosForms
             this.btnGuardarProductoEditado.TabIndex = 19;
             this.btnGuardarProductoEditado.Text = "Guardar edición";
             this.btnGuardarProductoEditado.UseVisualStyleBackColor = true;
+            this.btnGuardarProductoEditado.Click += new System.EventHandler(this.btnGuardarProductoEditado_Click);
             // 
             // txtDescripcionProductoEdi
             // 

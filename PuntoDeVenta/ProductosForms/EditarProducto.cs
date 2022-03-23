@@ -55,7 +55,10 @@ namespace PuntoDeVenta.ProductosForms
 
                 txtNombreProductoEdi.Text = _dtoProducto.Nombre;
 
-                txtPrecioProductoEdi.Text = _dtoProducto.Precio.ToString();
+
+                //@"^(?:\d+\.?\d*)?$"
+
+                txtPrecioProductoEdi.Text = String.Format("{0:0,0.0}", _dtoProducto.Precio);
 
                 txtStockProductoEdi.Value = _dtoProducto.Stock;
 
@@ -100,6 +103,65 @@ namespace PuntoDeVenta.ProductosForms
             comboProveedorProductoEdi.DisplayMember = "Name";
             comboProveedorProductoEdi.ValueMember = "Value";
             comboProveedorProductoEdi.DataSource = items;
+        }
+
+        private void btnGuardarProductoEditado_Click(object sender, EventArgs e)
+        {
+            var nombre = txtNombreProductoEdi.Text.Trim();
+            var preciotxt = txtPrecioProductoEdi.Text.Trim().Trim('.').Trim(',').Trim() == "" ? "0.00" : txtPrecioProductoEdi.Text.Trim().Trim('.').Trim(',').Trim();
+            var precio = Convert.ToDecimal(preciotxt.Replace(" ", ""));
+            var descripcion = txtDescripcionProductoEdi.Text.Trim();
+            var stock = (int)txtStockProductoEdi.Value;
+            var idProveedor = ((Item)(comboProveedorProductoEdi.SelectedItem)).Value;
+            var validacion = true;
+            var mensajeValidacion = string.Empty;
+
+            if (stock <= 0)
+            {
+                mensajeValidacion += "* Debe agregar por lo menos un producto al stock \n";
+                validacion = false;
+            }
+            if (nombre.Equals(""))
+            {
+                mensajeValidacion += "* El productos debe terner un nombre \n";
+                validacion = false;
+            }
+            if (precio <= 0.00m)
+            {
+                mensajeValidacion += "* El precio debe ser mayor a 0 \n";
+                validacion = false;
+            }
+
+            if (idProveedor == Guid.Empty)
+            {
+                mensajeValidacion += "* Debe seleccionar un proveedor \n";
+                validacion = false;
+            }
+            if (validacion)
+            {
+                try
+                {
+                    var dtoProducto = new DtoProducto(_dtoProducto.IdProducto, stock, nombre, descripcion, precio, idProveedor);
+
+
+                }
+                catch (ExcepcionComun exception)
+                {
+                    MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            else
+            {
+                MessageBox.Show(mensajeValidacion, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+
         }
     }
 }

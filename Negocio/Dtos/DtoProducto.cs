@@ -29,6 +29,7 @@ namespace Aplicacion.Dtos
             Descripcion = descripcion;
             Precio = precio;
         }
+    
 
         public DtoProducto(Guid idProducto, int stock, string nombre, string descripcion, decimal precio,Guid idProveedor)
         {
