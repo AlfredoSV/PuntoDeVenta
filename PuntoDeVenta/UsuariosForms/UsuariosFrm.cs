@@ -144,5 +144,34 @@ namespace PuntoDeVenta.UsuariosForms
 
 
         }
+
+        private async void comboEstatusBusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            List<DtoUsuario> usuarios;
+
+            try
+            {
+                LimpiarGrid();
+                AgregarBotonesGrid();
+
+                comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+
+                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+
+                dataGridViewUsuarios.DataSource = usuarios;
+
+            }
+            catch (ExcepcionComun exception)
+            {
+                MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+        }
     }
 }

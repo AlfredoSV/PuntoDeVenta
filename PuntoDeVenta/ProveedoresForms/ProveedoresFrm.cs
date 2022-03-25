@@ -31,7 +31,7 @@ namespace PuntoDeVenta.ProveedoresForms
         public void Show(Usuario usuario)
         {
             _usuarioLogueado = usuario;
-
+            base.Show();
             
         }
     }

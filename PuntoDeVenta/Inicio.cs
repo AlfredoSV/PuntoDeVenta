@@ -74,12 +74,15 @@ namespace PuntoDeVenta
             var usuarios = new UsuariosFrm();
             usuarios.Show(_usuarioLogueado);
             this.Close();
+            this.Dispose();
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             var proveedoresFrom = new ProveedoresFrm();
-            proveedoresFrom.Show();
+            proveedoresFrom.Show(_usuarioLogueado);
+            this.Close();
+            this.Dispose();
         }
     }
 }

@@ -42,6 +42,8 @@ namespace PuntoDeVenta.ProveedoresForms
             this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             this.Alta = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblAviso = new System.Windows.Forms.Label();
             this.btnLimpiarFormProducto = new System.Windows.Forms.Button();
             this.btnCargarMasivaProducto = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@ namespace PuntoDeVenta.ProveedoresForms
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.lblDescripProducto = new System.Windows.Forms.Label();
             this.lblNombreProducto = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             this.tabControlProductos.SuspendLayout();
             this.Alta.SuspendLayout();
@@ -191,6 +191,22 @@ namespace PuntoDeVenta.ProveedoresForms
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(16, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 20;
+            this.label1.Text = "Rfc:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(19, 98);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(312, 20);
+            this.textBox1.TabIndex = 19;
+            // 
             // lblAviso
             // 
             this.lblAviso.AutoSize = true;
@@ -262,22 +278,6 @@ namespace PuntoDeVenta.ProveedoresForms
             this.lblNombreProducto.TabIndex = 6;
             this.lblNombreProducto.Text = "Nombre:";
             // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(19, 98);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(312, 20);
-            this.textBox1.TabIndex = 19;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(16, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 20;
-            this.label1.Text = "Rfc:";
-            // 
             // ProveedoresFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -299,6 +299,7 @@ namespace PuntoDeVenta.ProveedoresForms
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProveedoresFrm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Proveedores";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             this.tabControlProductos.ResumeLayout(false);

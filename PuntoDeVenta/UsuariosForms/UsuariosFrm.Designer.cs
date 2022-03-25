@@ -286,6 +286,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.comboEstatusBusqueda.Name = "comboEstatusBusqueda";
             this.comboEstatusBusqueda.Size = new System.Drawing.Size(89, 21);
             this.comboEstatusBusqueda.TabIndex = 27;
+            this.comboEstatusBusqueda.SelectedIndexChanged += new System.EventHandler(this.comboEstatusBusqueda_SelectedIndexChanged);
             // 
             // UsuariosFrm
             // 
