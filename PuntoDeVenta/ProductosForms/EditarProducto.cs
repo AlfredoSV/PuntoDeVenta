@@ -141,8 +141,8 @@ namespace PuntoDeVenta.ProductosForms
             {
                 try
                 {
-                    var dtoProducto = new DtoProducto(_dtoProducto.IdProducto, stock, nombre, descripcion, precio, idProveedor);
-
+                    var dtoProducto = new DtoProducto(_dtoProducto.IdProducto, stock, nombre, descripcion, precio, _dtoProducto.IdInventario,idProveedor);
+                    _servicioProductos.GuardarProductoEditado(dtoProducto);
 
                 }
                 catch (ExcepcionComun exception)

@@ -98,9 +98,14 @@ namespace Aplicacion.Servicios
         public async Task<DtoProducto> ConsultarProductoPorId(Guid idProducto)
         {
             var producto = (await _repositorioProductos.ConsultarProductos(string.Empty)).Where(p=> p.IdProducto == idProducto).FirstOrDefault();
-
-            return (new DtoProducto(producto.IdProducto,producto.Stock,producto.Nombre,producto.Descripcion,producto.Precio,producto.IdProveedor));
+            
+            return (new DtoProducto(producto.IdProducto,producto.Stock,producto.Nombre,producto.Descripcion,producto.Precio, producto.IdInventario, producto.IdProveedor));
         }
 
+        public async void GuardarProductoEditado(DtoProducto dtoProducto)
+        {
+            await (_repositorioProductos.EditarProducto(Producto.Crear(dtoProducto.IdProducto, dtoProducto.Stock, dtoProducto.Nombre, dtoProducto.Descripcion, dtoProducto.Precio, dtoProducto.IdInventario, dtoProducto.IdProveedor)));
+
+        }
     }
 }

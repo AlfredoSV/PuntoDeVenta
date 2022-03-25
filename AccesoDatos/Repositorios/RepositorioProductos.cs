@@ -159,5 +159,37 @@ namespace Dominio.Repositorios
                 throw e;
             }
         }
+
+        public async Task EditarProducto(Producto dtoProducto)
+        {
+
+            var sql = @"UPDATE Productos set stock = @stock, nombre = @nombre, descripcion = @descripcion,
+                        precio = @precio,@idInventario = idInventario ,idProveedor = @idProveedor where idProducto = @idProducto";
+            SqlCommand sqlCommand;
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+                    sqlCommand.Parameters.AddWithValue("@idProducto", dtoProducto.IdProducto);
+                    sqlCommand.Parameters.AddWithValue("@stock", dtoProducto.Stock);
+                    sqlCommand.Parameters.AddWithValue("@nombre", dtoProducto.Nombre);
+                    sqlCommand.Parameters.AddWithValue("@descripcion", dtoProducto.Descripcion);
+                    sqlCommand.Parameters.AddWithValue("@precio", dtoProducto.Precio);
+                    sqlCommand.Parameters.AddWithValue("@idProveedor", dtoProducto.IdProveedor);
+                    sqlCommand.Parameters.AddWithValue("@idInventario", dtoProducto.IdInventario);
+                    await sqlCommand.ExecuteNonQueryAsync();
+                    
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
+
     }
 }
