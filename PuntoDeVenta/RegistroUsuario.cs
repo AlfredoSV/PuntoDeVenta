@@ -28,7 +28,7 @@ namespace PuntoDeVenta
 
         private async void RegistroUsuario_Load(object sender, EventArgs e)
         {
-            CargarProveedores(await _servicioCatalogos.ConsultarSucursalesBD());
+            CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD());
             CargarRoles(await _servicioCatalogos.ConsultarRolesBD());
         }
 
@@ -102,7 +102,7 @@ namespace PuntoDeVenta
 
         }
 
-        private void CargarProveedores(IEnumerable<Sucursal> sucursales)
+        private void CargarSucursales(IEnumerable<Sucursal> sucursales)
         {
             var items = new List<Item>();
 

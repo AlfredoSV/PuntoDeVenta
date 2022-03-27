@@ -122,7 +122,7 @@ namespace PuntoDeVenta
             // 
             // btnRegistrarme
             // 
-            this.btnRegistrarme.BackColor = System.Drawing.Color.Lime;
+            this.btnRegistrarme.BackColor = System.Drawing.Color.MediumSeaGreen;
             this.btnRegistrarme.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRegistrarme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
