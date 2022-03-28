@@ -71,6 +71,7 @@ namespace PuntoDeVenta
             this.btnVenta.TabIndex = 2;
             this.btnVenta.Text = "Realizar venta";
             this.btnVenta.UseVisualStyleBackColor = false;
+            this.btnVenta.Click += new System.EventHandler(this.btnVenta_Click);
             // 
             // btnUsuario
             // 

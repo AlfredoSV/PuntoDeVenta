@@ -141,11 +141,11 @@
     <Compile Include="UsuariosForms\UsuariosFrm.Designer.cs">
       <DependentUpon>UsuariosFrm.cs</DependentUpon>
     </Compile>
-    <Compile Include="VentaForms\RealizarVenta.cs">
+    <Compile Include="VentaForms\RealizarVentaForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VentaForms\RealizarVenta.Designer.cs">
-      <DependentUpon>RealizarVenta.cs</DependentUpon>
+    <Compile Include="VentaForms\RealizarVentaForm.Designer.cs">
+      <DependentUpon>RealizarVentaForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
@@ -179,8 +179,8 @@
     <EmbeddedResource Include="UsuariosForms\UsuariosFrm.resx">
       <DependentUpon>UsuariosFrm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VentaForms\RealizarVenta.resx">
-      <DependentUpon>RealizarVenta.cs</DependentUpon>
+    <EmbeddedResource Include="VentaForms\RealizarVentaForm.resx">
+      <DependentUpon>RealizarVentaForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

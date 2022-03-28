@@ -5,6 +5,7 @@ using PuntoDeVenta.MiInformacionForms;
 using PuntoDeVenta.ProductosForms;
 using PuntoDeVenta.ProveedoresForms;
 using PuntoDeVenta.UsuariosForms;
+using PuntoDeVenta.VentaForms;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -82,6 +83,14 @@ namespace PuntoDeVenta
             var proveedoresFrom = new ProveedoresFrm();
             proveedoresFrom.Show(_usuarioLogueado);
             this.Close();
+            this.Dispose();
+        }
+
+        private void btnVenta_Click(object sender, EventArgs e)
+        {
+            var ventaForm = new RealizarVentaForm();
+            ventaForm.Show(_usuarioLogueado);
+            
             this.Dispose();
         }
     }
