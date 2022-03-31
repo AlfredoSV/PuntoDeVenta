@@ -5,6 +5,16 @@
 
 
 
-![cap1](https://github.com/AlfredoSV/ApiAuth/blob/main/capturas/cap1.PNG)
+![cap1](https://github.com/AlfredoSV/SistemaPuntoDeVenta/blob/master/capturas/cap1.PNG)
 
+
+![cap2](https://github.com/AlfredoSV/SistemaPuntoDeVenta/blob/master/capturas/cap2.PNG)
+
+![cap3](https://github.com/AlfredoSV/SistemaPuntoDeVenta/blob/master/capturas/cap3.PNG)
+
+![cap4](https://github.com/AlfredoSV/SistemaPuntoDeVenta/blob/master/capturas/cap4.PNG)
+
+![cap5](https://github.com/AlfredoSV/SistemaPuntoDeVenta/blob/master/capturas/cap5.PNG)
+
+![cap6](https://github.com/AlfredoSV/SistemaPuntoDeVenta/blob/master/capturas/cap6.PNG)
 
