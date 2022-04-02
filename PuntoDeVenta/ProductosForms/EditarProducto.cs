@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PuntoDeVenta.ClasesAuxiliares;
 using Dominio;
+using System.Text.RegularExpressions;
 
 namespace PuntoDeVenta.ProductosForms
 {
@@ -58,7 +59,7 @@ namespace PuntoDeVenta.ProductosForms
 
                 //@"^(?:\d+\.?\d*)?$"
 
-                txtPrecioProductoEdi.Text = String.Format("{0:0,0.0}", _dtoProducto.Precio);
+                txtPrecioProductoEdi.Text =  _dtoProducto.Precio.ToString();
 
                 txtStockProductoEdi.Value = _dtoProducto.Stock;
 
@@ -108,8 +109,8 @@ namespace PuntoDeVenta.ProductosForms
         private void btnGuardarProductoEditado_Click(object sender, EventArgs e)
         {
             var nombre = txtNombreProductoEdi.Text.Trim();
-            var preciotxt = txtPrecioProductoEdi.Text.Trim().Trim('.').Trim(',').Trim() == "" ? "0.00" : txtPrecioProductoEdi.Text.Trim().Trim('.').Trim(',').Trim();
-            var precio = Convert.ToDecimal(preciotxt.Replace(" ", ""));
+            var preciotxtEsCorrecto = Regex.IsMatch(txtPrecioProductoEdi.Text, @"^(?:\d+\.?\d*)?$");
+            Decimal precio;
             var descripcion = txtDescripcionProductoEdi.Text.Trim();
             var stock = (int)txtStockProductoEdi.Value;
             var idProveedor = ((Item)(comboProveedorProductoEdi.SelectedItem)).Value;
@@ -126,7 +127,7 @@ namespace PuntoDeVenta.ProductosForms
                 mensajeValidacion += "* El productos debe terner un nombre \n";
                 validacion = false;
             }
-            if (precio <= 0.00m)
+            if (!preciotxtEsCorrecto)
             {
                 mensajeValidacion += "* El precio debe ser mayor a 0 \n";
                 validacion = false;
@@ -139,6 +140,7 @@ namespace PuntoDeVenta.ProductosForms
             }
             if (validacion)
             {
+                precio = Convert.ToDecimal(txtPrecioProductoEdi.Text);
                 try
                 {
                     var dtoProducto = new DtoProducto(_dtoProducto.IdProducto, stock, nombre, descripcion, precio, _dtoProducto.IdInventario,idProveedor);

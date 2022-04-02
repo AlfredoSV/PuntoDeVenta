@@ -6,6 +6,7 @@ using Aplicacion.Servicios;
 using Dominio.Entidades;
 using PuntoDeVenta.ClasesAuxiliares;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace PuntoDeVenta.ProductosForms
 {
@@ -105,8 +106,8 @@ namespace PuntoDeVenta.ProductosForms
 
             var stock = (int)(txtStockProducto.Value);
             var nombre = txtNombreProducto.Text.Trim();
-            var preciotxt = txtPrecioProducto.Text.Trim().Trim('.').Trim(',').Trim() == "" ? "0.00" : txtPrecioProducto.Text.Trim().Trim('.').Trim(',').Trim();
-            var precio = Convert.ToDecimal(preciotxt.Replace(" ", ""));
+            var preciotxtEsCorrecto = Regex.IsMatch(txtPrecioProducto.Text, @"^(?:\d+\.?\d*)?$");
+            Decimal precio;
             var descripcion = txtDescripcionProducto.Text.Trim();
             var proveedor = ((Item)(comboProveedorProducto.SelectedItem)).Value;
 
@@ -123,8 +124,9 @@ namespace PuntoDeVenta.ProductosForms
                 mensajeValidacion += "* El productos debe terner un nombre \n";
                 validacion = false;
             }
-            if (precio <= 0.00m)
+            if (!preciotxtEsCorrecto)
             {
+
                 mensajeValidacion += "* El precio debe ser mayor a 0 \n";
                 validacion = false;
             }
@@ -137,6 +139,7 @@ namespace PuntoDeVenta.ProductosForms
 
             if (validacion)
             {
+                precio = Convert.ToDecimal(txtPrecioProducto.Text);
                 try
                 {
                     _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);

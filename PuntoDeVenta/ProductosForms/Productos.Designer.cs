@@ -171,7 +171,6 @@ namespace PuntoDeVenta.ProductosForms
             // txtPrecioProducto
             // 
             this.txtPrecioProducto.Location = new System.Drawing.Point(125, 51);
-            this.txtPrecioProducto.Mask = "0000,000.00";
             this.txtPrecioProducto.Name = "txtPrecioProducto";
             this.txtPrecioProducto.Size = new System.Drawing.Size(100, 20);
             this.txtPrecioProducto.TabIndex = 16;
