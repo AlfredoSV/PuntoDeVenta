@@ -305,6 +305,40 @@ namespace AccesoDatos.Repositorios
 
             return res;
         }
-    
+
+        public async Task<bool> EliminarUsuario(Guid idUsuario)
+        {
+            var sql = @"delete from usuarios where idUsuario = @idUsuario";
+            SqlCommand sqlCommand;
+            var res = false;
+
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                   
+                        conexion.Open();
+
+                        sqlCommand = new SqlCommand(sql, conexion);
+
+                        sqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+
+                        await sqlCommand.ExecuteNonQueryAsync();
+
+                       
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return res;
+        }
+
+
     }
 }

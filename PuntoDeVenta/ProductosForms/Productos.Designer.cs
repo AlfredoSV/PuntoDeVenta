@@ -72,7 +72,7 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos.Location = new System.Drawing.Point(405, 75);
             this.dataGridViewProductos.Name = "dataGridViewProductos";
             this.dataGridViewProductos.ReadOnly = true;
-            this.dataGridViewProductos.Size = new System.Drawing.Size(561, 305);
+            this.dataGridViewProductos.Size = new System.Drawing.Size(676, 305);
             this.dataGridViewProductos.TabIndex = 1;
             this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
             // 
@@ -80,7 +80,7 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnSalirProductos.BackColor = System.Drawing.Color.IndianRed;
             this.btnSalirProductos.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirProductos.Location = new System.Drawing.Point(884, 19);
+            this.btnSalirProductos.Location = new System.Drawing.Point(995, 21);
             this.btnSalirProductos.Name = "btnSalirProductos";
             this.btnSalirProductos.Size = new System.Drawing.Size(86, 25);
             this.btnSalirProductos.TabIndex = 0;
@@ -92,9 +92,9 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.btnRecargarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRecargarProductos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarProductos.Location = new System.Drawing.Point(805, 20);
+            this.btnRecargarProductos.Location = new System.Drawing.Point(886, 23);
             this.btnRecargarProductos.Name = "btnRecargarProductos";
-            this.btnRecargarProductos.Size = new System.Drawing.Size(73, 23);
+            this.btnRecargarProductos.Size = new System.Drawing.Size(88, 23);
             this.btnRecargarProductos.TabIndex = 2;
             this.btnRecargarProductos.Text = "Recargar";
             this.btnRecargarProductos.UseVisualStyleBackColor = false;
@@ -288,12 +288,12 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.txtBuscar.Location = new System.Drawing.Point(627, 23);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(91, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(142, 20);
             this.txtBuscar.TabIndex = 21;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(724, 20);
+            this.btnBuscar.Location = new System.Drawing.Point(787, 22);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(75, 23);
             this.btnBuscar.TabIndex = 22;
@@ -334,7 +334,7 @@ namespace PuntoDeVenta.ProductosForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(978, 392);
+            this.ClientSize = new System.Drawing.Size(1093, 392);
             this.Controls.Add(this.btnAvanzarPag);
             this.Controls.Add(this.btnRegresarPag);
             this.Controls.Add(this.txtPagActual);

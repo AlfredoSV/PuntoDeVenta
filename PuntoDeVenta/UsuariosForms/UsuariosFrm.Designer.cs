@@ -163,6 +163,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.dataGridViewUsuarios.ReadOnly = true;
             this.dataGridViewUsuarios.Size = new System.Drawing.Size(572, 239);
             this.dataGridViewUsuarios.TabIndex = 28;
+            this.dataGridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuarios_CellContentClickAsync);
             // 
             // tabControlProductos
             // 

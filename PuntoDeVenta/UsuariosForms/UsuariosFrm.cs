@@ -102,6 +102,7 @@ namespace PuntoDeVenta.UsuariosForms
 
         }
 
+
         private void CargarEstatus()
         {
             var items = new List<Item>();
@@ -273,6 +274,51 @@ namespace PuntoDeVenta.UsuariosForms
             txtContrasenia.Text = string.Empty;
             txtUsuario.Text = string.Empty;
 
+        }
+
+        private async void dataGridViewUsuarios_CellContentClickAsync(object sender, DataGridViewCellEventArgs e)
+        {
+            var columna = e.ColumnIndex.ToString();
+            List<DtoUsuario> usuarios;
+            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+
+            try
+            {
+                if (columna.Equals("0") || columna.Equals("1"))
+                {
+                    var idUsuario = Guid.Parse(dataGridViewUsuarios.Rows[e.RowIndex].Cells[2].Value.ToString());
+
+                    switch (columna)
+                    {
+                        case "0":
+                            _servicioUsuarios.EliminarUsuarioPorId(idUsuario);
+                            break;
+                        case "1":
+                            //var editarProductoForm = EditarProducto.Instancia;
+                            //editarProductoForm.ShowDialog(idProducto);
+                            break;
+
+                    }
+
+                    //var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                    //var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                    LimpiarGrid();
+                    AgregarBotonesGrid();
+                    //CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
+                    //productos.Pagina += 1;
+                    //ListarProductosGrid(productos);
+                    usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+                    dataGridViewUsuarios.DataSource = usuarios;
+
+                }
+
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
     }
 }

@@ -60,8 +60,9 @@ namespace Aplicacion.Servicios
 
         }
 
-
-
-
+        public async void EliminarUsuarioPorId(Guid idUsuario)
+        {
+            await _repositorioUsuarios.EliminarUsuario(idUsuario);
+        }
     }
 }
