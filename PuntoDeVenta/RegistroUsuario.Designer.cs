@@ -108,6 +108,7 @@ namespace PuntoDeVenta
             // 
             // comBRol
             // 
+            this.comBRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBRol.FormattingEnabled = true;
             this.comBRol.Location = new System.Drawing.Point(103, 193);
             this.comBRol.Name = "comBRol";
@@ -116,6 +117,7 @@ namespace PuntoDeVenta
             // 
             // comBSucursal
             // 
+            this.comBSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBSucursal.FormattingEnabled = true;
             this.comBSucursal.Location = new System.Drawing.Point(103, 144);
             this.comBSucursal.Name = "comBSucursal";

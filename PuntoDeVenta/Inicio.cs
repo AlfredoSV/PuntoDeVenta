@@ -72,10 +72,18 @@ namespace PuntoDeVenta
 
         private void btnUsuario_Click(object sender, EventArgs e)
         {
-            var usuarios = new UsuariosFrm();
-            usuarios.Show(_usuarioLogueado);
-            this.Close();
-            this.Dispose();
+            if (_usuarioLogueado.Rol.Nombre.Equals("Admin"))
+            {
+                var usuarios = new UsuariosFrm();
+                usuarios.Show(_usuarioLogueado);
+                this.Close();
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso","Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+       
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
