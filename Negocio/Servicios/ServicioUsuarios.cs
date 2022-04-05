@@ -45,7 +45,7 @@ namespace Aplicacion.Servicios
                 var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
                 var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrsenia, DateTime.Now, false, sucursal, rol);
                 _repositorioUsuarios.GuardarUsuario(usuario);
-            
+
             }
             catch (ExcepcionComun excepcionComun)
             {
@@ -63,36 +63,47 @@ namespace Aplicacion.Servicios
 
         }
 
-        public async Task<IEnumerable<DtoUsuario>> ConsultarUsuariosPaginados(int estatus, DtoPropiedadesPaginacion dtoPropiedadesPaginacion)
+        public async Task<DtoUsuariosPaginados> ConsultarUsuariosPaginados(int estatus, DtoPropiedadesPaginacion dtoPropiedadesPaginacion)
         {
-            List<Usuario> usuarios = new List<Usuario>();
-            List<DtoUsuario> dtoUsuarios = new List<DtoUsuario>();
+            var usuarios = new List<Usuario>();
+            DtoUsuariosPaginados dtoUsuariosPaginados;
+            var totalUsuarios = 0;
+            var totalPaginas = 0;
+            var dtoUsuarios = new List<DtoUsuario>();
+
             try
             {
                 usuarios = (await _repositorioUsuarios.ConsultarUsuarios()).ToList();
-                dtoUsuarios = new List<DtoUsuario>();
 
                 if (estatus != (int)EstatusUsuarioBusqueda.Todos)
                     usuarios = (usuarios).Where(u => (u.Activo == (estatus == (int)EstatusUsuarioBusqueda.Activos))).ToList();
 
-                usuarios.Skip(dtoPropiedadesPaginacion.Pagina * dtoPropiedadesPaginacion.TamanioPagina).Take(dtoPropiedadesPaginacion.TamanioPagina);
+                if (!dtoPropiedadesPaginacion.BuscarFiltro.Equals(""))
+                    usuarios = (usuarios).Where(u => u.NombreUsuario.Contains(dtoPropiedadesPaginacion.BuscarFiltro)).ToList();
+
+                totalUsuarios = usuarios.Count;
+                totalPaginas = (int)Math.Ceiling((decimal)((decimal)totalUsuarios / (decimal)dtoPropiedadesPaginacion.TamanioPagina));
+
+                usuarios = usuarios.Skip(dtoPropiedadesPaginacion.Pagina * dtoPropiedadesPaginacion.TamanioPagina).Take(dtoPropiedadesPaginacion.TamanioPagina).ToList();
                 usuarios.ForEach(u => dtoUsuarios.Add(new DtoUsuario(u.IdUsuario, u.NombreUsuario, u.FechayHoraAlta, u.Sucursal.IdSucursal, u.Rol.IdRol, u.Sucursal.Nombre, u.Rol.Nombre, u.Activo)));
 
-            }catch (ExcepcionComun excepcionComun)
+            }
+            catch (ExcepcionComun excepcionComun)
             {
 
                 throw excepcionComun;
 
 
-            }catch (Exception exception)
+            }
+            catch (Exception exception)
             {
 
                 throw exception;
 
             }
+            dtoUsuariosPaginados = new DtoUsuariosPaginados(dtoUsuarios, dtoPropiedadesPaginacion.Pagina, dtoPropiedadesPaginacion.TamanioPagina, totalUsuarios, totalPaginas);
 
-
-            return dtoUsuarios;
+            return dtoUsuariosPaginados;
 
         }
 
@@ -102,13 +113,15 @@ namespace Aplicacion.Servicios
             {
                 await _repositorioUsuarios.EliminarUsuario(idUsuario);
 
-            }catch (ExcepcionComun excepcionComun)
+            }
+            catch (ExcepcionComun excepcionComun)
             {
 
                 throw excepcionComun;
 
 
-            }catch (Exception exception)
+            }
+            catch (Exception exception)
             {
 
                 throw exception;
