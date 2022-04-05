@@ -56,9 +56,6 @@ namespace PuntoDeVenta.ProductosForms
 
                 txtNombreProductoEdi.Text = _dtoProducto.Nombre;
 
-
-                //@"^(?:\d+\.?\d*)?$"
-
                 txtPrecioProductoEdi.Text =  _dtoProducto.Precio.ToString();
 
                 txtStockProductoEdi.Value = _dtoProducto.Stock;
@@ -71,11 +68,13 @@ namespace PuntoDeVenta.ProductosForms
             catch (ExcepcionComun exception)
             {
                 MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
 
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
 
             }
 
@@ -145,7 +144,8 @@ namespace PuntoDeVenta.ProductosForms
                 {
                     var dtoProducto = new DtoProducto(_dtoProducto.IdProducto, stock, nombre, descripcion, precio, _dtoProducto.IdInventario,idProveedor);
                     _servicioProductos.GuardarProductoEditado(dtoProducto);
-
+                    MessageBox.Show("El producto se guardo correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
                 }
                 catch (ExcepcionComun exception)
                 {

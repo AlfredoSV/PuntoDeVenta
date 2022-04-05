@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using Aplicacion.Dtos;
 using System.Threading.Tasks;
+using Dominio;
 
 namespace Aplicacion.Servicios
 {
@@ -37,7 +38,7 @@ namespace Aplicacion.Servicios
         }
 
 
-        public async Task<DtoProductosPaginados> ConsultarProductosPaginadosBD(DtoBuscarProductosPaginados dtoBuscarProductos)
+        public async Task<DtoProductosPaginados> ConsultarProductosPaginadosBD(DtoPropiedadesPaginacion dtoBuscarProductos)
         {
 
             var productos = new List<DtoProducto>();
@@ -48,15 +49,22 @@ namespace Aplicacion.Servicios
             try
             {
                 var prodNoPag = await _repositorioProductos.ConsultarProductos(dtoBuscarProductos.BuscarFiltro);
-                prodNoPag.ToList().ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio)));
+                prodNoPag.ToList().ForEach(pro => productos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio,pro.IdInventario,pro.IdProveedor)));
                 totalProductos = _repositorioProductos.ConsultarProductosTotal(dtoBuscarProductos.BuscarFiltro);
                 productos = productos.Skip<DtoProducto>(dtoBuscarProductos.Pagina * dtoBuscarProductos.TamanioPagina).Take<DtoProducto>(dtoBuscarProductos.TamanioPagina).ToList();
                 totalPaginas = (int)Math.Ceiling((decimal)((decimal)totalProductos / (decimal)dtoBuscarProductos.TamanioPagina));
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
             }
             catch (Exception exception)
             {
 
                 throw exception;
+
             }
 
             dtoProductosPaginados = new DtoProductosPaginados(productos, dtoBuscarProductos.Pagina, dtoBuscarProductos.TamanioPagina, totalProductos,totalPaginas);
@@ -72,10 +80,17 @@ namespace Aplicacion.Servicios
 
                 _repositorioProductos.GuardarProducto(nuevoProducto);
             }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+            }
             catch (Exception exception)
             {
 
                 throw exception;
+
             }
 
 
@@ -84,27 +99,67 @@ namespace Aplicacion.Servicios
         public async void EliminarProductoPorId(Guid id)
         {
             try
-            {
-              
+            {             
                 await _repositorioProductos.EliminarProductoPorId(id);
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
             }
             catch (Exception exception)
             {
 
                 throw exception;
+
             }
         }
 
         public async Task<DtoProducto> ConsultarProductoPorId(Guid idProducto)
         {
-            var producto = (await _repositorioProductos.ConsultarProductos(string.Empty)).Where(p=> p.IdProducto == idProducto).FirstOrDefault();
-            
-            return (new DtoProducto(producto.IdProducto,producto.Stock,producto.Nombre,producto.Descripcion,producto.Precio, producto.IdInventario, producto.IdProveedor));
+            try
+            {
+                
+                var producto = (await _repositorioProductos.ConsultarProductos(string.Empty)).Where(p => p.IdProducto == idProducto).FirstOrDefault();
+
+                return (new DtoProducto(producto.IdProducto, producto.Stock, producto.Nombre, producto.Descripcion, producto.Precio, producto.IdInventario, producto.IdProveedor));
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
         }
 
         public async void GuardarProductoEditado(DtoProducto dtoProducto)
         {
-            await (_repositorioProductos.EditarProducto(Producto.Crear(dtoProducto.IdProducto, dtoProducto.Stock, dtoProducto.Nombre, dtoProducto.Descripcion, dtoProducto.Precio, dtoProducto.IdInventario, dtoProducto.IdProveedor)));
+            try
+            {
+
+                await (_repositorioProductos.EditarProducto(Producto.Crear(dtoProducto.IdProducto, dtoProducto.Stock, dtoProducto.Nombre, dtoProducto.Descripcion, dtoProducto.Precio, dtoProducto.IdInventario, dtoProducto.IdProveedor)));
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
 
         }
     }

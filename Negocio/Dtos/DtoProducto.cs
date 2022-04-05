@@ -41,7 +41,7 @@ namespace Aplicacion.Dtos
             Descripcion = descripcion;
             Precio = precio;
             IdProveedor = idProveedor;
-            _idInventario = idInventario;
+            IdInventario = idInventario;
         }
     }
 }

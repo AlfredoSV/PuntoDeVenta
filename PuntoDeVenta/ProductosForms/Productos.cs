@@ -33,8 +33,8 @@ namespace PuntoDeVenta.ProductosForms
 
             try
             {
-                var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
                 LimpiarGrid();
                 AgregarBotonesGrid();
                 CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
@@ -77,8 +77,8 @@ namespace PuntoDeVenta.ProductosForms
 
                     }
 
-                    var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                    var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                    var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                    var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
                     LimpiarGrid();
                     AgregarBotonesGrid();
                     CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
@@ -143,8 +143,8 @@ namespace PuntoDeVenta.ProductosForms
                 try
                 {
                     _servicioProductos.GuardarNuevoProducto(stock, nombre, descripcion, precio, proveedor);
-                    var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                    var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                    var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                    var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
                     LimpiarGrid();
                     AgregarBotonesGrid();
                     productos.Pagina += 1;
@@ -186,8 +186,8 @@ namespace PuntoDeVenta.ProductosForms
         private async void btnRecargarProductos_Click(object sender, EventArgs e)
         {
             txtBuscar.Text = "";
-            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
             LimpiarGrid();
             AgregarBotonesGrid();
             productos.Pagina += 1;
@@ -197,8 +197,8 @@ namespace PuntoDeVenta.ProductosForms
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
             var txtFiltro = txtBuscar.Text.Trim();
-            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, txtFiltro);
-            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, txtFiltro);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
             LimpiarGrid();
             AgregarBotonesGrid();
             productos.Pagina += 1;
@@ -217,8 +217,8 @@ namespace PuntoDeVenta.ProductosForms
                 pagina -= 2;
             else
                 pagina -= 1;
-            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
-            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
             LimpiarGrid();
             AgregarBotonesGrid();
             productos.Pagina = Int32.Parse(txtPagActual.Text) - 1;
@@ -230,8 +230,8 @@ namespace PuntoDeVenta.ProductosForms
         {
             var pagina = Int32.Parse(txtPagActual.Text);
             var buscarFiltro = txtBuscar.Text.Trim();
-            var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
-            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+            var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
             LimpiarGrid();
             AgregarBotonesGrid();
             productos.Pagina += 1;

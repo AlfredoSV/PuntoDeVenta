@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using PuntoDeVenta.ClasesAuxiliares;
 using Aplicacion;
 using Dominio;
+using Aplicacion.Dtos;
 
 namespace PuntoDeVenta.UsuariosForms
 {
@@ -21,6 +22,11 @@ namespace PuntoDeVenta.UsuariosForms
         private Usuario _usuarioLogueado;
         private ServicioUsuarios _servicioUsuarios;
         private ServicioCatalogos _servicioCatalogos;
+
+
+        private const int PAGINA_POR_DEFECTO = 0;
+        private const int TAMANIO_PAGINA_POR_DEFECTO = 10;
+        private const string BUSCAR_FILTRO_POR_DEFECTO = "";
 
         public UsuariosFrm()
         {
@@ -50,14 +56,14 @@ namespace PuntoDeVenta.UsuariosForms
 
             try
             {
-
+                var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
                 LimpiarGrid();
                 AgregarBotonesGrid();
                 CargarEstatus();
                 CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD());
                 CargarRoles(await _servicioCatalogos.ConsultarRolesBD());
 
-                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion)).ToList();
 
                 dataGridViewUsuarios.DataSource = usuarios;
 
@@ -152,6 +158,8 @@ namespace PuntoDeVenta.UsuariosForms
             
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
             List<DtoUsuario> usuarios;
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+
 
             try
             {
@@ -160,7 +168,7 @@ namespace PuntoDeVenta.UsuariosForms
 
                 comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
 
-                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion)).ToList();
            
                 dataGridViewUsuarios.DataSource = usuarios;
 
@@ -184,6 +192,7 @@ namespace PuntoDeVenta.UsuariosForms
         {
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
             List<DtoUsuario> usuarios;
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
 
             try
             {
@@ -192,7 +201,7 @@ namespace PuntoDeVenta.UsuariosForms
 
                 comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
 
-                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion)).ToList();
 
                 dataGridViewUsuarios.DataSource = usuarios;
 
@@ -281,6 +290,8 @@ namespace PuntoDeVenta.UsuariosForms
             var columna = e.ColumnIndex.ToString();
             List<DtoUsuario> usuarios;
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+
 
             try
             {
@@ -307,7 +318,7 @@ namespace PuntoDeVenta.UsuariosForms
                     //CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
                     //productos.Pagina += 1;
                     //ListarProductosGrid(productos);
-                    usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados((int)comboEstatus)).ToList();
+                    usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion)).ToList();
                     dataGridViewUsuarios.DataSource = usuarios;
 
                 }

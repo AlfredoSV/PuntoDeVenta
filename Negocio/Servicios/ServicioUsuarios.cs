@@ -1,4 +1,5 @@
 ﻿using AccesoDatos.Repositorios;
+using Aplicacion.Dtos;
 using Aplicacion.Enums;
 using Dominio;
 using Dominio.Entidades;
@@ -35,26 +36,61 @@ namespace Aplicacion.Servicios
 
         public async Task GuardarNuevoUsuario(DtoUsuario dtoUsuario)
         {
-            if (await _repositorioUsuarios.ConsultarSiExisteUsuario(dtoUsuario.NombreUsuario))
-                throw new ExcepcionComun("Aplicacion", $"Este nombre de usuario {dtoUsuario.NombreUsuario} no está disponible", "GuardarNuevoUsuario");
+            try
+            {
+                if (await _repositorioUsuarios.ConsultarSiExisteUsuario(dtoUsuario.NombreUsuario))
+                    throw new ExcepcionComun("Aplicacion", $"Este nombre de usuario {dtoUsuario.NombreUsuario} no está disponible", "GuardarNuevoUsuario");
 
-            var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
-            var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
-            var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrsenia, DateTime.Now, false, sucursal, rol);
-            _repositorioUsuarios.GuardarUsuario(usuario);
+                var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
+                var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
+                var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrsenia, DateTime.Now, false, sucursal, rol);
+                _repositorioUsuarios.GuardarUsuario(usuario);
+            
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
+
 
         }
 
-        public async Task<IEnumerable<DtoUsuario>> ConsultarUsuariosPaginados(int estatus)
+        public async Task<IEnumerable<DtoUsuario>> ConsultarUsuariosPaginados(int estatus, DtoPropiedadesPaginacion dtoPropiedadesPaginacion)
         {
-         
-            List<Usuario> usuarios = (await _repositorioUsuarios.ConsultarUsuarios()).ToList();
+            List<Usuario> usuarios = new List<Usuario>();
             List<DtoUsuario> dtoUsuarios = new List<DtoUsuario>();
+            try
+            {
+                usuarios = (await _repositorioUsuarios.ConsultarUsuarios()).ToList();
+                dtoUsuarios = new List<DtoUsuario>();
 
-            if (estatus != (int)EstatusUsuarioBusqueda.Todos)
-                usuarios = (usuarios).Where(u => (u.Activo == (estatus == (int)EstatusUsuarioBusqueda.Activos))).ToList();
+                if (estatus != (int)EstatusUsuarioBusqueda.Todos)
+                    usuarios = (usuarios).Where(u => (u.Activo == (estatus == (int)EstatusUsuarioBusqueda.Activos))).ToList();
 
-            usuarios.ForEach(u => dtoUsuarios.Add(new DtoUsuario(u.IdUsuario, u.NombreUsuario ,u.FechayHoraAlta, u.Sucursal.IdSucursal, u.Rol.IdRol, u.Sucursal.Nombre, u.Rol.Nombre, u.Activo)));
+                usuarios.Skip(dtoPropiedadesPaginacion.Pagina * dtoPropiedadesPaginacion.TamanioPagina).Take(dtoPropiedadesPaginacion.TamanioPagina);
+                usuarios.ForEach(u => dtoUsuarios.Add(new DtoUsuario(u.IdUsuario, u.NombreUsuario, u.FechayHoraAlta, u.Sucursal.IdSucursal, u.Rol.IdRol, u.Sucursal.Nombre, u.Rol.Nombre, u.Activo)));
+
+            }catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+
+            }catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
+
 
             return dtoUsuarios;
 
@@ -62,7 +98,23 @@ namespace Aplicacion.Servicios
 
         public async void EliminarUsuarioPorId(Guid idUsuario)
         {
-            await _repositorioUsuarios.EliminarUsuario(idUsuario);
+            try
+            {
+                await _repositorioUsuarios.EliminarUsuario(idUsuario);
+
+            }catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+
+            }catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
+
         }
     }
 }
