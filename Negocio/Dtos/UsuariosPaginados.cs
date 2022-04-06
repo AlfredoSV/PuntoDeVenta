@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aplicacion.Dtos
 {
-    public class DtoUsuariosPaginados
+    public class UsuariosPaginados
     {
         private IEnumerable<DtoUsuario> _usuarios;
         private int _pagina;
@@ -18,13 +18,18 @@ namespace Aplicacion.Dtos
         public int TotalUsuarios { get => _totalUsuarios; set => _totalUsuarios = value; }
         public int TotalPaginas { get => _totalPaginas; set => _totalPaginas = value; }
 
-        public DtoUsuariosPaginados(IEnumerable<DtoUsuario> usuarios, int pagina, int tamanioPagina, int totalUsuarios, int totalPaginas)
+        public UsuariosPaginados(IEnumerable<DtoUsuario> usuarios, int pagina, int tamanioPagina, int totalUsuarios, int totalPaginas)
         {
             Usuarios = usuarios;
             Pagina = pagina;
             TamanioPagina = tamanioPagina;
             TotalUsuarios = totalUsuarios;
             TotalPaginas = totalPaginas;
+        }
+
+        public void InicializarPagina(int pag = 1)
+        {
+            _pagina += pag;
         }
     }
 }

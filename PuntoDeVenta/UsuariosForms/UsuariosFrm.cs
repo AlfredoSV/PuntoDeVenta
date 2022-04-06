@@ -33,20 +33,20 @@ namespace PuntoDeVenta.UsuariosForms
         private async void UsuariosFrm_Load(object sender, EventArgs e)
         {
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
-            DtoUsuariosPaginados usuarios;
+            UsuariosPaginados usuariosPaginados;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
 
             try
             {
-                var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                usuariosPaginados.InicializarPagina();
                 LimpiarGrid();
                 AgregarBotonesGrid();
                 CargarEstatus();
                 CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD());
-                CargarRoles(await _servicioCatalogos.ConsultarRolesBD());
-
-                usuarios = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
-                usuarios.Pagina += 1;
-                ListarUsuariosGrid(usuarios);
+                CargarRoles(await _servicioCatalogos.ConsultarRolesBD());               
+                ListarUsuariosGrid(usuariosPaginados);
 
             }
             catch (ExcepcionComun excepcionComun)
@@ -70,31 +70,56 @@ namespace PuntoDeVenta.UsuariosForms
             this.Close();
         }
               
-        private void btnRecargarUsuarios_Click(object sender, EventArgs e)
+        private async void btnRecargarUsuarios_Click(object sender, EventArgs e)
         {
-            LimpiarGrid();
-            AgregarBotonesGrid();
+            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            UsuariosPaginados usuariosPaginados;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
+            try
+            {
+                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                usuariosPaginados.InicializarPagina();
+                txtBuscar.Text = "";
+                LimpiarGrid();
+                AgregarBotonesGrid();
+                comboEstatusBusqueda.DataSource = null;
+                comboEstatusBusqueda.Items.Clear();                
+                CargarEstatus();
+                               
+                ListarUsuariosGrid(usuariosPaginados);
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
 
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
-            
-            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
-            DtoUsuariosPaginados dtoUsuariosPaginados;
-            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
 
+            int comboEstatus;
+            UsuariosPaginados usuariosPaginados;
+            string buscar = txtBuscar.Text;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
 
             try
             {
-                LimpiarGrid();
-                AgregarBotonesGrid();
-
+                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar);
                 comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
-
-                dtoUsuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
-                dtoUsuariosPaginados.Pagina += 1;
-                ListarUsuariosGrid(dtoUsuariosPaginados);
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                usuariosPaginados.InicializarPagina();
+                LimpiarGrid();
+                AgregarBotonesGrid();            
+                ListarUsuariosGrid(usuariosPaginados);
 
             }
             catch (ExcepcionComun excepcionComun)
@@ -114,23 +139,21 @@ namespace PuntoDeVenta.UsuariosForms
 
         private async void comboEstatusBusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int comboEstatus;
-            DtoUsuariosPaginados dtoUsuariosPaginados;
-            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            UsuariosPaginados usuariosPaginados;
+            string buscar = txtBuscar.Text;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
 
             try
             {
+                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar);
+                if (comboEstatusBusqueda.SelectedItem != null)
+                    comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                usuariosPaginados.InicializarPagina();
                 LimpiarGrid();
-
-                AgregarBotonesGrid();
-
-                comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
-
-                dtoUsuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
-                dtoUsuariosPaginados.Pagina += 1;
-                ListarUsuariosGrid(dtoUsuariosPaginados);
-
-                
+                AgregarBotonesGrid();              
+                ListarUsuariosGrid(usuariosPaginados);
 
             }
             catch (ExcepcionComun excepcionComun)
@@ -215,16 +238,18 @@ namespace PuntoDeVenta.UsuariosForms
         private async void dataGridViewUsuarios_CellContentClickAsync(object sender, DataGridViewCellEventArgs e)
         {
             var columna = e.ColumnIndex.ToString();
-            DtoUsuariosPaginados dtoUsuariosPaginados;
+            UsuariosPaginados usuariosPaginados;
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
-            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
+            Guid idUsuario;
 
             try
             {
+                
                 if (columna.Equals("0") || columna.Equals("1"))
                 {
-                    var idUsuario = Guid.Parse(dataGridViewUsuarios.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    idUsuario = Guid.Parse(dataGridViewUsuarios.Rows[e.RowIndex].Cells[2].Value.ToString());
+                    dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
 
                     switch (columna)
                     {
@@ -245,8 +270,8 @@ namespace PuntoDeVenta.UsuariosForms
                     //CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
                     //productos.Pagina += 1;
                     //ListarProductosGrid(productos);
-                    dtoUsuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
-                    dataGridViewUsuarios.DataSource = dtoUsuariosPaginados.Usuarios;
+                    usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
+                    dataGridViewUsuarios.DataSource = usuariosPaginados.Usuarios;
 
                 }
 
@@ -337,23 +362,23 @@ namespace PuntoDeVenta.UsuariosForms
         #endregion Sobrecargas
 
         #region Lógica presentación reútilizable
-        private void ListarUsuariosGrid(DtoUsuariosPaginados dtoUsuariosPaginados)
+        private void ListarUsuariosGrid(UsuariosPaginados usuariosPaginados)
         {
             try
             {
 
-                dataGridViewUsuarios.DataSource = dtoUsuariosPaginados.Usuarios;
-                txtPagActual.Text = dtoUsuariosPaginados.Pagina.ToString();
-                txtPaginasTotalesProductos.Text = dtoUsuariosPaginados.TotalPaginas.ToString();
+                dataGridViewUsuarios.DataSource = usuariosPaginados.Usuarios;
+                txtPagActual.Text = usuariosPaginados.Pagina.ToString();
+                txtPaginasTotalesProductos.Text = usuariosPaginados.TotalPaginas.ToString();
 
                 btnAvanzarPag.Enabled = true;
                 btnRegresarPag.Enabled = true;
 
-                if (txtPagActual.Text.Equals(dtoUsuariosPaginados.TotalPaginas.ToString()) && !txtPagActual.Text.Equals("1"))
+                if (txtPagActual.Text.Equals(usuariosPaginados.TotalPaginas.ToString()) && !txtPagActual.Text.Equals("1"))
                 {
                     btnAvanzarPag.Enabled = false;
                 }
-                if (txtPagActual.Text.Equals("1") && dtoUsuariosPaginados.TotalPaginas == 1)
+                if (txtPagActual.Text.Equals("1") && usuariosPaginados.TotalPaginas == 1)
                 {
 
                     btnAvanzarPag.Enabled = false;
@@ -363,7 +388,7 @@ namespace PuntoDeVenta.UsuariosForms
                 {
                     btnRegresarPag.Enabled = false;
                 }
-                if (dtoUsuariosPaginados.TotalPaginas.ToString().Equals("0"))
+                if (usuariosPaginados.TotalPaginas.ToString().Equals("0"))
                 {
 
                     btnAvanzarPag.Enabled = false;
