@@ -3,12 +3,6 @@ using Aplicacion.Servicios;
 using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using PuntoDeVenta.ClasesAuxiliares;
 using Aplicacion;
@@ -35,20 +29,7 @@ namespace PuntoDeVenta.UsuariosForms
             InitializeComponent();
         }
 
-        public void Show(Usuario usuario)
-        {
-            _usuarioLogueado = usuario;
-            base.Show();
-        }
-
-        private void btnSalirUsuario_Click(object sender, EventArgs e)
-        {
-            var inicioFrm = new Inicio();
-            inicioFrm.Show(_usuarioLogueado);
-            this.Dispose();
-            this.Close();
-        }
-
+        #region Eventos
         private async void UsuariosFrm_Load(object sender, EventArgs e)
         {
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
@@ -68,9 +49,9 @@ namespace PuntoDeVenta.UsuariosForms
                 ListarUsuariosGrid(usuarios);
 
             }
-            catch (ExcepcionComun exception)
+            catch (ExcepcionComun excepcionComun)
             {
-                MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception exception)
@@ -81,76 +62,19 @@ namespace PuntoDeVenta.UsuariosForms
 
         }
 
-        private void AgregarBotonesGrid()
+        private void btnSalirUsuario_Click(object sender, EventArgs e)
         {
-            DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
-            dataGridViewUsuarios.Columns.Add(btnBorrar);
-            btnBorrar.Text = "Borrar";
-            btnBorrar.UseColumnTextForButtonValue = true;
-
-            DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
-            dataGridViewUsuarios.Columns.Add(btnEditar);
-            btnEditar.Text = "Editar";
-            btnEditar.UseColumnTextForButtonValue = true;
-
+            var inicioFrm = new Inicio();
+            inicioFrm.Show(_usuarioLogueado);
+            this.Dispose();
+            this.Close();
         }
-        private void LimpiarGrid()
-        {
-            dataGridViewUsuarios.Columns.Clear();
-            dataGridViewUsuarios.DataSource = null;
-
-        }
-
+              
         private void btnRecargarUsuarios_Click(object sender, EventArgs e)
         {
             LimpiarGrid();
             AgregarBotonesGrid();
 
-        }
-
-
-        private void CargarEstatus()
-        {
-            var items = new List<Item>();
-
-
-            items.Add(new Item("Todos", (int)EstatusUsuarioBusqueda.Todos));
-            items.Add(new Item("Inactivos", (int)EstatusUsuarioBusqueda.Inactivos));
-            items.Add(new Item("Activos", (int)EstatusUsuarioBusqueda.Activos));
-
-            comboEstatusBusqueda.DisplayMember = "Name";
-            comboEstatusBusqueda.ValueMember = "Value";
-            comboEstatusBusqueda.DataSource = items;
-        }
-
-        private void CargarSucursales(IEnumerable<Sucursal> sucursales)
-        {
-            var items = new List<Item>();
-
-            items.Add(new Item("--- Seleciona un sucursal. ---", Guid.Empty));
-            foreach (var get in sucursales)
-            {
-                items.Add(new Item(get.Nombre, get.IdSucursal));
-            }
-
-            comboBoxSucursales.DisplayMember = "Name";
-            comboBoxSucursales.ValueMember = "Value";
-            comboBoxSucursales.DataSource = items;
-        }
-
-        private void CargarRoles(IEnumerable<Rol> sucursales)
-        {
-            var items = new List<Item>();
-
-            items.Add(new Item("--- Seleciona un Rol. ---", Guid.Empty));
-            foreach (var get in sucursales)
-            {
-                items.Add(new Item(get.Nombre, get.IdRol));
-            }
-
-            comboBoxRoles.DisplayMember = "Name";
-            comboBoxRoles.ValueMember = "Value";
-            comboBoxRoles.DataSource = items;
         }
 
         private async void btnBuscar_Click(object sender, EventArgs e)
@@ -169,13 +93,13 @@ namespace PuntoDeVenta.UsuariosForms
                 comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
 
                 dtoUsuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
-           
-                dataGridViewUsuarios.DataSource = dtoUsuariosPaginados.Usuarios;
+                dtoUsuariosPaginados.Pagina += 1;
+                ListarUsuariosGrid(dtoUsuariosPaginados);
 
             }
-            catch (ExcepcionComun exception)
+            catch (ExcepcionComun excepcionComun)
             {
-                MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception exception)
@@ -190,26 +114,28 @@ namespace PuntoDeVenta.UsuariosForms
 
         private async void comboEstatusBusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            int comboEstatus;
             DtoUsuariosPaginados dtoUsuariosPaginados;
             var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
 
             try
             {
                 LimpiarGrid();
+
                 AgregarBotonesGrid();
 
                 comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
 
                 dtoUsuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
+                dtoUsuariosPaginados.Pagina += 1;
+                ListarUsuariosGrid(dtoUsuariosPaginados);
 
-                dataGridViewUsuarios.DataSource = dtoUsuariosPaginados.Usuarios;
                 
 
             }
-            catch (ExcepcionComun exception)
+            catch (ExcepcionComun excepcionComun)
             {
-                MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
             catch (Exception exception)
@@ -260,9 +186,9 @@ namespace PuntoDeVenta.UsuariosForms
                     
 
                 }
-                catch (ExcepcionComun exception)
+                catch (ExcepcionComun excepcionComun)
                 {
-                    MessageBox.Show(exception.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 }
                 catch (Exception exception)
@@ -325,6 +251,10 @@ namespace PuntoDeVenta.UsuariosForms
                 }
 
 
+            }catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
             catch (Exception exception)
             {
@@ -333,6 +263,80 @@ namespace PuntoDeVenta.UsuariosForms
             }
         }
 
+        private async void btnAvanzarPag_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var pagina = Int32.Parse(txtPagActual.Text);
+                var buscarFiltro = txtBuscar.Text.Trim();
+
+                var estatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+                var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+                var usuarios = await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion);
+                LimpiarGrid();
+                AgregarBotonesGrid();
+                usuarios.Pagina += 1;
+                ListarUsuariosGrid(usuarios);
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+           
+        }
+
+        private async void btnRegresarPag_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                var pagina = Int32.Parse(txtPagActual.Text);
+                var buscarFiltro = txtBuscar.Text.Trim();
+                var estatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+                if (txtPagActual.Text == txtPaginasTotalesProductos.Text)
+                    pagina -= 2;
+                else
+                    pagina -= 1;
+                var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+                var usuarios = await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion);
+                LimpiarGrid();
+                AgregarBotonesGrid();
+                usuarios.Pagina = Int32.Parse(txtPagActual.Text) - 1;
+                ListarUsuariosGrid(usuarios);
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+        }
+
+        #endregion Eventos
+
+        #region Sobrecargas
+
+        public void Show(Usuario usuario)
+        {
+            _usuarioLogueado = usuario;
+            base.Show();
+        }
+
+        #endregion Sobrecargas
+
+        #region Lógica presentación reútilizable
         private void ListarUsuariosGrid(DtoUsuariosPaginados dtoUsuariosPaginados)
         {
             try
@@ -367,11 +371,84 @@ namespace PuntoDeVenta.UsuariosForms
                 }
 
             }
+            catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
             catch (Exception exception)
             {
 
                 throw exception;
             }
         }
+
+        private void LimpiarGrid()
+        {
+            dataGridViewUsuarios.Columns.Clear();
+            dataGridViewUsuarios.DataSource = null;
+
+        }
+
+        private void AgregarBotonesGrid()
+        {
+            DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();
+            dataGridViewUsuarios.Columns.Add(btnBorrar);
+            btnBorrar.Text = "Borrar";
+            btnBorrar.UseColumnTextForButtonValue = true;
+
+            DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
+            dataGridViewUsuarios.Columns.Add(btnEditar);
+            btnEditar.Text = "Editar";
+            btnEditar.UseColumnTextForButtonValue = true;
+
+        }
+
+        private void CargarEstatus()
+        {
+            var items = new List<Item>();
+
+
+            items.Add(new Item("Todos", (int)EstatusUsuarioBusqueda.Todos));
+            items.Add(new Item("Inactivos", (int)EstatusUsuarioBusqueda.Inactivos));
+            items.Add(new Item("Activos", (int)EstatusUsuarioBusqueda.Activos));
+
+            comboEstatusBusqueda.DisplayMember = "Name";
+            comboEstatusBusqueda.ValueMember = "Value";
+            comboEstatusBusqueda.DataSource = items;
+        }
+
+        private void CargarSucursales(IEnumerable<Sucursal> sucursales)
+        {
+            var items = new List<Item>();
+
+            items.Add(new Item("--- Seleciona un sucursal. ---", Guid.Empty));
+            foreach (var get in sucursales)
+            {
+                items.Add(new Item(get.Nombre, get.IdSucursal));
+            }
+
+            comboBoxSucursales.DisplayMember = "Name";
+            comboBoxSucursales.ValueMember = "Value";
+            comboBoxSucursales.DataSource = items;
+        }
+
+        private void CargarRoles(IEnumerable<Rol> sucursales)
+        {
+            var items = new List<Item>();
+
+            items.Add(new Item("--- Seleciona un Rol. ---", Guid.Empty));
+            foreach (var get in sucursales)
+            {
+                items.Add(new Item(get.Nombre, get.IdRol));
+            }
+
+            comboBoxRoles.DisplayMember = "Name";
+            comboBoxRoles.ValueMember = "Value";
+            comboBoxRoles.DataSource = items;
+        }
+
+        #endregion Lógica presentación reútilizable
+
     }
 }

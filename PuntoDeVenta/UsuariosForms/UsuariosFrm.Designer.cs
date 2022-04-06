@@ -66,6 +66,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnAvanzarPag.TabIndex = 37;
             this.btnAvanzarPag.Text = ">>";
             this.btnAvanzarPag.UseVisualStyleBackColor = true;
+            this.btnAvanzarPag.Click += new System.EventHandler(this.btnAvanzarPag_Click);
             // 
             // btnRegresarPag
             // 
@@ -75,6 +76,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnRegresarPag.TabIndex = 36;
             this.btnRegresarPag.Text = "<<";
             this.btnRegresarPag.UseVisualStyleBackColor = true;
+            this.btnRegresarPag.Click += new System.EventHandler(this.btnRegresarPag_Click);
             // 
             // txtPagActual
             // 
