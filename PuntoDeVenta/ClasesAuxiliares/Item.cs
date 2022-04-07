@@ -11,8 +11,8 @@ namespace PuntoDeVenta.ClasesAuxiliares
 
     public class Item
     {
-        public string Name { get; private set; }
-        public Guid Value { get; private set; }
+        public string Name { get; set; }
+        public Guid Value { get; set; }
         public int ValueInt { get; set; }
         public Item(string _name, Guid _value)
         {

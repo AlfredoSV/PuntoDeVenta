@@ -40,7 +40,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnGuardarUsuario = new System.Windows.Forms.Button();
             this.lbltIEditarProducto = new System.Windows.Forms.Label();
             this.btnSalirEditarProductos = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboEstatusBusqueda = new System.Windows.Forms.ComboBox();
             this.lblActivo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -102,7 +102,6 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             this.txtContrasenia.Location = new System.Drawing.Point(124, 92);
             this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.PasswordChar = '*';
             this.txtContrasenia.Size = new System.Drawing.Size(121, 20);
             this.txtContrasenia.TabIndex = 30;
             // 
@@ -144,14 +143,14 @@ namespace PuntoDeVenta.UsuariosForms
             this.btnSalirEditarProductos.UseVisualStyleBackColor = false;
             this.btnSalirEditarProductos.Click += new System.EventHandler(this.btnSalirEditarProductos_Click);
             // 
-            // comboBox1
+            // comboEstatusBusqueda
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(123, 227);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(122, 21);
-            this.comboBox1.TabIndex = 40;
+            this.comboEstatusBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboEstatusBusqueda.FormattingEnabled = true;
+            this.comboEstatusBusqueda.Location = new System.Drawing.Point(123, 227);
+            this.comboEstatusBusqueda.Name = "comboEstatusBusqueda";
+            this.comboEstatusBusqueda.Size = new System.Drawing.Size(122, 21);
+            this.comboEstatusBusqueda.TabIndex = 40;
             // 
             // lblActivo
             // 
@@ -167,7 +166,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(265, 314);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboEstatusBusqueda);
             this.Controls.Add(this.lblActivo);
             this.Controls.Add(this.btnSalirEditarProductos);
             this.Controls.Add(this.lbltIEditarProducto);
@@ -186,6 +185,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.Name = "EditarUsuarioFrm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EditarUsuario";
+            this.Load += new System.EventHandler(this.EditarUsuarioFrm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,7 +204,7 @@ namespace PuntoDeVenta.UsuariosForms
         private System.Windows.Forms.Button btnGuardarUsuario;
         private System.Windows.Forms.Label lbltIEditarProducto;
         private System.Windows.Forms.Button btnSalirEditarProductos;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboEstatusBusqueda;
         private System.Windows.Forms.Label lblActivo;
     }
 }

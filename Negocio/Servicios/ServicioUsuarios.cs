@@ -43,7 +43,7 @@ namespace Aplicacion.Servicios
 
                 var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
                 var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
-                var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrsenia, DateTime.Now, false, sucursal, rol);
+                var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrasenia, DateTime.Now, false, sucursal, rol);
                 _repositorioUsuarios.GuardarUsuario(usuario);
 
             }
@@ -61,6 +61,32 @@ namespace Aplicacion.Servicios
             }
 
 
+        }
+
+        public async Task<DtoUsuario> DetalleUsuario(Guid idUsuario)
+        {
+            Usuario usuario = null;
+            DtoUsuario dtoUsuario = null;
+            try
+            {
+
+                usuario = await _repositorioUsuarios.ConsultarDetalleUsuario(idUsuario);
+                dtoUsuario = new DtoUsuario(usuario.IdUsuario, usuario.NombreUsuario,usuario.Contrsenia, usuario.FechayHoraAlta, usuario.Sucursal.IdSucursal, usuario.Rol.IdRol, usuario.Sucursal.Nombre, usuario.Rol.Nombre, usuario.Activo);
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
+            return dtoUsuario;
         }
 
         public async Task<UsuariosPaginados> ConsultarUsuariosPaginados(int estatus, DtoPropiedadesPaginacion dtoPropiedadesPaginacion)
@@ -85,7 +111,7 @@ namespace Aplicacion.Servicios
                 totalPaginas = (int)Math.Ceiling((double)totalUsuarios / dtoPropiedadesPaginacion.TamanioPagina);
 
                 usuarios = usuarios.Skip(dtoPropiedadesPaginacion.Pagina * dtoPropiedadesPaginacion.TamanioPagina).Take(dtoPropiedadesPaginacion.TamanioPagina).ToList();
-                usuarios.ForEach(u => dtoUsuarios.Add(new DtoUsuario(u.IdUsuario, u.NombreUsuario, u.FechayHoraAlta, u.Sucursal.IdSucursal, u.Rol.IdRol, u.Sucursal.Nombre, u.Rol.Nombre, u.Activo)));
+                usuarios.ForEach(u => dtoUsuarios.Add(new DtoUsuario(u.IdUsuario, u.NombreUsuario,u.Contrsenia, u.FechayHoraAlta, u.Sucursal.IdSucursal, u.Rol.IdRol, u.Sucursal.Nombre, u.Rol.Nombre, u.Activo)));
 
             }
             catch (ExcepcionComun excepcionComun)

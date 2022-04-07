@@ -62,7 +62,7 @@ namespace AccesoDatos.Repositorios
                         sqlDataReader.Read();
 
 
-                        rol = Rol.Crear(sqlDataReader.GetGuid(4), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
+                        rol = Rol.Crear(sqlDataReader.GetGuid(5), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
 
                         sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
 
@@ -73,6 +73,53 @@ namespace AccesoDatos.Repositorios
 
 
 
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return usuario;
+        }
+
+        public async Task<Usuario> ConsultarDetalleUsuario(Guid idUsuario)
+        {
+            var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
+                        Sucursales suc on suc.idSucursal = usu.idSucursal where usu.idUsuario = @idUsuario";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+            Usuario usuario = null;
+            Rol rol = null;
+            Sucursal sucursal = null;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+                    sqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+                            rol = Rol.Crear(sqlDataReader.GetGuid(5), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
+
+                            sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
+
+                            usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
+                                sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
+
+                           
+                        }
+
+                    }
                 }
             }
             catch (Exception e)

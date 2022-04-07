@@ -7,7 +7,7 @@ namespace Aplicacion
     {
         private Guid _idUsuario;
         private string _nombreUsuario;
-        private string _contrsenia;
+        private string _contrasenia;
         private DateTime _fechayHoraAlta;
         private Guid _idsucursal;
         private Guid _idrol;
@@ -17,7 +17,7 @@ namespace Aplicacion
 
         public Guid IdUsuario { get => _idUsuario; set => _idUsuario = value; }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
-        public string Contrsenia { get => _contrsenia; set => _contrsenia = value; }
+        public string Contrasenia { get => _contrasenia; set => _contrasenia = value; }
         public DateTime FechayHoraAlta { get => _fechayHoraAlta; set => _fechayHoraAlta = value; }
         public Guid Idsucursal { get => _idsucursal; set => _idsucursal = value; }
         public Guid Idrol { get => _idrol; set => _idrol = value; }
@@ -25,7 +25,7 @@ namespace Aplicacion
         public string Rol { get => _rol; set => _rol = value; }
         public bool Activo { get => _activo; set => _activo = value; }
 
-        public DtoUsuario(Guid idUsuario, string nombreUsuario, DateTime fechayHoraAlta, Guid idsucursal, Guid idrol, string sucursal, string rol, bool activo)
+        public DtoUsuario(Guid idUsuario, string nombreUsuario,string contrasenia, DateTime fechayHoraAlta, Guid idsucursal, Guid idrol, string sucursal, string rol, bool activo)
         {
             IdUsuario = idUsuario;
             NombreUsuario = nombreUsuario;
@@ -35,12 +35,13 @@ namespace Aplicacion
             Sucursal = sucursal;
             Rol = rol;
             Activo = activo;
+            Contrasenia = contrasenia;
         }
 
         public DtoUsuario(string nombreUsuario, string contrsenia, Guid idsucursal, Guid idrol)
         {
             NombreUsuario = nombreUsuario;
-            Contrsenia = contrsenia;
+            Contrasenia = contrsenia;
             Idsucursal = idsucursal;
             Idrol = idrol;
         }
