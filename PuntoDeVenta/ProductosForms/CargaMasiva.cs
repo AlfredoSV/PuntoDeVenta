@@ -1,4 +1,5 @@
 ﻿using Aplicacion.Servicios;
+using Dominio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace PuntoDeVenta.ProductosForms
     public partial class CargaMasiva : Form
     {
         private static CargaMasiva _instancia;
+        private ServicioExcelProductos _servicioExcelProductos;
 
         public static CargaMasiva Instancia
         {
@@ -32,6 +34,7 @@ namespace PuntoDeVenta.ProductosForms
 
         private CargaMasiva()
         {
+            _servicioExcelProductos = ServicioExcelProductos.Instancia;
             InitializeComponent();
         }
 
@@ -56,9 +59,8 @@ namespace PuntoDeVenta.ProductosForms
                         {
                             using (var fileStream = new FileStream(openFile.FileName, FileMode.Open, FileAccess.Read))
                             {
-                                fileStream.CopyTo(memory);
-                                var carga = new ServicioExcelProductos();
-                                var res = carga.LeerExcel(memory);
+                                fileStream.CopyTo(memory);                           
+                                var res = _servicioExcelProductos.LeerExcelProductos(memory);
                                 dataGridViewProductosCargados.DataSource = res;
                             }
                         }
@@ -66,6 +68,10 @@ namespace PuntoDeVenta.ProductosForms
                        
                     }
                 }
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Message, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception exception)
             {
@@ -75,7 +81,7 @@ namespace PuntoDeVenta.ProductosForms
 
         private void btnConfirmarCarga_Click(object sender, EventArgs e)
         {
-            var resultado = MessageBox.Show("¿Esta seguro de cargar los siguientes productos?", "Alterta", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+            var resultado = MessageBox.Show("¿Esta seguro de cargar los siguientes productos?", "Alerta", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
 
             if(DialogResult.OK == resultado)
             {
