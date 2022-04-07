@@ -16,7 +16,7 @@ namespace Aplicacion.Servicios
         private static ServicioUsuarios _instancia;
         private readonly RepositorioUsuarios _repositorioUsuarios;
         private readonly RepositorioCatalogos _repositorioCatalogos;
-        private readonly ServicioCatalogos _servicioCatalogos;
+       
         public static ServicioUsuarios Instancia
         {
             get
@@ -134,10 +134,12 @@ namespace Aplicacion.Servicios
 
         }
 
-        public async void EliminarUsuarioPorId(Guid idUsuario)
+        public async Task EliminarUsuarioPorId(Guid idUsuario,Guid usuarioLogueado)
         {
             try
             {
+                if (idUsuario.Equals(usuarioLogueado))
+                    throw new ExcepcionComun("Servicio", "No es posible eliminar el usuario con el que ahora mismo está logueado", "EliminarUsuarioPorId");
                 await _repositorioUsuarios.EliminarUsuario(idUsuario);
 
             }

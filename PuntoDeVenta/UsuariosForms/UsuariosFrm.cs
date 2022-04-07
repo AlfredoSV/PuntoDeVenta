@@ -254,7 +254,7 @@ namespace PuntoDeVenta.UsuariosForms
                     switch (columna)
                     {
                         case "0":
-                            _servicioUsuarios.EliminarUsuarioPorId(idUsuario);
+                            await _servicioUsuarios.EliminarUsuarioPorId(idUsuario,_usuarioLogueado.IdUsuario);
                             break;
                         case "1":
                             var editarUsuarioForm = EditarUsuarioFrm.Instancia;
