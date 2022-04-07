@@ -16,6 +16,7 @@ namespace Aplicacion.Servicios
         private static ServicioUsuarios _instancia;
         private readonly RepositorioUsuarios _repositorioUsuarios;
         private readonly RepositorioCatalogos _repositorioCatalogos;
+        private readonly ServicioCatalogos _servicioCatalogos;
         public static ServicioUsuarios Instancia
         {
             get
@@ -154,6 +155,33 @@ namespace Aplicacion.Servicios
 
             }
 
+        }
+
+        public async Task EditarUsuario(DtoUsuario dtoUsuario)
+        {
+            try
+            {
+                var rol = (await _repositorioCatalogos.ConsultarRoles()).Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
+                var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
+                var usuario = Usuario.CrearUsuario(dtoUsuario.IdUsuario,
+                    dtoUsuario.NombreUsuario, dtoUsuario.Contrasenia, dtoUsuario.FechayHoraAlta, dtoUsuario.Activo, sucursal, rol
+                    );
+                await _repositorioUsuarios.ActualizarDatosUsuario(usuario);
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
         }
     }
 }

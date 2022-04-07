@@ -133,6 +133,55 @@ namespace PuntoDeVenta.UsuariosForms
             comboBoxRoles.DataSource = items;
         }
 
+        private async void btnGuardarUsuarioEditado_Click(object sender, EventArgs e)
+        {
+            var usuario = txtUsuario.Text.Trim();
+            var contrasenia = txtContrasenia.Text.Trim();
+            var idRol = ((Item)(comboBoxRoles.SelectedItem)).Value;
+            var idSucursal = ((Item)(comboBoxSucursales.SelectedItem)).Value;
+            var activo = Convert.ToBoolean(((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt);
+            DtoUsuario dtoUsuario;
 
+            var validacion = true;
+            var mensajeValidacion = string.Empty;
+
+            if (usuario.Equals(""))
+            {
+                mensajeValidacion += "* Favor de ingresar un usuario \n";
+                validacion = false;
+            }
+            if (contrasenia.Equals(""))
+            {
+                mensajeValidacion += "* Favor de ingresar una contrasenia \n";
+                validacion = false;
+            }
+
+            if (validacion)
+            {
+                try
+                {
+                    dtoUsuario = new DtoUsuario(_idUsuario,usuario, contrasenia, idSucursal, idRol,activo);
+                    await _servicioUsuarios.EditarUsuario(dtoUsuario);
+
+
+                }
+                catch (ExcepcionComun excepcionComun)
+                {
+                    MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show(mensajeValidacion, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            }
+        }
     }
 }

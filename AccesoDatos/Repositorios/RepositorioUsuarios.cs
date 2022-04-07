@@ -116,7 +116,7 @@ namespace AccesoDatos.Repositorios
                             usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
                                 sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
 
-                           
+
                         }
 
                     }
@@ -151,7 +151,7 @@ namespace AccesoDatos.Repositorios
 
                     sqlCommand = new SqlCommand(sql, conexion);
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
-                    
+
 
                     if (sqlDataReader.HasRows)
                     {
@@ -208,7 +208,7 @@ namespace AccesoDatos.Repositorios
 
                         while (sqlDataReader.Read())
                         {
-                            permisosModulo.Add(PermisosModulo.Crear(sqlDataReader.GetGuid(0),sqlDataReader.GetString(1),sqlDataReader.GetString(2),sqlDataReader.GetString(3),sqlDataReader.GetString(4)));
+                            permisosModulo.Add(PermisosModulo.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetString(3), sqlDataReader.GetString(4)));
                         }
 
                     }
@@ -226,7 +226,7 @@ namespace AccesoDatos.Repositorios
             return permisosModulo;
 
         }
-    
+
         public void GuardarUsuario(Usuario usuario)
         {
             var sql = @"INSERT INTO [dbo].[Usuarios]
@@ -282,7 +282,7 @@ namespace AccesoDatos.Repositorios
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             var res = false;
-      
+
 
             try
             {
@@ -293,7 +293,7 @@ namespace AccesoDatos.Repositorios
                     sqlCommand = new SqlCommand(sql, conexion);
 
                     sqlCommand.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
-                  
+
 
                     sqlDataReader = sqlCommand.ExecuteReader();
 
@@ -301,8 +301,8 @@ namespace AccesoDatos.Repositorios
                     {
                         await sqlDataReader.ReadAsync();
 
-                        res= sqlDataReader.GetBoolean(0);
-                        
+                        res = sqlDataReader.GetBoolean(0);
+
                     }
 
 
@@ -317,9 +317,16 @@ namespace AccesoDatos.Repositorios
             return res;
         }
 
-        public async Task<bool> ActualizarDatosUsuarioUsuario(Usuario usuario)
+        public async Task<bool> ActualizarDatosUsuario(Usuario usuario)
         {
-            var sql = @"";
+            var sql = @"UPDATE [dbo].[Usuarios]
+                       SET 
+                          [usuario] = @usuario
+                          ,[contrasenia] = @contrasenia
+                          ,[idSucursal] = @idSucursal
+                          ,[idRol] = @idRol
+                          ,[activo] = @activo
+                     WHERE [idUsuario] = @idUsuario";
             SqlCommand sqlCommand;
             var res = false;
 
@@ -328,20 +335,23 @@ namespace AccesoDatos.Repositorios
             {
                 using (var conexion = new SqlConnection(_cadCon))
                 {
-                    using (var tran = conexion.BeginTransaction("ActualizarUsuario"))
-                    {
-                        conexion.Open();
 
-                        sqlCommand = new SqlCommand(sql, conexion);
+                    conexion.Open();
 
-                        sqlCommand.Parameters.AddWithValue("nombreUsuario", usuario.NombreUsuario);
+                    sqlCommand = new SqlCommand(sql, conexion);
 
-                        await sqlCommand.ExecuteNonQueryAsync();
+                    sqlCommand.Parameters.AddWithValue("usuario", usuario.NombreUsuario);
+                    sqlCommand.Parameters.AddWithValue("contrasenia", usuario.Contrsenia);
+                    sqlCommand.Parameters.AddWithValue("idSucursal", usuario.Sucursal.IdSucursal);
+                    sqlCommand.Parameters.AddWithValue("idRol", usuario.Rol.IdRol);
+                    sqlCommand.Parameters.AddWithValue("activo", usuario.Activo);
+                    sqlCommand.Parameters.AddWithValue("idUsuario", usuario.IdUsuario);
+                    await sqlCommand.ExecuteNonQueryAsync();
 
-                        tran.Commit();
 
-                    }
-                     
+
+
+
                 }
             }
             catch (Exception e)
@@ -364,16 +374,16 @@ namespace AccesoDatos.Repositorios
             {
                 using (var conexion = new SqlConnection(_cadCon))
                 {
-                   
-                        conexion.Open();
 
-                        sqlCommand = new SqlCommand(sql, conexion);
+                    conexion.Open();
 
-                        sqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
+                    sqlCommand = new SqlCommand(sql, conexion);
 
-                        await sqlCommand.ExecuteNonQueryAsync();
+                    sqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
 
-                       
+                    await sqlCommand.ExecuteNonQueryAsync();
+
+
 
                 }
             }

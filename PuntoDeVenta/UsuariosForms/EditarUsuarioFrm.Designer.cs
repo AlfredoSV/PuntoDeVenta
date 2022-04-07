@@ -37,7 +37,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.label1 = new System.Windows.Forms.Label();
             this.txtContrasenia = new System.Windows.Forms.TextBox();
             this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.btnGuardarUsuario = new System.Windows.Forms.Button();
+            this.btnGuardarUsuarioEditado = new System.Windows.Forms.Button();
             this.lbltIEditarProducto = new System.Windows.Forms.Label();
             this.btnSalirEditarProductos = new System.Windows.Forms.Button();
             this.comboEstatusBusqueda = new System.Windows.Forms.ComboBox();
@@ -112,14 +112,15 @@ namespace PuntoDeVenta.UsuariosForms
             this.txtUsuario.Size = new System.Drawing.Size(121, 20);
             this.txtUsuario.TabIndex = 29;
             // 
-            // btnGuardarUsuario
+            // btnGuardarUsuarioEditado
             // 
-            this.btnGuardarUsuario.Location = new System.Drawing.Point(32, 275);
-            this.btnGuardarUsuario.Name = "btnGuardarUsuario";
-            this.btnGuardarUsuario.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardarUsuario.TabIndex = 27;
-            this.btnGuardarUsuario.Text = "Guardar";
-            this.btnGuardarUsuario.UseVisualStyleBackColor = true;
+            this.btnGuardarUsuarioEditado.Location = new System.Drawing.Point(32, 275);
+            this.btnGuardarUsuarioEditado.Name = "btnGuardarUsuarioEditado";
+            this.btnGuardarUsuarioEditado.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarUsuarioEditado.TabIndex = 27;
+            this.btnGuardarUsuarioEditado.Text = "Guardar";
+            this.btnGuardarUsuarioEditado.UseVisualStyleBackColor = true;
+            this.btnGuardarUsuarioEditado.Click += new System.EventHandler(this.btnGuardarUsuarioEditado_Click);
             // 
             // lbltIEditarProducto
             // 
@@ -179,7 +180,7 @@ namespace PuntoDeVenta.UsuariosForms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtContrasenia);
             this.Controls.Add(this.txtUsuario);
-            this.Controls.Add(this.btnGuardarUsuario);
+            this.Controls.Add(this.btnGuardarUsuarioEditado);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -202,7 +203,7 @@ namespace PuntoDeVenta.UsuariosForms
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtContrasenia;
         private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.Button btnGuardarUsuario;
+        private System.Windows.Forms.Button btnGuardarUsuarioEditado;
         private System.Windows.Forms.Label lbltIEditarProducto;
         private System.Windows.Forms.Button btnSalirEditarProductos;
         private System.Windows.Forms.ComboBox comboEstatusBusqueda;

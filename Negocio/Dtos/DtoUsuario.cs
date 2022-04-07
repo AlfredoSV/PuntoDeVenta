@@ -45,5 +45,14 @@ namespace Aplicacion
             Idsucursal = idsucursal;
             Idrol = idrol;
         }
+        public DtoUsuario(Guid idUsuario,string nombreUsuario, string contrsenia, Guid idsucursal, Guid idrol,bool activo)
+        {
+            IdUsuario = idUsuario;
+            NombreUsuario = nombreUsuario;
+            Contrasenia = contrsenia;
+            Idsucursal = idsucursal;
+            Idrol = idrol;
+            Activo = activo;
+        }
     }
 }

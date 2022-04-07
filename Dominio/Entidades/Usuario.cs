@@ -14,6 +14,7 @@ namespace Dominio.Entidades
         private Rol _rol;
         private bool _activo;
         private IEnumerable<PermisosModulo> _permisos;
+      
 
         public Guid IdUsuario { get => _idUsuario; set => _idUsuario = value; }
         public string NombreUsuario { get => _nombreUsuario; set => _nombreUsuario = value; }
