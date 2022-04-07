@@ -257,8 +257,8 @@ namespace PuntoDeVenta.UsuariosForms
                             _servicioUsuarios.EliminarUsuarioPorId(idUsuario);
                             break;
                         case "1":
-                            //var editarProductoForm = EditarProducto.Instancia;
-                            //editarProductoForm.ShowDialog(idProducto);
+                            var editarUsuarioForm = EditarUsuarioFrm.Instancia;
+                            editarUsuarioForm.ShowDialog(idUsuario);
                             break;
 
                     }
