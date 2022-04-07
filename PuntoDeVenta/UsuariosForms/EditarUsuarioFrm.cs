@@ -57,11 +57,12 @@ namespace PuntoDeVenta.UsuariosForms
             catch (ExcepcionComun excepcionComun)
             {
                 MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                this.Close();
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
 
             }
         }
