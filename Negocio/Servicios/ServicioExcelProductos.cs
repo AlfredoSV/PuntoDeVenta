@@ -33,7 +33,6 @@ namespace Aplicacion.Servicios
 
             var wsn = sp.GetWorksheetStatistics();
 
-
             var resValidacionColumnas = ValidarColumnasFormato(ref sp);
 
             if (!resValidacionColumnas)
@@ -62,7 +61,7 @@ namespace Aplicacion.Servicios
             var sLWorksheetStatistics = sLDocument.GetWorksheetStatistics();
             var listaColumnas = new List<string>() { "Stock", "Nombre", "Descripcion", "Precio", "Inventario", "Proveedor" };
 
-            if (sLWorksheetStatistics.NumberOfColumns != 7)
+            if (sLWorksheetStatistics.NumberOfColumns != listaColumnas.Count)
                 return false;
 
             for (int i = 1; i <= 7; i++)
@@ -71,8 +70,6 @@ namespace Aplicacion.Servicios
                 if (!listaColumnas.Contains(columna))
                     return false;
             }
-
-
 
             return true;
         }

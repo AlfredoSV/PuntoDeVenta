@@ -4,6 +4,7 @@ using Dominio.Entidades;
 using PuntoDeVenta.MiInformacionForms;
 using PuntoDeVenta.ProductosForms;
 using PuntoDeVenta.ProveedoresForms;
+using PuntoDeVenta.SucursalesForms;
 using PuntoDeVenta.UsuariosForms;
 using PuntoDeVenta.VentaForms;
 using System;
@@ -97,9 +98,22 @@ namespace PuntoDeVenta
         private void btnVenta_Click(object sender, EventArgs e)
         {
             var ventaForm = new RealizarVentaForm();
-            ventaForm.Show(_usuarioLogueado);
-            
+            ventaForm.Show(_usuarioLogueado);        
             this.Dispose();
+        }
+
+        private void btnSucursales_Click(object sender, EventArgs e)
+        {
+            if (_usuarioLogueado.Rol.Nombre.Equals("Admin"))
+            {
+                var sucursalFrm = new SucursalesFrm();
+                sucursalFrm.Show(_usuarioLogueado);
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

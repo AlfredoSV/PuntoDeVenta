@@ -38,6 +38,7 @@ namespace PuntoDeVenta
             this.btnSalir = new System.Windows.Forms.Button();
             this.lblSaludo = new System.Windows.Forms.Label();
             this.lblFechaHoy = new System.Windows.Forms.Label();
+            this.btnSucursales = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnProductos
@@ -126,6 +127,17 @@ namespace PuntoDeVenta
             this.lblFechaHoy.Size = new System.Drawing.Size(0, 13);
             this.lblFechaHoy.TabIndex = 9;
             // 
+            // btnSucursales
+            // 
+            this.btnSucursales.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnSucursales.Location = new System.Drawing.Point(348, 298);
+            this.btnSucursales.Name = "btnSucursales";
+            this.btnSucursales.Size = new System.Drawing.Size(110, 82);
+            this.btnSucursales.TabIndex = 10;
+            this.btnSucursales.Text = "Sucursales";
+            this.btnSucursales.UseVisualStyleBackColor = false;
+            this.btnSucursales.Click += new System.EventHandler(this.btnSucursales_Click);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +145,7 @@ namespace PuntoDeVenta
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(586, 403);
+            this.Controls.Add(this.btnSucursales);
             this.Controls.Add(this.lblFechaHoy);
             this.Controls.Add(this.lblSaludo);
             this.Controls.Add(this.btnSalir);
@@ -163,5 +176,6 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lblSaludo;
         private System.Windows.Forms.Label lblFechaHoy;
+        private System.Windows.Forms.Button btnSucursales;
     }
 }

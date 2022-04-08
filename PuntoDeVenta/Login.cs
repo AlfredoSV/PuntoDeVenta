@@ -1,6 +1,7 @@
 ﻿
 
 using Aplicacion.Servicios;
+using Dominio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -104,6 +105,12 @@ namespace PuntoDeVenta
                 {
                     MessageBox.Show("Favor de ingresar usuario y/o contraseña", "Alterta");
                 }
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                MessageBox.Show(excepcionComun.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
             catch (Exception exception)

@@ -135,6 +135,12 @@
     <Compile Include="RegistroUsuario.Designer.cs">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="SucursalesForms\SucursalesFrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SucursalesForms\SucursalesFrm.Designer.cs">
+      <DependentUpon>SucursalesFrm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsuariosForms\EditarUsuarioFrm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistroUsuario.resx">
       <DependentUpon>RegistroUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SucursalesForms\SucursalesFrm.resx">
+      <DependentUpon>SucursalesFrm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsuariosForms\EditarUsuarioFrm.resx">
       <DependentUpon>EditarUsuarioFrm.cs</DependentUpon>

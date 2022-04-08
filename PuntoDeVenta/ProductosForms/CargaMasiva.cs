@@ -65,7 +65,12 @@ namespace PuntoDeVenta.ProductosForms
                             }
                         }
 
-                       
+
+                    }
+                    else
+                    {
+                        throw new ExcepcionComun("Aplicación", "El documento no tiene el formato correcto", "LeerExcelProductos");
+
                     }
                 }
             }
