@@ -9,6 +9,7 @@ using PuntoDeVenta.UsuariosForms;
 using PuntoDeVenta.VentaForms;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -31,7 +32,7 @@ namespace PuntoDeVenta
             try
             {
                 _usuarioLogueado.AsignarPermisos(_servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario));
-
+                
             }
             catch (Exception exception)
             {
@@ -59,7 +60,6 @@ namespace PuntoDeVenta
         public void Show(Usuario usuario)
         {
             _usuarioLogueado = usuario;
-            lblFechaHoy.Text = DateTime.Now.ToString();
             lblSaludo.Text = $"Bienvenido, {usuario.NombreUsuario}";
             base.Show();
         }
@@ -114,6 +114,12 @@ namespace PuntoDeVenta
             {
                 MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+
+        private void timerHoraActual_Tick(object sender, EventArgs e)
+        {
+            lblFechaHoy.Text = DateTime.Now.ToString();
         }
     }
 }

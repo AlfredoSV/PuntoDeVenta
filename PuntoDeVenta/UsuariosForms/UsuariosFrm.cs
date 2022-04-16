@@ -8,6 +8,7 @@ using PuntoDeVenta.ClasesAuxiliares;
 using Aplicacion;
 using Dominio;
 using Aplicacion.Dtos;
+using System.Data;
 
 namespace PuntoDeVenta.UsuariosForms
 {
@@ -19,7 +20,7 @@ namespace PuntoDeVenta.UsuariosForms
 
 
         private const int PAGINA_POR_DEFECTO = 0;
-        private const int TAMANIO_PAGINA_POR_DEFECTO = 2;
+        private const int TAMANIO_PAGINA_POR_DEFECTO = 10;
         private const string BUSCAR_FILTRO_POR_DEFECTO = "";
 
         public UsuariosFrm()
@@ -152,8 +153,9 @@ namespace PuntoDeVenta.UsuariosForms
                 usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
                 usuariosPaginados.InicializarPagina();
                 LimpiarGrid();
-                AgregarBotonesGrid();              
+                             
                 ListarUsuariosGrid(usuariosPaginados);
+                AgregarBotonesGrid();
 
             }
             catch (ExcepcionComun excepcionComun)
@@ -240,6 +242,7 @@ namespace PuntoDeVenta.UsuariosForms
             var columna = e.ColumnIndex.ToString();
             UsuariosPaginados usuariosPaginados;
             int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            string buscar = txtBuscar.Text;
             DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
             Guid idUsuario;
 
@@ -255,6 +258,8 @@ namespace PuntoDeVenta.UsuariosForms
                     {
                         case "0":
                             await _servicioUsuarios.EliminarUsuarioPorId(idUsuario,_usuarioLogueado.IdUsuario);
+                            MessageBox.Show("El usuario se elimino de forma correcta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                             break;
                         case "1":
                             var editarUsuarioForm = EditarUsuarioFrm.Instancia;
@@ -263,15 +268,14 @@ namespace PuntoDeVenta.UsuariosForms
 
                     }
 
-                    //var dtoBuscarProductosPaginados = new DtoBuscarProductosPaginados(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                    //var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoBuscarProductosPaginados);
+                    dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar);
+                    if (comboEstatusBusqueda.SelectedItem != null)
+                        comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+                    usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                    usuariosPaginados.InicializarPagina();
                     LimpiarGrid();
                     AgregarBotonesGrid();
-                    //CargarProveedores(await _servicioCatalogos.ConsultarProveedoresBD());
-                    //productos.Pagina += 1;
-                    //ListarProductosGrid(productos);
-                    usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus,dtoPropiedadesPaginacion));
-                    dataGridViewUsuarios.DataSource = usuariosPaginados.Usuarios;
+                    ListarUsuariosGrid(usuariosPaginados);
 
                 }
 
@@ -366,8 +370,29 @@ namespace PuntoDeVenta.UsuariosForms
         {
             try
             {
+                var dataTableUsuarios = new DataTable();
+                dataTableUsuarios.Columns.Add("Id", typeof(Guid));
+                dataTableUsuarios.Columns.Add("Usuario", typeof(string));
+                dataTableUsuarios.Columns.Add("Rol", typeof(string));
+                dataTableUsuarios.Columns.Add("Sucursal", typeof(string));
+                dataTableUsuarios.Columns.Add("Fecha alta", typeof(DateTime));
+                dataTableUsuarios.Columns.Add("Activo", typeof(bool));
 
-                dataGridViewUsuarios.DataSource = usuariosPaginados.Usuarios;
+
+                foreach (var usuario in usuariosPaginados.Usuarios)
+                {
+                    var dtrow = dataTableUsuarios.NewRow();
+                    dtrow["Id"] = usuario.IdUsuario;
+                    dtrow["Usuario"] = usuario.NombreUsuario;
+                    dtrow["Rol"] = usuario.Rol;
+                    dtrow["Sucursal"] = usuario.Sucursal;
+                    dtrow["Usuario"] = usuario.NombreUsuario;
+                    dtrow["Fecha alta"] = usuario.FechayHoraAlta;
+                    dtrow["Activo"] = usuario.Activo;
+                    dataTableUsuarios.Rows.Add(dtrow);
+                }
+
+                dataGridViewUsuarios.DataSource = dataTableUsuarios;
                 txtPagActual.Text = usuariosPaginados.Pagina.ToString();
                 txtPaginasTotalesProductos.Text = usuariosPaginados.TotalPaginas.ToString();
 

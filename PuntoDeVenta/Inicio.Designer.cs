@@ -29,6 +29,7 @@ namespace PuntoDeVenta
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnProveedores = new System.Windows.Forms.Button();
@@ -39,6 +40,7 @@ namespace PuntoDeVenta
             this.lblSaludo = new System.Windows.Forms.Label();
             this.lblFechaHoy = new System.Windows.Forms.Label();
             this.btnSucursales = new System.Windows.Forms.Button();
+            this.timerHoraActual = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // btnProductos
@@ -138,6 +140,11 @@ namespace PuntoDeVenta
             this.btnSucursales.UseVisualStyleBackColor = false;
             this.btnSucursales.Click += new System.EventHandler(this.btnSucursales_Click);
             // 
+            // timerHoraActual
+            // 
+            this.timerHoraActual.Enabled = true;
+            this.timerHoraActual.Tick += new System.EventHandler(this.timerHoraActual_Tick);
+            // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -177,5 +184,6 @@ namespace PuntoDeVenta
         private System.Windows.Forms.Label lblSaludo;
         private System.Windows.Forms.Label lblFechaHoy;
         private System.Windows.Forms.Button btnSucursales;
+        private System.Windows.Forms.Timer timerHoraActual;
     }
 }

@@ -152,7 +152,7 @@ namespace PuntoDeVenta.UsuariosForms
             }
             if (contrasenia.Equals(""))
             {
-                mensajeValidacion += "* Favor de ingresar una contrasenia \n";
+                mensajeValidacion += "* Favor de ingresar una contraseña \n";
                 validacion = false;
             }
 
@@ -162,6 +162,8 @@ namespace PuntoDeVenta.UsuariosForms
                 {
                     dtoUsuario = new DtoUsuario(_idUsuario,usuario, contrasenia, idSucursal, idRol,activo);
                     await _servicioUsuarios.EditarUsuario(dtoUsuario);
+                    MessageBox.Show("El usuario se edito de forma correcta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
 
 
                 }
