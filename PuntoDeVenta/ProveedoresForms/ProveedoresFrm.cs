@@ -1,4 +1,5 @@
-﻿using Dominio.Entidades;
+﻿using Aplicacion.Servicios;
+using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +15,11 @@ namespace PuntoDeVenta.ProveedoresForms
     public partial class ProveedoresFrm : Form
     {
         private Usuario _usuarioLogueado;
+        private readonly ServicioProveedores _servicioProveedores;
 
         public ProveedoresFrm()
         {
+            _servicioProveedores = ServicioProveedores.Instancia;
             InitializeComponent();
         }
 
