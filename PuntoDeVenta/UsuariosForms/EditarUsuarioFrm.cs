@@ -15,9 +15,9 @@ namespace PuntoDeVenta.UsuariosForms
     {
         private static EditarUsuarioFrm _instancia;
         private Guid _idUsuario;
-        private ServicioUsuarios _servicioUsuario;
-        private ServicioUsuarios _servicioUsuarios;
-        private ServicioCatalogos _servicioCatalogos;
+        private Usuario _usuarioLogueado;
+        private readonly ServicioUsuarios _servicioUsuarios;
+        private readonly ServicioCatalogos _servicioCatalogos;
 
         public static EditarUsuarioFrm Instancia
         {
@@ -37,7 +37,6 @@ namespace PuntoDeVenta.UsuariosForms
         {
             _servicioUsuarios = ServicioUsuarios.Instancia;
             _servicioCatalogos = ServicioCatalogos.Instacia;
-            _servicioUsuario = ServicioUsuarios.Instancia;
             InitializeComponent();
         }
 
@@ -47,7 +46,7 @@ namespace PuntoDeVenta.UsuariosForms
             try
             {
               
-                dtoUsuario = await _servicioUsuario.DetalleUsuario(_idUsuario);             
+                dtoUsuario = await _servicioUsuarios.DetalleUsuario(_idUsuario);             
                 txtUsuario.Text = dtoUsuario.NombreUsuario;
                 txtContrasenia.Text = dtoUsuario.Contrasenia;
                 CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD(),dtoUsuario.Idsucursal);
@@ -67,8 +66,9 @@ namespace PuntoDeVenta.UsuariosForms
             }
         }
 
-        public void ShowDialog(Guid idUsuario)
+        public void ShowDialog(Guid idUsuario, Usuario usuarioLogueado)
         {
+            _usuarioLogueado = usuarioLogueado;
             _idUsuario = idUsuario;
             this.ShowDialog();
         }
@@ -161,7 +161,7 @@ namespace PuntoDeVenta.UsuariosForms
                 try
                 {
                     dtoUsuario = new DtoUsuario(_idUsuario,usuario, contrasenia, idSucursal, idRol,activo);
-                    await _servicioUsuarios.EditarUsuario(dtoUsuario);
+                    await _servicioUsuarios.EditarUsuario(dtoUsuario, _usuarioLogueado.IdUsuario);
                     MessageBox.Show("El usuario se edito de forma correcta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
 

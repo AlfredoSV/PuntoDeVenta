@@ -13,6 +13,7 @@ namespace AccesoDatos.Repositorios
         private static RepositorioUsuarios _instacia;
         private static string _cadCon;
 
+
         public static RepositorioUsuarios Instacia
         {
             get

@@ -159,10 +159,13 @@ namespace Aplicacion.Servicios
 
         }
 
-        public async Task EditarUsuario(DtoUsuario dtoUsuario)
+        public async Task EditarUsuario(DtoUsuario dtoUsuario, Guid idUsuarioLogueado)
         {
             try
             {
+                if (dtoUsuario.IdUsuario.Equals(idUsuarioLogueado))
+                    throw new ExcepcionComun("Aplicación", "No es posible editar el usuario con el que actualmente esta logueado", "EditarUsuario");
+
                 var rol = (await _repositorioCatalogos.ConsultarRoles()).Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
                 var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
                 var usuario = Usuario.CrearUsuario(dtoUsuario.IdUsuario,

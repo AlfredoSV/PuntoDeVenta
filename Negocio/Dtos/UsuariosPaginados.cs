@@ -31,5 +31,10 @@ namespace Aplicacion.Dtos
         {
             _pagina += pag;
         }
+
+        public void RegresarPagina(int pag)
+        {
+            _pagina = pag -1;
+        }
     }
 }
