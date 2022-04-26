@@ -430,7 +430,8 @@ namespace PuntoDeVenta.UsuariosForms
             catch (Exception exception)
             {
 
-                throw exception;
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 

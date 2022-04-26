@@ -29,10 +29,10 @@ namespace PuntoDeVenta.VentaForms
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.txtBuscarProducto = new System.Windows.Forms.TextBox();
+            this.btnBuscarProducto = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,21 +40,21 @@ namespace PuntoDeVenta.VentaForms
             this.btnSalirFormVentas = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dataGridViewProductos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 104);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(437, 299);
-            this.dataGridView1.TabIndex = 0;
+            this.dataGridViewProductos.AllowUserToAddRows = false;
+            this.dataGridViewProductos.AllowUserToDeleteRows = false;
+            this.dataGridViewProductos.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewProductos.Location = new System.Drawing.Point(12, 104);
+            this.dataGridViewProductos.Name = "dataGridViewProductos";
+            this.dataGridViewProductos.ReadOnly = true;
+            this.dataGridViewProductos.Size = new System.Drawing.Size(607, 299);
+            this.dataGridViewProductos.TabIndex = 0;
             // 
             // dataGridView2
             // 
@@ -62,42 +62,43 @@ namespace PuntoDeVenta.VentaForms
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(480, 104);
+            this.dataGridView2.Location = new System.Drawing.Point(642, 98);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(441, 272);
+            this.dataGridView2.Size = new System.Drawing.Size(472, 272);
             this.dataGridView2.TabIndex = 1;
             // 
-            // textBox1
+            // txtBuscarProducto
             // 
-            this.textBox1.Location = new System.Drawing.Point(167, 76);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(201, 20);
-            this.textBox1.TabIndex = 2;
+            this.txtBuscarProducto.Location = new System.Drawing.Point(124, 76);
+            this.txtBuscarProducto.Name = "txtBuscarProducto";
+            this.txtBuscarProducto.Size = new System.Drawing.Size(244, 20);
+            this.txtBuscarProducto.TabIndex = 2;
             // 
-            // button1
+            // btnBuscarProducto
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.button1.Location = new System.Drawing.Point(374, 73);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnBuscarProducto.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnBuscarProducto.Location = new System.Drawing.Point(544, 76);
+            this.btnBuscarProducto.Name = "btnBuscarProducto";
+            this.btnBuscarProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscarProducto.TabIndex = 3;
+            this.btnBuscarProducto.Text = "Buscar";
+            this.btnBuscarProducto.UseVisualStyleBackColor = false;
+            this.btnBuscarProducto.Click += new System.EventHandler(this.btnBuscarProducto_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(9, 79);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(152, 13);
+            this.label1.Size = new System.Drawing.Size(109, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Código o nombre del producto:";
+            this.label1.Text = "Nombre del producto:";
             // 
             // textBox3
             // 
             this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(809, 383);
+            this.textBox3.Location = new System.Drawing.Point(1002, 376);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(112, 20);
             this.textBox3.TabIndex = 6;
@@ -105,7 +106,7 @@ namespace PuntoDeVenta.VentaForms
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(769, 390);
+            this.label3.Location = new System.Drawing.Point(952, 383);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 8;
@@ -124,7 +125,7 @@ namespace PuntoDeVenta.VentaForms
             // btnSalirFormVentas
             // 
             this.btnSalirFormVentas.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSalirFormVentas.Location = new System.Drawing.Point(809, 9);
+            this.btnSalirFormVentas.Location = new System.Drawing.Point(1002, 6);
             this.btnSalirFormVentas.Name = "btnSalirFormVentas";
             this.btnSalirFormVentas.Size = new System.Drawing.Size(112, 35);
             this.btnSalirFormVentas.TabIndex = 10;
@@ -136,7 +137,7 @@ namespace PuntoDeVenta.VentaForms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(669, 71);
+            this.label2.Location = new System.Drawing.Point(819, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 24);
             this.label2.TabIndex = 11;
@@ -145,7 +146,7 @@ namespace PuntoDeVenta.VentaForms
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.button2.Location = new System.Drawing.Point(809, 57);
+            this.button2.Location = new System.Drawing.Point(1002, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(112, 35);
             this.button2.TabIndex = 12;
@@ -156,7 +157,7 @@ namespace PuntoDeVenta.VentaForms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(933, 421);
+            this.ClientSize = new System.Drawing.Size(1137, 421);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSalirFormVentas);
@@ -164,15 +165,15 @@ namespace PuntoDeVenta.VentaForms
             this.Controls.Add(this.label3);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnBuscarProducto);
+            this.Controls.Add(this.txtBuscarProducto);
             this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewProductos);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "RealizarVentaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RealizarVenta";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -181,10 +182,10 @@ namespace PuntoDeVenta.VentaForms
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewProductos;
         private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtBuscarProducto;
+        private System.Windows.Forms.Button btnBuscarProducto;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label3;

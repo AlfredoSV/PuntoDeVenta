@@ -7,6 +7,7 @@ using Dominio.Entidades;
 using PuntoDeVenta.ClasesAuxiliares;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace PuntoDeVenta.ProductosForms
 {
@@ -293,7 +294,31 @@ namespace PuntoDeVenta.ProductosForms
             try
             {
 
-                dataGridViewProductos.DataSource = dtoProductosPaginados.Productos;
+                var dataTableProductos = new DataTable();
+                DataRow dtrowProducto;
+
+                dataTableProductos.Columns.Add("Id", typeof(Guid));
+                dataTableProductos.Columns.Add("Nombre", typeof(string));
+                dataTableProductos.Columns.Add("Stock", typeof(int));
+                dataTableProductos.Columns.Add("Descripción", typeof(string));
+                dataTableProductos.Columns.Add("Precio", typeof(double));
+
+                foreach (var prod in dtoProductosPaginados.Productos)
+                {
+                    dtrowProducto = dataTableProductos.NewRow();
+
+                    dtrowProducto["Id"] = prod.IdProducto;
+                    dtrowProducto["Nombre"] = prod.Nombre;
+                    dtrowProducto["Stock"] = prod.Stock;
+                    dtrowProducto["Descripción"] = prod.Descripcion;
+                    dtrowProducto["Precio"] = prod.Precio;
+
+                    dataTableProductos.Rows.Add(dtrowProducto);
+
+                }
+
+                dataGridViewProductos.DataSource = dataTableProductos;
+
                 txtPagActual.Text = dtoProductosPaginados.Pagina.ToString();
                 txtPaginasTotalesProductos.Text = dtoProductosPaginados.TotalPaginas.ToString();
 

@@ -72,6 +72,35 @@ namespace Aplicacion.Servicios
             return dtoProductosPaginados;
         }
 
+        public async Task<IEnumerable<DtoProducto>> ConsultarProductosParVenta(string buscar)
+        {
+
+            var dtoProductos = new List<DtoProducto>();
+            var productos = new List<Producto>();
+
+            try
+            {
+                productos = (await _repositorioProductos.ConsultarProductos(buscar)).ToList();
+                productos.ToList().ForEach(pro => dtoProductos.Add(new DtoProducto(pro.IdProducto, pro.Stock, pro.Nombre, pro.Descripcion, pro.Precio, pro.IdInventario, pro.IdProveedor)));
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+
+                throw excepcionComun;
+
+            }
+            catch (Exception exception)
+            {
+
+                throw exception;
+
+            }
+
+            
+            return dtoProductos;
+        }
+
+
         public void GuardarNuevoProducto(int stock, string nombre, string descripcion, decimal precio ,Guid idProveedor)
         {
             try
