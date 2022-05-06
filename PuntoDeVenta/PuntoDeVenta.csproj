@@ -159,6 +159,12 @@
     <Compile Include="VentaForms\RealizarVentaForm.Designer.cs">
       <DependentUpon>RealizarVentaForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VentaForms\SeleccionProductoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VentaForms\SeleccionProductoForm.Designer.cs">
+      <DependentUpon>SeleccionProductoForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>
@@ -199,6 +205,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="VentaForms\RealizarVentaForm.resx">
       <DependentUpon>RealizarVentaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VentaForms\SeleccionProductoForm.resx">
+      <DependentUpon>SeleccionProductoForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

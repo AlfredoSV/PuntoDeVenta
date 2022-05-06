@@ -44,14 +44,16 @@ namespace PuntoDeVenta.VentaForms
 
         private async void btnBuscarProducto_Click(object sender, EventArgs e)
         {
+
+            var txtFiltro = txtBuscarProducto.Text.Trim();
+            var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, txtFiltro);
+            DtoProductosPaginados productos;
+
             try
             {
-                var txtFiltro = txtBuscarProducto.Text.Trim();
-                var dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, txtFiltro);
-                var productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
+                productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
                 LimpiarGrid();
                 AgregarBotonesGrid();
-
                 ListarProductosGrid(productos);
             }
             catch (ExcepcionComun excepcionComun)
@@ -69,11 +71,12 @@ namespace PuntoDeVenta.VentaForms
 
         private void ListarProductosGrid(DtoProductosPaginados dtoProductosPaginados)
         {
+
+            var dataTableProductos = new DataTable();
+            DataRow dtrowProducto;
+
             try
             {
-
-                var dataTableProductos = new DataTable();
-                DataRow dtrowProducto;
 
                 dataTableProductos.Columns.Add("Id", typeof(Guid));
                 dataTableProductos.Columns.Add("Nombre", typeof(string));
@@ -120,13 +123,23 @@ namespace PuntoDeVenta.VentaForms
             btnBorrar.UseColumnTextForButtonValue = true;
 
 
-
         }
         private void LimpiarGrid()
         {
             dataGridViewProductos.Columns.Clear();
             dataGridViewProductos.DataSource = null;
 
+        }
+
+        private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            MessageBox.Show(dataGridViewProductos.Rows[e.RowIndex].Cells[e.ColumnIndex+1].Value.ToString());
+
+            var seleccionarProducto = SeleccionProductoForm.Instancia;
+
+            seleccionarProducto.ShowDialog(_usuarioLogueado);
+
+        
         }
     }
 }

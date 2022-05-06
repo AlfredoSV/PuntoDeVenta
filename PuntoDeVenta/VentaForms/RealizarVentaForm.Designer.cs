@@ -55,6 +55,7 @@ namespace PuntoDeVenta.VentaForms
             this.dataGridViewProductos.ReadOnly = true;
             this.dataGridViewProductos.Size = new System.Drawing.Size(607, 299);
             this.dataGridViewProductos.TabIndex = 0;
+            this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
             // 
             // dataGridView2
             // 
@@ -62,7 +63,7 @@ namespace PuntoDeVenta.VentaForms
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.BackgroundColor = System.Drawing.Color.DarkSeaGreen;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(642, 98);
+            this.dataGridView2.Location = new System.Drawing.Point(653, 97);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(472, 272);
