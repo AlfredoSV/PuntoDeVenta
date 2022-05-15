@@ -105,7 +105,7 @@ namespace PuntoDeVenta
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSalir.Location = new System.Drawing.Point(468, 12);
+            this.btnSalir.Location = new System.Drawing.Point(454, 12);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(106, 29);
             this.btnSalir.TabIndex = 7;
@@ -151,7 +151,7 @@ namespace PuntoDeVenta
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(586, 403);
+            this.ClientSize = new System.Drawing.Size(572, 403);
             this.Controls.Add(this.btnSucursales);
             this.Controls.Add(this.lblFechaHoy);
             this.Controls.Add(this.lblSaludo);

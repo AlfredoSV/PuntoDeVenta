@@ -22,6 +22,7 @@ namespace PuntoDeVenta.VentaForms
         private const int PAGINA_POR_DEFECTO = 0;
         private const int TAMANIO_PAGINA_POR_DEFECTO = 10;
         private const string BUSCAR_FILTRO_POR_DEFECTO = "";
+        private DtoProducto _dtoProducto;
         public RealizarVentaForm()
         {
             _servicioProductos = ServicioProductos.Instacia;
@@ -131,15 +132,35 @@ namespace PuntoDeVenta.VentaForms
 
         }
 
-        private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private async void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
                 var idProducto = Guid.Parse(dataGridViewProductos.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString());
 
-                var seleccionarProducto = SeleccionProductoForm.Instancia;
+                _dtoProducto = await _servicioProductos.ConsultarProductoPorId(idProducto);
 
-                seleccionarProducto.ShowDialog(_usuarioLogueado,idProducto);
+                txtNombre.Text = _dtoProducto.Nombre;
+                txtPrecio.Text = Math.Round(_dtoProducto.Precio, 2).ToString();
+
+                if (_dtoProducto.Stock < 1)
+                {
+                    nupCantidad.Minimum = 0;
+                    nupCantidad.Maximum = 0;
+                    btnAceptar.Enabled = false;
+                    MessageBox.Show("Este productos ya no cuenta con registros en el stock, favor de vérificar su almacen.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
+                else
+                {
+                    nupCantidad.Minimum = 1;
+                    nupCantidad.Maximum = _dtoProducto.Stock;
+                    btnAceptar.Enabled = true;
+                    MessageBox.Show("Favor de seleccionar la cantidad de productos a comprar", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+
+
 
 
             }
@@ -161,6 +182,30 @@ namespace PuntoDeVenta.VentaForms
 
         private void RealizarVentaForm_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            var dataTableProductosCarrito = new DataTable();
+            DataRow dtrowProducto;
+
+            dataTableProductosCarrito.Columns.Add("Nombre", typeof(string));
+            dataTableProductosCarrito.Columns.Add("Seleccionados", typeof(int));
+            dataTableProductosCarrito.Columns.Add("Subtotal", typeof(decimal));
+
+
+            dtrowProducto = dataTableProductosCarrito.NewRow();
+
+            dtrowProducto["Nombre"] = _dtoProducto.Nombre;
+            dtrowProducto["Seleccionados"] = nupCantidad.Value;
+            dtrowProducto["Subtotal"] = _dtoProducto.Precio*(decimal)nupCantidad.Value;
+
+            dataTableProductosCarrito.Rows.Add(dtrowProducto);
+
+
+            dataGridViewProductosCarrito.DataSource = dataTableProductosCarrito;
+
 
         }
     }
