@@ -160,9 +160,6 @@ namespace PuntoDeVenta.VentaForms
 
                 }
 
-
-
-
             }
             catch (ExcepcionComun excepcionComun)
             {

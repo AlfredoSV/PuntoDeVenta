@@ -23,29 +23,47 @@ namespace PuntoDeVenta.ClasesAuxiliares
             Name = _name; ValueInt = _value;
         }
 
-
-    }
-
-    public class CargarCombo
-    {
-        private static void CargarComboItems(IEnumerable<object> datos, string mensajeDefault, ComboBox comboOb,string campoNombre, string campoId)
+        public static void CargarComboItems(IEnumerable<object> datos, string mensajeDefault, ref ComboBox comboOb, string campoId, string campoNombre = "Nombre")
         {
             var items = new List<Item>();
-
-            items.Add(new Item($"--- {mensajeDefault}. ---", Guid.Empty));
 
             Type t = datos.FirstOrDefault().GetType();
 
             PropertyInfo[] propiedades = t.GetProperties();
+            int i = 1;
+
+            items.Add(new Item($"--- {mensajeDefault}. ---", Guid.Empty));           
 
             foreach (var get in propiedades)
             {
-                items.Add(new Item( get.GetValue(datos).ToString(), Guid.Parse(get.GetValue(datos).ToString())));
+                Item it = null;
+
+                foreach (var data in datos)
+                {
+                    if (get.Name == campoId)
+                    {
+                        it = new Item("", Guid.Parse(get.GetValue(data).ToString()));
+                        items.Add(it);
+                    }                       
+                    else if (get.Name == campoNombre)
+                    {
+                        items[i].Name = get.GetValue(data).ToString();
+                        i++;
+                    }
+                        
+
+                    
+                }
+                                 
+                
             }
 
             comboOb.DisplayMember = "Name";
             comboOb.ValueMember = "Value";
             comboOb.DataSource = items;
         }
+
     }
+
+   
 }

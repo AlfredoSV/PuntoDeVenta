@@ -44,7 +44,9 @@ namespace PuntoDeVenta.UsuariosForms
                 AgregarBotonesGrid();
                 CargarEstatus();
                 CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD());
-                CargarRoles(await _servicioCatalogos.ConsultarRolesBD());               
+                //CargarRoles(await _servicioCatalogos.ConsultarRolesBD());   
+                Item.CargarComboItems(await _servicioCatalogos.ConsultarRolesBD(), "MnsajePrueba", ref comboBoxRoles, "IdRol");
+
                 ListarUsuariosGrid(usuariosPaginados);
 
             }
