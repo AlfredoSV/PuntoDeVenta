@@ -34,30 +34,30 @@ namespace PuntoDeVenta.ClasesAuxiliares
 
             items.Add(new Item($"--- {mensajeDefault}. ---", Guid.Empty));           
 
-            foreach (var get in propiedades)
+            foreach (var prop in propiedades)
             {
                 Item it = null;
 
-                foreach (var data in datos)
+                foreach (var dato in datos)
                 {
-                    if (get.Name == campoId)
+                    if (prop.Name == campoId)
                     {
-                        it = new Item("", Guid.Parse(get.GetValue(data).ToString()));
+                        it = new Item("", Guid.Parse(prop.GetValue(dato).ToString()));
                         items.Add(it);
                     }                       
-                    else if (get.Name == campoNombre)
+                    else if (prop.Name == campoNombre)
                     {
-                        items[i].Name = get.GetValue(data).ToString();
+                        items[i].Name = prop.GetValue(dato).ToString();
                         i++;
                     }
-                        
-
-                    
+                                          
                 }
                                  
                 
             }
 
+            //comboOb.DataSource = null;
+            //comboOb.Items.Clear();
             comboOb.DisplayMember = "Name";
             comboOb.ValueMember = "Value";
             comboOb.DataSource = items;

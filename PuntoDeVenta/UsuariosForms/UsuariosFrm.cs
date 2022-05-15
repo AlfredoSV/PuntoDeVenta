@@ -28,25 +28,20 @@ namespace PuntoDeVenta.UsuariosForms
             InitializeComponent();
         }
 
-        #region Eventos
         private async void UsuariosFrm_Load(object sender, EventArgs e)
         {
-            var comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            var estatus = (int)EstatusUsuarioBusqueda.Todos;
             UsuariosPaginados usuariosPaginados;
-            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+            
 
             try
             {
-                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion));
                 usuariosPaginados.InicializarPagina();
-                LimpiarGrid();
-                AgregarBotonesGrid();
                 CargarEstatus();
-                CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD());
-                //CargarRoles(await _servicioCatalogos.ConsultarRolesBD());   
-                Item.CargarComboItems(await _servicioCatalogos.ConsultarRolesBD(), "MnsajePrueba", ref comboBoxRoles, "IdRol");
-
+                Item.CargarComboItems(await _servicioCatalogos.ConsultarSucursalesBD(), "Seleciona un sucursal", ref comboBoxSucursales, "IdSucursal");
+                Item.CargarComboItems(await _servicioCatalogos.ConsultarRolesBD(), "Seleciona un rol", ref comboBoxRoles, "IdRol");
                 ListarUsuariosGrid(usuariosPaginados);
 
             }
@@ -70,22 +65,19 @@ namespace PuntoDeVenta.UsuariosForms
             this.Dispose();
             this.Close();
         }
-              
+
         private async void btnRecargarUsuarios_Click(object sender, EventArgs e)
         {
-            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            int estatus = (int)EstatusUsuarioBusqueda.Todos;
             UsuariosPaginados usuariosPaginados;
-            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
-
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion  = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
+            
             try
             {
-                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, BUSCAR_FILTRO_POR_DEFECTO);
-                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion));
                 usuariosPaginados.InicializarPagina();
                 txtBuscar.Text = BUSCAR_FILTRO_POR_DEFECTO;
-                LimpiarGrid();
-                AgregarBotonesGrid();                            
-                CargarEstatus();                      
+                CargarEstatus();
                 ListarUsuariosGrid(usuariosPaginados);
 
             }
@@ -105,19 +97,15 @@ namespace PuntoDeVenta.UsuariosForms
         private async void btnBuscar_Click(object sender, EventArgs e)
         {
 
-            int comboEstatus;
+            int estatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt; 
             UsuariosPaginados usuariosPaginados;
             var buscar = txtBuscar.Text;
-            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar); 
 
             try
-            {
-                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar);
-                comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
-                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+            {             
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion));
                 usuariosPaginados.InicializarPagina();
-                LimpiarGrid();
-                AgregarBotonesGrid();            
                 ListarUsuariosGrid(usuariosPaginados);
 
             }
@@ -138,22 +126,19 @@ namespace PuntoDeVenta.UsuariosForms
 
         private async void comboEstatusBusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            int estatus = (int)EstatusUsuarioBusqueda.Todos;
             UsuariosPaginados usuariosPaginados;
             string buscar = txtBuscar.Text;
-            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar); 
 
             try
             {
-                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar);
                 if (comboEstatusBusqueda.SelectedItem != null)
-                    comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
-                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                    estatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+                usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion));
                 usuariosPaginados.InicializarPagina();
-                LimpiarGrid();                          
                 ListarUsuariosGrid(usuariosPaginados);
-                AgregarBotonesGrid();
-
+                
             }
             catch (ExcepcionComun excepcionComun)
             {
@@ -184,7 +169,7 @@ namespace PuntoDeVenta.UsuariosForms
             }
             if (contrasenia.Equals(""))
             {
-                mensajeValidacion += "* Favor de ingresar una contrasenia \n";
+                mensajeValidacion += "* Favor de ingresar una contraseña \n";
                 validacion = false;
             }
             if (idRol == Guid.Empty)
@@ -204,7 +189,7 @@ namespace PuntoDeVenta.UsuariosForms
                 {
                     dtoUsuario = new DtoUsuario(usuario, contrasenia, idSucursal, idRol);
                     await _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
-                    
+
 
                 }
                 catch (ExcepcionComun excepcionComun)
@@ -237,14 +222,14 @@ namespace PuntoDeVenta.UsuariosForms
         {
             var columna = e.ColumnIndex.ToString();
             UsuariosPaginados usuariosPaginados;
-            int comboEstatus = (int)EstatusUsuarioBusqueda.Todos;
+            int estatus = (int)EstatusUsuarioBusqueda.Todos;
             string buscar = txtBuscar.Text;
             DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
             Guid idUsuario;
 
             try
             {
-                
+
                 if (columna.Equals("0") || columna.Equals("1"))
                 {
                     idUsuario = Guid.Parse(dataGridViewUsuarios.Rows[e.RowIndex].Cells[2].Value.ToString());
@@ -253,30 +238,29 @@ namespace PuntoDeVenta.UsuariosForms
                     switch (columna)
                     {
                         case "0":
-                            await _servicioUsuarios.EliminarUsuarioPorId(idUsuario,_usuarioLogueado.IdUsuario);
+                            await _servicioUsuarios.EliminarUsuarioPorId(idUsuario, _usuarioLogueado.IdUsuario);
                             MessageBox.Show("El usuario se elimino de forma correcta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             break;
                         case "1":
                             var editarUsuarioForm = EditarUsuarioFrm.Instancia;
-                            editarUsuarioForm.ShowDialog(idUsuario,_usuarioLogueado);
+                            editarUsuarioForm.ShowDialog(idUsuario, _usuarioLogueado);
                             break;
 
                     }
 
                     dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(PAGINA_POR_DEFECTO, TAMANIO_PAGINA_POR_DEFECTO, buscar);
                     if (comboEstatusBusqueda.SelectedItem != null)
-                        comboEstatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
-                    usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(comboEstatus, dtoPropiedadesPaginacion));
+                        estatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
+                    usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion));
                     usuariosPaginados.InicializarPagina();
-                    LimpiarGrid();
-                    AgregarBotonesGrid();
                     ListarUsuariosGrid(usuariosPaginados);
 
                 }
 
 
-            }catch (ExcepcionComun excepcionComun)
+            }
+            catch (ExcepcionComun excepcionComun)
             {
                 MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -293,16 +277,13 @@ namespace PuntoDeVenta.UsuariosForms
             var pagina = Int32.Parse(txtPagActual.Text);
             var buscarFiltro = txtBuscar.Text.Trim();
             var estatus = ((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt;
-            DtoPropiedadesPaginacion dtoPropiedadesPaginacion;
+            DtoPropiedadesPaginacion dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro); ;
             UsuariosPaginados usuariosPaginados;
 
             try
             {
-
-                dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
+         
                 usuariosPaginados = await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion);
-                LimpiarGrid();
-                AgregarBotonesGrid();
                 usuariosPaginados.InicializarPagina();
                 ListarUsuariosGrid(usuariosPaginados);
 
@@ -317,7 +298,7 @@ namespace PuntoDeVenta.UsuariosForms
                 MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-           
+
         }
 
         private async void btnRegresarPag_Click(object sender, EventArgs e)
@@ -338,8 +319,6 @@ namespace PuntoDeVenta.UsuariosForms
                     pagina -= 1;
                 dtoPropiedadesPaginacion = new DtoPropiedadesPaginacion(pagina, TAMANIO_PAGINA_POR_DEFECTO, buscarFiltro);
                 usuariosPaginados = await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion);
-                LimpiarGrid();
-                AgregarBotonesGrid();
                 usuariosPaginados.RegresarPagina(Int32.Parse(txtPagActual.Text));
                 ListarUsuariosGrid(usuariosPaginados);
             }
@@ -356,9 +335,6 @@ namespace PuntoDeVenta.UsuariosForms
 
         }
 
-        #endregion Eventos
-
-        #region Sobrecargas
 
         public void Show(Usuario usuario)
         {
@@ -366,13 +342,14 @@ namespace PuntoDeVenta.UsuariosForms
             base.Show();
         }
 
-        #endregion Sobrecargas
 
-        #region Lógica presentación reútilizable
         private void ListarUsuariosGrid(UsuariosPaginados usuariosPaginados)
         {
             try
             {
+                LimpiarGrid();
+                AgregarBotonesGrid();
+
                 var dataTableUsuarios = new DataTable();
                 dataTableUsuarios.Columns.Add("Id", typeof(Guid));
                 dataTableUsuarios.Columns.Add("Usuario", typeof(string));
@@ -461,7 +438,7 @@ namespace PuntoDeVenta.UsuariosForms
         private void CargarEstatus()
         {
             var items = new List<Item>();
-            
+
             items.Add(new Item("Todos", (int)EstatusUsuarioBusqueda.Todos));
             items.Add(new Item("Inactivos", (int)EstatusUsuarioBusqueda.Inactivos));
             items.Add(new Item("Activos", (int)EstatusUsuarioBusqueda.Activos));
@@ -473,37 +450,6 @@ namespace PuntoDeVenta.UsuariosForms
             comboEstatusBusqueda.DataSource = items;
         }
 
-        private void CargarSucursales(IEnumerable<Sucursal> sucursales)
-        {
-            var items = new List<Item>();
-
-            items.Add(new Item("--- Seleciona un sucursal. ---", Guid.Empty));
-            foreach (var get in sucursales)
-            {
-                items.Add(new Item(get.Nombre, get.IdSucursal));
-            }
-
-            comboBoxSucursales.DisplayMember = "Name";
-            comboBoxSucursales.ValueMember = "Value";
-            comboBoxSucursales.DataSource = items;
-        }
-
-        private void CargarRoles(IEnumerable<Rol> sucursales)
-        {
-            var items = new List<Item>();
-
-            items.Add(new Item("--- Seleciona un Rol. ---", Guid.Empty));
-            foreach (var get in sucursales)
-            {
-                items.Add(new Item(get.Nombre, get.IdRol));
-            }
-
-            comboBoxRoles.DisplayMember = "Name";
-            comboBoxRoles.ValueMember = "Value";
-            comboBoxRoles.DataSource = items;
-        }
-
-        #endregion Lógica presentación reútilizable
 
     }
 }
