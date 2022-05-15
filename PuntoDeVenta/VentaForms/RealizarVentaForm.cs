@@ -51,7 +51,7 @@ namespace PuntoDeVenta.VentaForms
 
             try
             {
-                productos = await _servicioProductos.ConsultarProductosPaginadosBD(dtoPropiedadesPaginacion);
+                productos = await _servicioProductos.ConsultarProductosPaginados(dtoPropiedadesPaginacion);
                 LimpiarGrid();
                 AgregarBotonesGrid();
                 ListarProductosGrid(productos);
@@ -133,13 +133,35 @@ namespace PuntoDeVenta.VentaForms
 
         private void dataGridViewProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            MessageBox.Show(dataGridViewProductos.Rows[e.RowIndex].Cells[e.ColumnIndex+1].Value.ToString());
+            try
+            {
+                var idProducto = Guid.Parse(dataGridViewProductos.Rows[e.RowIndex].Cells[e.ColumnIndex + 1].Value.ToString());
 
-            var seleccionarProducto = SeleccionProductoForm.Instancia;
+                var seleccionarProducto = SeleccionProductoForm.Instancia;
 
-            seleccionarProducto.ShowDialog(_usuarioLogueado);
+                seleccionarProducto.ShowDialog(_usuarioLogueado,idProducto);
 
-        
+
+            }
+            catch (ExcepcionComun excepcionComun)
+            {
+                MessageBox.Show(excepcionComun.Detalle, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+            catch (Exception exception)
+            {
+
+                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
+
+
+        }
+
+        private void RealizarVentaForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

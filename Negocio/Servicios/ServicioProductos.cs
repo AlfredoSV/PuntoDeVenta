@@ -38,7 +38,7 @@ namespace Aplicacion.Servicios
         }
 
 
-        public async Task<DtoProductosPaginados> ConsultarProductosPaginadosBD(DtoPropiedadesPaginacion dtoBuscarProductos)
+        public async Task<DtoProductosPaginados> ConsultarProductosPaginados(DtoPropiedadesPaginacion dtoBuscarProductos)
         {
 
             var productos = new List<DtoProducto>();

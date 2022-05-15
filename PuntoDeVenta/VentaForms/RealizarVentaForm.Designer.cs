@@ -174,6 +174,7 @@ namespace PuntoDeVenta.VentaForms
             this.Name = "RealizarVentaForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RealizarVenta";
+            this.Load += new System.EventHandler(this.RealizarVentaForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProductos)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
