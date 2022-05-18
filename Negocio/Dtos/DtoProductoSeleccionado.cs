@@ -8,7 +8,9 @@ namespace Aplicacion.Dtos
     {
         public Guid IdProducto { get; set; }
         public int Cantidad { get; set; }
-
         public int Subtotal { get; set; }
+
+        public DtoProductoSeleccionado()
+        { }
     }
 }

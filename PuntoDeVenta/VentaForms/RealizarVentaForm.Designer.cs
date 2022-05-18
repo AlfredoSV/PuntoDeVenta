@@ -34,7 +34,7 @@ namespace PuntoDeVenta.VentaForms
             this.txtBuscarProducto = new System.Windows.Forms.TextBox();
             this.btnBuscarProducto = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtTotalCompra = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSalirFormVentas = new System.Windows.Forms.Button();
@@ -105,13 +105,13 @@ namespace PuntoDeVenta.VentaForms
             this.label1.TabIndex = 4;
             this.label1.Text = "Nombre del producto:";
             // 
-            // textBox3
+            // txtTotalCompra
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(934, 390);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(112, 20);
-            this.textBox3.TabIndex = 6;
+            this.txtTotalCompra.Enabled = false;
+            this.txtTotalCompra.Location = new System.Drawing.Point(934, 390);
+            this.txtTotalCompra.Name = "txtTotalCompra";
+            this.txtTotalCompra.Size = new System.Drawing.Size(112, 20);
+            this.txtTotalCompra.TabIndex = 6;
             // 
             // label3
             // 
@@ -253,7 +253,7 @@ namespace PuntoDeVenta.VentaForms
             this.Controls.Add(this.btnSalirFormVentas);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtTotalCompra);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnBuscarProducto);
             this.Controls.Add(this.txtBuscarProducto);
@@ -279,7 +279,7 @@ namespace PuntoDeVenta.VentaForms
         private System.Windows.Forms.TextBox txtBuscarProducto;
         private System.Windows.Forms.Button btnBuscarProducto;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtTotalCompra;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnSalirFormVentas;

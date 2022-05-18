@@ -23,9 +23,11 @@ namespace PuntoDeVenta.VentaForms
         private const int TAMANIO_PAGINA_POR_DEFECTO = 10;
         private const string BUSCAR_FILTRO_POR_DEFECTO = "";
         private DtoProducto _dtoProducto;
+        private readonly DtoCompraProductos _dtoCompraProductos;
         public RealizarVentaForm()
         {
             _servicioProductos = ServicioProductos.Instacia;
+            _dtoCompraProductos = new DtoCompraProductos();
             InitializeComponent();
         }
 
@@ -200,6 +202,13 @@ namespace PuntoDeVenta.VentaForms
 
             dataTableProductosCarrito.Rows.Add(dtrowProducto);
 
+            _dtoCompraProductos.Total += _dtoProducto.Precio * (decimal)nupCantidad.Value;
+
+            _dtoCompraProductos.TotalProductos += (int)nupCantidad.Value;
+
+            txtTotalCompra.Text = (Decimal.Parse(txtTotalCompra.Text == "" ? "0.00" : txtTotalCompra.Text) + _dtoProducto.Precio * (decimal)nupCantidad.Value).ToString();
+
+             _dtoCompraProductos.Productos.ToList().Add(new DtoProductoSeleccionado());
 
             dataGridViewProductosCarrito.DataSource = dataTableProductosCarrito;
 
