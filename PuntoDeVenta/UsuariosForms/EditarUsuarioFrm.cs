@@ -60,7 +60,7 @@ namespace PuntoDeVenta.UsuariosForms
             }
             catch (Exception exception)
             {
-                MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Sucedió un error no controlado, favor de contactar con el administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
 
             }
@@ -174,7 +174,7 @@ namespace PuntoDeVenta.UsuariosForms
                 }
                 catch (Exception exception)
                 {
-                    MessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Sucedió un error no controlado, favor de contactar con el administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
 
