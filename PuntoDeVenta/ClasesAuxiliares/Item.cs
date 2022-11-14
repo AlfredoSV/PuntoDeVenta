@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PuntoDeVenta.ClasesAuxiliares 
+namespace PuntoDeVenta.ClasesAuxiliares
 {
 
     public class Item
@@ -23,7 +24,12 @@ namespace PuntoDeVenta.ClasesAuxiliares
             Name = _name; ValueInt = _value;
         }
 
-        public static void CargarComboItems(IEnumerable<object> datos, string mensajeDefault, ref ComboBox comboOb, string campoId, string campoNombre = "Nombre")
+
+    }
+
+    public static class ItemComboBox{
+        public static void CargarComboItems(this ComboBox comboOb, IEnumerable<object> datos, string mensajeDefault,
+            string campoId, string campoNombre = "Nombre")
         {
             var items = new List<Item>();
 
@@ -32,38 +38,32 @@ namespace PuntoDeVenta.ClasesAuxiliares
             PropertyInfo[] propiedades = t.GetProperties();
             int i = 1;
 
-            items.Add(new Item($"--- {mensajeDefault}. ---", Guid.Empty));           
+            items.Add(new Item($"--- {mensajeDefault}. ---", Guid.Empty));
 
             foreach (var prop in propiedades)
             {
                 Item it = null;
 
-                foreach (var dato in datos)
+                datos.ToList().ForEach((object dato)=>
                 {
                     if (prop.Name == campoId)
                     {
                         it = new Item("", Guid.Parse(prop.GetValue(dato).ToString()));
                         items.Add(it);
-                    }                       
+                    }
                     else if (prop.Name == campoNombre)
                     {
                         items[i].Name = prop.GetValue(dato).ToString();
                         i++;
                     }
-                                          
-                }
-                                 
-                
-            }
+                });
 
-            //comboOb.DataSource = null;
-            //comboOb.Items.Clear();
+            }
             comboOb.DisplayMember = "Name";
             comboOb.ValueMember = "Value";
             comboOb.DataSource = items;
         }
-
     }
 
-   
+
 }

@@ -40,8 +40,8 @@ namespace PuntoDeVenta.UsuariosForms
                 usuariosPaginados = (await _servicioUsuarios.ConsultarUsuariosPaginados(estatus, dtoPropiedadesPaginacion));
                 usuariosPaginados.InicializarPagina();
                 CargarEstatus();
-                Item.CargarComboItems(await _servicioCatalogos.ConsultarSucursalesBD(), "Seleciona un sucursal", ref comboBoxSucursales, "IdSucursal");
-                Item.CargarComboItems(await _servicioCatalogos.ConsultarRolesBD(), "Seleciona un rol", ref comboBoxRoles, "IdRol");
+                comboBoxSucursales.CargarComboItems(await _servicioCatalogos.ConsultarSucursalesBD(), "Seleciona un sucursal", "IdSucursal");
+                comboBoxRoles.CargarComboItems(await _servicioCatalogos.ConsultarRolesBD(), "Seleciona un rol", "IdRol");
                 ListarUsuariosGrid(usuariosPaginados);
 
             }

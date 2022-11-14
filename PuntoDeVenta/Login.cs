@@ -93,7 +93,7 @@ namespace PuntoDeVenta
                     if (await _servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
                     {
                         this.Hide();
-                        inicioForm.Show(await _servicioAutenticacion.ConsultarUsuario(usuario, contrasenia));
+                        inicioForm.Show(await _servicioAutenticacion.ConsultarUsuario(usuario));
                     }
                     else
                     {

@@ -33,11 +33,11 @@ namespace AccesoDatos.Repositorios
         }
         private RepositorioUsuarios() { }
 
-        public async Task<Usuario> ConsultarUsuarioPorCredenciales(string nombreUsuario, string contrasenia)
+        public async Task<Usuario> ConsultarUsuarioPorNombreDeUsuario(string nombreUsuario)
         {
 
             var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
-                        Sucursales suc on suc.idSucursal = usu.idSucursal where  usu.usuario = @nombreUsuario and usu.contrasenia = @contrasenia and activo = 1";
+                        Sucursales suc on suc.idSucursal = usu.idSucursal where  usu.usuario = @nombreUsuario";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             Usuario usuario = null;
@@ -53,7 +53,7 @@ namespace AccesoDatos.Repositorios
                     sqlCommand = new SqlCommand(sql, conexion);
 
                     sqlCommand.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
-                    sqlCommand.Parameters.AddWithValue("contrasenia", contrasenia);
+  
 
 
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
@@ -139,7 +139,7 @@ namespace AccesoDatos.Repositorios
                         Sucursales suc on suc.idSucursal = usu.idSucursal";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
-            Usuario usuario = null;
+            Usuario usuario;
             var usuarios = new List<Usuario>();
             Rol rol = null;
             Sucursal sucursal = null;
@@ -179,6 +179,49 @@ namespace AccesoDatos.Repositorios
             }
 
             return usuarios;
+        }
+
+        public async Task<IEnumerable<UsuarioIntento>> ConsultarIntentosUsuario(Guid idUsuario)
+        {
+            var sql = @"SELECT * FROM UsuariosIntentos where idUsuario = @idUsuario;";
+            SqlDataReader sqlDataReader;
+            SqlCommand sqlCommand;
+            UsuarioIntento usuarioIntento;
+            var usuarioIntentos = new List<UsuarioIntento>();
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+                    sqlCommand.Parameters.AddWithValue("idUsuario", idUsuario);
+                    sqlDataReader = await sqlCommand.ExecuteReaderAsync();
+
+
+                    if (sqlDataReader.HasRows)
+                    {
+                        while (sqlDataReader.Read())
+                        {
+
+                            usuarioIntento = UsuarioIntento.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetGuid(1),
+                                sqlDataReader.GetDateTime(2));
+
+                            usuarioIntentos.
+                                Add(usuarioIntento);
+                        }
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+
+            return usuarioIntentos;
         }
 
         public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
@@ -275,6 +318,42 @@ namespace AccesoDatos.Repositorios
                 throw e;
             }
 
+        }
+
+        public void GuardarIntentoUsuario(UsuarioIntento usuarioIntento)
+        {
+            var sql = @"INSERT INTO [dbo].[UsuariosIntentos]
+           ([idUsuarioIntento]
+           ,[idUsuario]
+           ,[fechayHoraIntento])
+     VALUES
+           (@idUsuarioIntento,
+           @idUsuario,
+           @fechayHoraIntento)";
+            SqlCommand sqlCommand;
+
+            try
+            {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
+                    conexion.Open();
+
+                    sqlCommand = new SqlCommand(sql, conexion);
+
+                    sqlCommand.Parameters.AddWithValue("@idUsuario", usuarioIntento.IdUsuario);
+                    sqlCommand.Parameters.AddWithValue("@idUsuarioIntento", Guid.NewGuid());
+                    sqlCommand.Parameters.AddWithValue("@fechayHoraIntento", DateTime.Now);
+
+                    sqlCommand.ExecuteNonQuery();
+
+
+                }
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
         }
 
         public async Task<bool> ConsultarSiExisteUsuario(string nombreUsuario)

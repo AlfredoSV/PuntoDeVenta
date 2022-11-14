@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace Aplicacion.Servicios
 {
@@ -35,13 +36,37 @@ namespace Aplicacion.Servicios
         }
         public async Task<bool> ValidarUsuario(string nombreUsuario, string contrasenia)
         {
-            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
+
+            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
+            IEnumerable<UsuarioIntento> intentosUsuario;
+
+            if (usuario != null)
+            {
+                //Validar contraseña
+                if (usuario.Contrsenia.Equals(contrasenia))
+                {
+                    intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
+
+                    if (intentosUsuario.Count() >= 3)
+                        return false;
+                    else if(!usuario.Contrsenia.Equals(contrasenia)))
+                        _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
+                            Crear(usuario.IdUsuario));
+
+
+
+                }
+                else
+                    return false;
+
+            }
+            
             return usuario != null;
         }
 
-        public async Task<Usuario>  ConsultarUsuario(string nombreUsuario, string contrasenia)
+        public async Task<Usuario>  ConsultarUsuario(string nombreUsuario)
         {
-            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorCredenciales(nombreUsuario, contrasenia);
+            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
             return usuario;
         }
 

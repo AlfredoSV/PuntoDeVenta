@@ -57,9 +57,21 @@ namespace AccesoDatos.Repositorios
         public Proveedor ConsultarDetalleProveedor(Guid idProveedor)
         {
             throw new NotImplementedException();
+
+            SqlCommand command;
+
+            var sql = "";
             try
             {
+                using (var conexion = new SqlConnection(_cadCon))
+                {
 
+                    command = new SqlCommand(sql, conexion);
+
+
+
+
+                }
             }
             catch (Exception exception)
             {
