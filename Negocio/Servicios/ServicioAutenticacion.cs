@@ -42,29 +42,32 @@ namespace Aplicacion.Servicios
 
             if (usuario != null)
             {
+                intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
+
+
                 //Validar contraseña
-                if (usuario.Contrsenia.Equals(contrasenia))
+                if (!usuario.Contrsenia.Equals(contrasenia))
                 {
-                    intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
 
-                    if (intentosUsuario.Count() >= 3)
-                        return false;
-                    else if(!usuario.Contrsenia.Equals(contrasenia)))
-                        _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
-                            Crear(usuario.IdUsuario));
+                    _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
+                        Crear(usuario.IdUsuario));
 
-
-
-                }
-                else
                     return false;
 
+                }
+                else if (intentosUsuario.Count() >= 3)
+                {
+                    return false;
+                } else
+                    return true;
+                   
+
             }
-            
+
             return usuario != null;
         }
 
-        public async Task<Usuario>  ConsultarUsuario(string nombreUsuario)
+        public async Task<Usuario> ConsultarUsuario(string nombreUsuario)
         {
             var usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
             return usuario;
