@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using Framework.Security2023.Cryptography;
 
 namespace Aplicacion.Servicios
 {
@@ -14,6 +15,7 @@ namespace Aplicacion.Servicios
     {
         private static ServicioAutenticacion _instacia;
         private RepositorioUsuarios _repositorioUsuarios;
+        private readonly ServiceCryptography _serviceCryptography;
 
         public static ServicioAutenticacion Instacia
         {
@@ -33,35 +35,35 @@ namespace Aplicacion.Servicios
         {
             _repositorioUsuarios = RepositorioUsuarios.Instacia;
             _repositorioUsuarios.AgregarConexionBD(ConexionString.StrConexionBdSql.DefaultConexionSqlServer);
+            _serviceCryptography = new ServiceCryptography();
         }
+
         public async Task<bool> ValidarUsuario(string nombreUsuario, string contrasenia)
         {
 
-            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
+            Usuario usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
             IEnumerable<UsuarioIntento> intentosUsuario;
 
             if (usuario != null)
             {
                 intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
+                Guid userId = usuario.IdUsuario;
+                string password = _serviceCryptography.Descrypt(usuario.Contrsenia, userId.ToString()).Trim();
 
-
-                //Validar contraseña
-                if (!usuario.Contrsenia.Equals(contrasenia))
+                if (!password.Equals(contrasenia))
                 {
-
                     _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
                         Crear(usuario.IdUsuario));
 
                     return false;
-
                 }
                 else if (intentosUsuario.Count() >= 3)
-                {
                     return false;
-                } else
-                    return true;
-                   
-
+                else if (!usuario.Activo)
+                    return false;
+    
+                return true;
+                  
             }
 
             return usuario != null;

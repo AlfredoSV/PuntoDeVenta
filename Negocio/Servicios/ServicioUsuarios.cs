@@ -6,8 +6,8 @@ using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using Framework.Security2023.Cryptography;
 
 namespace Aplicacion.Servicios
 {
@@ -16,6 +16,7 @@ namespace Aplicacion.Servicios
         private static ServicioUsuarios _instancia;
         private readonly RepositorioUsuarios _repositorioUsuarios;
         private readonly RepositorioCatalogos _repositorioCatalogos;
+        private readonly ServiceCryptography _serviceCryptography;
        
         public static ServicioUsuarios Instancia
         {
@@ -33,6 +34,7 @@ namespace Aplicacion.Servicios
         {
             _repositorioUsuarios = RepositorioUsuarios.Instacia;
             _repositorioCatalogos = RepositorioCatalogos.Instacia;
+            _serviceCryptography = new ServiceCryptography();
         }
 
         public async Task GuardarNuevoUsuario(DtoUsuario dtoUsuario)
@@ -42,25 +44,24 @@ namespace Aplicacion.Servicios
                 if (await _repositorioUsuarios.ConsultarSiExisteUsuario(dtoUsuario.NombreUsuario))
                     throw new ExcepcionComun("Aplicacion", $"Este nombre de usuario {dtoUsuario.NombreUsuario} no está disponible", "GuardarNuevoUsuario");
 
-                var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
-                var rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
-                var usuario = Usuario.CrearUsuario(Guid.NewGuid(), dtoUsuario.NombreUsuario, dtoUsuario.Contrasenia, DateTime.Now, false, sucursal, rol);
+                Sucursal sucursal = (await _repositorioCatalogos.ConsultarSucursales()).ToList().Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
+                Rol rol = (await _repositorioCatalogos.ConsultarRoles()).ToList().Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
+
+                Guid userId = Guid.NewGuid();
+                string password = _serviceCryptography.Encrypt(dtoUsuario.Contrasenia, userId.ToString());
+
+                Usuario usuario = Usuario.CrearUsuario(userId, dtoUsuario.NombreUsuario, password, DateTime.Now, false, sucursal, rol);
                 _repositorioUsuarios.GuardarUsuario(usuario);
 
             }
             catch (ExcepcionComun excepcionComun)
             {
-
                 throw excepcionComun;
-
             }
             catch (Exception exception)
             {
-
                 throw exception;
-
             }
-
 
         }
 
@@ -165,11 +166,13 @@ namespace Aplicacion.Servicios
             {
                 if (dtoUsuario.IdUsuario.Equals(idUsuarioLogueado))
                     throw new ExcepcionComun("Aplicación", "No es posible editar el usuario con el que actualmente esta logueado", "EditarUsuario");
+                Guid userId = dtoUsuario.IdUsuario;
+                string password = _serviceCryptography.Encrypt(dtoUsuario.Contrasenia, userId.ToString());
 
                 var rol = (await _repositorioCatalogos.ConsultarRoles()).Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
                 var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
                 var usuario = Usuario.CrearUsuario(dtoUsuario.IdUsuario,
-                    dtoUsuario.NombreUsuario, dtoUsuario.Contrasenia, dtoUsuario.FechayHoraAlta, dtoUsuario.Activo, sucursal, rol
+                    dtoUsuario.NombreUsuario, password, dtoUsuario.FechayHoraAlta, dtoUsuario.Activo, sucursal, rol
                     );
                 await _repositorioUsuarios.ActualizarDatosUsuario(usuario);
 

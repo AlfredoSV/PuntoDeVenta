@@ -11,7 +11,7 @@ namespace Dominio.Entidades
 
         public ConexionString()
         {
-            _defaultConexionSqlServer = "Server=DESKTOP-GUSKUDA;Database=PuntoVenta;Trusted_Connection=True;";
+            _defaultConexionSqlServer = "Server=Alfredo;Database=PuntoVenta;Trusted_Connection=True;";
         }
 
 

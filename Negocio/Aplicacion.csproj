@@ -13,4 +13,10 @@
     <ProjectReference Include="..\Dominio\Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Framework.Security2023">
+      <HintPath>..\PuntoDeVenta\Dependencies\Framework.Security2023.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
