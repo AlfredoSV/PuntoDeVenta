@@ -41,21 +41,21 @@ namespace PuntoDeVenta
         private async void btnRealizarSol_Click(object sender, EventArgs e)
         {
             
-            var usuario = txtUsuario.Text.Trim();
-            var contrasenia = txtContrasenia.Text.Trim();
-            var idRol = ((Item)(comBRol.SelectedItem)).Value;
-            var idSucursal = ((Item)(comBSucursal.SelectedItem)).Value;
+            string usuario = txtUsuario.Text.Trim();
+            string contrasenia = txtContrasenia.Text.Trim();
+            Guid idRol = ((Item)(comBRol.SelectedItem)).Value;
+            Guid idSucursal = ((Item)(comBSucursal.SelectedItem)).Value;
             DtoUsuario dtoUsuario;
 
-            var validacion = true;
-            var mensajeValidacion = string.Empty;
+            bool validacion = true;
+            string mensajeValidacion = string.Empty;
 
-            if (usuario.Equals(""))
+            if (String.IsNullOrEmpty(usuario))
             {              
                 mensajeValidacion += "* Favor de ingresar un usuario \n";
                 validacion = false;
             }
-            if (contrasenia.Equals(""))
+            if (String.IsNullOrEmpty(contrasenia))
             {
                 mensajeValidacion += "* Favor de ingresar una contrasenia \n";
                 validacion = false;
@@ -97,8 +97,6 @@ namespace PuntoDeVenta
                 MessageBox.Show(mensajeValidacion, "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
-
-
 
         }
 

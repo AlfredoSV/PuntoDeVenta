@@ -33,7 +33,6 @@ namespace Aplicacion.Servicios
         public DtoProveedor ConsultarProveedoresPaginados()
         {
 
-
             return null;
         }
 

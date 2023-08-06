@@ -12,7 +12,6 @@ namespace Aplicacion.Servicios
         private static ServicioCatalogos _instacia;
         private static RepositorioCatalogos _repositorioCatalogos;
 
-
         public static ServicioCatalogos Instacia
         {
             get

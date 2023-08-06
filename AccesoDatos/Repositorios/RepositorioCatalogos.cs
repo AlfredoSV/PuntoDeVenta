@@ -58,7 +58,6 @@ namespace AccesoDatos.Repositorios
                         }
                     }
 
-
                     return provedores;
                 }
             }

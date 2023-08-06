@@ -36,7 +36,7 @@ namespace AccesoDatos.Repositorios
         public async Task<Usuario> ConsultarUsuarioPorNombreDeUsuario(string nombreUsuario)
         {
 
-            var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
+            string sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
                         Sucursales suc on suc.idSucursal = usu.idSucursal where  usu.usuario = @nombreUsuario";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
@@ -46,15 +46,13 @@ namespace AccesoDatos.Repositorios
 
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
 
                     sqlCommand.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
-  
-
 
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
 
@@ -62,11 +60,8 @@ namespace AccesoDatos.Repositorios
                     {
                         sqlDataReader.Read();
 
-
                         rol = Rol.Crear(sqlDataReader.GetGuid(5), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
-
                         sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
-
                         usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
                             sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
 
@@ -87,7 +82,7 @@ namespace AccesoDatos.Repositorios
 
         public async Task<Usuario> ConsultarDetalleUsuario(Guid idUsuario)
         {
-            var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
+            string sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
                         Sucursales suc on suc.idSucursal = usu.idSucursal where usu.idUsuario = @idUsuario";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
@@ -97,7 +92,7 @@ namespace AccesoDatos.Repositorios
 
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
@@ -135,24 +130,23 @@ namespace AccesoDatos.Repositorios
         public async Task<IEnumerable<Usuario>> ConsultarUsuarios()
         {
 
-            var sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
+            string sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
                         Sucursales suc on suc.idSucursal = usu.idSucursal";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             Usuario usuario;
-            var usuarios = new List<Usuario>();
+            List<Usuario> usuarios = new List<Usuario>();
             Rol rol = null;
             Sucursal sucursal = null;
 
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
-
 
                     if (sqlDataReader.HasRows)
                     {
@@ -161,7 +155,6 @@ namespace AccesoDatos.Repositorios
                             rol = Rol.Crear(sqlDataReader.GetGuid(4), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
 
                             sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
-
                             usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
                                 sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
 
@@ -183,22 +176,21 @@ namespace AccesoDatos.Repositorios
 
         public async Task<IEnumerable<UsuarioIntento>> ConsultarIntentosUsuario(Guid idUsuario)
         {
-            var sql = @"SELECT * FROM UsuariosIntentos where idUsuario = @idUsuario;";
+            string sql = @"SELECT * FROM UsuariosIntentos where idUsuario = @idUsuario;";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
             UsuarioIntento usuarioIntento;
-            var usuarioIntentos = new List<UsuarioIntento>();
+            List<UsuarioIntento> usuarioIntentos = new List<UsuarioIntento>();
 
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
                     sqlCommand = new SqlCommand(sql, conexion);
                     sqlCommand.Parameters.AddWithValue("idUsuario", idUsuario);
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
-
 
                     if (sqlDataReader.HasRows)
                     {
@@ -227,43 +219,34 @@ namespace AccesoDatos.Repositorios
         public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
         {
 
-            var sql = @"SELECT usu.idUsuario,usu.usuario,rol.nombre,
+            string sql = @"SELECT usu.idUsuario,usu.usuario,rol.nombre,
             opmod.nombre,modl.nombre FROM Usuarios usu inner join Roles rol on usu.idRol = rol.idRol
             inner join RolOperacion rolop on rol.idRol = rolop.idRol inner join OperacionesModulos opmod
             on rolop.idOperaMod = opmod.idOperaMod inner join Modulos modl on opmod.idModulo = opmod.idModulo where usu.idUsuario = @idUsuario ;";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
-            var permisosModulo = new List<PermisosModulo>();
+            List<PermisosModulo> permisosModulo = new List<PermisosModulo>();
 
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("idUsuario", idUsuario);
-
                     sqlDataReader = sqlCommand.ExecuteReader();
-
                     if (sqlDataReader.HasRows)
                     {
-
                         while (sqlDataReader.Read())
                         {
                             permisosModulo.Add(PermisosModulo.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2), sqlDataReader.GetString(3), sqlDataReader.GetString(4)));
                         }
 
                     }
-
-
-
                 }
             }
             catch (Exception e)
             {
-
                 throw e;
             }
 
@@ -273,7 +256,7 @@ namespace AccesoDatos.Repositorios
 
         public void GuardarUsuario(Usuario usuario)
         {
-            var sql = @"INSERT INTO [dbo].[Usuarios]
+            string sql = @"INSERT INTO [dbo].[Usuarios]
            ([idUsuario]
            ,[usuario]
            ,[contrasenia]
@@ -281,7 +264,7 @@ namespace AccesoDatos.Repositorios
            ,[idSucursal]
            ,[idRol]
            ,[activo])
-     VALUES
+            VALUES
            (@idUsuario
            ,@usuario
            ,@contrasenia
@@ -290,15 +273,12 @@ namespace AccesoDatos.Repositorios
            ,@idRol
            ,@activo)";
             SqlCommand sqlCommand;
-
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("@idUsuario", usuario.IdUsuario);
                     sqlCommand.Parameters.AddWithValue("@usuario", usuario.NombreUsuario);
                     sqlCommand.Parameters.AddWithValue("@contrasenia", usuario.Contrsenia);
@@ -306,9 +286,7 @@ namespace AccesoDatos.Repositorios
                     sqlCommand.Parameters.AddWithValue("@idSucursal", usuario.Sucursal.IdSucursal);
                     sqlCommand.Parameters.AddWithValue("@idRol", usuario.Rol.IdRol);
                     sqlCommand.Parameters.AddWithValue("@activo", usuario.Activo);
-
                     sqlCommand.ExecuteNonQuery();
-
 
                 }
             }
@@ -326,7 +304,7 @@ namespace AccesoDatos.Repositorios
            ([idUsuarioIntento]
            ,[idUsuario]
            ,[fechayHoraIntento])
-     VALUES
+           VALUES
            (@idUsuarioIntento,
            @idUsuario,
            @fechayHoraIntento)";
@@ -337,15 +315,12 @@ namespace AccesoDatos.Repositorios
                 using (var conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("@idUsuario", usuarioIntento.IdUsuario);
                     sqlCommand.Parameters.AddWithValue("@idUsuarioIntento", Guid.NewGuid());
                     sqlCommand.Parameters.AddWithValue("@fechayHoraIntento", DateTime.Now);
 
                     sqlCommand.ExecuteNonQuery();
-
 
                 }
             }
@@ -358,33 +333,26 @@ namespace AccesoDatos.Repositorios
 
         public async Task<bool> ConsultarSiExisteUsuario(string nombreUsuario)
         {
-            var sql = @"select convert(bit,isnull((SELECT top 1 1 FROM USUARIOS WHERE usuario = @nombreUsuario),0) )";
+            string sql = @"select convert(bit,isnull((SELECT top 1 1 FROM USUARIOS WHERE usuario = @nombreUsuario),0) )";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
-            var res = false;
-
+            bool res = false;
 
             try
             {
                 using (var conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
-
 
                     sqlDataReader = sqlCommand.ExecuteReader();
 
                     if (sqlDataReader.HasRows)
                     {
                         await sqlDataReader.ReadAsync();
-
                         res = sqlDataReader.GetBoolean(0);
-
                     }
-
 
                 }
             }
@@ -399,7 +367,7 @@ namespace AccesoDatos.Repositorios
 
         public async Task<bool> ActualizarDatosUsuario(Usuario usuario)
         {
-            var sql = @"UPDATE [dbo].[Usuarios]
+            string sql = @"UPDATE [dbo].[Usuarios]
                        SET 
                           [usuario] = @usuario
                           ,[contrasenia] = @contrasenia
@@ -408,8 +376,7 @@ namespace AccesoDatos.Repositorios
                           ,[activo] = @activo
                      WHERE [idUsuario] = @idUsuario";
             SqlCommand sqlCommand;
-            var res = false;
-
+            bool res = false;
 
             try
             {
@@ -417,9 +384,7 @@ namespace AccesoDatos.Repositorios
                 {
 
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("usuario", usuario.NombreUsuario);
                     sqlCommand.Parameters.AddWithValue("contrasenia", usuario.Contrsenia);
                     sqlCommand.Parameters.AddWithValue("idSucursal", usuario.Sucursal.IdSucursal);
@@ -428,15 +393,10 @@ namespace AccesoDatos.Repositorios
                     sqlCommand.Parameters.AddWithValue("idUsuario", usuario.IdUsuario);
                     await sqlCommand.ExecuteNonQueryAsync();
 
-
-
-
-
                 }
             }
             catch (Exception e)
             {
-
                 throw e;
             }
 
@@ -445,10 +405,9 @@ namespace AccesoDatos.Repositorios
 
         public async Task<bool> EliminarUsuario(Guid idUsuario)
         {
-            var sql = @"delete from usuarios where idUsuario = @idUsuario";
+            string sql = @"delete from usuarios where idUsuario = @idUsuario";
             SqlCommand sqlCommand;
-            var res = false;
-
+            bool res = false;
 
             try
             {
@@ -456,20 +415,14 @@ namespace AccesoDatos.Repositorios
                 {
 
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("@idUsuario", idUsuario);
-
                     await sqlCommand.ExecuteNonQueryAsync();
-
-
 
                 }
             }
             catch (Exception e)
             {
-
                 throw e;
             }
 

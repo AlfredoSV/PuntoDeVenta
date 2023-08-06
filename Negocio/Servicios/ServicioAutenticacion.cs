@@ -57,11 +57,10 @@ namespace Aplicacion.Servicios
 
                     return false;
                 }
-                else if (intentosUsuario.Count() >= 3)
+                
+                if (intentosUsuario.Count() >= 3 || !usuario.Activo)
                     return false;
-                else if (!usuario.Activo)
-                    return false;
-    
+
                 return true;
                   
             }
@@ -71,7 +70,7 @@ namespace Aplicacion.Servicios
 
         public async Task<Usuario> ConsultarUsuario(string nombreUsuario)
         {
-            var usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
+            Usuario usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
             return usuario;
         }
 

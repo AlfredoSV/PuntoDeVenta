@@ -71,33 +71,27 @@ namespace Aplicacion.Servicios
             DtoUsuario dtoUsuario = null;
             try
             {
-
                 usuario = await _repositorioUsuarios.ConsultarDetalleUsuario(idUsuario);
                 dtoUsuario = new DtoUsuario(usuario.IdUsuario, usuario.NombreUsuario,usuario.Contrsenia, usuario.FechayHoraAlta, usuario.Sucursal.IdSucursal, usuario.Rol.IdRol, usuario.Sucursal.Nombre, usuario.Rol.Nombre, usuario.Activo);
-
             }
             catch (ExcepcionComun excepcionComun)
             {
-
                 throw excepcionComun;
-
             }
             catch (Exception exception)
             {
-
                 throw exception;
-
             }
             return dtoUsuario;
         }
 
         public async Task<UsuariosPaginados> ConsultarUsuariosPaginados(int estatus, DtoPropiedadesPaginacion dtoPropiedadesPaginacion)
         {
-            var usuarios = new List<Usuario>();
+            List<Usuario> usuarios = new List<Usuario>();
             UsuariosPaginados dtoUsuariosPaginados;
-            var totalUsuarios = 0;
-            var totalPaginas = 0;
-            var dtoUsuarios = new List<DtoUsuario>();
+            int totalUsuarios = 0;
+            int totalPaginas = 0;
+            List<DtoUsuario> dtoUsuarios = new List<DtoUsuario>();
 
             try
             {
@@ -118,17 +112,13 @@ namespace Aplicacion.Servicios
             }
             catch (ExcepcionComun excepcionComun)
             {
-
                 throw excepcionComun;
-
-
             }
             catch (Exception exception)
             {
-
                 throw exception;
-
             }
+
             dtoUsuariosPaginados = new UsuariosPaginados(dtoUsuarios, dtoPropiedadesPaginacion.Pagina, dtoPropiedadesPaginacion.TamanioPagina, totalUsuarios, totalPaginas);
 
             return dtoUsuariosPaginados;
@@ -146,16 +136,11 @@ namespace Aplicacion.Servicios
             }
             catch (ExcepcionComun excepcionComun)
             {
-
                 throw excepcionComun;
-
-
             }
             catch (Exception exception)
             {
-
                 throw exception;
-
             }
 
         }
@@ -169,9 +154,9 @@ namespace Aplicacion.Servicios
                 Guid userId = dtoUsuario.IdUsuario;
                 string password = _serviceCryptography.Encrypt(dtoUsuario.Contrasenia, userId.ToString());
 
-                var rol = (await _repositorioCatalogos.ConsultarRoles()).Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
-                var sucursal = (await _repositorioCatalogos.ConsultarSucursales()).Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
-                var usuario = Usuario.CrearUsuario(dtoUsuario.IdUsuario,
+                Rol rol = (await _repositorioCatalogos.ConsultarRoles()).Where(r => r.IdRol == dtoUsuario.Idrol).FirstOrDefault();
+                Sucursal sucursal = (await _repositorioCatalogos.ConsultarSucursales()).Where(s => s.IdSucursal == dtoUsuario.Idsucursal).FirstOrDefault();
+                Usuario usuario = Usuario.CrearUsuario(dtoUsuario.IdUsuario,
                     dtoUsuario.NombreUsuario, password, dtoUsuario.FechayHoraAlta, dtoUsuario.Activo, sucursal, rol
                     );
                 await _repositorioUsuarios.ActualizarDatosUsuario(usuario);
@@ -179,9 +164,7 @@ namespace Aplicacion.Servicios
             }
             catch (ExcepcionComun excepcionComun)
             {
-
                 throw excepcionComun;
-
 
             }
             catch (Exception exception)
