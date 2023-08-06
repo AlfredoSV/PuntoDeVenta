@@ -27,13 +27,10 @@ namespace Aplicacion.Servicios
 
         public IEnumerable<Producto> LeerExcelProductos(MemoryStream archivo)
         {
-            var listaElmen = new List<Producto>();
-            var sp = new SLDocument(archivo);
-
-
-            var wsn = sp.GetWorksheetStatistics();
-
-            var resValidacionColumnas = ValidarColumnasFormato(ref sp);
+            List<Producto> listaElmen = new List<Producto>();
+            SLDocument sp = new SLDocument(archivo);
+            SLWorksheetStatistics wsn = sp.GetWorksheetStatistics();
+            bool resValidacionColumnas = ValidarColumnasFormato(ref sp);
 
             if (!resValidacionColumnas)
                 throw new ExcepcionComun("Aplicación", "El documento no tiene el formato correcto", "LeerExcelProductos");
@@ -42,9 +39,7 @@ namespace Aplicacion.Servicios
             {
                 for (int i = 2; i < wsn.NumberOfRows; i++)
                 {
-
-
-                    var producto = Producto.CrearNuevoProducto(Int32.Parse(sp.GetCellValueAsString(i, 1)),
+                    Producto producto = Producto.CrearNuevoProducto(Int32.Parse(sp.GetCellValueAsString(i, 1)),
                         sp.GetCellValueAsString(i, 2), sp.GetCellValueAsString(i, 3), decimal.Parse(sp.GetCellValueAsString(i, 4)),
                         Guid.Parse(sp.GetCellValueAsString(i, 5)));
                     listaElmen.Add(producto);
@@ -56,7 +51,7 @@ namespace Aplicacion.Servicios
 
         }
 
-        public bool ValidarColumnasFormato(ref SLDocument sLDocument)
+        private bool ValidarColumnasFormato(ref SLDocument sLDocument)
         {
             var sLWorksheetStatistics = sLDocument.GetWorksheetStatistics();
             var listaColumnas = new List<string>() { "Stock", "Nombre", "Descripcion", "Precio", "Inventario", "Proveedor" };
