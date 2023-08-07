@@ -81,14 +81,12 @@ namespace PuntoDeVenta
         {
             try
             {
-                var usuario = txtUsuario.Text.Trim();
-                var contrasenia = txtContrasenia.Text.Trim();
-                var inicioForm = new Inicio();
+                string usuario = txtUsuario.Text.Trim();
+                string contrasenia = txtContrasenia.Text.Trim();
+                Inicio inicioForm = new Inicio();
 
-
-                if (!usuario.Equals("") && !contrasenia.Equals(""))
+                if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(contrasenia))
                 {
-
 
                     if (await _servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
                     {

@@ -80,24 +80,27 @@ namespace PuntoDeVenta.UsuariosForms
 
         private void CargarEstatus(bool activo)
         {
-            var items = new List<Item>();
+            List<Item> items = new List<Item>();
+
+            //Cambia el orden de los valores del comboEstatusBusqueda
             if (activo)
             {
                 items.Add(new Item("Activo", (int)EstatusUsuarioBusqueda.Activos));
                 items.Add(new Item("Inactivo", (int)EstatusUsuarioBusqueda.Inactivos));
-              
+
             }
             else
             {
                 items.Add(new Item("Inactivo", (int)EstatusUsuarioBusqueda.Inactivos));
                 items.Add(new Item("Activo", (int)EstatusUsuarioBusqueda.Activos));
-           
+
             }
 
 
             comboEstatusBusqueda.DisplayMember = "Name";
             comboEstatusBusqueda.ValueMember = "Value";
             comboEstatusBusqueda.DataSource = items;
+           
         }
 
         private void CargarSucursales(IEnumerable<Sucursal> sucursales,Guid idSucursal)
@@ -135,15 +138,15 @@ namespace PuntoDeVenta.UsuariosForms
 
         private async void btnGuardarUsuarioEditado_Click(object sender, EventArgs e)
         {
-            var usuario = txtUsuario.Text.Trim();
-            var contrasenia = txtContrasenia.Text.Trim();
-            var idRol = ((Item)(comboBoxRoles.SelectedItem)).Value;
-            var idSucursal = ((Item)(comboBoxSucursales.SelectedItem)).Value;
-            var activo = Convert.ToBoolean(((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt);
+            string usuario = txtUsuario.Text.Trim();
+            string contrasenia = txtContrasenia.Text.Trim();
+            Guid idRol = ((Item)(comboBoxRoles.SelectedItem)).Value;
+            Guid idSucursal = ((Item)(comboBoxSucursales.SelectedItem)).Value;
+            bool activo = Convert.ToBoolean(((Item)(comboEstatusBusqueda.SelectedItem)).ValueInt);
             DtoUsuario dtoUsuario;
 
-            var validacion = true;
-            var mensajeValidacion = string.Empty;
+            bool validacion = true;
+            string mensajeValidacion = string.Empty;
 
             if (usuario.Equals(""))
             {
@@ -164,7 +167,6 @@ namespace PuntoDeVenta.UsuariosForms
                     await _servicioUsuarios.EditarUsuario(dtoUsuario, _usuarioLogueado.IdUsuario);
                     MessageBox.Show("El usuario se edito de forma correcta", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
-
 
                 }
                 catch (ExcepcionComun excepcionComun)

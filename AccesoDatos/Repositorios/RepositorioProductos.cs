@@ -37,14 +37,14 @@ namespace Dominio.Repositorios
 
         public async Task<IEnumerable<Producto>> ConsultarProductos(string buscar)
         {
-            var productos = new List<Producto>();
-            var sql = "ConsultarProductos";
+            List<Producto> productos = new List<Producto>();
+            string sql = "ConsultarProductos";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
 
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
@@ -63,7 +63,6 @@ namespace Dominio.Repositorios
                         }
                     }
 
-
                     return productos;
                 }
             }
@@ -76,14 +75,14 @@ namespace Dominio.Repositorios
 
         public int ConsultarProductosTotal(string buscar)
         {
-            var productos = new List<Producto>();
-            var sql = "ConsultarProductosTotal";
+            List<Producto> productos = new List<Producto>();
+            string sql = "ConsultarProductosTotal";
             
             SqlCommand sqlCommand;
-            var total = 0;
+            int total = 0;
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
@@ -110,12 +109,12 @@ namespace Dominio.Repositorios
         public bool GuardarProducto(Producto dtoProducto)
         {
 
-            var sql = "Insert into productos values(@idProducto,@stock,@nombre,@descripcion,@precio,'1FDD9D61-DFA7-4520-A01A-54370F8A5CBE',@idProveedor)";
+            string sql = "Insert into productos values(@idProducto,@stock,@nombre,@descripcion,@precio,'1FDD9D61-DFA7-4520-A01A-54370F8A5CBE',@idProveedor)";
 
             SqlCommand sqlCommand;
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
@@ -139,12 +138,12 @@ namespace Dominio.Repositorios
 
         public async Task EliminarProductoPorId(Guid idProducto)
         {
-            var sql = "delete from productos where idProducto = @idProducto";
+            string sql = "delete from productos where idProducto = @idProducto";
 
             SqlCommand sqlCommand;
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 
@@ -163,12 +162,12 @@ namespace Dominio.Repositorios
         public async Task EditarProducto(Producto dtoProducto)
         {
 
-            var sql = @"UPDATE Productos set stock = @stock, nombre = @nombre, descripcion = @descripcion,
+            string sql = @"UPDATE Productos set stock = @stock, nombre = @nombre, descripcion = @descripcion,
                         precio = @precio,@idInventario = idInventario ,idProveedor = @idProveedor where idProducto = @idProducto";
             SqlCommand sqlCommand;
             try
             {
-                using (var conexion = new SqlConnection(_cadCon))
+                using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
 

@@ -48,9 +48,10 @@ namespace PuntoDeVenta
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSalir.Location = new System.Drawing.Point(170, 237);
+            this.btnSalir.Location = new System.Drawing.Point(227, 292);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(106, 29);
+            this.btnSalir.Size = new System.Drawing.Size(141, 36);
             this.btnSalir.TabIndex = 8;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
@@ -58,51 +59,58 @@ namespace PuntoDeVenta
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(103, 53);
+            this.txtUsuario.Location = new System.Drawing.Point(137, 65);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(173, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(229, 22);
             this.txtUsuario.TabIndex = 9;
             // 
             // txtContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(104, 95);
+            this.txtContrasenia.Location = new System.Drawing.Point(139, 117);
+            this.txtContrasenia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtContrasenia.Name = "txtContrasenia";
-            this.txtContrasenia.Size = new System.Drawing.Size(172, 20);
+            this.txtContrasenia.PasswordChar = '*';
+            this.txtContrasenia.Size = new System.Drawing.Size(228, 22);
             this.txtContrasenia.TabIndex = 10;
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(34, 56);
+            this.lblUsuario.Location = new System.Drawing.Point(45, 69);
+            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(46, 13);
+            this.lblUsuario.Size = new System.Drawing.Size(61, 17);
             this.lblUsuario.TabIndex = 12;
             this.lblUsuario.Text = "Usuario:";
             // 
             // lblContrasenia
             // 
             this.lblContrasenia.AutoSize = true;
-            this.lblContrasenia.Location = new System.Drawing.Point(34, 102);
+            this.lblContrasenia.Location = new System.Drawing.Point(45, 126);
+            this.lblContrasenia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblContrasenia.Name = "lblContrasenia";
-            this.lblContrasenia.Size = new System.Drawing.Size(64, 13);
+            this.lblContrasenia.Size = new System.Drawing.Size(85, 17);
             this.lblContrasenia.TabIndex = 13;
             this.lblContrasenia.Text = "Contraseña:";
             // 
             // lblSucursal
             // 
             this.lblSucursal.AutoSize = true;
-            this.lblSucursal.Location = new System.Drawing.Point(34, 152);
+            this.lblSucursal.Location = new System.Drawing.Point(45, 187);
+            this.lblSucursal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSucursal.Name = "lblSucursal";
-            this.lblSucursal.Size = new System.Drawing.Size(51, 13);
+            this.lblSucursal.Size = new System.Drawing.Size(67, 17);
             this.lblSucursal.TabIndex = 14;
             this.lblSucursal.Text = "Sucursal:";
             // 
             // lblRol
             // 
             this.lblRol.AutoSize = true;
-            this.lblRol.Location = new System.Drawing.Point(34, 193);
+            this.lblRol.Location = new System.Drawing.Point(45, 238);
+            this.lblRol.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRol.Name = "lblRol";
-            this.lblRol.Size = new System.Drawing.Size(26, 13);
+            this.lblRol.Size = new System.Drawing.Size(33, 17);
             this.lblRol.TabIndex = 16;
             this.lblRol.Text = "Rol:";
             // 
@@ -110,26 +118,29 @@ namespace PuntoDeVenta
             // 
             this.comBRol.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBRol.FormattingEnabled = true;
-            this.comBRol.Location = new System.Drawing.Point(103, 193);
+            this.comBRol.Location = new System.Drawing.Point(137, 238);
+            this.comBRol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comBRol.Name = "comBRol";
-            this.comBRol.Size = new System.Drawing.Size(173, 21);
+            this.comBRol.Size = new System.Drawing.Size(229, 24);
             this.comBRol.TabIndex = 17;
             // 
             // comBSucursal
             // 
             this.comBSucursal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comBSucursal.FormattingEnabled = true;
-            this.comBSucursal.Location = new System.Drawing.Point(103, 144);
+            this.comBSucursal.Location = new System.Drawing.Point(137, 177);
+            this.comBSucursal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comBSucursal.Name = "comBSucursal";
-            this.comBSucursal.Size = new System.Drawing.Size(173, 21);
+            this.comBSucursal.Size = new System.Drawing.Size(229, 24);
             this.comBSucursal.TabIndex = 18;
             // 
             // btnRealizarSol
             // 
             this.btnRealizarSol.BackColor = System.Drawing.Color.LightGreen;
-            this.btnRealizarSol.Location = new System.Drawing.Point(31, 237);
+            this.btnRealizarSol.Location = new System.Drawing.Point(41, 292);
+            this.btnRealizarSol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRealizarSol.Name = "btnRealizarSol";
-            this.btnRealizarSol.Size = new System.Drawing.Size(109, 29);
+            this.btnRealizarSol.Size = new System.Drawing.Size(145, 36);
             this.btnRealizarSol.TabIndex = 19;
             this.btnRealizarSol.Text = "Realizar Solicitud";
             this.btnRealizarSol.UseVisualStyleBackColor = false;
@@ -137,9 +148,9 @@ namespace PuntoDeVenta
             // 
             // RegistroUsuario
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 299);
+            this.ClientSize = new System.Drawing.Size(403, 368);
             this.Controls.Add(this.btnRealizarSol);
             this.Controls.Add(this.comBSucursal);
             this.Controls.Add(this.comBRol);
@@ -151,6 +162,7 @@ namespace PuntoDeVenta
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnSalir);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RegistroUsuario";
