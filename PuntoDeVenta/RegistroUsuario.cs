@@ -28,8 +28,19 @@ namespace PuntoDeVenta
 
         private async void RegistroUsuario_Load(object sender, EventArgs e)
         {
-            CargarSucursales(await _servicioCatalogos.ConsultarSucursalesBD());
-            CargarRoles(await _servicioCatalogos.ConsultarRolesBD());
+            IEnumerable<Sucursal> sucursales = await _servicioCatalogos.ConsultarSucursalesBD();
+            IEnumerable<Rol> roles = await _servicioCatalogos.ConsultarRolesBD();
+
+            if(sucursales.Count() == 0 || roles.Count() == 0)
+            {
+                MessageBox.Show("No se cargarón sucursales y/o roles, favor de consultar con sistemas.","Warning");
+                btnRealizarSol.Enabled = false;
+                return;
+            }
+
+            btnRealizarSol.Enabled = true;
+            CargarSucursales(sucursales);
+            CargarRoles(roles);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
