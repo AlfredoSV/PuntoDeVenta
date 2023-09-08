@@ -186,7 +186,7 @@ namespace PuntoDeVenta.VentaForms
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            var dataTableProductosCarrito = new DataTable();
+            DataTable dataTableProductosCarrito = new DataTable();
             DataRow dtrowProducto;
 
             dataTableProductosCarrito.Columns.Add("Nombre", typeof(string));
