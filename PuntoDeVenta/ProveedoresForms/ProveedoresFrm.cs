@@ -37,5 +37,20 @@ namespace PuntoDeVenta.ProveedoresForms
             base.Show();
             
         }
+
+        private void btnLimpiarFormFormProveedor_Click(object sender, EventArgs e)
+        {
+            txtNombreProveedor.Text = string.Empty;
+            txtDescripcionProveedor.Text = string.Empty;
+            txtBuscar.Text = string.Empty;
+            LimpiarGrid();
+        }
+
+        private void LimpiarGrid()
+        {
+            dataGridViewProveedores.Columns.Clear();
+            dataGridViewProveedores.DataSource = null;
+
+        }
     }
 }
