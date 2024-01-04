@@ -20,12 +20,7 @@ namespace PuntoDeVenta
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
-
             Application.Run(Login.Instancia);
-
-
 
         }
 

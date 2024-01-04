@@ -60,10 +60,10 @@ namespace Aplicacion.Servicios
                 throw excepcionComun;
 
             }
-            catch (Exception exception)
+            catch (Exception)
             {
 
-                throw exception;
+                throw;
 
             }
 

@@ -30,7 +30,6 @@ namespace PuntoDeVenta.ProductosForms
         private void InitializeComponent()
         {
             this.dataGridViewProductos = new System.Windows.Forms.DataGridView();
-            this.btnSalirProductos = new System.Windows.Forms.Button();
             this.btnRecargarProductos = new System.Windows.Forms.Button();
             this.lblPginacionProductos = new System.Windows.Forms.Label();
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
@@ -69,32 +68,23 @@ namespace PuntoDeVenta.ProductosForms
             this.dataGridViewProductos.AllowUserToOrderColumns = true;
             this.dataGridViewProductos.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dataGridViewProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewProductos.Location = new System.Drawing.Point(405, 75);
+            this.dataGridViewProductos.Location = new System.Drawing.Point(540, 92);
+            this.dataGridViewProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dataGridViewProductos.Name = "dataGridViewProductos";
             this.dataGridViewProductos.ReadOnly = true;
-            this.dataGridViewProductos.Size = new System.Drawing.Size(676, 305);
+            this.dataGridViewProductos.RowHeadersWidth = 51;
+            this.dataGridViewProductos.Size = new System.Drawing.Size(901, 375);
             this.dataGridViewProductos.TabIndex = 1;
             this.dataGridViewProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewProductos_CellContentClick);
-            // 
-            // btnSalirProductos
-            // 
-            this.btnSalirProductos.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSalirProductos.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirProductos.Location = new System.Drawing.Point(995, 21);
-            this.btnSalirProductos.Name = "btnSalirProductos";
-            this.btnSalirProductos.Size = new System.Drawing.Size(86, 25);
-            this.btnSalirProductos.TabIndex = 0;
-            this.btnSalirProductos.Text = "Salir";
-            this.btnSalirProductos.UseVisualStyleBackColor = false;
-            this.btnSalirProductos.Click += new System.EventHandler(this.btnSalirProductos_Click);
             // 
             // btnRecargarProductos
             // 
             this.btnRecargarProductos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRecargarProductos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarProductos.Location = new System.Drawing.Point(886, 23);
+            this.btnRecargarProductos.Location = new System.Drawing.Point(1324, 28);
+            this.btnRecargarProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRecargarProductos.Name = "btnRecargarProductos";
-            this.btnRecargarProductos.Size = new System.Drawing.Size(88, 23);
+            this.btnRecargarProductos.Size = new System.Drawing.Size(117, 28);
             this.btnRecargarProductos.TabIndex = 2;
             this.btnRecargarProductos.Text = "Recargar";
             this.btnRecargarProductos.UseVisualStyleBackColor = false;
@@ -103,27 +93,30 @@ namespace PuntoDeVenta.ProductosForms
             // lblPginacionProductos
             // 
             this.lblPginacionProductos.AutoSize = true;
-            this.lblPginacionProductos.Location = new System.Drawing.Point(402, 4);
+            this.lblPginacionProductos.Location = new System.Drawing.Point(536, 5);
+            this.lblPginacionProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPginacionProductos.Name = "lblPginacionProductos";
-            this.lblPginacionProductos.Size = new System.Drawing.Size(60, 13);
+            this.lblPginacionProductos.Size = new System.Drawing.Size(78, 17);
             this.lblPginacionProductos.TabIndex = 18;
             this.lblPginacionProductos.Text = "Paginación";
             // 
             // lblAuxFormProductos
             // 
             this.lblAuxFormProductos.AutoSize = true;
-            this.lblAuxFormProductos.Location = new System.Drawing.Point(511, 26);
+            this.lblAuxFormProductos.Location = new System.Drawing.Point(681, 32);
+            this.lblAuxFormProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAuxFormProductos.Name = "lblAuxFormProductos";
-            this.lblAuxFormProductos.Size = new System.Drawing.Size(19, 13);
+            this.lblAuxFormProductos.Size = new System.Drawing.Size(24, 17);
             this.lblAuxFormProductos.TabIndex = 19;
             this.lblAuxFormProductos.Text = "de";
             // 
             // txtPaginasTotalesProductos
             // 
-            this.txtPaginasTotalesProductos.Location = new System.Drawing.Point(536, 22);
+            this.txtPaginasTotalesProductos.Location = new System.Drawing.Point(715, 27);
+            this.txtPaginasTotalesProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPaginasTotalesProductos.Name = "txtPaginasTotalesProductos";
             this.txtPaginasTotalesProductos.ReadOnly = true;
-            this.txtPaginasTotalesProductos.Size = new System.Drawing.Size(71, 20);
+            this.txtPaginasTotalesProductos.Size = new System.Drawing.Size(93, 22);
             this.txtPaginasTotalesProductos.TabIndex = 20;
             // 
             // Alta
@@ -144,10 +137,11 @@ namespace PuntoDeVenta.ProductosForms
             this.Alta.Controls.Add(this.lblNombreProducto);
             this.Alta.Controls.Add(this.comboProveedorProducto);
             this.Alta.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.Alta.Location = new System.Drawing.Point(4, 22);
+            this.Alta.Location = new System.Drawing.Point(4, 25);
+            this.Alta.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Alta.Name = "Alta";
-            this.Alta.Padding = new System.Windows.Forms.Padding(3);
-            this.Alta.Size = new System.Drawing.Size(351, 342);
+            this.Alta.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Alta.Size = new System.Drawing.Size(471, 424);
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
@@ -155,31 +149,35 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.lblAviso.AutoSize = true;
             this.lblAviso.ForeColor = System.Drawing.Color.Red;
-            this.lblAviso.Location = new System.Drawing.Point(23, 312);
+            this.lblAviso.Location = new System.Drawing.Point(31, 384);
+            this.lblAviso.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAviso.Name = "lblAviso";
-            this.lblAviso.Size = new System.Drawing.Size(298, 13);
+            this.lblAviso.Size = new System.Drawing.Size(397, 17);
             this.lblAviso.TabIndex = 18;
             this.lblAviso.Text = "Actualmente no tiene el permiso para acceder a esta sección.";
             // 
             // txtStockProducto
             // 
-            this.txtStockProducto.Location = new System.Drawing.Point(231, 51);
+            this.txtStockProducto.Location = new System.Drawing.Point(308, 63);
+            this.txtStockProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtStockProducto.Name = "txtStockProducto";
-            this.txtStockProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtStockProducto.Size = new System.Drawing.Size(133, 22);
             this.txtStockProducto.TabIndex = 17;
             // 
             // txtPrecioProducto
             // 
-            this.txtPrecioProducto.Location = new System.Drawing.Point(125, 51);
+            this.txtPrecioProducto.Location = new System.Drawing.Point(167, 63);
+            this.txtPrecioProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPrecioProducto.Name = "txtPrecioProducto";
-            this.txtPrecioProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtPrecioProducto.Size = new System.Drawing.Size(132, 22);
             this.txtPrecioProducto.TabIndex = 16;
             // 
             // btnLimpiarFormProducto
             // 
-            this.btnLimpiarFormProducto.Location = new System.Drawing.Point(256, 277);
+            this.btnLimpiarFormProducto.Location = new System.Drawing.Point(341, 341);
+            this.btnLimpiarFormProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLimpiarFormProducto.Name = "btnLimpiarFormProducto";
-            this.btnLimpiarFormProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiarFormProducto.Size = new System.Drawing.Size(100, 28);
             this.btnLimpiarFormProducto.TabIndex = 15;
             this.btnLimpiarFormProducto.Text = "Limpiar";
             this.btnLimpiarFormProducto.UseVisualStyleBackColor = true;
@@ -188,9 +186,10 @@ namespace PuntoDeVenta.ProductosForms
             // btnCargarMasivaProducto
             // 
             this.btnCargarMasivaProducto.ImageAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.btnCargarMasivaProducto.Location = new System.Drawing.Point(110, 277);
+            this.btnCargarMasivaProducto.Location = new System.Drawing.Point(147, 341);
+            this.btnCargarMasivaProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCargarMasivaProducto.Name = "btnCargarMasivaProducto";
-            this.btnCargarMasivaProducto.Size = new System.Drawing.Size(130, 23);
+            this.btnCargarMasivaProducto.Size = new System.Drawing.Size(173, 28);
             this.btnCargarMasivaProducto.TabIndex = 14;
             this.btnCargarMasivaProducto.Text = "Realizar carga másiva";
             this.btnCargarMasivaProducto.UseVisualStyleBackColor = true;
@@ -198,9 +197,10 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // btnGuardarProducto
             // 
-            this.btnGuardarProducto.Location = new System.Drawing.Point(19, 277);
+            this.btnGuardarProducto.Location = new System.Drawing.Point(25, 341);
+            this.btnGuardarProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGuardarProducto.Name = "btnGuardarProducto";
-            this.btnGuardarProducto.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarProducto.Size = new System.Drawing.Size(100, 28);
             this.btnGuardarProducto.TabIndex = 13;
             this.btnGuardarProducto.Text = "Guardar";
             this.btnGuardarProducto.UseVisualStyleBackColor = true;
@@ -208,61 +208,68 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // txtDescripcionProducto
             // 
-            this.txtDescripcionProducto.Location = new System.Drawing.Point(19, 108);
+            this.txtDescripcionProducto.Location = new System.Drawing.Point(25, 133);
+            this.txtDescripcionProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescripcionProducto.Multiline = true;
             this.txtDescripcionProducto.Name = "txtDescripcionProducto";
-            this.txtDescripcionProducto.Size = new System.Drawing.Size(312, 60);
+            this.txtDescripcionProducto.Size = new System.Drawing.Size(415, 73);
             this.txtDescripcionProducto.TabIndex = 1;
             // 
             // txtNombreProducto
             // 
-            this.txtNombreProducto.Location = new System.Drawing.Point(19, 51);
+            this.txtNombreProducto.Location = new System.Drawing.Point(25, 63);
+            this.txtNombreProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(100, 20);
+            this.txtNombreProducto.Size = new System.Drawing.Size(132, 22);
             this.txtNombreProducto.TabIndex = 0;
             // 
             // lblProveedorProducto
             // 
             this.lblProveedorProducto.AutoSize = true;
-            this.lblProveedorProducto.Location = new System.Drawing.Point(23, 196);
+            this.lblProveedorProducto.Location = new System.Drawing.Point(31, 241);
+            this.lblProveedorProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblProveedorProducto.Name = "lblProveedorProducto";
-            this.lblProveedorProducto.Size = new System.Drawing.Size(59, 13);
+            this.lblProveedorProducto.Size = new System.Drawing.Size(78, 17);
             this.lblProveedorProducto.TabIndex = 11;
             this.lblProveedorProducto.Text = "Proveedor:";
             // 
             // lblDescripProducto
             // 
             this.lblDescripProducto.AutoSize = true;
-            this.lblDescripProducto.Location = new System.Drawing.Point(16, 92);
+            this.lblDescripProducto.Location = new System.Drawing.Point(21, 113);
+            this.lblDescripProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescripProducto.Name = "lblDescripProducto";
-            this.lblDescripProducto.Size = new System.Drawing.Size(66, 13);
+            this.lblDescripProducto.Size = new System.Drawing.Size(86, 17);
             this.lblDescripProducto.TabIndex = 9;
             this.lblDescripProducto.Text = "Descripción:";
             // 
             // lblStockProducto
             // 
             this.lblStockProducto.AutoSize = true;
-            this.lblStockProducto.Location = new System.Drawing.Point(228, 35);
+            this.lblStockProducto.Location = new System.Drawing.Point(304, 43);
+            this.lblStockProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStockProducto.Name = "lblStockProducto";
-            this.lblStockProducto.Size = new System.Drawing.Size(38, 13);
+            this.lblStockProducto.Size = new System.Drawing.Size(47, 17);
             this.lblStockProducto.TabIndex = 8;
             this.lblStockProducto.Text = "Stock:";
             // 
             // lblPrecioProducto
             // 
             this.lblPrecioProducto.AutoSize = true;
-            this.lblPrecioProducto.Location = new System.Drawing.Point(125, 35);
+            this.lblPrecioProducto.Location = new System.Drawing.Point(167, 43);
+            this.lblPrecioProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPrecioProducto.Name = "lblPrecioProducto";
-            this.lblPrecioProducto.Size = new System.Drawing.Size(40, 13);
+            this.lblPrecioProducto.Size = new System.Drawing.Size(52, 17);
             this.lblPrecioProducto.TabIndex = 7;
             this.lblPrecioProducto.Text = "Precio:";
             // 
             // lblNombreProducto
             // 
             this.lblNombreProducto.AutoSize = true;
-            this.lblNombreProducto.Location = new System.Drawing.Point(16, 35);
+            this.lblNombreProducto.Location = new System.Drawing.Point(21, 43);
+            this.lblNombreProducto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombreProducto.Name = "lblNombreProducto";
-            this.lblNombreProducto.Size = new System.Drawing.Size(47, 13);
+            this.lblNombreProducto.Size = new System.Drawing.Size(62, 17);
             this.lblNombreProducto.TabIndex = 6;
             this.lblNombreProducto.Text = "Nombre:";
             // 
@@ -270,32 +277,36 @@ namespace PuntoDeVenta.ProductosForms
             // 
             this.comboProveedorProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboProveedorProducto.FormattingEnabled = true;
-            this.comboProveedorProducto.Location = new System.Drawing.Point(19, 212);
+            this.comboProveedorProducto.Location = new System.Drawing.Point(25, 261);
+            this.comboProveedorProducto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboProveedorProducto.Name = "comboProveedorProducto";
-            this.comboProveedorProducto.Size = new System.Drawing.Size(312, 21);
+            this.comboProveedorProducto.Size = new System.Drawing.Size(415, 24);
             this.comboProveedorProducto.TabIndex = 4;
             // 
             // tabControlProductos
             // 
             this.tabControlProductos.Controls.Add(this.Alta);
-            this.tabControlProductos.Location = new System.Drawing.Point(12, 12);
+            this.tabControlProductos.Location = new System.Drawing.Point(16, 15);
+            this.tabControlProductos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControlProductos.Name = "tabControlProductos";
             this.tabControlProductos.SelectedIndex = 0;
-            this.tabControlProductos.Size = new System.Drawing.Size(359, 368);
+            this.tabControlProductos.Size = new System.Drawing.Size(479, 453);
             this.tabControlProductos.TabIndex = 0;
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(627, 23);
+            this.txtBuscar.Location = new System.Drawing.Point(836, 28);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(142, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(188, 22);
             this.txtBuscar.TabIndex = 21;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(787, 22);
+            this.btnBuscar.Location = new System.Drawing.Point(1049, 27);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(100, 28);
             this.btnBuscar.TabIndex = 22;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -303,17 +314,19 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // txtPagActual
             // 
-            this.txtPagActual.Location = new System.Drawing.Point(405, 20);
+            this.txtPagActual.Location = new System.Drawing.Point(540, 25);
+            this.txtPagActual.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPagActual.Name = "txtPagActual";
             this.txtPagActual.ReadOnly = true;
-            this.txtPagActual.Size = new System.Drawing.Size(98, 20);
+            this.txtPagActual.Size = new System.Drawing.Size(129, 22);
             this.txtPagActual.TabIndex = 23;
             // 
             // btnRegresarPag
             // 
-            this.btnRegresarPag.Location = new System.Drawing.Point(405, 46);
+            this.btnRegresarPag.Location = new System.Drawing.Point(540, 57);
+            this.btnRegresarPag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRegresarPag.Name = "btnRegresarPag";
-            this.btnRegresarPag.Size = new System.Drawing.Size(46, 23);
+            this.btnRegresarPag.Size = new System.Drawing.Size(61, 28);
             this.btnRegresarPag.TabIndex = 24;
             this.btnRegresarPag.Text = "<<";
             this.btnRegresarPag.UseVisualStyleBackColor = true;
@@ -321,9 +334,10 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // btnAvanzarPag
             // 
-            this.btnAvanzarPag.Location = new System.Drawing.Point(457, 46);
+            this.btnAvanzarPag.Location = new System.Drawing.Point(609, 57);
+            this.btnAvanzarPag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAvanzarPag.Name = "btnAvanzarPag";
-            this.btnAvanzarPag.Size = new System.Drawing.Size(46, 23);
+            this.btnAvanzarPag.Size = new System.Drawing.Size(61, 28);
             this.btnAvanzarPag.TabIndex = 25;
             this.btnAvanzarPag.Text = ">>";
             this.btnAvanzarPag.UseVisualStyleBackColor = true;
@@ -331,10 +345,10 @@ namespace PuntoDeVenta.ProductosForms
             // 
             // Productos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1093, 392);
+            this.ClientSize = new System.Drawing.Size(1457, 482);
             this.Controls.Add(this.btnAvanzarPag);
             this.Controls.Add(this.btnRegresarPag);
             this.Controls.Add(this.txtPagActual);
@@ -344,10 +358,10 @@ namespace PuntoDeVenta.ProductosForms
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);
             this.Controls.Add(this.btnRecargarProductos);
-            this.Controls.Add(this.btnSalirProductos);
             this.Controls.Add(this.dataGridViewProductos);
             this.Controls.Add(this.tabControlProductos);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Productos";
@@ -366,7 +380,6 @@ namespace PuntoDeVenta.ProductosForms
 
         #endregion
         private System.Windows.Forms.DataGridView dataGridViewProductos;
-        private System.Windows.Forms.Button btnSalirProductos;
         private System.Windows.Forms.Button btnRecargarProductos;
         private System.Windows.Forms.Label lblPginacionProductos;
         private System.Windows.Forms.Label lblAuxFormProductos;

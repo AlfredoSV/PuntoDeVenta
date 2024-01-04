@@ -83,7 +83,7 @@ namespace PuntoDeVenta
             {
                 string usuario = txtUsuario.Text.Trim();
                 string contrasenia = txtContrasenia.Text.Trim();
-                Inicio inicioForm = new Inicio();
+                Init inicioForm = new Init();
 
                 if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(contrasenia))
                 {

@@ -47,8 +47,6 @@ namespace PuntoDeVenta.ProductosForms
             {
                 MessageBox.Show("Sucedió un error no controlado, favor de contactar con el administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                SalirDeFormulario();
-
             }
 
         }
@@ -95,11 +93,6 @@ namespace PuntoDeVenta.ProductosForms
                 MessageBox.Show("Sucedió un error no controlado, favor de contactar con el administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-        }
-
-        private void btnSalirProductos_Click(object sender, EventArgs e)
-        {
-            SalirDeFormulario();
         }
 
         private async void btnGuardarProducto_Click(object sender, EventArgs e)
@@ -171,7 +164,7 @@ namespace PuntoDeVenta.ProductosForms
         public void Show(Usuario usuario)
         {
             _usuarioLogueado = usuario;
-            ActivarODesactivarFormularioAltaProdcuto(_usuarioLogueado.Permisos.Any(x => x.PermisoModulo == "Alta" && x.Modulo == "Productos"));
+            //ActivarODesactivarFormularioAltaProdcuto(_usuarioLogueado.Permisos.Any(x => x.PermisoModulo == "Alta" && x.Modulo == "Productos"));
             base.Show();
         }
 
@@ -250,12 +243,6 @@ namespace PuntoDeVenta.ProductosForms
 
 
         #region Lógica presentación reútilizable
-        private void SalirDeFormulario()
-        {
-            var inicioForm = new Inicio();
-            inicioForm.Show(_usuarioLogueado);
-            this.Close();
-        }
         private void AgregarBotonesGrid()
         {
             DataGridViewButtonColumn btnBorrar = new DataGridViewButtonColumn();

@@ -44,19 +44,21 @@ namespace PuntoDeVenta
             // txtUsuario
             // 
             this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUsuario.Location = new System.Drawing.Point(365, 49);
+            this.txtUsuario.Location = new System.Drawing.Point(768, 188);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(164, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(218, 22);
             this.txtUsuario.TabIndex = 0;
             this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsuario_KeyDown);
             // 
             // txtContrasenia
             // 
             this.txtContrasenia.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtContrasenia.Location = new System.Drawing.Point(365, 101);
+            this.txtContrasenia.Location = new System.Drawing.Point(768, 252);
+            this.txtContrasenia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.PasswordChar = '*';
-            this.txtContrasenia.Size = new System.Drawing.Size(164, 20);
+            this.txtContrasenia.Size = new System.Drawing.Size(218, 22);
             this.txtContrasenia.TabIndex = 1;
             this.txtContrasenia.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtContrasenia_KeyDown);
             // 
@@ -67,9 +69,10 @@ namespace PuntoDeVenta
             this.btnIngresar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIngresar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnIngresar.Location = new System.Drawing.Point(393, 138);
+            this.btnIngresar.Location = new System.Drawing.Point(805, 298);
+            this.btnIngresar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnIngresar.Name = "btnIngresar";
-            this.btnIngresar.Size = new System.Drawing.Size(106, 29);
+            this.btnIngresar.Size = new System.Drawing.Size(141, 36);
             this.btnIngresar.TabIndex = 2;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = false;
@@ -79,9 +82,10 @@ namespace PuntoDeVenta
             // 
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(419, 29);
+            this.lblUsuario.Location = new System.Drawing.Point(835, 164);
+            this.lblUsuario.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(57, 17);
+            this.lblUsuario.Size = new System.Drawing.Size(67, 20);
             this.lblUsuario.TabIndex = 3;
             this.lblUsuario.Text = "Usuario";
             // 
@@ -89,18 +93,20 @@ namespace PuntoDeVenta
             // 
             this.lblcontraseña.AutoSize = true;
             this.lblcontraseña.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcontraseña.Location = new System.Drawing.Point(404, 81);
+            this.lblcontraseña.Location = new System.Drawing.Point(820, 228);
+            this.lblcontraseña.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblcontraseña.Name = "lblcontraseña";
-            this.lblcontraseña.Size = new System.Drawing.Size(81, 17);
+            this.lblcontraseña.Size = new System.Drawing.Size(95, 20);
             this.lblcontraseña.TabIndex = 4;
             this.lblcontraseña.Text = "Contraseña";
             // 
             // picBoxLogo
             // 
             this.picBoxLogo.Image = ((System.Drawing.Image)(resources.GetObject("picBoxLogo.Image")));
-            this.picBoxLogo.Location = new System.Drawing.Point(12, 29);
+            this.picBoxLogo.Location = new System.Drawing.Point(30, 28);
+            this.picBoxLogo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.picBoxLogo.Name = "picBoxLogo";
-            this.picBoxLogo.Size = new System.Drawing.Size(345, 198);
+            this.picBoxLogo.Size = new System.Drawing.Size(709, 500);
             this.picBoxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picBoxLogo.TabIndex = 5;
             this.picBoxLogo.TabStop = false;
@@ -112,11 +118,12 @@ namespace PuntoDeVenta
             this.btnSalir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSalir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSalir.Location = new System.Drawing.Point(393, 188);
+            this.btnSalir.Location = new System.Drawing.Point(972, -2);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(106, 29);
+            this.btnSalir.Size = new System.Drawing.Size(59, 36);
             this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
+            this.btnSalir.Text = " X";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
@@ -127,9 +134,10 @@ namespace PuntoDeVenta
             this.btnRegistrarme.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistrarme.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistrarme.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnRegistrarme.Location = new System.Drawing.Point(393, 232);
+            this.btnRegistrarme.Location = new System.Drawing.Point(805, 352);
+            this.btnRegistrarme.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRegistrarme.Name = "btnRegistrarme";
-            this.btnRegistrarme.Size = new System.Drawing.Size(106, 29);
+            this.btnRegistrarme.Size = new System.Drawing.Size(141, 36);
             this.btnRegistrarme.TabIndex = 7;
             this.btnRegistrarme.Text = "Registrarme";
             this.btnRegistrarme.UseVisualStyleBackColor = false;
@@ -137,10 +145,10 @@ namespace PuntoDeVenta
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(541, 273);
+            this.ClientSize = new System.Drawing.Size(1030, 567);
             this.Controls.Add(this.btnRegistrarme);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.picBoxLogo);
@@ -150,6 +158,7 @@ namespace PuntoDeVenta
             this.Controls.Add(this.txtContrasenia);
             this.Controls.Add(this.txtUsuario);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Login";

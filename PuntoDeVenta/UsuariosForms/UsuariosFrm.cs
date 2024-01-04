@@ -60,8 +60,6 @@ namespace PuntoDeVenta.UsuariosForms
 
         private void btnSalirUsuario_Click(object sender, EventArgs e)
         {
-            var inicioFrm = new Inicio();
-            inicioFrm.Show(_usuarioLogueado);
             this.Dispose();
             this.Close();
         }

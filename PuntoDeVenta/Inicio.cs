@@ -19,8 +19,8 @@ namespace PuntoDeVenta
     {
         private ServicioAutenticacion _servicioAutenticacion;
         private Usuario _usuarioLogueado;
-        
-        
+
+
         public Inicio()
         {
             _servicioAutenticacion = ServicioAutenticacion.Instacia;
@@ -32,7 +32,7 @@ namespace PuntoDeVenta
             try
             {
                 _usuarioLogueado.AsignarPermisos(_servicioAutenticacion.ConsultarPermisosPorIdUsuario(_usuarioLogueado.IdUsuario));
-                
+
             }
             catch (Exception exception)
             {
@@ -52,7 +52,7 @@ namespace PuntoDeVenta
         private void btnSalir_Click(object sender, EventArgs e)
         {
 
-            Login.Instancia.Show();            
+            Login.Instancia.Show();
             this.Close();
             this.Dispose();
         }
@@ -79,12 +79,11 @@ namespace PuntoDeVenta
                 usuarios.Show(_usuarioLogueado);
                 this.Close();
                 this.Dispose();
+                return;
             }
-            else
-            {
-                MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso","Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-       
+
+            MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
@@ -98,7 +97,7 @@ namespace PuntoDeVenta
         private void btnVenta_Click(object sender, EventArgs e)
         {
             var ventaForm = new RealizarVentaForm();
-            ventaForm.Show(_usuarioLogueado);        
+            ventaForm.Show(_usuarioLogueado);
             this.Dispose();
         }
 
@@ -109,11 +108,10 @@ namespace PuntoDeVenta
                 var sucursalFrm = new SucursalesFrm();
                 sucursalFrm.Show(_usuarioLogueado);
                 this.Dispose();
+                return;
             }
-            else
-            {
-                MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+            MessageBox.Show("No tiene los permisos necesarios para acceder a este permiso", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
         }
 
 

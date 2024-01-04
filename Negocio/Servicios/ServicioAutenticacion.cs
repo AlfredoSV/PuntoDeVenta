@@ -44,28 +44,26 @@ namespace Aplicacion.Servicios
             Usuario usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
             IEnumerable<UsuarioIntento> intentosUsuario;
 
-            if (usuario != null)
+            if (usuario == null)
+                return false;
+
+            intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
+            Guid userId = usuario.IdUsuario;
+            string password = _serviceCryptography.Descrypt(usuario.Contrsenia, userId.ToString()).Trim();
+
+            if (!password.Equals(contrasenia))
             {
-                intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
-                Guid userId = usuario.IdUsuario;
-                string password = _serviceCryptography.Descrypt(usuario.Contrsenia, userId.ToString()).Trim();
+                _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
+                    Crear(usuario.IdUsuario));
 
-                if (!password.Equals(contrasenia))
-                {
-                    _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
-                        Crear(usuario.IdUsuario));
-
-                    return false;
-                }
-                
-                if (intentosUsuario.Count() >= 3 || !usuario.Activo)
-                    return false;
-
-                return true;
-                  
+                return false;
             }
 
-            return usuario != null;
+            if (intentosUsuario.Count() >= 3 || !usuario.Activo)
+                return false;
+
+            return true;
+
         }
 
         public async Task<Usuario> ConsultarUsuario(string nombreUsuario)

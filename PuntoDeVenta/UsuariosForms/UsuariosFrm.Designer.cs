@@ -38,7 +38,6 @@ namespace PuntoDeVenta.UsuariosForms
             this.lblAuxFormProductos = new System.Windows.Forms.Label();
             this.lblPginacionProductos = new System.Windows.Forms.Label();
             this.btnRecargarUsuarios = new System.Windows.Forms.Button();
-            this.btnSalirUsuario = new System.Windows.Forms.Button();
             this.dataGridViewUsuarios = new System.Windows.Forms.DataGridView();
             this.tabControlProductos = new System.Windows.Forms.TabControl();
             this.Alta = new System.Windows.Forms.TabPage();
@@ -60,9 +59,10 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             // btnAvanzarPag
             // 
-            this.btnAvanzarPag.Location = new System.Drawing.Point(365, 50);
+            this.btnAvanzarPag.Location = new System.Drawing.Point(487, 62);
+            this.btnAvanzarPag.Margin = new System.Windows.Forms.Padding(4);
             this.btnAvanzarPag.Name = "btnAvanzarPag";
-            this.btnAvanzarPag.Size = new System.Drawing.Size(46, 23);
+            this.btnAvanzarPag.Size = new System.Drawing.Size(61, 28);
             this.btnAvanzarPag.TabIndex = 37;
             this.btnAvanzarPag.Text = ">>";
             this.btnAvanzarPag.UseVisualStyleBackColor = true;
@@ -70,9 +70,10 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             // btnRegresarPag
             // 
-            this.btnRegresarPag.Location = new System.Drawing.Point(313, 50);
+            this.btnRegresarPag.Location = new System.Drawing.Point(417, 62);
+            this.btnRegresarPag.Margin = new System.Windows.Forms.Padding(4);
             this.btnRegresarPag.Name = "btnRegresarPag";
-            this.btnRegresarPag.Size = new System.Drawing.Size(46, 23);
+            this.btnRegresarPag.Size = new System.Drawing.Size(61, 28);
             this.btnRegresarPag.TabIndex = 36;
             this.btnRegresarPag.Text = "<<";
             this.btnRegresarPag.UseVisualStyleBackColor = true;
@@ -80,17 +81,19 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             // txtPagActual
             // 
-            this.txtPagActual.Location = new System.Drawing.Point(313, 24);
+            this.txtPagActual.Location = new System.Drawing.Point(417, 30);
+            this.txtPagActual.Margin = new System.Windows.Forms.Padding(4);
             this.txtPagActual.Name = "txtPagActual";
             this.txtPagActual.ReadOnly = true;
-            this.txtPagActual.Size = new System.Drawing.Size(98, 20);
+            this.txtPagActual.Size = new System.Drawing.Size(129, 22);
             this.txtPagActual.TabIndex = 35;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(535, 54);
+            this.btnBuscar.Location = new System.Drawing.Point(713, 66);
+            this.btnBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(91, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(121, 28);
             this.btnBuscar.TabIndex = 34;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -98,34 +101,38 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(535, 27);
+            this.txtBuscar.Location = new System.Drawing.Point(713, 33);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(91, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(120, 22);
             this.txtBuscar.TabIndex = 33;
             // 
             // txtPaginasTotalesProductos
             // 
-            this.txtPaginasTotalesProductos.Location = new System.Drawing.Point(444, 26);
+            this.txtPaginasTotalesProductos.Location = new System.Drawing.Point(592, 32);
+            this.txtPaginasTotalesProductos.Margin = new System.Windows.Forms.Padding(4);
             this.txtPaginasTotalesProductos.Name = "txtPaginasTotalesProductos";
             this.txtPaginasTotalesProductos.ReadOnly = true;
-            this.txtPaginasTotalesProductos.Size = new System.Drawing.Size(71, 20);
+            this.txtPaginasTotalesProductos.Size = new System.Drawing.Size(93, 22);
             this.txtPaginasTotalesProductos.TabIndex = 32;
             // 
             // lblAuxFormProductos
             // 
             this.lblAuxFormProductos.AutoSize = true;
-            this.lblAuxFormProductos.Location = new System.Drawing.Point(419, 30);
+            this.lblAuxFormProductos.Location = new System.Drawing.Point(559, 37);
+            this.lblAuxFormProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAuxFormProductos.Name = "lblAuxFormProductos";
-            this.lblAuxFormProductos.Size = new System.Drawing.Size(19, 13);
+            this.lblAuxFormProductos.Size = new System.Drawing.Size(24, 17);
             this.lblAuxFormProductos.TabIndex = 31;
             this.lblAuxFormProductos.Text = "de";
             // 
             // lblPginacionProductos
             // 
             this.lblPginacionProductos.AutoSize = true;
-            this.lblPginacionProductos.Location = new System.Drawing.Point(310, 8);
+            this.lblPginacionProductos.Location = new System.Drawing.Point(413, 10);
+            this.lblPginacionProductos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPginacionProductos.Name = "lblPginacionProductos";
-            this.lblPginacionProductos.Size = new System.Drawing.Size(60, 13);
+            this.lblPginacionProductos.Size = new System.Drawing.Size(78, 17);
             this.lblPginacionProductos.TabIndex = 30;
             this.lblPginacionProductos.Text = "Paginación";
             // 
@@ -133,25 +140,14 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             this.btnRecargarUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnRecargarUsuarios.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnRecargarUsuarios.Location = new System.Drawing.Point(733, 24);
+            this.btnRecargarUsuarios.Location = new System.Drawing.Point(1086, 25);
+            this.btnRecargarUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.btnRecargarUsuarios.Name = "btnRecargarUsuarios";
-            this.btnRecargarUsuarios.Size = new System.Drawing.Size(73, 26);
+            this.btnRecargarUsuarios.Size = new System.Drawing.Size(97, 32);
             this.btnRecargarUsuarios.TabIndex = 29;
             this.btnRecargarUsuarios.Text = "Recargar";
             this.btnRecargarUsuarios.UseVisualStyleBackColor = false;
             this.btnRecargarUsuarios.Click += new System.EventHandler(this.btnRecargarUsuarios_Click);
-            // 
-            // btnSalirUsuario
-            // 
-            this.btnSalirUsuario.BackColor = System.Drawing.Color.IndianRed;
-            this.btnSalirUsuario.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnSalirUsuario.Location = new System.Drawing.Point(812, 24);
-            this.btnSalirUsuario.Name = "btnSalirUsuario";
-            this.btnSalirUsuario.Size = new System.Drawing.Size(73, 28);
-            this.btnSalirUsuario.TabIndex = 26;
-            this.btnSalirUsuario.Text = "Salir";
-            this.btnSalirUsuario.UseVisualStyleBackColor = false;
-            this.btnSalirUsuario.Click += new System.EventHandler(this.btnSalirUsuario_Click);
             // 
             // dataGridViewUsuarios
             // 
@@ -160,20 +156,23 @@ namespace PuntoDeVenta.UsuariosForms
             this.dataGridViewUsuarios.AllowUserToOrderColumns = true;
             this.dataGridViewUsuarios.BackgroundColor = System.Drawing.SystemColors.InactiveCaption;
             this.dataGridViewUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUsuarios.Location = new System.Drawing.Point(313, 83);
+            this.dataGridViewUsuarios.Location = new System.Drawing.Point(417, 102);
+            this.dataGridViewUsuarios.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewUsuarios.Name = "dataGridViewUsuarios";
             this.dataGridViewUsuarios.ReadOnly = true;
-            this.dataGridViewUsuarios.Size = new System.Drawing.Size(572, 239);
+            this.dataGridViewUsuarios.RowHeadersWidth = 51;
+            this.dataGridViewUsuarios.Size = new System.Drawing.Size(763, 294);
             this.dataGridViewUsuarios.TabIndex = 28;
             this.dataGridViewUsuarios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewUsuarios_CellContentClickAsync);
             // 
             // tabControlProductos
             // 
             this.tabControlProductos.Controls.Add(this.Alta);
-            this.tabControlProductos.Location = new System.Drawing.Point(14, 14);
+            this.tabControlProductos.Location = new System.Drawing.Point(19, 17);
+            this.tabControlProductos.Margin = new System.Windows.Forms.Padding(4);
             this.tabControlProductos.Name = "tabControlProductos";
             this.tabControlProductos.SelectedIndex = 0;
-            this.tabControlProductos.Size = new System.Drawing.Size(270, 308);
+            this.tabControlProductos.Size = new System.Drawing.Size(360, 379);
             this.tabControlProductos.TabIndex = 27;
             // 
             // Alta
@@ -190,10 +189,11 @@ namespace PuntoDeVenta.UsuariosForms
             this.Alta.Controls.Add(this.btnLimpiarFormUsuario);
             this.Alta.Controls.Add(this.btnGuardarUsuario);
             this.Alta.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.Alta.Location = new System.Drawing.Point(4, 22);
+            this.Alta.Location = new System.Drawing.Point(4, 25);
+            this.Alta.Margin = new System.Windows.Forms.Padding(4);
             this.Alta.Name = "Alta";
-            this.Alta.Padding = new System.Windows.Forms.Padding(3);
-            this.Alta.Size = new System.Drawing.Size(262, 282);
+            this.Alta.Padding = new System.Windows.Forms.Padding(4);
+            this.Alta.Size = new System.Drawing.Size(352, 350);
             this.Alta.TabIndex = 0;
             this.Alta.Text = "Alta";
             // 
@@ -201,76 +201,85 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             this.comboBoxSucursales.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSucursales.FormattingEnabled = true;
-            this.comboBoxSucursales.Location = new System.Drawing.Point(102, 125);
+            this.comboBoxSucursales.Location = new System.Drawing.Point(136, 154);
+            this.comboBoxSucursales.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxSucursales.Name = "comboBoxSucursales";
-            this.comboBoxSucursales.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSucursales.Size = new System.Drawing.Size(160, 24);
             this.comboBoxSucursales.TabIndex = 26;
             // 
             // comboBoxRoles
             // 
             this.comboBoxRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxRoles.FormattingEnabled = true;
-            this.comboBoxRoles.Location = new System.Drawing.Point(103, 174);
+            this.comboBoxRoles.Location = new System.Drawing.Point(137, 214);
+            this.comboBoxRoles.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxRoles.Name = "comboBoxRoles";
-            this.comboBoxRoles.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxRoles.Size = new System.Drawing.Size(160, 24);
             this.comboBoxRoles.TabIndex = 25;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(34, 174);
+            this.label4.Location = new System.Drawing.Point(45, 214);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 13);
+            this.label4.Size = new System.Drawing.Size(33, 17);
             this.label4.TabIndex = 24;
             this.label4.Text = "Rol:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 133);
+            this.label3.Location = new System.Drawing.Point(44, 164);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(67, 17);
             this.label3.TabIndex = 23;
             this.label3.Text = "Sucursal:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 80);
+            this.label2.Location = new System.Drawing.Point(45, 98);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 13);
+            this.label2.Size = new System.Drawing.Size(85, 17);
             this.label2.TabIndex = 22;
             this.label2.Text = "Contraseña:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(34, 27);
+            this.label1.Location = new System.Drawing.Point(45, 33);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
+            this.label1.Size = new System.Drawing.Size(61, 17);
             this.label1.TabIndex = 21;
             this.label1.Text = "Usuario:";
             // 
             // txtContrasenia
             // 
-            this.txtContrasenia.Location = new System.Drawing.Point(104, 73);
+            this.txtContrasenia.Location = new System.Drawing.Point(139, 90);
+            this.txtContrasenia.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasenia.Name = "txtContrasenia";
             this.txtContrasenia.PasswordChar = '*';
-            this.txtContrasenia.Size = new System.Drawing.Size(120, 20);
+            this.txtContrasenia.Size = new System.Drawing.Size(159, 22);
             this.txtContrasenia.TabIndex = 20;
             // 
             // txtUsuario
             // 
-            this.txtUsuario.Location = new System.Drawing.Point(104, 20);
+            this.txtUsuario.Location = new System.Drawing.Point(139, 25);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(120, 20);
+            this.txtUsuario.Size = new System.Drawing.Size(159, 22);
             this.txtUsuario.TabIndex = 19;
             // 
             // btnLimpiarFormUsuario
             // 
-            this.btnLimpiarFormUsuario.Location = new System.Drawing.Point(149, 235);
+            this.btnLimpiarFormUsuario.Location = new System.Drawing.Point(199, 289);
+            this.btnLimpiarFormUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFormUsuario.Name = "btnLimpiarFormUsuario";
-            this.btnLimpiarFormUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiarFormUsuario.Size = new System.Drawing.Size(100, 28);
             this.btnLimpiarFormUsuario.TabIndex = 15;
             this.btnLimpiarFormUsuario.Text = "Limpiar";
             this.btnLimpiarFormUsuario.UseVisualStyleBackColor = true;
@@ -278,9 +287,10 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             // btnGuardarUsuario
             // 
-            this.btnGuardarUsuario.Location = new System.Drawing.Point(36, 235);
+            this.btnGuardarUsuario.Location = new System.Drawing.Point(48, 289);
+            this.btnGuardarUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardarUsuario.Name = "btnGuardarUsuario";
-            this.btnGuardarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarUsuario.Size = new System.Drawing.Size(100, 28);
             this.btnGuardarUsuario.TabIndex = 13;
             this.btnGuardarUsuario.Text = "Guardar";
             this.btnGuardarUsuario.UseVisualStyleBackColor = true;
@@ -290,18 +300,19 @@ namespace PuntoDeVenta.UsuariosForms
             // 
             this.comboEstatusBusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboEstatusBusqueda.FormattingEnabled = true;
-            this.comboEstatusBusqueda.Location = new System.Drawing.Point(632, 26);
+            this.comboEstatusBusqueda.Location = new System.Drawing.Point(843, 32);
+            this.comboEstatusBusqueda.Margin = new System.Windows.Forms.Padding(4);
             this.comboEstatusBusqueda.Name = "comboEstatusBusqueda";
-            this.comboEstatusBusqueda.Size = new System.Drawing.Size(89, 21);
+            this.comboEstatusBusqueda.Size = new System.Drawing.Size(117, 24);
             this.comboEstatusBusqueda.TabIndex = 27;
             this.comboEstatusBusqueda.SelectedIndexChanged += new System.EventHandler(this.comboEstatusBusqueda_SelectedIndexChanged);
             // 
             // UsuariosFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(897, 335);
+            this.ClientSize = new System.Drawing.Size(1196, 412);
             this.Controls.Add(this.comboEstatusBusqueda);
             this.Controls.Add(this.btnAvanzarPag);
             this.Controls.Add(this.btnRegresarPag);
@@ -312,10 +323,10 @@ namespace PuntoDeVenta.UsuariosForms
             this.Controls.Add(this.lblAuxFormProductos);
             this.Controls.Add(this.lblPginacionProductos);
             this.Controls.Add(this.btnRecargarUsuarios);
-            this.Controls.Add(this.btnSalirUsuario);
             this.Controls.Add(this.dataGridViewUsuarios);
             this.Controls.Add(this.tabControlProductos);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UsuariosFrm";
@@ -342,7 +353,6 @@ namespace PuntoDeVenta.UsuariosForms
         private System.Windows.Forms.Label lblAuxFormProductos;
         private System.Windows.Forms.Label lblPginacionProductos;
         private System.Windows.Forms.Button btnRecargarUsuarios;
-        private System.Windows.Forms.Button btnSalirUsuario;
         private System.Windows.Forms.DataGridView dataGridViewUsuarios;
         private System.Windows.Forms.TabControl tabControlProductos;
         private System.Windows.Forms.TabPage Alta;
