@@ -22,9 +22,9 @@ namespace PuntoDeVenta.SucursalesForms
 
         private void btnSalirFormSucursales_Click(object sender, EventArgs e)
         {
-            var inicio = new Inicio();
-            inicio.Show(_usuarioLogueado);
-            this.Dispose();
+            //var inicio = new Inicio();
+            //inicio.Show(_usuarioLogueado);
+            //this.Dispose();
         }
 
         public void Show(Usuario usuarioLogueado) {

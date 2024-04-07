@@ -160,22 +160,22 @@ namespace PuntoDeVenta.UsuariosForms
             var validacion = true;
             var mensajeValidacion = string.Empty;
 
-            if (usuario.Equals(""))
+            if (string.IsNullOrEmpty(usuario))
             {
                 mensajeValidacion += "* Favor de ingresar un usuario \n";
                 validacion = false;
             }
-            if (contrasenia.Equals(""))
+            if (string.IsNullOrEmpty(contrasenia))
             {
                 mensajeValidacion += "* Favor de ingresar una contraseña \n";
                 validacion = false;
             }
-            if (idRol == Guid.Empty)
+            if (idRol.Equals(Guid.Empty))
             {
                 mensajeValidacion += "* Favor de seleccionar un Rol \n";
                 validacion = false;
             }
-            if (idSucursal == Guid.Empty)
+            if (idSucursal.Equals(Guid.Empty))
             {
                 mensajeValidacion += "* Favor de seleccionar una sucursal \n";
                 validacion = false;
@@ -187,7 +187,10 @@ namespace PuntoDeVenta.UsuariosForms
                 {
                     dtoUsuario = new DtoUsuario(usuario, contrasenia, idSucursal, idRol);
                     await _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
-
+                    txtUsuario.Text = string.Empty;
+                    txtContrasenia.Text = string.Empty;
+                    comboBoxRoles.SelectedItem = Guid.Empty;
+                    comboBoxSucursales.SelectedItem = Guid.Empty;
 
                 }
                 catch (ExcepcionComun excepcionComun)

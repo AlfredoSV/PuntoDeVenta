@@ -25,10 +25,10 @@ namespace PuntoDeVenta.ProveedoresForms
 
         private void btnSalirProveedores_Click(object sender, EventArgs e)
         {
-            var inicioFrm = new Inicio();
-            inicioFrm.Show(_usuarioLogueado);
-            this.Dispose();
-            this.Close();
+            //var inicioFrm = new Inicio();
+            //inicioFrm.Show(_usuarioLogueado);
+            //this.Dispose();
+            //this.Close();
         }
 
         public void Show(Usuario usuario)

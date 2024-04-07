@@ -61,7 +61,6 @@ namespace PuntoDeVenta
         {
             if (e.KeyCode.Equals(Keys.Enter))
                 await Ingresar();
-
         }
 
         private async void txtContrasenia_KeyDown(object sender, KeyEventArgs e)
@@ -85,37 +84,28 @@ namespace PuntoDeVenta
                 string contrasenia = txtContrasenia.Text.Trim();
                 Init inicioForm = new Init();
 
-                if (!string.IsNullOrEmpty(usuario) && !string.IsNullOrEmpty(contrasenia))
-                {
-
-                    if (await _servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
-                    {
-                        this.Hide();
-                        inicioForm.Show(await _servicioAutenticacion.ConsultarUsuario(usuario));
-                    }
-                    else
-                    {
-                        MessageBox.Show("El usuario y/o contraseña son incorrectos o el usuario no se ecuentra activo", "Error");
-                    }
-
-                }
-                else
+                if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contrasenia))
                 {
                     MessageBox.Show("Favor de ingresar usuario y/o contraseña", "Alterta");
+                    return;
                 }
+
+                if (!await _servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
+                {
+                    MessageBox.Show("El usuario y/o contraseña son incorrectos o el usuario no se ecuentra activo", "Error");
+                }
+
+                this.Hide();
+                inicioForm.Show(await _servicioAutenticacion.ConsultarUsuario(usuario));
 
             }
             catch (ExcepcionComun excepcionComun)
             {
-
                 MessageBox.Show(excepcionComun.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
             catch (Exception exception)
             {
-
                 MessageBox.Show("Sucedió un error no controlado, favor de contactar con el administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
 
 

@@ -40,9 +40,9 @@ namespace PuntoDeVenta.VentaForms
 
         private void btnSalirFormVentas_Click(object sender, EventArgs e)
         {
-            var inicio = new Inicio();
-            inicio.Show(_usuarioLogueado);
-            this.Dispose();
+            //var inicio = new Inicio();
+            //inicio.Show(_usuarioLogueado);
+            //this.Dispose();
         }
 
         private async void btnBuscarProducto_Click(object sender, EventArgs e)
