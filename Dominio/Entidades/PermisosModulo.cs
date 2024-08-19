@@ -18,7 +18,7 @@ namespace Dominio.Entidades
         public string PermisoModulo { get => _permisoModulo; set => _permisoModulo = value; }
         public string Modulo { get => _modulo; set => _modulo = value; }
 
-        public PermisosModulo(Guid idUsuario, string usuario, string nombreRol, string permisoModulo, string modulo)
+        private PermisosModulo(Guid idUsuario, string usuario, string nombreRol, string permisoModulo, string modulo)
         {
             IdUsuario = idUsuario;
             Usuario = usuario;

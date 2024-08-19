@@ -2,12 +2,7 @@
 using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PuntoDeVenta.ClasesAuxiliares;
 using System.Windows.Forms;
 using Aplicacion;
@@ -28,65 +23,64 @@ namespace PuntoDeVenta
 
         private async void RegistroUsuario_Load(object sender, EventArgs e)
         {
-            IEnumerable<Sucursal> sucursales = await _servicioCatalogos.ConsultarSucursalesBD();
+            IEnumerable<Sucursal> branches = await _servicioCatalogos.ConsultarSucursalesBD();
             IEnumerable<Rol> roles = await _servicioCatalogos.ConsultarRolesBD();
 
-            if(sucursales.Count() == 0 || roles.Count() == 0)
-            {
+            if(!(branches.Any() && roles.Any()))
+          {
                 MessageBox.Show("No se cargarón sucursales y/o roles, favor de consultar con sistemas.","Warning");
                 btnRealizarSol.Enabled = false;
                 return;
             }
 
             btnRealizarSol.Enabled = true;
-            CargarSucursales(sucursales);
-            CargarRoles(roles);
+            ItemComboBox.CargarComboItems(comBSucursal, branches, "--- Seleciona un sucursal. ---", "IdSucursal");
+            ItemComboBox.CargarComboItems(comBRol, roles, "--- Seleciona un role. ---", "IdRol");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
-        {
-            
+        {           
             this.Close();
         }
 
         private async void btnRealizarSol_Click(object sender, EventArgs e)
         {
             
-            string usuario = txtUsuario.Text.Trim();
-            string contrasenia = txtContrasenia.Text.Trim();
+            string userName = txtUsuario.Text.Trim();
+            string pass = txtContrasenia.Text.Trim();
             Guid idRol = ((Item)(comBRol.SelectedItem)).Value;
             Guid idSucursal = ((Item)(comBSucursal.SelectedItem)).Value;
             DtoUsuario dtoUsuario;
 
-            bool validacion = true;
+            bool isAValidRequest = true;
             string mensajeValidacion = string.Empty;
 
-            if (String.IsNullOrEmpty(usuario))
+            if (string.IsNullOrEmpty(userName) || string.IsNullOrWhiteSpace(pass))
             {              
                 mensajeValidacion += "* Favor de ingresar un usuario \n";
-                validacion = false;
+                isAValidRequest = false;
             }
-            if (String.IsNullOrEmpty(contrasenia))
+            if (String.IsNullOrEmpty(userName) || string.IsNullOrWhiteSpace(pass))
             {
                 mensajeValidacion += "* Favor de ingresar una contrasenia \n";
-                validacion = false;
+                isAValidRequest = false;
             }
-            if (idRol == Guid.Empty)
+            if (idRol.Equals(Guid.Empty))
             {
                 mensajeValidacion += "* Favor de seleccionar un Rol \n";
-                validacion = false;
+                isAValidRequest = false;
             }
-            if (idSucursal == Guid.Empty)
+            if (idSucursal.Equals(Guid.Empty))
             {
                 mensajeValidacion += "* Favor de seleccionar una sucursal \n";
-                validacion = false;
+                isAValidRequest = false;
             }
 
-            if (validacion)
+            if (isAValidRequest)
             {
                 try
                 {
-                    dtoUsuario = new DtoUsuario(usuario, contrasenia, idSucursal, idRol);
+                    dtoUsuario = new DtoUsuario(userName, pass, idSucursal, idRol);
                     await _servicioUsuarios.GuardarNuevoUsuario(dtoUsuario);
                     this.Close();
 
@@ -110,37 +104,6 @@ namespace PuntoDeVenta
             }
 
         }
-
-        private void CargarSucursales(IEnumerable<Sucursal> sucursales)
-        {
-            var items = new List<Item>();
-
-            items.Add(new Item("--- Seleciona un sucursal. ---", Guid.Empty));
-            foreach (var get in sucursales)
-            {
-                items.Add(new Item(get.Nombre, get.IdSucursal));
-            }
-
-            comBSucursal.DisplayMember = "Name";
-            comBSucursal.ValueMember = "Value";
-            comBSucursal.DataSource = items;
-        }
-
-        private void CargarRoles(IEnumerable<Rol> sucursales)
-        {
-            var items = new List<Item>();
-
-            items.Add(new Item("--- Seleciona un Rol. ---", Guid.Empty));
-            foreach (var get in sucursales)
-            {
-                items.Add(new Item(get.Nombre, get.IdRol));
-            }
-
-            comBRol.DisplayMember = "Name";
-            comBRol.ValueMember = "Value";
-            comBRol.DataSource = items;
-        }
-
 
     }
 }

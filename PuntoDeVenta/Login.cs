@@ -93,6 +93,7 @@ namespace PuntoDeVenta
                 if (!await _servicioAutenticacion.ValidarUsuario(usuario, contrasenia))
                 {
                     MessageBox.Show("El usuario y/o contraseña son incorrectos o el usuario no se ecuentra activo", "Error");
+                    return;
                 }
 
                 this.Hide();

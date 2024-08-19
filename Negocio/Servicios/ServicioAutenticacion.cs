@@ -44,14 +44,14 @@ namespace Aplicacion.Servicios
             Usuario usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
             IEnumerable<UsuarioIntento> intentosUsuario;
 
-            if (usuario == null)
+            if (usuario is null)
                 return false;
 
             intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
             Guid userId = usuario.IdUsuario;
             string password = _serviceCryptography.Descrypt(usuario.Contrsenia, userId.ToString()).Trim();
 
-            if (!password.Equals(contrasenia))
+            if (!password.Equals(contrasenia,StringComparison.InvariantCultureIgnoreCase))
             {
                 _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
                     Crear(usuario.IdUsuario));

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AccesoDatos.Repositorios
@@ -49,25 +48,32 @@ namespace AccesoDatos.Repositorios
                 using (SqlConnection conexion = new SqlConnection(_cadCon))
                 {
                     conexion.Open();
-
                     sqlCommand = new SqlCommand(sql, conexion);
-
                     sqlCommand.Parameters.AddWithValue("nombreUsuario", nombreUsuario);
-
                     sqlDataReader = await sqlCommand.ExecuteReaderAsync();
-
                     if (sqlDataReader.HasRows)
                     {
                         sqlDataReader.Read();
 
-                        rol = Rol.Crear(sqlDataReader.GetGuid(5), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
-                        sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
-                        usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
-                            sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
+                        rol = Rol.Crear(
+                            sqlDataReader.GetGuid(5),
+                            sqlDataReader.GetString(8),
+                            sqlDataReader.GetString(9),
+                            sqlDataReader.GetDateTime(10));
+
+                        sucursal = Sucursal.Crear(
+                            sqlDataReader.GetGuid(11),
+                            sqlDataReader.GetString(12),
+                            sqlDataReader.GetDateTime(13));
+
+                        usuario = Usuario.CrearUsuario(
+                            sqlDataReader.GetGuid(0),
+                            sqlDataReader.GetString(1),
+                            sqlDataReader.GetString(2),
+                            sqlDataReader.GetDateTime(3),
+                            sqlDataReader.GetBoolean(6), sucursal, rol);
 
                     }
-
-
 
                 }
             }
@@ -105,9 +111,13 @@ namespace AccesoDatos.Repositorios
                     {
                         while (sqlDataReader.Read())
                         {
-                            rol = Rol.Crear(sqlDataReader.GetGuid(5), sqlDataReader.GetString(8), sqlDataReader.GetString(9), sqlDataReader.GetDateTime(10));
+                            rol = Rol.Crear(
+                                sqlDataReader.GetGuid(5), sqlDataReader.GetString(8),
+                                sqlDataReader.GetString(9),
+                                sqlDataReader.GetDateTime(10));
 
-                            sucursal = Sucursal.Crear(sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
+                            sucursal = Sucursal.Crear(
+                                sqlDataReader.GetGuid(11), sqlDataReader.GetString(12), sqlDataReader.GetDateTime(13));
 
                             usuario = Usuario.CrearUsuario(sqlDataReader.GetGuid(0), sqlDataReader.GetString(1), sqlDataReader.GetString(2),
                                 sqlDataReader.GetDateTime(3), sqlDataReader.GetBoolean(6), sucursal, rol);
