@@ -1,12 +1,9 @@
 ﻿
 using AccesoDatos.Repositorios;
-using Dominio.Repositorios;
 using Dominio.Entidades;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using System.Linq;
 using Framework.Security2023.Cryptography;
 
 namespace Aplicacion.Servicios
@@ -40,41 +37,30 @@ namespace Aplicacion.Servicios
 
         public async Task<bool> ValidarUsuario(string nombreUsuario, string contrasenia)
         {
-
+            int intentosUsuario;
+            string password;
             Usuario usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
-            IEnumerable<UsuarioIntento> intentosUsuario;
 
             if (usuario is null)
-                return false;
-
-            intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
-            Guid userId = usuario.IdUsuario;
-            string password = _serviceCryptography.Descrypt(usuario.Contrsenia, userId.ToString()).Trim();
-
-            if (!password.Equals(contrasenia,StringComparison.InvariantCultureIgnoreCase))
             {
-                _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.
-                    Crear(usuario.IdUsuario));
-
                 return false;
             }
 
-            if (intentosUsuario.Count() >= 3 || !usuario.Activo)
+            intentosUsuario = await _repositorioUsuarios.ConsultarIntentosUsuario(usuario.IdUsuario);
+            password = _serviceCryptography.Descrypt(usuario.Contrsenia, usuario.IdUsuario.ToString());
+
+            if (!password.Equals(contrasenia, StringComparison.InvariantCultureIgnoreCase))
+            {
+                _repositorioUsuarios.GuardarIntentoUsuario(UsuarioIntento.Crear(usuario.IdUsuario));
                 return false;
+            }
 
-            return true;
-
+            return !(intentosUsuario >= 3 || !usuario.Activo);
         }
 
-        public async Task<Usuario> ConsultarUsuario(string nombreUsuario)
-        {
-            Usuario usuario = await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
-            return usuario;
-        }
+        public async Task<Usuario> ConsultarUsuario(string nombreUsuario) => await _repositorioUsuarios.ConsultarUsuarioPorNombreDeUsuario(nombreUsuario);
 
-        public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
-        {
-            return _repositorioUsuarios.ConsultarPermisosPorIdUsuario(idUsuario);
-        }
+        public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario) =>  _repositorioUsuarios.ConsultarPermisosPorIdUsuario(idUsuario);
+
     }
 }

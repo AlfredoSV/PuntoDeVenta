@@ -3,12 +3,6 @@
 using Aplicacion.Servicios;
 using Dominio;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -48,8 +42,8 @@ namespace PuntoDeVenta
         public void CerrarSesion()
         {
             this.Show();
-            txtContrasenia.Text = "";
-            txtUsuario.Text = "";
+            txtContrasenia.Text = string.Empty;
+            txtUsuario.Text = string.Empty;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -60,19 +54,23 @@ namespace PuntoDeVenta
         private async void txtUsuario_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
+            {
                 await Ingresar();
+            }          
         }
 
         private async void txtContrasenia_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode.Equals(Keys.Enter))
+            {
                 await Ingresar();
+            }
         }
 
         public new void Show()
         {
-            txtContrasenia.Text = "";
-            txtUsuario.Text = "";
+            txtContrasenia.Text = string.Empty;
+            txtUsuario.Text = string.Empty;
             base.Show();
         }
 
@@ -80,11 +78,11 @@ namespace PuntoDeVenta
         {
             try
             {
-                string usuario = txtUsuario.Text.Trim();
-                string contrasenia = txtContrasenia.Text.Trim();
                 Init inicioForm = new Init();
+                string usuario = txtUsuario.Text.Trim();
+                string contrasenia = txtContrasenia.Text.Trim();          
 
-                if (string.IsNullOrEmpty(usuario) || string.IsNullOrEmpty(contrasenia))
+                if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(contrasenia))
                 {
                     MessageBox.Show("Favor de ingresar usuario y/o contraseña", "Alterta");
                     return;
@@ -108,7 +106,6 @@ namespace PuntoDeVenta
             {
                 MessageBox.Show("Sucedió un error no controlado, favor de contactar con el administrador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
 
         }
 

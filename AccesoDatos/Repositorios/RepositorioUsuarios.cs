@@ -35,13 +35,14 @@ namespace AccesoDatos.Repositorios
         public async Task<Usuario> ConsultarUsuarioPorNombreDeUsuario(string nombreUsuario)
         {
 
-            string sql = @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
+            string sql = 
+                @"select usu.*,rol.*,suc.* from Usuarios usu inner join Roles rol on usu.idRol = rol.idRol inner join 
                         Sucursales suc on suc.idSucursal = usu.idSucursal where  usu.usuario = @nombreUsuario";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
-            Usuario usuario = null;
-            Rol rol = null;
-            Sucursal sucursal = null;
+            Usuario usuario = default;
+            Rol rol = default;
+            Sucursal sucursal = default;
 
             try
             {
@@ -72,15 +73,12 @@ namespace AccesoDatos.Repositorios
                             sqlDataReader.GetString(2),
                             sqlDataReader.GetDateTime(3),
                             sqlDataReader.GetBoolean(6), sucursal, rol);
-
                     }
-
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                throw e;
+                throw ;
             }
 
             return usuario;
@@ -184,13 +182,11 @@ namespace AccesoDatos.Repositorios
             return usuarios;
         }
 
-        public async Task<IEnumerable<UsuarioIntento>> ConsultarIntentosUsuario(Guid idUsuario)
+        public async Task<int> ConsultarIntentosUsuario(Guid idUsuario)
         {
-            string sql = @"SELECT * FROM UsuariosIntentos where idUsuario = @idUsuario;";
+            string sql = @"SELECT COUNT(*) FROM UsuariosIntentos where idUsuario = @idUsuario;";
             SqlDataReader sqlDataReader;
             SqlCommand sqlCommand;
-            UsuarioIntento usuarioIntento;
-            List<UsuarioIntento> usuarioIntentos = new List<UsuarioIntento>();
 
             try
             {
@@ -204,26 +200,17 @@ namespace AccesoDatos.Repositorios
 
                     if (sqlDataReader.HasRows)
                     {
-                        while (sqlDataReader.Read())
-                        {
-
-                            usuarioIntento = UsuarioIntento.Crear(sqlDataReader.GetGuid(0), sqlDataReader.GetGuid(1),
-                                sqlDataReader.GetDateTime(2));
-
-                            usuarioIntentos.
-                                Add(usuarioIntento);
-                        }
-
+                        sqlDataReader.Read();
+                        return sqlDataReader.GetInt32(1);
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                throw e;
+                throw;
             }
 
-            return usuarioIntentos;
+            return 3;
         }
 
         public IEnumerable<PermisosModulo> ConsultarPermisosPorIdUsuario(Guid idUsuario)
@@ -311,13 +298,13 @@ namespace AccesoDatos.Repositorios
         public void GuardarIntentoUsuario(UsuarioIntento usuarioIntento)
         {
             var sql = @"INSERT INTO [dbo].[UsuariosIntentos]
-           ([idUsuarioIntento]
-           ,[idUsuario]
-           ,[fechayHoraIntento])
-           VALUES
-           (@idUsuarioIntento,
-           @idUsuario,
-           @fechayHoraIntento)";
+                       ([idUsuarioIntento]
+                       ,[idUsuario]
+                       ,[fechayHoraIntento])
+                       VALUES
+                       (@idUsuarioIntento,
+                       @idUsuario,
+                       @fechayHoraIntento)";
             SqlCommand sqlCommand;
 
             try
@@ -331,13 +318,11 @@ namespace AccesoDatos.Repositorios
                     sqlCommand.Parameters.AddWithValue("@fechayHoraIntento", DateTime.Now);
 
                     sqlCommand.ExecuteNonQuery();
-
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-
-                throw e;
+                throw;
             }
         }
 
